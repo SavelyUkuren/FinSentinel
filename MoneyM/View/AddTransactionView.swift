@@ -9,6 +9,9 @@ import UIKit
 
 protocol AddTransactionDelegate {
     func addTransactionButtonClicked()
+    func incomeButtonClicked()
+    func expenseButtonClicked()
+    func amountTextFieldChanged(text: String)
 }
 
 class AddTransactionView: UIView {
@@ -41,6 +44,29 @@ class AddTransactionView: UIView {
         return button
     }()
     
+    private let selectModeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    private let expenseButton: UIButton = {
+        let button = UIButton(configuration: .bordered())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Expense", for: .normal)
+        return button
+    }()
+    
+    private let incomeButton: UIButton = {
+        let button = UIButton(configuration: .bordered())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Income", for: .normal)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -49,7 +75,7 @@ class AddTransactionView: UIView {
         configureAmountLabel()
         configureAmountTextField()
         configureAddTransactionButton()
-        
+        configureSelectModeStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -61,6 +87,34 @@ class AddTransactionView: UIView {
         delegate?.addTransactionButtonClicked()
     }
     
+    @objc
+    public func incomeButtonClicked() {
+        incomeButton.backgroundColor = .systemBlue
+        incomeButton.setTitleColor(.white, for: .normal)
+        
+        expenseButton.backgroundColor = .systemGray6
+        expenseButton.setTitleColor(.systemBlue, for: .selected)
+        
+        delegate?.incomeButtonClicked()
+    }
+    
+    @objc
+    public func expenseButtonClicked() {
+        expenseButton.backgroundColor = .systemBlue
+        expenseButton.setTitleColor(.white, for: .normal)
+        
+        incomeButton.backgroundColor = .systemGray6
+        incomeButton.setTitleColor(.systemBlue, for: .normal)
+        
+        
+        delegate?.expenseButtonClicked()
+    }
+    
+    @objc
+    public func amountTextFieldTextChanged() {
+        delegate?.amountTextFieldChanged(text: amountTextField.text ?? "")
+    }
+    
     private func configureAmountLabel() {
         addSubview(amountLabel)
         
@@ -68,6 +122,8 @@ class AddTransactionView: UIView {
             amountLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 48),
             amountLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
         ])
+        
+        amountTextField.addTarget(self, action: #selector(amountTextFieldTextChanged), for: .editingChanged)
     }
     
     private func configureAmountTextField() {
@@ -96,10 +152,28 @@ class AddTransactionView: UIView {
         
         addTransactionButton.addTarget(self, action: #selector(addTransactionButtonClicked), for: .touchUpInside)
     }
+    
+    private func configureSelectModeStackView() {
+        addSubview(selectModeStackView)
+        
+        expenseButton.addTarget(self, action: #selector(expenseButtonClicked), for: .touchUpInside)
+        incomeButton.addTarget(self, action: #selector(incomeButtonClicked), for: .touchUpInside)
+        
+        selectModeStackView.addArrangedSubview(expenseButton)
+        selectModeStackView.addArrangedSubview(incomeButton)
+        
+        NSLayoutConstraint.activate([
+            selectModeStackView.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 50),
+            selectModeStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            selectModeStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            selectModeStackView.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
 
 }
 
 extension AddTransactionView: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         amountTextField.resignFirstResponder()
         return true

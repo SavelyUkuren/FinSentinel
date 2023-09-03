@@ -11,14 +11,10 @@ class HomeViewController: UIViewController {
 
     private var homeView: HomeView!
     
-    private var data = ["1", "2"]
+    private var transactions: [TransactionModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for i in 0...100 {
-            data.append("\(i)")
-        }
         
         homeView = HomeView(frame: self.view.frame)
         homeView.setTransactionsTableViewDelegate(delegate: self)
@@ -35,13 +31,15 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return transactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = data[indexPath.row]
-        homeView.updateTransactionTableView()
+        
+        cell.textLabel?.text = transactions[indexPath.row].amount
+        
+        homeView.updateHeightTransactionTableView()
         return cell
     }
     
@@ -52,8 +50,18 @@ extension HomeViewController: HomeViewDelegate {
     
     func addNewTransactionButtonClicked() {
         let addTransactionVC = AddTransactionViewController()
+        addTransactionVC.delegate = self
         
         present(addTransactionVC, animated: true)
+    }
+    
+}
+
+extension HomeViewController: TransactionCreated {
+    
+    func transactionCreated(transaction: TransactionModel) {
+        transactions.append(transaction)
+        homeView.reloadTransactionsTableView()
     }
     
 }

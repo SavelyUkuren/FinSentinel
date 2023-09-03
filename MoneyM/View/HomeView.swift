@@ -147,8 +147,12 @@ class HomeView: UIView {
         transactionsTableView.dataSource = dataSource
     }
     
-    public func updateTransactionTableView() {
+    public func updateHeightTransactionTableView() {
         transactionsTableViewHeight.constant = transactionsTableView.contentSize.height + 50
+    }
+    
+    public func reloadTransactionsTableView() {
+        transactionsTableView.reloadData()
     }
     
     private func configureScrollView() {
