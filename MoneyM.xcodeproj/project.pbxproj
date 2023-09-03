@@ -14,6 +14,8 @@
 		45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB71C2A9FB05500B0326F /* MoneyM.xcdatamodeld */; };
 		45DCB7202A9FB05700B0326F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB71F2A9FB05700B0326F /* Assets.xcassets */; };
 		45DCB7232A9FB05700B0326F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7212A9FB05700B0326F /* LaunchScreen.storyboard */; };
+		45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72D2A9FB5C300B0326F /* HomeView.swift */; };
+		45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		45DCB71F2A9FB05700B0326F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45DCB7222A9FB05700B0326F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45DCB7242A9FB05700B0326F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45DCB72D2A9FB5C300B0326F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +62,11 @@
 		45DCB7122A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXGroup;
 			children = (
+				45DCB72C2A9FB55A00B0326F /* Model */,
+				45DCB72B2A9FB55200B0326F /* Controller */,
+				45DCB72A2A9FB54C00B0326F /* View */,
 				45DCB7132A9FB05500B0326F /* AppDelegate.swift */,
 				45DCB7152A9FB05500B0326F /* SceneDelegate.swift */,
-				45DCB7172A9FB05500B0326F /* ViewController.swift */,
 				45DCB7192A9FB05500B0326F /* Main.storyboard */,
 				45DCB71F2A9FB05700B0326F /* Assets.xcassets */,
 				45DCB7212A9FB05700B0326F /* LaunchScreen.storyboard */,
@@ -68,6 +74,30 @@
 				45DCB71C2A9FB05500B0326F /* MoneyM.xcdatamodeld */,
 			);
 			path = MoneyM;
+			sourceTree = "<group>";
+		};
+		45DCB72A2A9FB54C00B0326F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45DCB72D2A9FB5C300B0326F /* HomeView.swift */,
+				45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45DCB72B2A9FB55200B0326F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				45DCB7172A9FB05500B0326F /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		45DCB72C2A9FB55A00B0326F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +174,8 @@
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
 				45DCB7182A9FB05500B0326F /* ViewController.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
+				45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */,
+				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -299,6 +331,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,6 +360,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
