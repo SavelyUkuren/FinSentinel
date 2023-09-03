@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol HomeViewDelegate {
+    func addNewTransactionButtonClicked()
+}
+
 class HomeView: UIView {
+    
+    public var delegate: HomeViewDelegate?
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -253,6 +259,8 @@ class HomeView: UIView {
             addTransactionButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
             addTransactionButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+        
+        addTransactionButton.addTarget(self, action: #selector(addTransactionButtonClicked), for: .touchUpInside)
     }
     
     private func configureExpenseLabel() {
@@ -307,6 +315,11 @@ class HomeView: UIView {
             incomeAmountLabel.centerXAnchor.constraint(equalTo: incomesView.centerXAnchor),
             incomeAmountLabel.centerYAnchor.constraint(equalTo: incomesView.centerYAnchor)
         ])
+    }
+    
+    @objc
+    private func addTransactionButtonClicked() {
+        delegate?.addNewTransactionButtonClicked()
     }
     
 }

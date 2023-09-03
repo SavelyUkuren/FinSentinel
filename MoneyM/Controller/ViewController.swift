@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
         homeView = HomeView(frame: self.view.frame)
         homeView.setTransactionsTableViewDelegate(delegate: self)
         homeView.setTransactionsTableViewDataSource(dataSource: self)
+        homeView.delegate = self
         
         self.view = homeView
         
@@ -44,5 +45,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+}
+
+extension HomeViewController: HomeViewDelegate {
+    
+    func addNewTransactionButtonClicked() {
+        let addTransactionVC = AddTransactionViewController()
+        
+        present(addTransactionVC, animated: true)
+    }
     
 }
