@@ -10,11 +10,14 @@ import UIKit
 protocol HomeViewDelegate {
     func addNewTransactionButtonClicked()
     func datePickerButtonClicked()
+    func editBalanceButtonClicked()
 }
 
 class HomeView: UIView {
     
     public var delegate: HomeViewDelegate?
+    
+    public var startingBalance = 0
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -58,6 +61,13 @@ class HomeView: UIView {
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let editBalanceButton: UIButton = {
+        let button = UIButton(configuration: .plain())
+        button.setTitle("Edit", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private let expenseIncomeStackView: UIStackView = {
@@ -157,7 +167,7 @@ class HomeView: UIView {
     }
     
     public func reloadStats(transactions: [TransactionModel]) {
-        var balance = 0
+        var balance = startingBalance
         var expense = 0
         var income = 0
         
@@ -207,6 +217,7 @@ class HomeView: UIView {
         configureExpenseLabel()
         configureIncomeLabel()
         configureBalanceLabel()
+        configureEditBalanceButton()
         configureBalanceAmountLabel()
         configureExpenseAmountLabel()
         configureIncomeAmountLabel()
@@ -344,6 +355,17 @@ class HomeView: UIView {
         ])
     }
     
+    private func configureEditBalanceButton() {
+        balanceView.addSubview(editBalanceButton)
+        
+        NSLayoutConstraint.activate([
+            editBalanceButton.topAnchor.constraint(equalTo: balanceView.topAnchor, constant: 16),
+            editBalanceButton.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor, constant: -16),
+        ])
+        
+        editBalanceButton.addTarget(self, action: #selector(editBalanceButtonClicked), for: .touchUpInside)
+    }
+    
     @objc
     private func addTransactionButtonClicked() {
         delegate?.addNewTransactionButtonClicked()
@@ -352,6 +374,11 @@ class HomeView: UIView {
     @objc
     private func datePickerButtonClicked() {
         delegate?.datePickerButtonClicked()
+    }
+    
+    @objc
+    func editBalanceButtonClicked() {
+        delegate?.editBalanceButtonClicked()
     }
     
 }

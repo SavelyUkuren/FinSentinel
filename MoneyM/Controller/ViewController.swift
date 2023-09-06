@@ -48,6 +48,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: HomeViewDelegate {
     
+    func editBalanceButtonClicked() {
+        let alert = UIAlertController(title: "Balance", message: "Edit balance", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.text = ""
+            textField.keyboardType = .decimalPad
+        }
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            let textField = alert.textFields![0]
+            self.homeView.startingBalance = Int(textField.text!) ?? 0
+            self.homeView.reloadStats(transactions: self.transactions)
+        }))
+        
+        present(alert, animated: true)
+    }
+    
     func datePickerButtonClicked() {
         let datePickerVC = DatePickerViewController()
         datePickerVC.delegate = self
