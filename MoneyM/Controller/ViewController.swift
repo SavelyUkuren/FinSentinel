@@ -62,6 +62,7 @@ extension HomeViewController: TransactionCreated {
     func transactionCreated(transaction: TransactionModel) {
         transactions.append(transaction)
         homeView.reloadTransactionsTableView()
+        homeView.reloadStats(transactions: transactions)
     }
     
 }

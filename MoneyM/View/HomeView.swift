@@ -155,6 +155,26 @@ class HomeView: UIView {
         transactionsTableView.reloadData()
     }
     
+    public func reloadStats(transactions: [TransactionModel]) {
+        var balance = 0
+        var expense = 0
+        var income = 0
+        
+        for transaction in transactions {
+            if transaction.mode == .Expense {
+                expense += Int(transaction.amount ?? "0") ?? 0
+            } else {
+                income += Int(transaction.amount ?? "0") ?? 0
+            }
+        }
+        
+        balance += income - expense
+        
+        balanceAmountLabel.text = "\(balance)"
+        expenseAmountLabel.text = "\(expense)"
+        incomeAmountLabel.text = "\(income)"
+    }
+    
     private func configureScrollView() {
         addSubview(scrollView)
         NSLayoutConstraint.activate([
