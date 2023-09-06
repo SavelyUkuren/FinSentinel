@@ -48,6 +48,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: HomeViewDelegate {
     
+    func datePickerButtonClicked() {
+        let datePickerVC = DatePickerViewController()
+        datePickerVC.delegate = self
+        
+        present(datePickerVC, animated: true)
+    }
+    
     func addNewTransactionButtonClicked() {
         let addTransactionVC = AddTransactionViewController()
         addTransactionVC.delegate = self
@@ -63,6 +70,14 @@ extension HomeViewController: TransactionCreated {
         transactions.append(transaction)
         homeView.reloadTransactionsTableView()
         homeView.reloadStats(transactions: transactions)
+    }
+    
+}
+
+extension HomeViewController: DatePickerDelegate {
+    
+    func chooseButtonClicked() {
+        
     }
     
 }

@@ -9,6 +9,7 @@ import UIKit
 
 protocol HomeViewDelegate {
     func addNewTransactionButtonClicked()
+    func datePickerButtonClicked()
 }
 
 class HomeView: UIView {
@@ -272,6 +273,8 @@ class HomeView: UIView {
             datePickerButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             datePickerButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+        
+        datePickerButton.addTarget(self, action: #selector(datePickerButtonClicked), for: .touchUpInside)
     }
     
     private func configurateAddTransactionButton() {
@@ -344,6 +347,11 @@ class HomeView: UIView {
     @objc
     private func addTransactionButtonClicked() {
         delegate?.addNewTransactionButtonClicked()
+    }
+    
+    @objc
+    private func datePickerButtonClicked() {
+        delegate?.datePickerButtonClicked()
     }
     
 }
