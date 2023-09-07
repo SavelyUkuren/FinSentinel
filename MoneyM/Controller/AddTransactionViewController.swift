@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol TransactionCreated {
+protocol AddTransactionViewControllerDelegate {
     func transactionCreated(transaction: TransactionModel)
 }
 
 class AddTransactionViewController: UIViewController {
     
-    public var delegate: TransactionCreated?
+    public var delegate: AddTransactionViewControllerDelegate?
     
     private var addTransactionView: AddTransactionView!
     
@@ -35,24 +35,9 @@ class AddTransactionViewController: UIViewController {
     
 }
 
-extension AddTransactionViewController: AddTransactionDelegate {
+extension AddTransactionViewController: AddTransactionViewDelegate {
     
-    func amountTextFieldChanged(text: String) {
-        transaction.amount = text
-    }
-    
-    func incomeButtonClicked() {
-        selectedMode = .Income
-    }
-    
-    func expenseButtonClicked() {
-        selectedMode = .Expense
-    }
-    
-    func addTransactionButtonClicked() {
-        
-        transaction.mode = selectedMode
-        transaction.category = "Test"
+    func addTransactionButtonClicked(transaction: TransactionModel) {
         
         delegate?.transactionCreated(transaction: transaction)
         

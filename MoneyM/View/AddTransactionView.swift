@@ -7,16 +7,15 @@
 
 import UIKit
 
-protocol AddTransactionDelegate {
-    func addTransactionButtonClicked()
-    func incomeButtonClicked()
-    func expenseButtonClicked()
-    func amountTextFieldChanged(text: String)
+protocol AddTransactionViewDelegate {
+    func addTransactionButtonClicked(transaction: TransactionModel)
 }
 
 class AddTransactionView: UIView {
     
-    public var delegate: AddTransactionDelegate?
+    public var delegate: AddTransactionViewDelegate?
+    
+    private var selectedMode: TransactionModel.Mode = .Expense
     
     private let amountLabel: UILabel = {
         let label = UILabel()
@@ -67,6 +66,14 @@ class AddTransactionView: UIView {
         return button
     }()
     
+    private let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        return datePicker
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -76,6 +83,7 @@ class AddTransactionView: UIView {
         configureAmountTextField()
         configureAddTransactionButton()
         configureSelectModeStackView()
+        configureDatePicker()
     }
     
     required init?(coder: NSCoder) {
@@ -84,35 +92,36 @@ class AddTransactionView: UIView {
     
     @objc
     public func addTransactionButtonClicked() {
-        delegate?.addTransactionButtonClicked()
+        let transaction = TransactionModel()
+        
+        transaction.mode = selectedMode
+        transaction.date = datePicker.date
+        transaction.category = "Test"
+        transaction.amount = amountTextField.text
+        
+        delegate?.addTransactionButtonClicked(transaction: transaction)
     }
     
     @objc
-    public func incomeButtonClicked() {
+    private func incomeButtonClicked() {
         incomeButton.backgroundColor = .systemBlue
         incomeButton.setTitleColor(.white, for: .normal)
         
         expenseButton.backgroundColor = .systemGray6
         expenseButton.setTitleColor(.systemBlue, for: .selected)
         
-        delegate?.incomeButtonClicked()
+        selectedMode = .Income
     }
     
     @objc
-    public func expenseButtonClicked() {
+    private func expenseButtonClicked() {
         expenseButton.backgroundColor = .systemBlue
         expenseButton.setTitleColor(.white, for: .normal)
         
         incomeButton.backgroundColor = .systemGray6
         incomeButton.setTitleColor(.systemBlue, for: .normal)
         
-        
-        delegate?.expenseButtonClicked()
-    }
-    
-    @objc
-    public func amountTextFieldTextChanged() {
-        delegate?.amountTextFieldChanged(text: amountTextField.text ?? "")
+        selectedMode = .Expense
     }
     
     private func configureAmountLabel() {
@@ -123,7 +132,7 @@ class AddTransactionView: UIView {
             amountLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
         ])
         
-        amountTextField.addTarget(self, action: #selector(amountTextFieldTextChanged), for: .editingChanged)
+        //amountTextField.addTarget(self, action: #selector(amountTextFieldTextChanged), for: .editingChanged)
     }
     
     private func configureAmountTextField() {
@@ -170,6 +179,17 @@ class AddTransactionView: UIView {
         ])
     }
 
+    private func configureDatePicker() {
+        addSubview(datePicker)
+        
+        NSLayoutConstraint.activate([
+            datePicker.topAnchor.constraint(equalTo: selectModeStackView.bottomAnchor, constant: 32),
+            amountTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            amountTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            datePicker.subviews.first!.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+    }
+    
 }
 
 extension AddTransactionView: UITextFieldDelegate {

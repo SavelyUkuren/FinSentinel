@@ -85,7 +85,7 @@ extension HomeViewController: HomeViewDelegate {
     
 }
 
-extension HomeViewController: TransactionCreated {
+extension HomeViewController: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
         transactions.append(transaction)
@@ -95,7 +95,7 @@ extension HomeViewController: TransactionCreated {
     
 }
 
-extension HomeViewController: DatePickerDelegate {
+extension HomeViewController: DatePickerViewControllerDelegate {
     
     func chooseButtonClicked() {
         

@@ -7,19 +7,17 @@
 
 import UIKit
 
+protocol DatePickerViewDelegate {
+    func chooseButtonClicked()
+}
+
 class DatePickerView: UIView {
     
     enum PickerComponent: Int {
         case Month = 0, Year
     }
     
-    public var viewController: DatePickerViewController? = nil {
-        didSet {
-            if let vc = viewController {
-                chooseButton.addTarget(vc, action: #selector(vc.chooseButtonClicked), for: .touchUpInside)
-            }
-        }
-    }
+    public var delegate: DatePickerViewDelegate?
     
     private var months: [String] = []
     private var years: [String] = []
@@ -52,6 +50,11 @@ class DatePickerView: UIView {
         super.init(coder: coder)
     }
     
+    @objc
+    private func chooseButtonClicked() {
+        delegate?.chooseButtonClicked()
+    }
+    
     private func configurePickerView() {
         addSubview(pickerView)
         
@@ -79,6 +82,7 @@ class DatePickerView: UIView {
             chooseButton.heightAnchor.constraint(equalToConstant: 60)
         ])
         
+        chooseButton.addTarget(self, action: #selector(chooseButtonClicked), for: .touchUpInside)
     }
     
     private func configureMonthYears() {

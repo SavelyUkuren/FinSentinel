@@ -16,8 +16,18 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="qWC-tY-MAa">
+                                <rect key="frame" x="0.0" y="183" width="393" height="34"/>
+                            </datePicker>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qWC-tY-MAa" secondAttribute="trailing" id="AHU-VC-h8Y"/>
+                            <constraint firstItem="qWC-tY-MAa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="LZF-UM-fNB"/>
+                            <constraint firstItem="qWC-tY-MAa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sKr-13-VaP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xTH-JM-mVO"/>
                 </viewController>

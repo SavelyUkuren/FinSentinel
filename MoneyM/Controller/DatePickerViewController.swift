@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol DatePickerDelegate {
+protocol DatePickerViewControllerDelegate {
     func chooseButtonClicked()
 }
 
 class DatePickerViewController: UIViewController {
     
-    public var delegate: DatePickerDelegate?
+    public var delegate: DatePickerViewControllerDelegate?
 
     private var datePicker: DatePickerView!
     
@@ -21,14 +21,18 @@ class DatePickerViewController: UIViewController {
         super.viewDidLoad()
         datePicker = DatePickerView(frame: CGRect(x: 0, y: 0, width: 100, height: 300))
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.viewController = self
+        datePicker.delegate = self
         
         view = datePicker
     }
     
-    @objc
-    public func chooseButtonClicked() {
+}
+
+extension DatePickerViewController: DatePickerViewDelegate {
+    
+    func chooseButtonClicked() {
         delegate?.chooseButtonClicked()
         dismiss(animated: true)
     }
+    
 }
