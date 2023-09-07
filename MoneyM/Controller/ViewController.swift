@@ -8,10 +8,17 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    class TransactionTableViewData {
+        var section: DateComponents!
+        var transactions: [TransactionModel]!
+    }
 
     private var homeView: HomeView!
     
     private var transactions: [TransactionModel] = []
+    
+    private var tableViewData: [TransactionTableViewData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +32,27 @@ class HomeViewController: UIViewController {
         
     }
 
-
+    private func updateTransactionsTableView() {
+        
+        tableViewData.removeAll()
+        
+        let groupedTransactions = Dictionary(grouping: transactions) {
+            let date = Calendar.current.dateComponents([.year, .month, .day], from: $0.date)
+            return date
+        }
+        
+        for (key, value) in groupedTransactions {
+            let data = TransactionTableViewData()
+            data.section = key
+            data.transactions = value
+            tableViewData.append(data)
+        }
+        
+        tableViewData = tableViewData.sorted(by: { $0.section.day! < $1.section.day! })
+        
+        homeView.reloadTransactionsTableView()
+        homeView.reloadStats(transactions: transactions)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -35,18 +62,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        return tableViewData[section].transactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TransactionTableViewCell
         
-        cell.amountLabel.text = transactions[indexPath.row].amount
+        let transaction = tableViewData[indexPath.section].transactions[indexPath.row]
+        cell.amountLabel.text = transaction.amount
         
         homeView.updateHeightTransactionTableView()
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let dateComponent = tableViewData[section].section
+        return "\(dateComponent!.day!) \(dateComponent!.month!)"
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tableViewData.count
+    }
     
 }
 
@@ -89,8 +125,7 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
         transactions.append(transaction)
-        homeView.reloadTransactionsTableView()
-        homeView.reloadStats(transactions: transactions)
+        updateTransactionsTableView()
     }
     
 }
