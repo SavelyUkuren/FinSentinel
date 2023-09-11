@@ -14,7 +14,7 @@ class TransactionModel {
     enum Mode: Int {
         case Expense, Income
     }
-    
+    var id: Int!
     var date: Date!
     var amount: String!
     var mode: Mode!

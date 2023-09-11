@@ -186,6 +186,14 @@ class HomeView: UIView {
         incomeAmountLabel.text = "\(income)"
     }
     
+    public func deleteTransaction(indexPath: [IndexPath]) {
+        transactionsTableView.deleteRows(at: indexPath, with: .automatic)
+    }
+    
+    public func deleteDateSection(index: Int) {
+        transactionsTableView.deleteSections([index], with: .automatic)
+    }
+    
     private func configureScrollView() {
         addSubview(scrollView)
         NSLayoutConstraint.activate([

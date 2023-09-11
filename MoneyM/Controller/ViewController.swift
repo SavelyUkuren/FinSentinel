@@ -84,6 +84,30 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return tableViewData.count
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let removed = tableViewData[indexPath.section].transactions.remove(at: indexPath.row)
+            if let index = transactions.firstIndex(where: { $0.id == removed.id }) {
+                transactions.remove(at: index)
+            }
+            
+            homeView.deleteTransaction(indexPath: [indexPath])
+            homeView.reloadStats(transactions: transactions)
+            
+            if tableViewData[indexPath.section].transactions.isEmpty {
+                tableViewData.remove(at: indexPath.section)
+                homeView.deleteDateSection(index: indexPath.section)
+            }
+            
+            updateTransactionsTableView()
+        }
+    }
+    
 }
 
 extension HomeViewController: HomeViewDelegate {
@@ -124,6 +148,7 @@ extension HomeViewController: HomeViewDelegate {
 extension HomeViewController: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
+        transaction.id = transactions.count
         transactions.append(transaction)
         updateTransactionsTableView()
     }
