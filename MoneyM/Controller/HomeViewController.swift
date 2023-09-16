@@ -183,7 +183,9 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func addNewTransactionButtonClicked() {
-        let addTransactionVC = AddTransactionViewController()
+        let addTransactionVC = EditTransactionViewController()
+        //addTransactionVC.delegate = self
+        addTransactionVC.transaction = transactions[0]
         addTransactionVC.delegate = self
         
         present(addTransactionVC, animated: true)
@@ -211,6 +213,41 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
         }
         
         updateTransactionsTableView()
+    }
+    
+}
+
+extension HomeViewController: EditTransactionViewControllerDelegate {
+    
+    func transactionEdited(transaction: TransactionModel) {
+        let transactionForEdit = transactions.first { $0.id == transaction.id }
+        
+        transactionForEdit?.amount = transaction.amount
+        transactionForEdit?.date = transaction.date
+        transactionForEdit?.mode = transaction.mode
+        transactionForEdit?.category = transaction.category
+        
+        updateTransactionsTableView()
+        
+        // Core Data
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", transaction.id)
+        
+        do {
+            let requestedTransaction = try context.fetch(fetchRequest)
+            
+            if let t = requestedTransaction.first {
+                t.amount = Int16(transaction.amount) ?? 0
+                t.date = transaction.date
+                t.category = transaction.category
+                t.mode = Int16(transaction.mode.rawValue)
+                
+                try context.save()
+            }
+            
+        } catch {
+            fatalError("Error with edit transaction")
+        }
     }
     
 }

@@ -35,10 +35,9 @@ class AddTransactionViewController: UIViewController {
     
 }
 
-extension AddTransactionViewController: AddTransactionViewDelegate {
+extension AddTransactionViewController: BaseTransactionInfoViewDelegate {
     
-    func addTransactionButtonClicked(transaction: TransactionModel) {
-        
+    func confirmButtonClicked(transaction: TransactionModel) {
         delegate?.transactionCreated(transaction: transaction)
         
         dismiss(animated: true)
