@@ -17,7 +17,7 @@ extension TransactionEntity {
     }
 
     @NSManaged public var amount: Int16
-    @NSManaged public var category: String?
+    @NSManaged public var categoryID: Int16
     @NSManaged public var date: Date?
     @NSManaged public var id: Int16
     @NSManaged public var mode: Int16

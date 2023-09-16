@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    private var categories: Categories!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +33,8 @@ class HomeViewController: UIViewController {
         homeView.delegate = self
         
         self.view = homeView
+        
+        categories = Categories()
         
         loadFromCoreDataToTransactionsArray()
         updateTransactionsTableView()
@@ -47,7 +51,7 @@ class HomeViewController: UIViewController {
                 let newTransaction = TransactionModel()
                 newTransaction.id = Int(transaction.id)
                 newTransaction.amount = "\(transaction.amount)"
-                newTransaction.category = transaction.category
+                newTransaction.category = categories.findCategoryByID(id: Int(transaction.categoryID))
                 newTransaction.date = transaction.date
                 newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
                 
@@ -98,6 +102,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let transaction = tableViewData[indexPath.section].transactions[indexPath.row]
         cell.amountLabel.text = transaction.amount
+        cell.categoryLabel.text = transaction.category.title
         
         homeView.updateHeightTransactionTableView()
         return cell
@@ -208,7 +213,7 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
         let transactionEntity = TransactionEntity(context: context)
         transactionEntity.id = Int16(transaction.id)
         transactionEntity.amount = Int16(transaction.amount) ?? 0
-        transactionEntity.category = transaction.category
+        transactionEntity.categoryID = Int16(transaction.category.id)
         transactionEntity.date = transaction.date
         transactionEntity.mode = Int16(transaction.mode.rawValue)
         
@@ -245,7 +250,7 @@ extension HomeViewController: EditTransactionViewControllerDelegate {
             if let t = requestedTransaction.first {
                 t.amount = Int16(transaction.amount) ?? 0
                 t.date = transaction.date
-                t.category = transaction.category
+                t.categoryID = Int16(transaction.category.id)
                 t.mode = Int16(transaction.mode.rawValue)
                 
                 try context.save()

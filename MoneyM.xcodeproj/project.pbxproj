@@ -13,6 +13,10 @@
 		45326F452AB5E62000301729 /* BaseTransactionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */; };
 		45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F462AB5E93500301729 /* EditTransactionView.swift */; };
 		45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F482AB5E95700301729 /* EditTransactionViewController.swift */; };
+		45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4A2AB603D900301729 /* SelectCategoryViewController.swift */; };
+		45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4C2AB603F300301729 /* CategoryModel.swift */; };
+		45326F4F2AB6048200301729 /* SelectCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4E2AB6048200301729 /* SelectCategoryView.swift */; };
+		45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F512AB6112D00301729 /* CategoryTableViewCell.swift */; };
 		4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932A2AA89822007F0EAE /* DatePickerView.swift */; };
 		4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */; };
 		45A541062AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A541042AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift */; };
@@ -35,6 +39,10 @@
 		45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransactionInfoView.swift; sourceTree = "<group>"; };
 		45326F462AB5E93500301729 /* EditTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionView.swift; sourceTree = "<group>"; };
 		45326F482AB5E95700301729 /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
+		45326F4A2AB603D900301729 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		45326F4C2AB603F300301729 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		45326F4E2AB6048200301729 /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
+		45326F512AB6112D00301729 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		4532932A2AA89822007F0EAE /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		45A541042AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TransactionEntity+CoreDataClass.swift"; path = "MoneyM/TransactionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -63,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45326F502AB6110500301729 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */,
+				45326F512AB6112D00301729 /* CategoryTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		45DCB7072A9FB05500B0326F = {
 			isa = PBXGroup;
 			children = (
@@ -101,12 +118,13 @@
 		45DCB72A2A9FB54C00B0326F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45326F502AB6110500301729 /* TableViewCells */,
 				45DCB72D2A9FB5C300B0326F /* HomeView.swift */,
 				45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */,
 				451974A92AA4775D0003A4B7 /* AddTransactionView.swift */,
-				45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */,
 				4532932A2AA89822007F0EAE /* DatePickerView.swift */,
 				45326F462AB5E93500301729 /* EditTransactionView.swift */,
+				45326F4E2AB6048200301729 /* SelectCategoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -118,6 +136,7 @@
 				451974AB2AA477FA0003A4B7 /* AddTransactionViewController.swift */,
 				4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */,
 				45326F482AB5E95700301729 /* EditTransactionViewController.swift */,
+				45326F4A2AB603D900301729 /* SelectCategoryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -126,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
+				45326F4C2AB603F300301729 /* CategoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,13 +226,17 @@
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
 				45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
+				45326F4F2AB6048200301729 /* SelectCategoryView.swift in Sources */,
 				45326F452AB5E62000301729 /* BaseTransactionInfoView.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
+				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,
 				451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */,
 				45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */,
+				45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */,
 				45A541062AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift in Sources */,
 				4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */,
+				45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 				451974AC2AA477FA0003A4B7 /* AddTransactionViewController.swift in Sources */,

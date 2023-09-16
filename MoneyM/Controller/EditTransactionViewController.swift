@@ -35,6 +35,10 @@ class EditTransactionViewController: UIViewController {
 
 extension EditTransactionViewController: BaseTransactionInfoViewDelegate {
     
+    func selectCategoryButtonClicked() {
+        
+    }
+    
     func confirmButtonClicked(transaction: TransactionModel) {
         delegate?.transactionEdited(transaction: transaction)
         dismiss(animated: true)

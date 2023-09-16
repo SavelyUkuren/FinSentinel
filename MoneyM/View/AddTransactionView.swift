@@ -26,10 +26,14 @@ class AddTransactionView: BaseTransactionInfoView {
         
         transaction.mode = selectedMode
         transaction.date = datePicker.date
-        transaction.category = "Test"
+        transaction.category = selectedCategory
         transaction.amount = amountTextField.text
         
         delegate?.confirmButtonClicked(transaction: transaction)
+    }
+    
+    override func selectCategoryButtonClicked() {
+        delegate?.selectCategoryButtonClicked()
     }
     
 }

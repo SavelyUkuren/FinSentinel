@@ -9,11 +9,13 @@ import UIKit
 
 protocol BaseTransactionInfoViewDelegate {
     func confirmButtonClicked(transaction: TransactionModel)
+    func selectCategoryButtonClicked()
 }
 
 class BaseTransactionInfoView: UIView {
     
     public var selectedMode: TransactionModel.Mode = .Expense
+    public var selectedCategory: CategoryModel?
     
     public let amountLabel: UILabel = {
         let label = UILabel()
@@ -64,6 +66,13 @@ class BaseTransactionInfoView: UIView {
         return button
     }()
     
+    public let selectCategoryButton: UIButton = {
+        let button = UIButton(configuration: .gray())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Select category", for: .normal)
+        return button
+    }()
+    
     public let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -81,6 +90,7 @@ class BaseTransactionInfoView: UIView {
         configureAmountTextField()
         configureAddTransactionButton()
         configureSelectModeStackView()
+        configureSelectCategoryButton()
         configureDatePicker()
     }
     
@@ -94,7 +104,7 @@ class BaseTransactionInfoView: UIView {
         
         transaction.mode = selectedMode
         transaction.date = datePicker.date
-        transaction.category = "Test"
+        transaction.category = CategoryModel(id: -1, title: "")
         transaction.amount = amountTextField.text
         
         
@@ -120,6 +130,11 @@ class BaseTransactionInfoView: UIView {
         incomeButton.setTitleColor(.systemBlue, for: .normal)
         
         selectedMode = .Expense
+    }
+    
+    @objc
+    public func selectCategoryButtonClicked() {
+        
     }
     
     private func configureAmountLabel() {
@@ -176,12 +191,25 @@ class BaseTransactionInfoView: UIView {
             selectModeStackView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
+    private func configureSelectCategoryButton() {
+        addSubview(selectCategoryButton)
+        
+        NSLayoutConstraint.activate([
+            selectCategoryButton.topAnchor.constraint(equalTo: selectModeStackView.bottomAnchor, constant: 32),
+            selectCategoryButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            selectCategoryButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            selectCategoryButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        
+        selectCategoryButton.addTarget(self, action: #selector(selectCategoryButtonClicked), for: .touchUpInside)
+    }
 
     private func configureDatePicker() {
         addSubview(datePicker)
         
         NSLayoutConstraint.activate([
-            datePicker.topAnchor.constraint(equalTo: selectModeStackView.bottomAnchor, constant: 32),
+            datePicker.topAnchor.constraint(equalTo: selectCategoryButton.bottomAnchor, constant: 32),
             amountTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             amountTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             datePicker.subviews.first!.centerXAnchor.constraint(equalTo: centerXAnchor)
