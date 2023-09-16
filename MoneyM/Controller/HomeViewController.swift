@@ -116,24 +116,33 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, complitionHandler in
+            let editTransactionVC = EditTransactionViewController()
+            editTransactionVC.delegate = self
+            editTransactionVC.transaction = self.tableViewData[indexPath.section].transactions[indexPath.row]
             
+            self.present(editTransactionVC, animated: true)
+        }
+        editAction.backgroundColor = .systemBlue
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [self] action, view, complitionHandler in
             let removed = tableViewData[indexPath.section].transactions.remove(at: indexPath.row)
             if let index = transactions.firstIndex(where: { $0.id == removed.id }) {
                 transactions.remove(at: index)
             }
-            
+
             homeView.deleteTransaction(indexPath: [indexPath])
             homeView.reloadStats(transactions: transactions)
-            
+
             if tableViewData[indexPath.section].transactions.isEmpty {
                 tableViewData.remove(at: indexPath.section)
                 homeView.deleteDateSection(index: indexPath.section)
             }
-            
+
             updateTransactionsTableView()
-            
+
             //Remove from Core Data
             let fetchRequest = TransactionEntity.fetchRequest()
             do {
@@ -141,17 +150,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 let transactionEntity = requestedData.first { entity in
                     entity.id == removed.id
                 }
-                
+
                 context.delete(transactionEntity!)
-                
+
                 try context.save()
             } catch {
                 fatalError("Error with remove transaction in Core Data")
             }
-            
-            
-            
         }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
     
 }
@@ -183,9 +191,7 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func addNewTransactionButtonClicked() {
-        let addTransactionVC = EditTransactionViewController()
-        //addTransactionVC.delegate = self
-        addTransactionVC.transaction = transactions[0]
+        let addTransactionVC = AddTransactionViewController()
         addTransactionVC.delegate = self
         
         present(addTransactionVC, animated: true)
