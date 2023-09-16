@@ -20,6 +20,8 @@ class HomeViewController: UIViewController {
     
     private var tableViewData: [TransactionTableViewData] = []
     
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,32 @@ class HomeViewController: UIViewController {
         homeView.delegate = self
         
         self.view = homeView
+        
+        loadFromCoreDataToTransactionsArray()
+        updateTransactionsTableView()
+    }
+    
+    public func loadFromCoreDataToTransactionsArray() {
+        
+        let fetchRequest = TransactionEntity.fetchRequest()
+        
+        do {
+            let requestedTransactions = try context.fetch(fetchRequest)
+            
+            for transaction in requestedTransactions {
+                let newTransaction = TransactionModel()
+                newTransaction.id = Int(transaction.id)
+                newTransaction.amount = "\(transaction.amount)"
+                newTransaction.category = transaction.category
+                newTransaction.date = transaction.date
+                newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
+                
+                transactions.append(newTransaction)
+            }
+            
+        } catch {
+            fatalError("Error with load data")
+        }
         
     }
 
@@ -105,6 +133,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             updateTransactionsTableView()
+            
+            //Remove from Core Data
+            let fetchRequest = TransactionEntity.fetchRequest()
+            do {
+                let requestedData = try context.fetch(fetchRequest)
+                let transactionEntity = requestedData.first { entity in
+                    entity.id == removed.id
+                }
+                
+                context.delete(transactionEntity!)
+                
+                try context.save()
+            } catch {
+                fatalError("Error with remove transaction in Core Data")
+            }
+            
+            
+            
         }
     }
     
@@ -150,6 +196,20 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
     func transactionCreated(transaction: TransactionModel) {
         transaction.id = transactions.count
         transactions.append(transaction)
+        
+        let transactionEntity = TransactionEntity(context: context)
+        transactionEntity.id = Int16(transaction.id)
+        transactionEntity.amount = Int16(transaction.amount) ?? 0
+        transactionEntity.category = transaction.category
+        transactionEntity.date = transaction.date
+        transactionEntity.mode = Int16(transaction.mode.rawValue)
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("Error with saving transaction")
+        }
+        
         updateTransactionsTableView()
     }
     
