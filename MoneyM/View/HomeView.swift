@@ -16,9 +16,8 @@ protocol HomeViewDelegate {
 class HomeView: UIView {
     
     public var delegate: HomeViewDelegate?
-    
-    public var startingBalance = 0
 
+    // MARK: Views
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -135,6 +134,7 @@ class HomeView: UIView {
         return button
     }()
     
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -166,24 +166,10 @@ class HomeView: UIView {
         transactionsTableView.reloadData()
     }
     
-    public func reloadStats(transactions: [TransactionModel]) {
-        var balance = startingBalance
-        var expense = 0
-        var income = 0
-        
-        for transaction in transactions {
-            if transaction.mode == .Expense {
-                expense += Int(transaction.amount ?? "0") ?? 0
-            } else {
-                income += Int(transaction.amount ?? "0") ?? 0
-            }
-        }
-        
-        balance += income - expense
-        
-        balanceAmountLabel.text = "\(balance)"
-        expenseAmountLabel.text = "\(expense)"
-        incomeAmountLabel.text = "\(income)"
+    public func updateStatistics(statistic: TransactionsStatistics) {
+        balanceAmountLabel.text = "\(statistic.balance)"
+        expenseAmountLabel.text = "\(statistic.amountOfExpense)"
+        incomeAmountLabel.text = "\(statistic.amountOfIncome)"
     }
     
     public func deleteTransaction(indexPath: [IndexPath]) {
@@ -194,6 +180,7 @@ class HomeView: UIView {
         transactionsTableView.deleteSections([index], with: .automatic)
     }
     
+    // MARK: Configurations
     private func configureScrollView() {
         addSubview(scrollView)
         NSLayoutConstraint.activate([
@@ -374,6 +361,7 @@ class HomeView: UIView {
         editBalanceButton.addTarget(self, action: #selector(editBalanceButtonClicked), for: .touchUpInside)
     }
     
+    // MARK: Actions
     @objc
     private func addTransactionButtonClicked() {
         delegate?.addNewTransactionButtonClicked()
