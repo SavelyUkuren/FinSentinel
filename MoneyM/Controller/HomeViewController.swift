@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     private var homeView: HomeView!
     
     private var transactionModelManager: TransactionModelManager!
@@ -33,6 +33,30 @@ class HomeViewController: UIViewController {
         categories = Categories()
         
     }
+    
+    private func editTransaction(indexPath: IndexPath) {
+        let editTransactionVC = EditTransactionViewController()
+        editTransactionVC.delegate = self
+        editTransactionVC.transaction = self.transactionModelManager.data[indexPath.section].transactions[indexPath.row]
+        
+        self.present(editTransactionVC, animated: true)
+    }
+    
+    private func deleteTransaction(indexPath: IndexPath) {
+        transactionModelManager.removeTransaction(indexPath: indexPath)
+        homeView.deleteTransaction(indexPath: [indexPath])
+        
+        // Remove section if transaction in this section is empty
+        if transactionModelManager.data[indexPath.section].transactions.isEmpty {
+            transactionModelManager.data.remove(at: indexPath.section)
+            homeView.deleteDateSection(index: indexPath.section)
+        }
+        
+        transactionModelManager.calculateStatistics()
+        homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        homeView.updateHeightTransactionTableView()
+    }
+    
 }
 
 // MARK: Table View
@@ -73,16 +97,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, complitionHandler in
-            let editTransactionVC = EditTransactionViewController()
-            editTransactionVC.delegate = self
-            editTransactionVC.transaction = self.transactionModelManager.data[indexPath.section].transactions[indexPath.row]
-            
-            self.present(editTransactionVC, animated: true)
+            self.editTransaction(indexPath: indexPath)
         }
         editAction.backgroundColor = .systemBlue
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [self] action, view, complitionHandler in
-            
+            self.deleteTransaction(indexPath: indexPath)
         }
         
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])

@@ -78,6 +78,27 @@ class TransactionModelManager {
         
     }
     
+    public func removeTransaction(indexPath: IndexPath) {
+        let removedTransaction = data[indexPath.section].transactions.remove(at: indexPath.row)
+        
+        // Remove from all transactions array
+        let indexInAllTransactions = allTransactions.firstIndex { removedTransaction.id == $0.id }
+        allTransactions.remove(at: indexInAllTransactions!)
+        
+        // Remove from CoreData
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", removedTransaction.id)
+        
+        do {
+            let requestedData = try context.fetch(fetchRequest)
+            context.delete(requestedData.first!)
+        } catch {
+            fatalError("Error with removing transaction from CoreData")
+        }
+        
+        saveData()
+    }
+    
     public func addTransaction(transaction: TransactionModel) {
         transaction.id = allTransactions.count
         

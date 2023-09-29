@@ -7,33 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1BC667A7-42A9-4C66-A080-0F2F1F4132D3"
+            uuid = "9F924117-72F2-48D0-9EF5-0C1DD9076C82"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MoneyM/Model/CategoryModel.swift"
+            filePath = "MoneyM/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "findCategoryByID(id:)"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "deleteTransaction(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BB9444C6-35BF-470E-BE38-00FDC9F8669B"
+            uuid = "2BD21921-6463-4C69-9740-0ED6A7B67DE6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MoneyM/View/HomeView.swift"
+            filePath = "MoneyM/Model/TransactionModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "updateStatistics(statistic:)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "removeTransaction(indexPath:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2BD21921-6463-4C69-9740-0ED6A7B67DE6 - e8cb2cf64e08c0da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoneyM.TransactionModelManager.removeTransaction(indexPath: Foundation.IndexPath) -&gt; MoneyM.TransactionModel"
+                  moduleName = "MoneyM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/air/Documents/XCodeProjects/MoneyM/MoneyM/Model/TransactionModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "2088">
+               </Location>
+               <Location
+                  uuid = "2BD21921-6463-4C69-9740-0ED6A7B67DE6 - e8cb2cf64e08c0bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoneyM.TransactionModelManager.removeTransaction(indexPath: Foundation.IndexPath) -&gt; MoneyM.TransactionModel"
+                  moduleName = "MoneyM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/air/Documents/XCodeProjects/MoneyM/MoneyM/Model/TransactionModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "2052">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

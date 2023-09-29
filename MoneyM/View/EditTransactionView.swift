@@ -43,7 +43,7 @@ class EditTransactionView: BaseTransactionInfoView {
         
         transaction.mode = selectedMode
         transaction.date = datePicker.date
-        transaction.category = CategoryModel(id: -1, title: "")
+        transaction.category = selectedCategory
         transaction.amount = amountTextField.text
         
         delegate?.confirmButtonClicked(transaction: transaction)

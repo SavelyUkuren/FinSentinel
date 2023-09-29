@@ -15,7 +15,7 @@ protocol BaseTransactionInfoViewDelegate {
 class BaseTransactionInfoView: UIView {
     
     public var selectedMode: TransactionModel.Mode = .Expense
-    public var selectedCategory: CategoryModel?
+    public var selectedCategory: CategoryModel = Categories.defaultCategory
     
     public let amountLabel: UILabel = {
         let label = UILabel()
@@ -100,13 +100,6 @@ class BaseTransactionInfoView: UIView {
     
     @objc
     public func configrmButtonClicked() {
-        let transaction = TransactionModel()
-        
-        transaction.mode = selectedMode
-        transaction.date = datePicker.date
-        transaction.category = CategoryModel(id: -1, title: "")
-        transaction.amount = amountTextField.text
-        
         
     }
     

@@ -18,6 +18,7 @@ class CategoryModel {
 }
 
 class Categories {
+    public static var defaultCategory = CategoryModel(id: 0, title: "Category")
     public var expenseCategories: [CategoryModel] = []
     public var incomeCategories: [CategoryModel] = []
     
@@ -27,6 +28,11 @@ class Categories {
     }
     
     public func findCategoryByID(id: Int) -> CategoryModel? {
+        
+        if id == 0 {
+            return Categories.defaultCategory
+        }
+        
         var category: CategoryModel?
         
         category = expenseCategories.first { $0.id == id }
