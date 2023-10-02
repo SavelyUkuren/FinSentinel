@@ -111,6 +111,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: Home View Delegata
+// This is where actions in HomeView are processing
 extension HomeViewController: HomeViewDelegate {
     
     func editBalanceButtonClicked() {
@@ -163,7 +164,9 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
 extension HomeViewController: EditTransactionViewControllerDelegate {
     
     func transactionEdited(transaction: TransactionModel) {
-        
+        transactionModelManager.editTransactionByID(id: transaction.id, newTransaction: transaction)
+        homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        homeView.reloadTransactionsTableView()
     }
     
 }

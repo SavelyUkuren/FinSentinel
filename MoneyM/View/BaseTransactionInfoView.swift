@@ -17,6 +17,8 @@ class BaseTransactionInfoView: UIView {
     public var selectedMode: TransactionModel.Mode = .Expense
     public var selectedCategory: CategoryModel = Categories.defaultCategory
     
+    public var categories: Categories!
+    
     public let amountLabel: UILabel = {
         let label = UILabel()
         label.text = "The amount"
@@ -85,6 +87,8 @@ class BaseTransactionInfoView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .white
+        
+        categories = Categories()
         
         configureAmountLabel()
         configureAmountTextField()

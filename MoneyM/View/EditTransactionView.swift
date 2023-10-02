@@ -11,7 +11,7 @@ class EditTransactionView: BaseTransactionInfoView {
     
     public var delegate: BaseTransactionInfoViewDelegate?
     
-    private var transaction: TransactionModel!
+    private var transactionID: Int = -1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,11 +24,14 @@ class EditTransactionView: BaseTransactionInfoView {
     }
     
     public func loadTransaction(transaction: TransactionModel) {
-        self.transaction = transaction
         
         amountTextField.text = transaction.amount
         datePicker.date = transaction.date
         selectedMode = transaction.mode
+        selectedCategory = categories.findCategoryByID(id: transaction.category.id)!
+        transactionID = transaction.id
+        
+        selectCategoryButton.setTitle(selectedCategory.title, for: .normal)
         
         switch selectedMode {
         case .Expense:
@@ -41,12 +44,19 @@ class EditTransactionView: BaseTransactionInfoView {
 
     override func configrmButtonClicked() {
         
+        let transaction = TransactionModel()
+        
+        transaction.id = transactionID
         transaction.mode = selectedMode
         transaction.date = datePicker.date
         transaction.category = selectedCategory
         transaction.amount = amountTextField.text
         
         delegate?.confirmButtonClicked(transaction: transaction)
+    }
+    
+    override func selectCategoryButtonClicked() {
+        delegate?.selectCategoryButtonClicked()
     }
     
 }

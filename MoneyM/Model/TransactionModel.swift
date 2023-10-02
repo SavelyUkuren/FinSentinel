@@ -81,7 +81,7 @@ class TransactionModelManager {
     public func removeTransaction(indexPath: IndexPath) {
         let removedTransaction = data[indexPath.section].transactions.remove(at: indexPath.row)
         
-        // Remove from all transactions array
+        // Remove from allTransactions array
         let indexInAllTransactions = allTransactions.firstIndex { removedTransaction.id == $0.id }
         allTransactions.remove(at: indexInAllTransactions!)
         
@@ -111,6 +111,38 @@ class TransactionModelManager {
         
         saveData()
         calculateStatistics()
+    }
+    
+    public func editTransactionByID(id: Int, newTransaction: TransactionModel) {
+        let foundTransactionIndex = allTransactions.firstIndex { $0.id == id }!
+        
+        allTransactions[foundTransactionIndex].amount = newTransaction.amount
+        allTransactions[foundTransactionIndex].mode = newTransaction.mode
+        allTransactions[foundTransactionIndex].category = newTransaction.category
+        allTransactions[foundTransactionIndex].date = newTransaction.date
+        
+        calculateStatistics()
+        data = groupingTransactionsByDate()
+        
+        // Edit transaction in CoreData
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", allTransactions[foundTransactionIndex].id)
+        
+        do {
+            let requestedData = try context.fetch(fetchRequest)
+            
+            let transaction = requestedData.first
+            transaction?.amount = Int16(newTransaction.amount)!
+            transaction?.date = newTransaction.date
+            transaction?.categoryID = Int16(newTransaction.category.id)
+            transaction?.mode = Int16(newTransaction.mode.rawValue)
+            
+            saveData()
+            
+        } catch {
+            fatalError("Error with edit transaction")
+        }
+        
     }
     
     private func groupingTransactionsByDate() -> [TableViewData] {
