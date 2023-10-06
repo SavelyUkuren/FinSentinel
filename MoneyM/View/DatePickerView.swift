@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DatePickerViewDelegate {
-    func chooseButtonClicked()
+    func chooseButtonClicked(dateModel: DateModel)
 }
 
 class DatePickerView: UIView {
@@ -19,8 +19,7 @@ class DatePickerView: UIView {
     
     public var delegate: DatePickerViewDelegate?
     
-    private var months: [String] = []
-    private var years: [String] = []
+    private var dateModelManager: DateModelManager!
     
     private let pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -38,10 +37,11 @@ class DatePickerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        dateModelManager = DateModelManager()
+        
         backgroundColor = .white
         
         configurePickerView()
-        configureMonthYears()
         configureChooseButton()
         
     }
@@ -50,9 +50,24 @@ class DatePickerView: UIView {
         super.init(coder: coder)
     }
     
+    public func setDatePickerBy(dateModel: DateModel) {
+        pickerView.selectRow(dateModel.month - 1, inComponent: 0, animated: false)
+        
+        let yearIndex = dateModelManager.years.firstIndex { dateModel.year == $0 } ?? 0
+        pickerView.selectRow(yearIndex, inComponent: 1, animated: false)
+    }
+    
     @objc
     private func chooseButtonClicked() {
-        delegate?.chooseButtonClicked()
+        
+        let monthSelectedIndex = pickerView.selectedRow(inComponent: 0)
+        let yearSelectedIndex = pickerView.selectedRow(inComponent: 1)
+        
+        let dateModel = DateModel()
+        dateModel.month = monthSelectedIndex + 1
+        dateModel.year = dateModelManager.years[yearSelectedIndex]
+        
+        delegate?.chooseButtonClicked(dateModel: dateModel)
     }
     
     private func configurePickerView() {
@@ -84,25 +99,6 @@ class DatePickerView: UIView {
         
         chooseButton.addTarget(self, action: #selector(chooseButtonClicked), for: .touchUpInside)
     }
-    
-    private func configureMonthYears() {
-        months.append("January")
-        months.append("February")
-        months.append("March")
-        months.append("April")
-        months.append("May")
-        months.append("June")
-        months.append("July")
-        months.append("August")
-        months.append("September")
-        months.append("October")
-        months.append("November")
-        months.append("December")
-        
-        for i in 1970...2023 {
-            years.append("\(i)")
-        }
-    }
 
 }
 
@@ -114,20 +110,20 @@ extension DatePickerView: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == PickerComponent.Month.rawValue {
-            return months.count
+            return dateModelManager.months.count
         }
         if component == PickerComponent.Year.rawValue {
-            return years.count
+            return dateModelManager.years.count
         }
         return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == PickerComponent.Month.rawValue {
-            return months[row]
+            return dateModelManager.months[row]
         }
         if component == PickerComponent.Year.rawValue {
-            return years[row]
+            return "\(dateModelManager.years[row])"
         }
         return ""
     }

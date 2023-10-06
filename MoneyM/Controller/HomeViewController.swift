@@ -17,20 +17,34 @@ class HomeViewController: UIViewController {
     
     private var categories: Categories!
     
+    private var currentDate: DateModel = DateModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadCurrentDate()
+        
         transactionModelManager = TransactionModelManager()
+        transactionModelManager.loadData(dateModel: currentDate)
         
         homeView = HomeView(frame: self.view.frame)
         homeView.updateStatistics(statistic: transactionModelManager.statistics)
         homeView.setTransactionsTableViewDelegate(delegate: self)
         homeView.setTransactionsTableViewDataSource(dataSource: self)
         homeView.delegate = self
+        homeView.setDateButtonTitle(dateModel: currentDate)
         
         self.view = homeView
         
         categories = Categories()
+        //print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+    }
+    
+    private func loadCurrentDate() {
+        let calendar = Calendar.current
+        
+        currentDate.month = calendar.component(.month, from: Date())
+        currentDate.year = calendar.component(.year, from: Date())
         
     }
     
@@ -135,6 +149,7 @@ extension HomeViewController: HomeViewDelegate {
     func datePickerButtonClicked() {
         let datePickerVC = DatePickerViewController()
         datePickerVC.delegate = self
+        datePickerVC.dateModel = currentDate
         
         present(datePickerVC, animated: true)
     }
@@ -153,7 +168,7 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
         
-        transactionModelManager.addTransaction(transaction: transaction)
+        transactionModelManager.addTransaction(transaction: transaction, dateModel: currentDate)
         homeView.updateStatistics(statistic: transactionModelManager.statistics)
         homeView.reloadTransactionsTableView()
     }
@@ -173,9 +188,14 @@ extension HomeViewController: EditTransactionViewControllerDelegate {
 
 // MARK: Date Picker Delegate
 extension HomeViewController: DatePickerViewControllerDelegate {
-    
-    func chooseButtonClicked() {
+    func chooseButtonClicked(dateModel: DateModel) {
+ 
+        currentDate = dateModel
         
+        transactionModelManager.loadData(dateModel: dateModel)
+        homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        homeView.reloadTransactionsTableView()
+        homeView.setDateButtonTitle(dateModel: dateModel)
     }
     
 }
