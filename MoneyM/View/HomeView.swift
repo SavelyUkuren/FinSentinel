@@ -180,6 +180,15 @@ class HomeView: UIView {
         transactionsTableView.deleteSections([index], with: .automatic)
     }
     
+    public func setDateButtonTitle(dateModel: DateModel) {
+        let dateModelManager = DateModelManager()
+        
+        let month = dateModelManager.months[dateModel.month - 1]
+        let year = dateModel.year!
+        
+        datePickerButton.setTitle("\(month) \(year)", for: .normal)
+    }
+    
     // MARK: Configurations
     private func configureScrollView() {
         addSubview(scrollView)

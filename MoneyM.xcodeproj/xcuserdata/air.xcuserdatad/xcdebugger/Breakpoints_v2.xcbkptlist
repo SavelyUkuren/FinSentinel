@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1BC667A7-42A9-4C66-A080-0F2F1F4132D3"
+            uuid = "9BD70D27-E017-40FB-8BAB-E83FEB864757"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MoneyM/Model/CategoryModel.swift"
+            filePath = "MoneyM/Controller/EditTransactionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "findCategoryByID(id:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "confirmButtonClicked(transaction:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BB9444C6-35BF-470E-BE38-00FDC9F8669B"
+            uuid = "FD8CAA45-BDD7-44D3-8B8E-DE91A9FBCE96"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MoneyM/View/HomeView.swift"
+            filePath = "MoneyM/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "updateStatistics(statistic:)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "loadCurrentDate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,10 +8,12 @@
 import UIKit
 
 protocol DatePickerViewControllerDelegate {
-    func chooseButtonClicked()
+    func chooseButtonClicked(dateModel: DateModel)
 }
 
 class DatePickerViewController: UIViewController {
+    
+    public var dateModel: DateModel?
     
     public var delegate: DatePickerViewControllerDelegate?
 
@@ -23,15 +25,18 @@ class DatePickerViewController: UIViewController {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.delegate = self
         
+        if let dateModel = dateModel {
+            datePicker.setDatePickerBy(dateModel: dateModel)
+        }
+        
         view = datePicker
     }
     
 }
 
 extension DatePickerViewController: DatePickerViewDelegate {
-    
-    func chooseButtonClicked() {
-        delegate?.chooseButtonClicked()
+    func chooseButtonClicked(dateModel: DateModel) {
+        delegate?.chooseButtonClicked(dateModel: dateModel)
         dismiss(animated: true)
     }
     

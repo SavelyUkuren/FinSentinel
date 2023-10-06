@@ -19,8 +19,11 @@
 		45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F512AB6112D00301729 /* CategoryTableViewCell.swift */; };
 		4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932A2AA89822007F0EAE /* DatePickerView.swift */; };
 		4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */; };
-		45A541062AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A541042AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift */; };
-		45A541072AB5CA8000397E7F /* TransactionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A541052AB5CA8000397E7F /* TransactionEntity+CoreDataProperties.swift */; };
+		455824532AD0665700434A25 /* FolderEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558244F2AD0665700434A25 /* FolderEntity+CoreDataClass.swift */; };
+		455824542AD0665700434A25 /* FolderEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824502AD0665700434A25 /* FolderEntity+CoreDataProperties.swift */; };
+		455824552AD0665700434A25 /* TransactionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824512AD0665700434A25 /* TransactionEntity+CoreDataClass.swift */; };
+		455824562AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */; };
+		455824592AD081C800434A25 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824582AD081C800434A25 /* DateModel.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7172A9FB05500B0326F /* HomeViewController.swift */; };
@@ -45,8 +48,11 @@
 		45326F512AB6112D00301729 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		4532932A2AA89822007F0EAE /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		45A541042AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TransactionEntity+CoreDataClass.swift"; path = "MoneyM/TransactionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		45A541052AB5CA8000397E7F /* TransactionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TransactionEntity+CoreDataProperties.swift"; path = "MoneyM/TransactionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4558244F2AD0665700434A25 /* FolderEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		455824502AD0665700434A25 /* FolderEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		455824512AD0665700434A25 /* TransactionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		455824582AD081C800434A25 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,11 +86,20 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		455824572AD070FB00434A25 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4558244F2AD0665700434A25 /* FolderEntity+CoreDataClass.swift */,
+				455824502AD0665700434A25 /* FolderEntity+CoreDataProperties.swift */,
+				455824512AD0665700434A25 /* TransactionEntity+CoreDataClass.swift */,
+				455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		45DCB7072A9FB05500B0326F = {
 			isa = PBXGroup;
 			children = (
-				45A541042AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift */,
-				45A541052AB5CA8000397E7F /* TransactionEntity+CoreDataProperties.swift */,
 				45DCB7122A9FB05500B0326F /* MoneyM */,
 				45DCB7112A9FB05500B0326F /* Products */,
 			);
@@ -101,6 +116,7 @@
 		45DCB7122A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXGroup;
 			children = (
+				455824572AD070FB00434A25 /* CoreData */,
 				45DCB72C2A9FB55A00B0326F /* Model */,
 				45DCB72B2A9FB55200B0326F /* Controller */,
 				45DCB72A2A9FB54C00B0326F /* View */,
@@ -146,6 +162,7 @@
 			children = (
 				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
 				45326F4C2AB603F300301729 /* CategoryModel.swift */,
+				455824582AD081C800434A25 /* DateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,8 +238,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455824542AD0665700434A25 /* FolderEntity+CoreDataProperties.swift in Sources */,
+				455824562AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift in Sources */,
+				455824552AD0665700434A25 /* TransactionEntity+CoreDataClass.swift in Sources */,
 				451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */,
 				45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */,
+				455824532AD0665700434A25 /* FolderEntity+CoreDataClass.swift in Sources */,
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
 				45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
@@ -234,13 +255,12 @@
 				451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */,
 				45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */,
 				45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */,
-				45A541062AB5CA8000397E7F /* TransactionEntity+CoreDataClass.swift in Sources */,
 				4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */,
 				45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 				451974AC2AA477FA0003A4B7 /* AddTransactionViewController.swift in Sources */,
-				45A541072AB5CA8000397E7F /* TransactionEntity+CoreDataProperties.swift in Sources */,
+				455824592AD081C800434A25 /* DateModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

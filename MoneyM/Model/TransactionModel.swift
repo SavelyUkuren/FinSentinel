@@ -57,7 +57,7 @@ class TransactionModelManager {
         categories = Categories()
         statistics = TransactionsStatistics()
         
-        loadData()
+        //loadData()
         data = groupingTransactionsByDate()
         calculateStatistics()
     }
@@ -78,7 +78,28 @@ class TransactionModelManager {
         
     }
     
-    public func addTransaction(transaction: TransactionModel) {
+    public func removeTransaction(indexPath: IndexPath) {
+        let removedTransaction = data[indexPath.section].transactions.remove(at: indexPath.row)
+        
+        // Remove from allTransactions array
+        let indexInAllTransactions = allTransactions.firstIndex { removedTransaction.id == $0.id }
+        allTransactions.remove(at: indexInAllTransactions!)
+        
+        // Remove from CoreData
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", removedTransaction.id)
+        
+        do {
+            let requestedData = try context.fetch(fetchRequest)
+            context.delete(requestedData.first!)
+        } catch {
+            fatalError("Error with removing transaction from CoreData")
+        }
+        
+        saveData()
+    }
+    
+    public func addTransaction(transaction: TransactionModel, dateModel: DateModel) {
         transaction.id = allTransactions.count
         
         data.removeAll()
@@ -86,10 +107,42 @@ class TransactionModelManager {
         
         data = groupingTransactionsByDate()
         
-        addTransactionToCoreData(transaction: transaction)
+        addTransactionToCoreData(transaction: transaction, dateModel: dateModel)
         
         saveData()
         calculateStatistics()
+    }
+    
+    public func editTransactionByID(id: Int, newTransaction: TransactionModel) {
+        let foundTransactionIndex = allTransactions.firstIndex { $0.id == id }!
+        
+        allTransactions[foundTransactionIndex].amount = newTransaction.amount
+        allTransactions[foundTransactionIndex].mode = newTransaction.mode
+        allTransactions[foundTransactionIndex].category = newTransaction.category
+        allTransactions[foundTransactionIndex].date = newTransaction.date
+        
+        calculateStatistics()
+        data = groupingTransactionsByDate()
+        
+        // Edit transaction in CoreData
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", allTransactions[foundTransactionIndex].id)
+        
+        do {
+            let requestedData = try context.fetch(fetchRequest)
+            
+            let transaction = requestedData.first
+            transaction?.amount = Int16(newTransaction.amount)!
+            transaction?.date = newTransaction.date
+            transaction?.categoryID = Int16(newTransaction.category.id)
+            transaction?.mode = Int16(newTransaction.mode.rawValue)
+            
+            saveData()
+            
+        } catch {
+            fatalError("Error with edit transaction")
+        }
+        
     }
     
     private func groupingTransactionsByDate() -> [TableViewData] {
@@ -112,27 +165,38 @@ class TransactionModelManager {
         return arr
     }
     
-    private func loadData() {
+    public func loadData(dateModel: DateModel) {
         
-        let fetchRequest = TransactionEntity.fetchRequest()
+        allTransactions.removeAll()
+        data.removeAll()
+        
+        let request = FolderEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "month == %i AND year == %i", dateModel.month, dateModel.year)
         
         do {
-            let requestedTransactions = try context.fetch(fetchRequest)
             
-            for transaction in requestedTransactions {
-                let newTransaction = TransactionModel()
-                newTransaction.id = Int(transaction.id)
-                newTransaction.amount = "\(transaction.amount)"
-                newTransaction.category = categories.findCategoryByID(id: Int(transaction.categoryID))
-                newTransaction.date = transaction.date
-                newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
+            let response = try context.fetch(request)
+            
+            if let existingFolder = response.first {
                 
-                allTransactions.append(newTransaction)
+                for transaction in existingFolder.transactions?.allObjects as! [TransactionEntity] {
+                    let newTransaction = TransactionModel()
+                    newTransaction.id = Int(transaction.id)
+                    newTransaction.amount = "\(transaction.amount)"
+                    newTransaction.category = categories.findCategoryByID(id: Int(transaction.categoryID))
+                    newTransaction.date = transaction.date
+                    newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
+
+                    allTransactions.append(newTransaction)
+                }
             }
             
         } catch {
             fatalError("Error with load data")
         }
+        
+        data = groupingTransactionsByDate()
+        calculateStatistics()
         
     }
     
@@ -144,7 +208,30 @@ class TransactionModelManager {
         }
     }
     
-    private func addTransactionToCoreData(transaction: TransactionModel) {
+    private func addTransactionToCoreData(transaction: TransactionModel, dateModel: DateModel) {
+        
+        var folder: FolderEntity?
+        
+        let request = FolderEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "month == %i AND year == %i", dateModel.month, dateModel.year)
+        
+        do {
+            let response = try context.fetch(request)
+            
+            if let existingFolder = response.first {
+                folder = existingFolder
+            }
+            
+        } catch {
+            fatalError("Error with find folder")
+        }
+        
+        if folder == nil {
+            folder = FolderEntity(context: context)
+            folder?.month = Int16(dateModel.month)
+            folder?.year = Int16(dateModel.year)
+        }
+        
         let transactionEntity = TransactionEntity(context: context)
         transactionEntity.id = Int16(transaction.id)
         transactionEntity.categoryID = Int16(transaction.category.id)
@@ -152,6 +239,7 @@ class TransactionModelManager {
         transactionEntity.mode = Int16(transaction.mode.rawValue)
         transactionEntity.date = transaction.date
         
+        folder?.addToTransactions(transactionEntity)
     }
     
 }

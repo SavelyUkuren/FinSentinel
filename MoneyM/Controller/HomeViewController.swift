@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     private var homeView: HomeView!
     
     private var transactionModelManager: TransactionModelManager!
@@ -17,22 +17,60 @@ class HomeViewController: UIViewController {
     
     private var categories: Categories!
     
+    private var currentDate: DateModel = DateModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadCurrentDate()
+        
         transactionModelManager = TransactionModelManager()
+        transactionModelManager.loadData(dateModel: currentDate)
         
         homeView = HomeView(frame: self.view.frame)
         homeView.updateStatistics(statistic: transactionModelManager.statistics)
         homeView.setTransactionsTableViewDelegate(delegate: self)
         homeView.setTransactionsTableViewDataSource(dataSource: self)
         homeView.delegate = self
+        homeView.setDateButtonTitle(dateModel: currentDate)
         
         self.view = homeView
         
         categories = Categories()
+        //print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+    }
+    
+    private func loadCurrentDate() {
+        let calendar = Calendar.current
+        
+        currentDate.month = calendar.component(.month, from: Date())
+        currentDate.year = calendar.component(.year, from: Date())
         
     }
+    
+    private func editTransaction(indexPath: IndexPath) {
+        let editTransactionVC = EditTransactionViewController()
+        editTransactionVC.delegate = self
+        editTransactionVC.transaction = self.transactionModelManager.data[indexPath.section].transactions[indexPath.row]
+        
+        self.present(editTransactionVC, animated: true)
+    }
+    
+    private func deleteTransaction(indexPath: IndexPath) {
+        transactionModelManager.removeTransaction(indexPath: indexPath)
+        homeView.deleteTransaction(indexPath: [indexPath])
+        
+        // Remove section if transaction in this section is empty
+        if transactionModelManager.data[indexPath.section].transactions.isEmpty {
+            transactionModelManager.data.remove(at: indexPath.section)
+            homeView.deleteDateSection(index: indexPath.section)
+        }
+        
+        transactionModelManager.calculateStatistics()
+        homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        homeView.updateHeightTransactionTableView()
+    }
+    
 }
 
 // MARK: Table View
@@ -73,16 +111,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, complitionHandler in
-            let editTransactionVC = EditTransactionViewController()
-            editTransactionVC.delegate = self
-            editTransactionVC.transaction = self.transactionModelManager.data[indexPath.section].transactions[indexPath.row]
-            
-            self.present(editTransactionVC, animated: true)
+            self.editTransaction(indexPath: indexPath)
         }
         editAction.backgroundColor = .systemBlue
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [self] action, view, complitionHandler in
-            
+            self.deleteTransaction(indexPath: indexPath)
         }
         
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
@@ -91,6 +125,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: Home View Delegata
+// This is where actions in HomeView are processing
 extension HomeViewController: HomeViewDelegate {
     
     func editBalanceButtonClicked() {
@@ -114,6 +149,7 @@ extension HomeViewController: HomeViewDelegate {
     func datePickerButtonClicked() {
         let datePickerVC = DatePickerViewController()
         datePickerVC.delegate = self
+        datePickerVC.dateModel = currentDate
         
         present(datePickerVC, animated: true)
     }
@@ -132,7 +168,7 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
         
-        transactionModelManager.addTransaction(transaction: transaction)
+        transactionModelManager.addTransaction(transaction: transaction, dateModel: currentDate)
         homeView.updateStatistics(statistic: transactionModelManager.statistics)
         homeView.reloadTransactionsTableView()
     }
@@ -143,16 +179,23 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
 extension HomeViewController: EditTransactionViewControllerDelegate {
     
     func transactionEdited(transaction: TransactionModel) {
-        
+        transactionModelManager.editTransactionByID(id: transaction.id, newTransaction: transaction)
+        homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        homeView.reloadTransactionsTableView()
     }
     
 }
 
 // MARK: Date Picker Delegate
 extension HomeViewController: DatePickerViewControllerDelegate {
-    
-    func chooseButtonClicked() {
+    func chooseButtonClicked(dateModel: DateModel) {
+ 
+        currentDate = dateModel
         
+        transactionModelManager.loadData(dateModel: dateModel)
+        homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        homeView.reloadTransactionsTableView()
+        homeView.setDateButtonTitle(dateModel: dateModel)
     }
     
 }

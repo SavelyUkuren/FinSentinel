@@ -18,7 +18,7 @@ class AddTransactionViewController: UIViewController {
     private var addTransactionView: AddTransactionView!
     
     private var selectedMode: TransactionModel.Mode = .Expense
-    private var selectedCategory: CategoryModel?
+    
     private var transaction = TransactionModel()
     
     override func viewDidLoad() {
@@ -36,6 +36,7 @@ class AddTransactionViewController: UIViewController {
     
 }
 
+// MARK: Base transaction info delegate
 extension AddTransactionViewController: BaseTransactionInfoViewDelegate {
     
     func selectCategoryButtonClicked() {
@@ -53,12 +54,11 @@ extension AddTransactionViewController: BaseTransactionInfoViewDelegate {
     
 }
 
-
+// MARK: Select category delegate
 extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
     func selectButtonClicked(category: CategoryModel?) {
         guard category != nil else { return }
-        selectedCategory = category
-        addTransactionView.selectedCategory = category
+        addTransactionView.selectedCategory = category ?? Categories.defaultCategory
         addTransactionView.selectCategoryButton.setTitle(category?.title, for: .normal)
     }
 }
