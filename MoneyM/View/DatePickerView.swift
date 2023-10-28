@@ -24,6 +24,7 @@ class DatePickerView: UIView {
     private let pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.translatesAutoresizingMaskIntoConstraints = false
+        pickerView.layer.cornerRadius = UIStyle.CornerRadius
         return pickerView
     }()
     

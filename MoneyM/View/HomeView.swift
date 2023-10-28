@@ -36,6 +36,7 @@ class HomeView: UIView {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.layer.cornerRadius = UIStyle.CornerRadius
         tableView.isScrollEnabled = false
         return tableView
     }()
@@ -45,6 +46,7 @@ class HomeView: UIView {
         let view = UIView()
         view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = UIStyle.CornerRadius
         return view
     }()
     
@@ -82,6 +84,7 @@ class HomeView: UIView {
         let view = UIView()
         view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = UIStyle.CornerRadius
         return view
     }()
     
@@ -103,6 +106,7 @@ class HomeView: UIView {
         let view = UIView()
         view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = UIStyle.CornerRadius
         return view
     }()
     

@@ -33,6 +33,7 @@
 		45DCB7232A9FB05700B0326F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7212A9FB05700B0326F /* LaunchScreen.storyboard */; };
 		45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72D2A9FB5C300B0326F /* HomeView.swift */; };
 		45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */; };
+		45E169492AED98E400B7989D /* UIStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E169482AED98E400B7989D /* UIStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		45DCB7242A9FB05700B0326F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DCB72D2A9FB5C300B0326F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		45E169482AED98E400B7989D /* UIStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		45DCB7122A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXGroup;
 			children = (
+				45E169472AED98C800B7989D /* Design */,
 				455824572AD070FB00434A25 /* CoreData */,
 				45DCB72C2A9FB55A00B0326F /* Model */,
 				45DCB72B2A9FB55200B0326F /* Controller */,
@@ -165,6 +168,14 @@
 				455824582AD081C800434A25 /* DateModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		45E169472AED98C800B7989D /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				45E169482AED98E400B7989D /* UIStyle.swift */,
+			);
+			path = Design;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 				45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */,
 				4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */,
 				45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */,
+				45E169492AED98E400B7989D /* UIStyle.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 				451974AC2AA477FA0003A4B7 /* AddTransactionViewController.swift in Sources */,
