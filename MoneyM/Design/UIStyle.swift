@@ -18,6 +18,16 @@ class UIStyle {
     
     static var TransactionTableViewCellHeight: CGFloat = 80
     
+    static var TransactionTableViewSectionHeight: CGFloat = 40
+    
     static var ButtonHeight: CGFloat = 60
+    
+    static var AppBackgroundColor: UIColor = .systemBackground
+    
+    static var UIViewBackgroundColor: UIColor = .systemGray5
+    
+    static var AccentColor: UIColor = .systemBlue
+    
+    static var TableViewCellBackgroundColor: UIColor = .systemGray5
     
 }

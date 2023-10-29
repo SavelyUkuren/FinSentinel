@@ -31,10 +31,10 @@ class BaseTransactionInfoView: UIView {
         let textField = UITextField()
         textField.placeholder = "0"
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = 16
-        textField.layer.borderColor = UIColor.systemGray6.cgColor
-        textField.backgroundColor = .systemGray6
+        textField.layer.borderWidth = 0
+        textField.layer.cornerRadius = UIStyle.CornerRadius
+        textField.layer.borderColor = UIStyle.UIViewBackgroundColor.cgColor
+        textField.backgroundColor = UIStyle.UIViewBackgroundColor
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         textField.font = .systemFont(ofSize: 22)
         return textField
@@ -45,7 +45,7 @@ class BaseTransactionInfoView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Confirm", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIStyle.AccentColor
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
@@ -79,8 +79,8 @@ class BaseTransactionInfoView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select category", for: .normal)
-        button.backgroundColor = .systemGray6
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.backgroundColor = UIStyle.UIViewBackgroundColor
+        button.setTitleColor(UIStyle.AccentColor, for: .normal)
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
@@ -90,13 +90,14 @@ class BaseTransactionInfoView: UIView {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.tintColor = UIStyle.AccentColor
         return datePicker
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = UIStyle.AppBackgroundColor
         
         categories = Categories()
         
@@ -216,20 +217,20 @@ class BaseTransactionInfoView: UIView {
     }
     
     private func selectExpenseButton() {
-        incomeButton.backgroundColor = .systemGray6
-        incomeButton.setTitleColor(.systemBlue, for: .normal)
+        incomeButton.backgroundColor = UIStyle.UIViewBackgroundColor
+        incomeButton.setTitleColor(UIStyle.AccentColor, for: .normal)
         
         expenseButton.setTitleColor(.white, for: .normal)
-        expenseButton.backgroundColor = .systemBlue
+        expenseButton.backgroundColor = UIStyle.AccentColor
         
     }
     
     private func selectIncomeButton() {
-        expenseButton.backgroundColor = .systemGray6
-        expenseButton.setTitleColor(.systemBlue, for: .normal)
+        expenseButton.backgroundColor = .systemGray5
+        expenseButton.setTitleColor(UIStyle.AccentColor, for: .normal)
         
         incomeButton.setTitleColor(.white, for: .normal)
-        incomeButton.backgroundColor = .systemBlue
+        incomeButton.backgroundColor = UIStyle.AccentColor
         
     }
     

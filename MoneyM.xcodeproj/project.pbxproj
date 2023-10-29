@@ -34,6 +34,7 @@
 		45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72D2A9FB5C300B0326F /* HomeView.swift */; };
 		45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */; };
 		45E169492AED98E400B7989D /* UIStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E169482AED98E400B7989D /* UIStyle.swift */; };
+		45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1694B2AEEA6F300B7989D /* TransactionTableViewSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		45DCB72D2A9FB5C300B0326F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		45E169482AED98E400B7989D /* UIStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyle.swift; sourceTree = "<group>"; };
+		45E1694B2AEEA6F300B7989D /* TransactionTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		45DCB72A2A9FB54C00B0326F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45E1694A2AEEA6E200B7989D /* TableViewSections */,
 				45326F502AB6110500301729 /* TableViewCells */,
 				45DCB72D2A9FB5C300B0326F /* HomeView.swift */,
 				45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */,
@@ -176,6 +179,14 @@
 				45E169482AED98E400B7989D /* UIStyle.swift */,
 			);
 			path = Design;
+			sourceTree = "<group>";
+		};
+		45E1694A2AEEA6E200B7989D /* TableViewSections */ = {
+			isa = PBXGroup;
+			children = (
+				45E1694B2AEEA6F300B7989D /* TransactionTableViewSection.swift */,
+			);
+			path = TableViewSections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 				45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */,
 				4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */,
 				45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */,
+				45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */,
 				45E169492AED98E400B7989D /* UIStyle.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,

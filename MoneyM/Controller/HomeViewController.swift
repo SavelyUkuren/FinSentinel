@@ -80,6 +80,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         UIStyle.TransactionTableViewCellHeight
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        UIStyle.TransactionTableViewSectionHeight
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionModelManager.data[section].transactions.count
     }
@@ -126,6 +130,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = TransactionTableViewSection(frame: CGRect(x: 0, y: 0,
+                                                             width: tableView.frame.width,
+                                                             height: UIStyle.TransactionTableViewSectionHeight))
+        
+        let dateModelManager = DateModelManager()
+        
+        let dateComponent = transactionModelManager.data[section].section
+        let day = dateComponent!.day!
+        let month = dateModelManager.getMonthTitle(byMontNumber: dateComponent!.month!) ?? ""
+        
+        view.dayLabel.text = String(day)
+        view.monthLabel.text = month
+        
+        return view
+    }
+    
     
 }
 

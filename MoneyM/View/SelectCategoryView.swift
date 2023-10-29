@@ -20,6 +20,7 @@ class SelectCategoryView: UIView {
     private var categoriesTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIStyle.AppBackgroundColor
         return tableView
     }()
     
@@ -28,7 +29,7 @@ class SelectCategoryView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIStyle.AccentColor
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
@@ -36,7 +37,7 @@ class SelectCategoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = UIStyle.AppBackgroundColor
         
         configureSelectButton()
         configureCategoryiesTableView()

@@ -33,7 +33,7 @@ class DatePickerView: UIView {
         button.setTitle("Choose", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIStyle.AccentColor
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()

@@ -47,6 +47,7 @@ class HomeView: UIView {
         view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = UIStyle.CornerRadius
+        view.backgroundColor = UIStyle.UIViewBackgroundColor
         return view
     }()
     
@@ -70,6 +71,7 @@ class HomeView: UIView {
         let button = UIButton(configuration: .plain())
         button.setTitle("Edit", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIStyle.AccentColor, for: .normal)
         return button
     }()
     
@@ -87,6 +89,7 @@ class HomeView: UIView {
         view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = UIStyle.CornerRadius
+        view.backgroundColor = UIStyle.UIViewBackgroundColor
         return view
     }()
     
@@ -112,6 +115,7 @@ class HomeView: UIView {
         view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = UIStyle.CornerRadius
+        view.backgroundColor = UIStyle.UIViewBackgroundColor
         return view
     }()
     
@@ -136,6 +140,7 @@ class HomeView: UIView {
         let button = UIButton(configuration: .plain())
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Date", for: .normal)
+        button.setTitleColor(UIStyle.AccentColor, for: .normal)
         return button
     }()
     
@@ -144,7 +149,7 @@ class HomeView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Add", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIStyle.AccentColor
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
@@ -153,7 +158,7 @@ class HomeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = UIStyle.AppBackgroundColor
         
         configurateAddTransactionButton()
         configureScrollView()
@@ -174,7 +179,22 @@ class HomeView: UIView {
     }
     
     public func updateHeightTransactionTableView() {
-        transactionsTableViewHeight.constant = transactionsTableView.contentSize.height + 50
+        
+        var height: CGFloat = 0
+        
+        // Multiply numbers of section on size section
+        height = CGFloat(transactionsTableView.numberOfSections) * UIStyle.TransactionTableViewSectionHeight
+        
+        // Multiply numbers of rows in section on size row
+        for section in 0..<transactionsTableView.numberOfSections {
+            let rows = transactionsTableView.numberOfRows(inSection: section)
+            height += CGFloat(rows) * UIStyle.TransactionTableViewCellHeight
+        }
+        
+        // Multiply spacing between sections on number of sections
+        height += CGFloat(16 * transactionsTableView.numberOfSections)
+        
+        transactionsTableViewHeight.constant = height
     }
     
     public func reloadTransactionsTableView() {
