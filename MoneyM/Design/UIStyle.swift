@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 class UIStyle {
     
     static var CornerRadius: CGFloat = 12
+    
+    static var ExpenseColor: UIColor = .systemRed
+    
+    static var IncomeColor: UIColor = .systemGreen
     
 }

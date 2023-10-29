@@ -54,6 +54,7 @@ class HomeView: UIView {
         let label = UILabel()
         label.text = "Balance"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
         return label
     }()
     
@@ -61,6 +62,7 @@ class HomeView: UIView {
         let label = UILabel()
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 24)
         return label
     }()
     
@@ -92,6 +94,7 @@ class HomeView: UIView {
         let label = UILabel()
         label.text = "Expenses"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
         return label
     }()
     
@@ -99,6 +102,8 @@ class HomeView: UIView {
         let label = UILabel()
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 26)
+        label.textColor = UIStyle.ExpenseColor
         return label
     }()
     
@@ -114,6 +119,7 @@ class HomeView: UIView {
         let label = UILabel()
         label.text = "Incomes"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18)
         return label
     }()
     
@@ -121,6 +127,8 @@ class HomeView: UIView {
         let label = UILabel()
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 26)
+        label.textColor = UIStyle.IncomeColor
         return label
     }()
     
@@ -174,6 +182,9 @@ class HomeView: UIView {
         balanceAmountLabel.text = "\(statistic.balance)"
         expenseAmountLabel.text = "\(statistic.amountOfExpense)"
         incomeAmountLabel.text = "\(statistic.amountOfIncome)"
+        
+        balanceAmountLabel.textColor = statistic.balance < 0 ? UIStyle.ExpenseColor : UIStyle.IncomeColor
+        
     }
     
     public func deleteTransaction(indexPath: [IndexPath]) {
