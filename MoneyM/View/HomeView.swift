@@ -140,9 +140,12 @@ class HomeView: UIView {
     }()
     
     private let addTransactionButton: UIButton = {
-        let button = UIButton(configuration: .filled())
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Add", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
     

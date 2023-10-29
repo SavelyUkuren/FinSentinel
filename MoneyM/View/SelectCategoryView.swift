@@ -24,9 +24,12 @@ class SelectCategoryView: UIView {
     }()
     
     private var selectButton: UIButton = {
-        let button = UIButton(configuration: .filled())
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
 
