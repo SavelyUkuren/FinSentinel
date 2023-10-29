@@ -16,4 +16,6 @@ class UIStyle {
     
     static var IncomeColor: UIColor = .systemGreen
     
+    static var TransactionTableViewCellHeight: CGFloat = 80
+    
 }

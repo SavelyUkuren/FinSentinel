@@ -33,7 +33,7 @@ class HomeView: UIView {
     }()
     
     private let transactionsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.layer.cornerRadius = UIStyle.CornerRadius

@@ -23,6 +23,13 @@ class DateModelManager {
         configureYears()
     }
     
+    public func getMonthTitle(byMontNumber number: Int) -> String? {
+        guard number >= 1 && number <= 12 else {
+            return nil
+        }
+        return months[number - 1]
+    }
+    
     private func configureMonths() {
         months.append("January")
         months.append("February")

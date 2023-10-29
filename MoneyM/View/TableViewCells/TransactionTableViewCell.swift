@@ -13,6 +13,7 @@ class TransactionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Category"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
@@ -20,6 +21,7 @@ class TransactionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 26)
         return label
     }()
     
@@ -40,11 +42,28 @@ class TransactionTableViewCell: UITableViewCell {
         
     }
     
+    public func loadTransaction(transaction: TransactionModel) {
+        
+        amountLabel.text = transaction.amount
+        categoryLabel.text = transaction.category.title
+        
+        switch transaction.mode {
+        case .Expense:
+            amountLabel.textColor = UIStyle.ExpenseColor
+        case .Income:
+            amountLabel.textColor = UIStyle.IncomeColor
+        case .none:
+            break
+        }
+        
+    }
+    
     private func confiureCategoryLabel() {
         contentView.addSubview(categoryLabel)
         
         NSLayoutConstraint.activate([
-            categoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            //categoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            categoryLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
         ])
     }

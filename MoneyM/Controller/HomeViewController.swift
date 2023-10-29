@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
+        UIStyle.TransactionTableViewCellHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,16 +88,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TransactionTableViewCell
         
         let transaction = transactionModelManager.data[indexPath.section].transactions[indexPath.row]
-        cell.amountLabel.text = transaction.amount
-        cell.categoryLabel.text = transaction.category.title
+        
+        cell.loadTransaction(transaction: transaction)
         
         homeView.updateHeightTransactionTableView()
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let dateModelManager = DateModelManager()
+        
         let dateComponent = transactionModelManager.data[section].section
-        return "\(dateComponent!.day!) \(dateComponent!.month!)"
+        let day = dateComponent!.day!
+        let month = dateModelManager.getMonthTitle(byMontNumber: dateComponent!.month!) ?? ""
+        
+        return "\(day) \(month)"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
