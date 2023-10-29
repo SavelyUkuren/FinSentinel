@@ -301,7 +301,7 @@ class HomeView: UIView {
             datePickerButton.topAnchor.constraint(equalTo: expenseIncomeStackView.bottomAnchor, constant: 16),
             datePickerButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             datePickerButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            datePickerButton.heightAnchor.constraint(equalToConstant: 40)
+            datePickerButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
         
         datePickerButton.addTarget(self, action: #selector(datePickerButtonClicked), for: .touchUpInside)
@@ -314,7 +314,7 @@ class HomeView: UIView {
             addTransactionButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             addTransactionButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             addTransactionButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            addTransactionButton.heightAnchor.constraint(equalToConstant: 40)
+            addTransactionButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
         
         addTransactionButton.addTarget(self, action: #selector(addTransactionButtonClicked), for: .touchUpInside)

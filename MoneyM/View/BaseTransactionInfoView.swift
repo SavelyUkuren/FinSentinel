@@ -166,7 +166,7 @@ class BaseTransactionInfoView: UIView {
             confirmButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             confirmButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             confirmButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            confirmButton.heightAnchor.constraint(equalToConstant: 60)
+            confirmButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
         
         confirmButton.addTarget(self, action: #selector(configrmButtonClicked), for: .touchUpInside)
@@ -185,7 +185,7 @@ class BaseTransactionInfoView: UIView {
             selectModeStackView.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 50),
             selectModeStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             selectModeStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            selectModeStackView.heightAnchor.constraint(equalToConstant: 60)
+            selectModeStackView.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
     }
     
@@ -196,7 +196,7 @@ class BaseTransactionInfoView: UIView {
             selectCategoryButton.topAnchor.constraint(equalTo: selectModeStackView.bottomAnchor, constant: 32),
             selectCategoryButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             selectCategoryButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            selectCategoryButton.heightAnchor.constraint(equalToConstant: 60)
+            selectCategoryButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
         
         selectCategoryButton.addTarget(self, action: #selector(selectCategoryButtonClicked), for: .touchUpInside)

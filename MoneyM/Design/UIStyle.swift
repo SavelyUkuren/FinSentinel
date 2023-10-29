@@ -18,4 +18,6 @@ class UIStyle {
     
     static var TransactionTableViewCellHeight: CGFloat = 80
     
+    static var ButtonHeight: CGFloat = 60
+    
 }

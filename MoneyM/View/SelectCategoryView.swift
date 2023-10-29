@@ -76,7 +76,7 @@ class SelectCategoryView: UIView {
             selectButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             selectButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             selectButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            selectButton.heightAnchor.constraint(equalToConstant: 60)
+            selectButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
         
         selectButton.addTarget(self, action: #selector(selectButtonClicked), for: .touchUpInside)

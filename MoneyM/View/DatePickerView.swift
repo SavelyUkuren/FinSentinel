@@ -95,7 +95,7 @@ class DatePickerView: UIView {
             chooseButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             chooseButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             chooseButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            chooseButton.heightAnchor.constraint(equalToConstant: 60)
+            chooseButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
         
         chooseButton.addTarget(self, action: #selector(chooseButtonClicked), for: .touchUpInside)
