@@ -23,6 +23,7 @@ class BaseTransactionInfoView: UIView {
         let label = UILabel()
         label.text = "The amount"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 28, weight: .bold)
         return label
     }()
     
@@ -35,13 +36,17 @@ class BaseTransactionInfoView: UIView {
         textField.layer.borderColor = UIColor.systemGray6.cgColor
         textField.backgroundColor = .systemGray6
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+        textField.font = .systemFont(ofSize: 22)
         return textField
     }()
 
     public let confirmButton: UIButton = {
-        let button = UIButton(configuration: .filled())
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Confirm", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
     
@@ -55,23 +60,28 @@ class BaseTransactionInfoView: UIView {
     }()
     
     public let expenseButton: UIButton = {
-        let button = UIButton(configuration: .bordered())
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Expense", for: .normal)
+        button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
     
     public let incomeButton: UIButton = {
-        let button = UIButton(configuration: .bordered())
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Income", for: .normal)
+        button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
     
     public let selectCategoryButton: UIButton = {
-        let button = UIButton(configuration: .gray())
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select category", for: .normal)
+        button.backgroundColor = .systemGray6
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
     
@@ -96,6 +106,8 @@ class BaseTransactionInfoView: UIView {
         configureSelectModeStackView()
         configureSelectCategoryButton()
         configureDatePicker()
+        
+        expenseButtonClicked()
     }
     
     required init?(coder: NSCoder) {
@@ -109,24 +121,14 @@ class BaseTransactionInfoView: UIView {
     
     @objc
     public func incomeButtonClicked() {
-        incomeButton.backgroundColor = .systemBlue
-        incomeButton.setTitleColor(.white, for: .normal)
-        
-        expenseButton.backgroundColor = .systemGray6
-        expenseButton.setTitleColor(.systemBlue, for: .selected)
-        
         selectedMode = .Income
+        selectIncomeButton()
     }
     
     @objc
     public func expenseButtonClicked() {
-        expenseButton.backgroundColor = .systemBlue
-        expenseButton.setTitleColor(.white, for: .normal)
-        
-        incomeButton.backgroundColor = .systemGray6
-        incomeButton.setTitleColor(.systemBlue, for: .normal)
-        
         selectedMode = .Expense
+        selectExpenseButton()
     }
     
     @objc
@@ -211,6 +213,24 @@ class BaseTransactionInfoView: UIView {
             amountTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             datePicker.subviews.first!.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+    }
+    
+    private func selectExpenseButton() {
+        incomeButton.backgroundColor = .systemGray6
+        incomeButton.setTitleColor(.systemBlue, for: .normal)
+        
+        expenseButton.setTitleColor(.white, for: .normal)
+        expenseButton.backgroundColor = .systemBlue
+        
+    }
+    
+    private func selectIncomeButton() {
+        expenseButton.backgroundColor = .systemGray6
+        expenseButton.setTitleColor(.systemBlue, for: .normal)
+        
+        incomeButton.setTitleColor(.white, for: .normal)
+        incomeButton.backgroundColor = .systemBlue
+        
     }
     
 }
