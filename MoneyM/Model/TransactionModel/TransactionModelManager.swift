@@ -21,7 +21,7 @@ class TransactionModelManager {
     
     public var startingBalance: Int = 0
     
-    private var allTransactions: [TransactionModel] = []
+    private var allTransactions: [Int: TransactionModel] = [:]
     
     private var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -37,9 +37,8 @@ class TransactionModelManager {
     public func removeTransaction(indexPath: IndexPath) {
         let removedTransaction = data[indexPath.section].transactions.remove(at: indexPath.row)
         
-        // Remove from allTransactions array
-        let indexInAllTransactions = allTransactions.firstIndex { removedTransaction.id == $0.id }
-        allTransactions.remove(at: indexInAllTransactions!)
+        // Remove from allTransactions
+        allTransactions[removedTransaction.id] = nil
         
         // Remove from CoreData
         let fetchRequest = TransactionEntity.fetchRequest()
@@ -64,7 +63,7 @@ class TransactionModelManager {
         transaction.id = allTransactions.count
         
         data.removeAll()
-        allTransactions.append(transaction)
+        allTransactions[transaction.id] = transaction
         calculateSummary(transaction: transaction, summary: financialSummary)
         
         data = groupingTransactionsByDate()
@@ -75,18 +74,19 @@ class TransactionModelManager {
     }
     
     public func editTransactionByID(id: Int, newTransaction: TransactionModel) {
-        let foundTransactionIndex = allTransactions.firstIndex { $0.id == id }!
         
-        allTransactions[foundTransactionIndex].amount = newTransaction.amount
-        allTransactions[foundTransactionIndex].mode = newTransaction.mode
-        allTransactions[foundTransactionIndex].category = newTransaction.category
-        allTransactions[foundTransactionIndex].date = newTransaction.date
+        guard allTransactions[id] != nil else { return }
+        
+        allTransactions[id]?.amount = newTransaction.amount
+        allTransactions[id]?.mode = newTransaction.mode
+        allTransactions[id]?.category = newTransaction.category
+        allTransactions[id]?.date = newTransaction.date
         
         data = groupingTransactionsByDate()
         
         // Edit transaction in CoreData
         let fetchRequest = TransactionEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %i", allTransactions[foundTransactionIndex].id)
+        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
         
         do {
             let requestedData = try context.fetch(fetchRequest)
@@ -109,7 +109,7 @@ class TransactionModelManager {
     private func groupingTransactionsByDate() -> [TableViewData] {
         var arr: [TableViewData] = []
         
-        let groupedTransactions = Dictionary(grouping: allTransactions) {
+        let groupedTransactions = Dictionary(grouping: Array(allTransactions.values)) {
             let date = Calendar.current.dateComponents([.year, .month, .day], from: $0.date)
             return date
         }
@@ -148,7 +148,7 @@ class TransactionModelManager {
                     newTransaction.date = transaction.date
                     newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
 
-                    allTransactions.append(newTransaction)
+                    allTransactions[Int(transaction.id)] = newTransaction
                 }
             }
             
@@ -206,11 +206,12 @@ class TransactionModelManager {
         
         let result = FinancialSummary()
         
-        for transaction in allTransactions {
-            if transaction.mode == .Expense {
-                result.expense -= transaction.amount
-            } else if transaction.mode == .Income {
-                result.income += transaction.amount
+        for key in allTransactions.keys {
+            let transaction = allTransactions[key]
+            if transaction?.mode == .Expense {
+                result.expense -= transaction!.amount
+            } else if transaction?.mode == .Income {
+                result.income += transaction!.amount
             }
         }
         
