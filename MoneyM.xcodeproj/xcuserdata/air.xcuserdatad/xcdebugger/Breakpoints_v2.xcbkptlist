@@ -3,4 +3,138 @@
    uuid = "D43B5657-91B1-4A64-A8C8-8E0F1DD74036"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9BD70D27-E017-40FB-8BAB-E83FEB864757"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoneyM/Controller/EditTransactionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "confirmButtonClicked(transaction:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F5CB984-7F3A-4F09-8D74-8DC91E91DFEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoneyM/Model/TransactionModelManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "loadData(dateModel:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6F5CB984-7F3A-4F09-8D74-8DC91E91DFEE - cc6d3f1f435feca4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoneyM.TransactionModelManager.loadData(dateModel: MoneyM.DateModel) -&gt; ()"
+                  moduleName = "MoneyM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/air/Documents/XCodeProjects/MoneyM/MoneyM/Model/TransactionModelManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "6F5CB984-7F3A-4F09-8D74-8DC91E91DFEE - cc6d3f1f435fecdb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoneyM.TransactionModelManager.loadData(dateModel: MoneyM.DateModel) -&gt; ()"
+                  moduleName = "MoneyM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/air/Documents/XCodeProjects/MoneyM/MoneyM/Model/TransactionModelManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16F2F90E-9F6A-4BD7-8C7E-64A665FC419F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "Yes"
+            filePath = "MoneyM/Controller/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "addNewTransactionButtonClicked()"
+            landmarkType = "7">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po transactionModelManager.financialSummary.balance">
+                  </ActionContent>
+               </BreakpointActionProxy>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po transactionModelManager.financialSummary.expense">
+                  </ActionContent>
+               </BreakpointActionProxy>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po transactionModelManager.financialSummary.income">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "16F2F90E-9F6A-4BD7-8C7E-64A665FC419F - 868cd305d7e4d412"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoneyM.HomeViewController.addNewTransactionButtonClicked() -&gt; ()"
+                  moduleName = "MoneyM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/air/Documents/XCodeProjects/MoneyM/MoneyM/Controller/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "16F2F90E-9F6A-4BD7-8C7E-64A665FC419F - 868cd305d7e4d431"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoneyM.HomeViewController.addNewTransactionButtonClicked() -&gt; ()"
+                  moduleName = "MoneyM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/air/Documents/XCodeProjects/MoneyM/MoneyM/Controller/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

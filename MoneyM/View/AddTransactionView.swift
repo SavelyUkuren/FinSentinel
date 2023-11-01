@@ -27,7 +27,7 @@ class AddTransactionView: BaseTransactionInfoView {
         transaction.mode = selectedMode
         transaction.date = datePicker.date
         transaction.category = selectedCategory
-        transaction.amount = amountTextField.text
+        transaction.amount = Int(amountTextField.text!)
         
         delegate?.confirmButtonClicked(transaction: transaction)
     }

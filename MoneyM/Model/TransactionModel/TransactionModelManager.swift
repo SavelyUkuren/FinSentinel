@@ -1,38 +1,12 @@
 //
-//  TransactionModel.swift
+//  TransactionModelManager.swift
 //  MoneyM
 //
-//  Created by Air on 03.09.2023.
+//  Created by Air on 01.11.2023.
 //
 
 import Foundation
 import UIKit
-
-
-class TransactionModel {
-    
-    enum Mode: Int {
-        case Expense, Income
-    }
-    var id: Int!
-    var date: Date!
-    var amount: String!
-    var mode: Mode!
-    var category: CategoryModel!
-    
-}
-
-class TransactionsStatistics {
-    var balance: Int = 0
-    var amountOfExpense: Int = 0
-    var amountOfIncome: Int = 0
-    
-    public func resetToZero() {
-        balance = 0
-        amountOfIncome = 0
-        amountOfExpense = 0
-    }
-}
 
 class TransactionModelManager {
     
@@ -43,7 +17,7 @@ class TransactionModelManager {
     
     public var data: [TableViewData] = []
     
-    public var statistics: TransactionsStatistics!
+    public var financialSummary: FinancialSummary!
     
     public var startingBalance: Int = 0
     
@@ -55,27 +29,9 @@ class TransactionModelManager {
     
     init() {
         categories = Categories()
-        statistics = TransactionsStatistics()
+        financialSummary = FinancialSummary()
         
-        //loadData()
         data = groupingTransactionsByDate()
-        calculateStatistics()
-    }
-    
-    public func calculateStatistics() {
-        
-        statistics.resetToZero()
-        
-        for transaction in allTransactions {
-            if transaction.mode == .Expense {
-                statistics.amountOfExpense += Int(transaction.amount) ?? 0
-            } else if transaction.mode == .Income {
-                statistics.amountOfIncome += Int(transaction.amount) ?? 0
-            }
-        }
-        
-        statistics.balance = startingBalance + (statistics.amountOfIncome - statistics.amountOfExpense)
-        
     }
     
     public func removeTransaction(indexPath: IndexPath) {
@@ -97,6 +53,11 @@ class TransactionModelManager {
         }
         
         saveData()
+        
+        // We change the sign so that the calculations are reversed.
+        // For example, when removed, income didn't increase, but decreased
+        removedTransaction.amount *= -1
+        calculateSummary(transaction: removedTransaction, summary: financialSummary)
     }
     
     public func addTransaction(transaction: TransactionModel, dateModel: DateModel) {
@@ -104,13 +65,13 @@ class TransactionModelManager {
         
         data.removeAll()
         allTransactions.append(transaction)
+        calculateSummary(transaction: transaction, summary: financialSummary)
         
         data = groupingTransactionsByDate()
         
         addTransactionToCoreData(transaction: transaction, dateModel: dateModel)
         
         saveData()
-        calculateStatistics()
     }
     
     public func editTransactionByID(id: Int, newTransaction: TransactionModel) {
@@ -121,7 +82,6 @@ class TransactionModelManager {
         allTransactions[foundTransactionIndex].category = newTransaction.category
         allTransactions[foundTransactionIndex].date = newTransaction.date
         
-        calculateStatistics()
         data = groupingTransactionsByDate()
         
         // Edit transaction in CoreData
@@ -132,7 +92,7 @@ class TransactionModelManager {
             let requestedData = try context.fetch(fetchRequest)
             
             let transaction = requestedData.first
-            transaction?.amount = Int16(newTransaction.amount)!
+            transaction?.amount = Int16(newTransaction.amount)
             transaction?.date = newTransaction.date
             transaction?.categoryID = Int16(newTransaction.category.id)
             transaction?.mode = Int16(newTransaction.mode.rawValue)
@@ -143,6 +103,7 @@ class TransactionModelManager {
             fatalError("Error with edit transaction")
         }
         
+        calculateSummary(transaction: newTransaction, summary: financialSummary)
     }
     
     private func groupingTransactionsByDate() -> [TableViewData] {
@@ -182,7 +143,7 @@ class TransactionModelManager {
                 for transaction in existingFolder.transactions?.allObjects as! [TransactionEntity] {
                     let newTransaction = TransactionModel()
                     newTransaction.id = Int(transaction.id)
-                    newTransaction.amount = "\(transaction.amount)"
+                    newTransaction.amount = Int(transaction.amount)
                     newTransaction.category = categories.findCategoryByID(id: Int(transaction.categoryID))
                     newTransaction.date = transaction.date
                     newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
@@ -196,8 +157,7 @@ class TransactionModelManager {
         }
         
         data = groupingTransactionsByDate()
-        calculateStatistics()
-        
+        financialSummary = calculateAllTransactions()
     }
     
     private func saveData() {
@@ -235,11 +195,40 @@ class TransactionModelManager {
         let transactionEntity = TransactionEntity(context: context)
         transactionEntity.id = Int16(transaction.id)
         transactionEntity.categoryID = Int16(transaction.category.id)
-        transactionEntity.amount = Int16(transaction.amount) ?? 0
+        transactionEntity.amount = Int16(transaction.amount)
         transactionEntity.mode = Int16(transaction.mode.rawValue)
         transactionEntity.date = transaction.date
         
         folder?.addToTransactions(transactionEntity)
+    }
+    
+    private func calculateAllTransactions() -> FinancialSummary {
+        
+        let result = FinancialSummary()
+        
+        for transaction in allTransactions {
+            if transaction.mode == .Expense {
+                result.expense -= transaction.amount
+            } else if transaction.mode == .Income {
+                result.income += transaction.amount
+            }
+        }
+        
+        result.balance = startingBalance + result.income + result.expense
+        
+        return result
+    }
+    
+    private func calculateSummary(transaction: TransactionModel, summary: FinancialSummary) {
+        switch transaction.mode {
+        case .Expense:
+            summary.expense -= transaction.amount
+        case .Income:
+            summary.income += transaction.amount
+        case .none:
+            break
+        }
+        summary.balance = startingBalance + summary.income + summary.expense
     }
     
 }

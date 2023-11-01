@@ -25,7 +25,7 @@ class EditTransactionView: BaseTransactionInfoView {
     
     public func loadTransaction(transaction: TransactionModel) {
         
-        amountTextField.text = transaction.amount
+        amountTextField.text = "\(transaction.amount!)"
         datePicker.date = transaction.date
         selectedMode = transaction.mode
         selectedCategory = categories.findCategoryByID(id: transaction.category.id)!
@@ -50,7 +50,7 @@ class EditTransactionView: BaseTransactionInfoView {
         transaction.mode = selectedMode
         transaction.date = datePicker.date
         transaction.category = selectedCategory
-        transaction.amount = amountTextField.text
+        transaction.amount = Int(amountTextField.text!)
         
         delegate?.confirmButtonClicked(transaction: transaction)
     }

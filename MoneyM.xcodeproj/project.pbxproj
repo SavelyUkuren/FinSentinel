@@ -21,6 +21,8 @@
 		4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */; };
 		454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */; };
 		454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */; };
+		454317E62AF281450015F6E5 /* TransactionModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E52AF281450015F6E5 /* TransactionModelManager.swift */; };
+		454317E82AF282890015F6E5 /* FinancialSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E72AF282890015F6E5 /* FinancialSummary.swift */; };
 		455824532AD0665700434A25 /* FolderEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558244F2AD0665700434A25 /* FolderEntity+CoreDataClass.swift */; };
 		455824542AD0665700434A25 /* FolderEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824502AD0665700434A25 /* FolderEntity+CoreDataProperties.swift */; };
 		455824552AD0665700434A25 /* TransactionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824512AD0665700434A25 /* TransactionEntity+CoreDataClass.swift */; };
@@ -54,6 +56,8 @@
 		4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModelManager.swift; sourceTree = "<group>"; };
+		454317E52AF281450015F6E5 /* TransactionModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModelManager.swift; sourceTree = "<group>"; };
+		454317E72AF282890015F6E5 /* FinancialSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialSummary.swift; sourceTree = "<group>"; };
 		4558244F2AD0665700434A25 /* FolderEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		455824502AD0665700434A25 /* FolderEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		455824512AD0665700434A25 /* TransactionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -92,6 +96,16 @@
 				45326F512AB6112D00301729 /* CategoryTableViewCell.swift */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		454317E92AF2B9940015F6E5 /* TransactionModel */ = {
+			isa = PBXGroup;
+			children = (
+				454317E72AF282890015F6E5 /* FinancialSummary.swift */,
+				454317E52AF281450015F6E5 /* TransactionModelManager.swift */,
+				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
+			);
+			path = TransactionModel;
 			sourceTree = "<group>";
 		};
 		455824572AD070FB00434A25 /* CoreData */ = {
@@ -170,7 +184,7 @@
 		45DCB72C2A9FB55A00B0326F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
+				454317E92AF2B9940015F6E5 /* TransactionModel */,
 				45326F4C2AB603F300301729 /* CategoryModel.swift */,
 				455824582AD081C800434A25 /* DateModel.swift */,
 				454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */,
@@ -268,6 +282,7 @@
 			files = (
 				455824542AD0665700434A25 /* FolderEntity+CoreDataProperties.swift in Sources */,
 				455824562AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift in Sources */,
+				454317E62AF281450015F6E5 /* TransactionModelManager.swift in Sources */,
 				455824552AD0665700434A25 /* TransactionEntity+CoreDataClass.swift in Sources */,
 				451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */,
 				45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */,
@@ -293,6 +308,7 @@
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 				451974AC2AA477FA0003A4B7 /* AddTransactionViewController.swift in Sources */,
 				455824592AD081C800434A25 /* DateModel.swift in Sources */,
+				454317E82AF282890015F6E5 /* FinancialSummary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
