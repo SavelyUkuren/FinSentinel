@@ -38,6 +38,8 @@ class HomeViewController: UIViewController {
         
         categories = Categories()
         //print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+        
+        CurrencyModelManager.shared.delegate = self
     }
     
     private func loadCurrentDate() {
@@ -223,6 +225,14 @@ extension HomeViewController: DatePickerViewControllerDelegate {
         homeView.updateStatistics(statistic: transactionModelManager.statistics)
         homeView.reloadTransactionsTableView()
         homeView.setDateButtonTitle(dateModel: dateModel)
+    }
+    
+}
+
+// MARK: CurrencyModel Delegate
+extension HomeViewController: CurrencyModelManagerDelegate {
+    func currencyDidUpdate() {
+        
     }
     
 }

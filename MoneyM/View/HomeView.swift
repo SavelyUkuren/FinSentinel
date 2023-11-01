@@ -202,9 +202,11 @@ class HomeView: UIView {
     }
     
     public func updateStatistics(statistic: TransactionsStatistics) {
-        balanceAmountLabel.text = "\(statistic.balance)"
-        expenseAmountLabel.text = "\(statistic.amountOfExpense)"
-        incomeAmountLabel.text = "\(statistic.amountOfIncome)"
+        let currencySymbol = CurrencyModelManager.shared.selectedCurrency.symbol
+        
+        balanceAmountLabel.text = "\(statistic.balance) \(currencySymbol)"
+        expenseAmountLabel.text = "\(statistic.amountOfExpense) \(currencySymbol)"
+        incomeAmountLabel.text = "\(statistic.amountOfIncome) \(currencySymbol)"
         
         balanceAmountLabel.textColor = statistic.balance < 0 ? UIStyle.ExpenseColor : UIStyle.IncomeColor
         
