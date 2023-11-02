@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         printFinancialSummary()
         
         homeView = HomeView(frame: self.view.frame)
-        //homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        updateHomeView()
         homeView.setTransactionsTableViewDelegate(delegate: self)
         homeView.setTransactionsTableViewDataSource(dataSource: self)
         homeView.delegate = self
@@ -69,8 +69,7 @@ class HomeViewController: UIViewController {
             homeView.deleteDateSection(index: indexPath.section)
         }
         
-        //transactionModelManager.calculateStatistics()
-        //homeView.updateStatistics(statistic: transactionModelManager.statistics)
+        updateHomeView()
         homeView.updateHeightTransactionTableView()
     }
     
@@ -78,6 +77,17 @@ class HomeViewController: UIViewController {
         print ("Balance: \(transactionModelManager.financialSummary.balance)")
         print ("Expense: \(transactionModelManager.financialSummary.expense)")
         print ("Income: \(transactionModelManager.financialSummary.income)")
+    }
+    
+    private func updateHomeView() {
+        let summary = transactionModelManager.financialSummary!
+        let currency = CurrencyModelManager.shared.selectedCurrency!
+        
+        homeView.updateBalanceLabel(amount: summary.balance, currency: currency)
+        homeView.updateExpenseLabel(amount: summary.expense, currency: currency)
+        homeView.updateIncomeLabel(amount: summary.income, currency: currency)
+        
+        homeView.reloadTransactionsTableView()
     }
     
 }
@@ -175,8 +185,7 @@ extension HomeViewController: HomeViewDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
             let textField = alert.textFields![0]
             self.transactionModelManager.startingBalance = Int(textField.text!) ?? 0
-            //self.transactionModelManager.calculateStatistics()
-            //self.homeView.updateStatistics(statistic: self.transactionModelManager.statistics)
+            self.updateHomeView()
         }))
         
         present(alert, animated: true)
@@ -203,10 +212,8 @@ extension HomeViewController: HomeViewDelegate {
 extension HomeViewController: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
-        
         transactionModelManager.addTransaction(transaction: transaction, dateModel: currentDate)
-        //homeView.updateStatistics(statistic: transactionModelManager.statistics)
-        homeView.reloadTransactionsTableView()
+        updateHomeView()
     }
     
 }
@@ -216,8 +223,7 @@ extension HomeViewController: EditTransactionViewControllerDelegate {
     
     func transactionEdited(transaction: TransactionModel) {
         transactionModelManager.editTransactionByID(id: transaction.id, newTransaction: transaction)
-        //homeView.updateStatistics(statistic: transactionModelManager.statistics)
-        homeView.reloadTransactionsTableView()
+        updateHomeView()
     }
     
 }
@@ -229,8 +235,7 @@ extension HomeViewController: DatePickerViewControllerDelegate {
         currentDate = dateModel
         
         transactionModelManager.loadData(dateModel: dateModel)
-        //homeView.updateStatistics(statistic: transactionModelManager.statistics)
-        homeView.reloadTransactionsTableView()
+        updateHomeView()
         homeView.setDateButtonTitle(dateModel: dateModel)
     }
     

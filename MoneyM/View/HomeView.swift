@@ -201,16 +201,18 @@ class HomeView: UIView {
         transactionsTableView.reloadData()
     }
     
-//    public func updateStatistics(statistic: TransactionsStatistics) {
-//        let currencySymbol = CurrencyModelManager.shared.selectedCurrency.symbol
-//        
-//        balanceAmountLabel.text = "\(statistic.balance) \(currencySymbol)"
-//        expenseAmountLabel.text = "\(statistic.amountOfExpense) \(currencySymbol)"
-//        incomeAmountLabel.text = "\(statistic.amountOfIncome) \(currencySymbol)"
-//        
-//        balanceAmountLabel.textColor = statistic.balance < 0 ? UIStyle.ExpenseColor : UIStyle.IncomeColor
-//        
-//    }
+    public func updateExpenseLabel(amount: Int, currency: CurrencyModel) {
+        expenseAmountLabel.text = "\(amount) \(currency.symbol)"
+    }
+    
+    public func updateIncomeLabel(amount: Int, currency: CurrencyModel) {
+        incomeAmountLabel.text = "\(amount) \(currency.symbol)"
+    }
+    
+    public func updateBalanceLabel(amount: Int, currency: CurrencyModel) {
+        balanceAmountLabel.text = "\(amount) \(currency.symbol)"
+        balanceAmountLabel.textColor = amount < 0 ? UIStyle.ExpenseColor : UIStyle.IncomeColor
+    }
     
     public func deleteTransaction(indexPath: [IndexPath]) {
         transactionsTableView.deleteRows(at: indexPath, with: .automatic)
