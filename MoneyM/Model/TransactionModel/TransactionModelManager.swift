@@ -21,7 +21,7 @@ class TransactionModelManager {
     
     public var startingBalance: Int = 0
     
-    private var allTransactions: [Int: TransactionModel] = [:]
+    private var transactionCollection: TransactionCollectionProtocol!
     
     private var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -30,6 +30,7 @@ class TransactionModelManager {
     init() {
         categories = Categories()
         financialSummary = FinancialSummary()
+        transactionCollection = TransactionCollection()
         
         data = groupingTransactionsByDate()
     }
@@ -38,7 +39,7 @@ class TransactionModelManager {
         let removedTransaction = data[indexPath.section].transactions.remove(at: indexPath.row)
         
         // Remove from allTransactions
-        allTransactions[removedTransaction.id] = nil
+        transactionCollection.delete(removedTransaction.id)
         
         // Remove from CoreData
         let fetchRequest = TransactionEntity.fetchRequest()
@@ -60,10 +61,8 @@ class TransactionModelManager {
     }
     
     public func addTransaction(transaction: TransactionModel, dateModel: DateModel) {
-        transaction.id = allTransactions.count
-        
         data.removeAll()
-        allTransactions[transaction.id] = transaction
+        transactionCollection.append(transaction)
         calculateSummary(transaction: transaction, summary: financialSummary)
         
         data = groupingTransactionsByDate()
@@ -75,12 +74,7 @@ class TransactionModelManager {
     
     public func editTransactionByID(id: Int, newTransaction: TransactionModel) {
         
-        guard allTransactions[id] != nil else { return }
-        
-        allTransactions[id]?.amount = newTransaction.amount
-        allTransactions[id]?.mode = newTransaction.mode
-        allTransactions[id]?.category = newTransaction.category
-        allTransactions[id]?.date = newTransaction.date
+        transactionCollection.edit(id, newTransaction: newTransaction)
         
         data = groupingTransactionsByDate()
         
@@ -109,7 +103,7 @@ class TransactionModelManager {
     private func groupingTransactionsByDate() -> [TableViewData] {
         var arr: [TableViewData] = []
         
-        let groupedTransactions = Dictionary(grouping: Array(allTransactions.values)) {
+        let groupedTransactions = Dictionary(grouping: Array(transactionCollection.getValues())) {
             let date = Calendar.current.dateComponents([.year, .month, .day], from: $0.date)
             return date
         }
@@ -127,8 +121,7 @@ class TransactionModelManager {
     }
     
     public func loadData(dateModel: DateModel) {
-        
-        allTransactions.removeAll()
+        transactionCollection.removeAll()
         data.removeAll()
         
         let request = FolderEntity.fetchRequest()
@@ -148,7 +141,7 @@ class TransactionModelManager {
                     newTransaction.date = transaction.date
                     newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
 
-                    allTransactions[Int(transaction.id)] = newTransaction
+                    transactionCollection.append(newTransaction)
                 }
             }
             
@@ -206,8 +199,8 @@ class TransactionModelManager {
         
         let result = FinancialSummary()
         
-        for key in allTransactions.keys {
-            let transaction = allTransactions[key]
+        for key in transactionCollection.getKeys() {
+            let transaction = transactionCollection.getTransaction(byID: key)
             if transaction?.mode == .Expense {
                 result.expense -= transaction!.amount
             } else if transaction?.mode == .Income {
