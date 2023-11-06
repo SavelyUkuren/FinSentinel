@@ -78,22 +78,7 @@ class TransactionModelManager {
         
         data = groupingTransactionsByDate()
         
-        // Edit transaction in CoreData
-        let fetchRequest = TransactionEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
-        
-        do {
-            let requestedData = try context.fetch(fetchRequest)
-            
-            let transaction = requestedData.first
-            transaction?.amount = Int16(newTransaction.amount)
-            transaction?.date = newTransaction.date
-            transaction?.categoryID = Int16(newTransaction.categoryID)
-            transaction?.mode = Int16(newTransaction.mode.rawValue)
-            
-        } catch {
-            fatalError("Error with edit transaction")
-        }
+        coreDataManager.edit(id, newTransaction)
         
         calculateSummary(transaction: newTransaction, summary: financialSummary)
     }
@@ -110,6 +95,7 @@ class TransactionModelManager {
             let temp = TableViewData()
             temp.section = key
             temp.transactions = value
+            temp.transactions = temp.transactions.sorted { $0.date > $1.date }
             arr.append(temp)
         }
         

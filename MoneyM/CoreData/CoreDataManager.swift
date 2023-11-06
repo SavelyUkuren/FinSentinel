@@ -12,6 +12,7 @@ import UIKit
 protocol CoreDataManagerProtocol {
     func load(_ dateModel: DateModel) -> [TransactionModel]
     func add(_ transaction: TransactionModel, dateModel: DateModel)
+    func edit(_ id: Int, _ newTransaction: TransactionModel)
     func save()
 }
 
@@ -81,6 +82,27 @@ class CoreDataManager: CoreDataManagerProtocol {
         transactionEntity.date = transaction.date
         
         folder?.addToTransactions(transactionEntity)
+        
+        save()
+    }
+    
+    func edit(_ id: Int, _ newTransaction: TransactionModel) {
+        
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+        
+        do {
+            let requestedData = try context.fetch(fetchRequest)
+            
+            let transaction = requestedData.first
+            transaction?.amount = Int16(newTransaction.amount)
+            transaction?.date = newTransaction.date
+            transaction?.categoryID = Int16(newTransaction.categoryID)
+            transaction?.mode = Int16(newTransaction.mode.rawValue)
+            
+        } catch {
+            print ("Error with edit transaction!")
+        }
         
         save()
     }
