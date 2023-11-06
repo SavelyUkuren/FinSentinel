@@ -11,6 +11,8 @@ import UIKit
 
 protocol CoreDataManagerProtocol {
     func load(_ dateModel: DateModel) -> [TransactionModel]
+    func add(_ transaction: TransactionModel, dateModel: DateModel)
+    func save()
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -48,5 +50,47 @@ class CoreDataManager: CoreDataManagerProtocol {
         return transactionModelArray
     }
     
+    func add(_ transaction: TransactionModel, dateModel: DateModel) {
+        var folder: FolderEntity?
+        
+        let request = FolderEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "month == %i AND year == %i", dateModel.month, dateModel.year)
+        
+        do {
+            let response = try context.fetch(request)
+            
+            if let existingFolder = response.first {
+                folder = existingFolder
+            }
+            
+        } catch {
+            print("Error with find folder!")
+        }
+        
+        if folder == nil {
+            folder = FolderEntity(context: context)
+            folder?.month = Int16(dateModel.month)
+            folder?.year = Int16(dateModel.year)
+        }
+        
+        let transactionEntity = TransactionEntity(context: context)
+        transactionEntity.id = Int16(transaction.id)
+        transactionEntity.categoryID = Int16(transaction.categoryID)
+        transactionEntity.amount = Int16(transaction.amount)
+        transactionEntity.mode = Int16(transaction.mode.rawValue)
+        transactionEntity.date = transaction.date
+        
+        folder?.addToTransactions(transactionEntity)
+        
+        save()
+    }
+    
+    public func save() {
+        do {
+            try context.save()
+        } catch {
+            print("Error with saving data!")
+        }
+    }
     
 }

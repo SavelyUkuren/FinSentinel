@@ -23,6 +23,7 @@ class TransactionCollection: TransactionCollectionProtocol {
     
     func append(_ transaction: TransactionModel) {
         let id = allTransactions.count
+        transaction.id = id
         allTransactions[id] = transaction
     }
     

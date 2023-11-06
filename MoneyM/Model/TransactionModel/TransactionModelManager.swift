@@ -55,8 +55,6 @@ class TransactionModelManager {
             fatalError("Error with removing transaction from CoreData")
         }
         
-        saveData()
-        
         // We change the sign so that the calculations are reversed.
         // For example, when removed, income didn't increase, but decreased
         removedTransaction.amount *= -1
@@ -70,9 +68,8 @@ class TransactionModelManager {
         
         data = groupingTransactionsByDate()
         
-        addTransactionToCoreData(transaction: transaction, dateModel: dateModel)
+        coreDataManager.add(transaction, dateModel: dateModel)
         
-        saveData()
     }
     
     public func editTransactionByID(id: Int, newTransaction: TransactionModel) {
@@ -93,8 +90,6 @@ class TransactionModelManager {
             transaction?.date = newTransaction.date
             transaction?.categoryID = Int16(newTransaction.categoryID)
             transaction?.mode = Int16(newTransaction.mode.rawValue)
-            
-            saveData()
             
         } catch {
             fatalError("Error with edit transaction")
@@ -127,55 +122,13 @@ class TransactionModelManager {
         transactionCollection.removeAll()
         data.removeAll()
         
-        var transactions = coreDataManager.load(dateModel)
+        let transactions = coreDataManager.load(dateModel)
         transactions.forEach { transaction in
             transactionCollection.append(transaction)
         }
         
         data = groupingTransactionsByDate()
         financialSummary = calculateAllTransactions()
-    }
-    
-    private func saveData() {
-        do {
-            try context.save()
-        } catch {
-            fatalError("Error with saving data")
-        }
-    }
-    
-    private func addTransactionToCoreData(transaction: TransactionModel, dateModel: DateModel) {
-        
-        var folder: FolderEntity?
-        
-        let request = FolderEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "month == %i AND year == %i", dateModel.month, dateModel.year)
-        
-        do {
-            let response = try context.fetch(request)
-            
-            if let existingFolder = response.first {
-                folder = existingFolder
-            }
-            
-        } catch {
-            fatalError("Error with find folder")
-        }
-        
-        if folder == nil {
-            folder = FolderEntity(context: context)
-            folder?.month = Int16(dateModel.month)
-            folder?.year = Int16(dateModel.year)
-        }
-        
-        let transactionEntity = TransactionEntity(context: context)
-        transactionEntity.id = Int16(transaction.id)
-        transactionEntity.categoryID = Int16(transaction.categoryID)
-        transactionEntity.amount = Int16(transaction.amount)
-        transactionEntity.mode = Int16(transaction.mode.rawValue)
-        transactionEntity.date = transaction.date
-        
-        folder?.addToTransactions(transactionEntity)
     }
     
     private func calculateAllTransactions() -> FinancialSummary {
