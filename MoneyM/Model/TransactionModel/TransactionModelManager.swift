@@ -44,16 +44,7 @@ class TransactionModelManager {
         // Remove from allTransactions
         transactionCollection.delete(removedTransaction.id)
         
-        // Remove from CoreData
-        let fetchRequest = TransactionEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %i", removedTransaction.id)
-        
-        do {
-            let requestedData = try context.fetch(fetchRequest)
-            context.delete(requestedData.first!)
-        } catch {
-            fatalError("Error with removing transaction from CoreData")
-        }
+        coreDataManager.delete(removedTransaction.id)
         
         // We change the sign so that the calculations are reversed.
         // For example, when removed, income didn't increase, but decreased

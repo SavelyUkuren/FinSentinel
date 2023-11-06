@@ -13,6 +13,7 @@ protocol CoreDataManagerProtocol {
     func load(_ dateModel: DateModel) -> [TransactionModel]
     func add(_ transaction: TransactionModel, dateModel: DateModel)
     func edit(_ id: Int, _ newTransaction: TransactionModel)
+    func delete(_ id: Int)
     func save()
 }
 
@@ -102,6 +103,21 @@ class CoreDataManager: CoreDataManagerProtocol {
             
         } catch {
             print ("Error with edit transaction!")
+        }
+        
+        save()
+    }
+    
+    func delete(_ id: Int) {
+        
+        let fetchRequest = TransactionEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+        
+        do {
+            let requestedData = try context.fetch(fetchRequest)
+            context.delete(requestedData.first!)
+        } catch {
+            fatalError("Error with removing transaction from CoreData")
         }
         
         save()
