@@ -31,7 +31,7 @@ class TransactionCollection: TransactionCollectionProtocol {
         
         allTransactions[id]?.amount = newTransaction.amount
         allTransactions[id]?.mode = newTransaction.mode
-        allTransactions[id]?.category = newTransaction.category
+        allTransactions[id]?.categoryID = newTransaction.categoryID
         allTransactions[id]?.date = newTransaction.date
     }
     

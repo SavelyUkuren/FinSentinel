@@ -23,6 +23,8 @@ class TransactionModelManager {
     
     private var transactionCollection: TransactionCollectionProtocol!
     
+    private var coreDataManager: CoreDataManagerProtocol!
+    
     private var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     private var categories: Categories!
@@ -31,6 +33,7 @@ class TransactionModelManager {
         categories = Categories()
         financialSummary = FinancialSummary()
         transactionCollection = TransactionCollection()
+        coreDataManager = CoreDataManager()
         
         data = groupingTransactionsByDate()
     }
@@ -88,7 +91,7 @@ class TransactionModelManager {
             let transaction = requestedData.first
             transaction?.amount = Int16(newTransaction.amount)
             transaction?.date = newTransaction.date
-            transaction?.categoryID = Int16(newTransaction.category.id)
+            transaction?.categoryID = Int16(newTransaction.categoryID)
             transaction?.mode = Int16(newTransaction.mode.rawValue)
             
             saveData()
@@ -124,29 +127,9 @@ class TransactionModelManager {
         transactionCollection.removeAll()
         data.removeAll()
         
-        let request = FolderEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "month == %i AND year == %i", dateModel.month, dateModel.year)
-        
-        do {
-            
-            let response = try context.fetch(request)
-            
-            if let existingFolder = response.first {
-                
-                for transaction in existingFolder.transactions?.allObjects as! [TransactionEntity] {
-                    let newTransaction = TransactionModel()
-                    newTransaction.id = Int(transaction.id)
-                    newTransaction.amount = Int(transaction.amount)
-                    newTransaction.category = categories.findCategoryByID(id: Int(transaction.categoryID))
-                    newTransaction.date = transaction.date
-                    newTransaction.mode = TransactionModel.Mode(rawValue: Int(transaction.mode))
-
-                    transactionCollection.append(newTransaction)
-                }
-            }
-            
-        } catch {
-            fatalError("Error with load data")
+        var transactions = coreDataManager.load(dateModel)
+        transactions.forEach { transaction in
+            transactionCollection.append(transaction)
         }
         
         data = groupingTransactionsByDate()
@@ -187,7 +170,7 @@ class TransactionModelManager {
         
         let transactionEntity = TransactionEntity(context: context)
         transactionEntity.id = Int16(transaction.id)
-        transactionEntity.categoryID = Int16(transaction.category.id)
+        transactionEntity.categoryID = Int16(transaction.categoryID)
         transactionEntity.amount = Int16(transaction.amount)
         transactionEntity.mode = Int16(transaction.mode.rawValue)
         transactionEntity.date = transaction.date

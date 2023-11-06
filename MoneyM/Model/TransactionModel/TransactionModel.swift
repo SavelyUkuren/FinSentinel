@@ -18,6 +18,6 @@ class TransactionModel {
     var date: Date!
     var amount: Int!
     var mode: Mode!
-    var category: CategoryModel!
+    var categoryID: Int!
     
 }
