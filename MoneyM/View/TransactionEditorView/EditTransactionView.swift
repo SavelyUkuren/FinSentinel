@@ -9,8 +9,6 @@ import UIKit
 
 class EditTransactionView: TransactionEditorView {
     
-    public var delegate: TransactionEditorViewDelegate?
-    
     private var transactionID: Int = -1
     
     override init(frame: CGRect) {

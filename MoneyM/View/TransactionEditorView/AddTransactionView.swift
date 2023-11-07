@@ -9,8 +9,6 @@ import UIKit
 
 class AddTransactionView: TransactionEditorView {
     
-    public var delegate: TransactionEditorViewDelegate?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -22,6 +20,8 @@ class AddTransactionView: TransactionEditorView {
     }
     
     override func configrmButtonClicked() {
+        super.configrmButtonClicked()
+        
         let transaction = TransactionModel()
         
         transaction.mode = selectedMode
@@ -33,9 +33,9 @@ class AddTransactionView: TransactionEditorView {
     }
     
     override func selectCategoryButtonClicked() {
+        super.selectCategoryButtonClicked()
+        
         delegate?.selectCategoryButtonClicked()
     }
     
 }
-
-

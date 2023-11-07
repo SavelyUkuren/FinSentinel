@@ -12,7 +12,8 @@ protocol TransactionEditorViewDelegate {
     func selectCategoryButtonClicked()
 }
 
-class TransactionEditorView: UIView {
+class TransactionEditorView: UIView, TransactionEditorViewProtocol {
+    public var delegate: TransactionEditorViewDelegate?
     
     public var selectedMode: TransactionModel.Mode = .Expense
     public var selectedCategory: CategoryModel = CategoriesManager.defaultCategory
@@ -101,7 +102,7 @@ class TransactionEditorView: UIView {
         
     }
     
-    private func configureAmountLabel() {
+    internal func configureAmountLabel() {
         addSubview(amountLabel)
         
         NSLayoutConstraint.activate([
@@ -111,7 +112,7 @@ class TransactionEditorView: UIView {
         
     }
     
-    private func configureAmountTextField() {
+    internal func configureAmountTextField() {
         addSubview(amountTextField)
         
         NSLayoutConstraint.activate([
@@ -125,7 +126,7 @@ class TransactionEditorView: UIView {
         amountTextField.delegate = self
     }
     
-    private func configureAddTransactionButton() {
+    internal func configureAddTransactionButton() {
         addSubview(confirmButton)
         
         NSLayoutConstraint.activate([
@@ -138,7 +139,7 @@ class TransactionEditorView: UIView {
         confirmButton.addTarget(self, action: #selector(configrmButtonClicked), for: .touchUpInside)
     }
     
-    private func configureChoiceModeButton() {
+    internal func configureChoiceModeButton() {
         addSubview(choiceModeButton)
         
         choiceModeButton.setButtonTitle("Expense", button: .First)
@@ -152,7 +153,7 @@ class TransactionEditorView: UIView {
         ])
     }
     
-    private func configureSelectCategoryButton() {
+    internal func configureSelectCategoryButton() {
         addSubview(selectCategoryButton)
         
         NSLayoutConstraint.activate([
@@ -165,7 +166,7 @@ class TransactionEditorView: UIView {
         selectCategoryButton.addTarget(self, action: #selector(selectCategoryButtonClicked), for: .touchUpInside)
     }
 
-    private func configureDatePicker() {
+    internal func configureDatePicker() {
         addSubview(datePicker)
         
         NSLayoutConstraint.activate([
@@ -184,4 +185,5 @@ extension TransactionEditorView: UITextFieldDelegate {
         amountTextField.resignFirstResponder()
         return true
     }
+    
 }
