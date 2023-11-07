@@ -48,29 +48,10 @@ class TransactionEditorView: UIView {
         return button
     }()
     
-    public let selectModeStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 16
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
-    public let expenseButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Expense", for: .normal)
-        button.layer.cornerRadius = UIStyle.CornerRadius
-        return button
-    }()
-    
-    public let incomeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Income", for: .normal)
-        button.layer.cornerRadius = UIStyle.CornerRadius
-        return button
+    public let choiceModeButton: ButtonChoiceView = {
+        let view = ButtonChoiceView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     public let selectCategoryButton: UIButton = {
@@ -100,11 +81,10 @@ class TransactionEditorView: UIView {
         configureAmountLabel()
         configureAmountTextField()
         configureAddTransactionButton()
-        configureSelectModeStackView()
+        configureChoiceModeButton()
         configureSelectCategoryButton()
         configureDatePicker()
         
-        expenseButtonClicked()
     }
     
     required init?(coder: NSCoder) {
@@ -114,18 +94,6 @@ class TransactionEditorView: UIView {
     @objc
     public func configrmButtonClicked() {
         
-    }
-    
-    @objc
-    public func incomeButtonClicked() {
-        selectedMode = .Income
-        selectIncomeButton()
-    }
-    
-    @objc
-    public func expenseButtonClicked() {
-        selectedMode = .Expense
-        selectExpenseButton()
     }
     
     @objc
@@ -141,7 +109,6 @@ class TransactionEditorView: UIView {
             amountLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
         ])
         
-        //amountTextField.addTarget(self, action: #selector(amountTextFieldTextChanged), for: .editingChanged)
     }
     
     private func configureAmountTextField() {
@@ -171,20 +138,17 @@ class TransactionEditorView: UIView {
         confirmButton.addTarget(self, action: #selector(configrmButtonClicked), for: .touchUpInside)
     }
     
-    private func configureSelectModeStackView() {
-        addSubview(selectModeStackView)
+    private func configureChoiceModeButton() {
+        addSubview(choiceModeButton)
         
-        expenseButton.addTarget(self, action: #selector(expenseButtonClicked), for: .touchUpInside)
-        incomeButton.addTarget(self, action: #selector(incomeButtonClicked), for: .touchUpInside)
-        
-        selectModeStackView.addArrangedSubview(expenseButton)
-        selectModeStackView.addArrangedSubview(incomeButton)
+        choiceModeButton.setButtonTitle("Expense", button: .First)
+        choiceModeButton.setButtonTitle("Income", button: .Second)
         
         NSLayoutConstraint.activate([
-            selectModeStackView.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 50),
-            selectModeStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            selectModeStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            selectModeStackView.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
+            choiceModeButton.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 50),
+            choiceModeButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            choiceModeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            choiceModeButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
     }
     
@@ -192,7 +156,7 @@ class TransactionEditorView: UIView {
         addSubview(selectCategoryButton)
         
         NSLayoutConstraint.activate([
-            selectCategoryButton.topAnchor.constraint(equalTo: selectModeStackView.bottomAnchor, constant: 32),
+            selectCategoryButton.topAnchor.constraint(equalTo: choiceModeButton.bottomAnchor, constant: 32),
             selectCategoryButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             selectCategoryButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             selectCategoryButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
@@ -210,24 +174,6 @@ class TransactionEditorView: UIView {
             amountTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             datePicker.subviews.first!.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
-    }
-    
-    private func selectExpenseButton() {
-        incomeButton.backgroundColor = UIStyle.UIViewBackgroundColor
-        incomeButton.setTitleColor(UIStyle.AccentColor, for: .normal)
-        
-        expenseButton.setTitleColor(.white, for: .normal)
-        expenseButton.backgroundColor = UIStyle.AccentColor
-        
-    }
-    
-    private func selectIncomeButton() {
-        expenseButton.backgroundColor = .systemGray5
-        expenseButton.setTitleColor(UIStyle.AccentColor, for: .normal)
-        
-        incomeButton.setTitleColor(.white, for: .normal)
-        incomeButton.backgroundColor = UIStyle.AccentColor
-        
     }
     
 }

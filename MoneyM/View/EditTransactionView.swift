@@ -35,9 +35,9 @@ class EditTransactionView: TransactionEditorView {
         
         switch selectedMode {
         case .Expense:
-            expenseButtonClicked()
+            choiceModeButton.selectButton(.First)
         case .Income:
-            incomeButtonClicked()
+            choiceModeButton.selectButton(.Second)
         }
         
     }
