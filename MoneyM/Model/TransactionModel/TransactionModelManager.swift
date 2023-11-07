@@ -27,10 +27,8 @@ class TransactionModelManager {
     
     private var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private var categories: Categories!
-    
     init() {
-        categories = Categories()
+        
         financialSummary = FinancialSummary()
         transactionCollection = TransactionCollection()
         coreDataManager = CoreDataManager()

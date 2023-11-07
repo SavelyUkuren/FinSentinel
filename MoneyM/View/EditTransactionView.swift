@@ -28,7 +28,7 @@ class EditTransactionView: BaseTransactionInfoView {
         amountTextField.text = "\(transaction.amount!)"
         datePicker.date = transaction.date
         selectedMode = transaction.mode
-        selectedCategory = categories.findCategoryByID(id: transaction.categoryID)!
+        selectedCategory = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID) ?? selectedCategory
         transactionID = transaction.id
         
         selectCategoryButton.setTitle(selectedCategory.title, for: .normal)

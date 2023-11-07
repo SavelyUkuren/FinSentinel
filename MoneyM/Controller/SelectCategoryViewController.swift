@@ -15,13 +15,13 @@ class SelectCategoryViewController: UIViewController {
     
     public var delegate: SelectCategoryViewControllerDelegate?
     
-    public var transactionMode: TransactionModel.Mode = .Expense
+    public var categoryType: TransactionModel.Mode = .Expense
     
     private var selectCategoryView: SelectCategoryView!
     
     private var selectedIndex: IndexPath!
     
-    private var categories: Categories!
+    private var categories = CategoriesManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,6 @@ class SelectCategoryViewController: UIViewController {
         
         self.view = selectCategoryView
         
-        categories = Categories()
     }
     
 }
@@ -51,11 +50,11 @@ extension SelectCategoryViewController: SelectCategoryViewDelegate {
         
         var category: CategoryModel?
         
-        switch transactionMode {
+        switch categoryType {
         case .Expense:
-            category = categories.expenseCategories[selectedIndex.row]
+            category = categories.categoriesData.expenses[selectedIndex.row]
         case .Income:
-            category = categories.incomeCategories[selectedIndex.row]
+            category = categories.categoriesData.incomes[selectedIndex.row]
         }
         
         delegate?.selectButtonClicked(category: category)
@@ -68,22 +67,22 @@ extension SelectCategoryViewController: SelectCategoryViewDelegate {
 extension SelectCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch transactionMode {
+        switch categoryType {
         case .Expense:
-            return categories.expenseCategories.count
+            return categories.categoriesData.expenses.count
         case .Income:
-            return categories.incomeCategories.count
+            return categories.categoriesData.incomes.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
-        switch transactionMode {
+        switch categoryType {
         case .Expense:
-            cell.textLabel?.text = categories.expenseCategories[indexPath.row].title
+            cell.textLabel?.text = categories.categoriesData.expenses[indexPath.row].title
         case .Income:
-            cell.textLabel?.text = categories.incomeCategories[indexPath.row].title
+            cell.textLabel?.text = categories.categoriesData.incomes[indexPath.row].title
         }
         
         return cell

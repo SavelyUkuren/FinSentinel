@@ -15,8 +15,6 @@ class HomeViewController: UIViewController {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private var categories: Categories!
-    
     private var currentDate: DateModel = DateModel()
     
     override func viewDidLoad() {
@@ -37,7 +35,6 @@ class HomeViewController: UIViewController {
         
         self.view = homeView
         
-        categories = Categories()
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
         CurrencyModelManager.shared.delegate = self

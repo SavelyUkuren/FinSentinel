@@ -22,6 +22,9 @@
 		4534458D2AF923E2005154DF /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534458C2AF923E2005154DF /* TransactionCollection.swift */; };
 		4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534458E2AF9287B005154DF /* CoreDataManager.swift */; };
 		453445922AFA1F6C005154DF /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445912AFA1F6C005154DF /* SummaryView.swift */; };
+		453445952AFA4170005154DF /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445942AFA4170005154DF /* CategoriesManager.swift */; };
+		453445A02AFA496E005154DF /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 4534459F2AFA496E005154DF /* Categories.json */; };
+		453445A22AFA533B005154DF /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445A12AFA533B005154DF /* CategoryData.swift */; };
 		454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */; };
 		454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */; };
 		454317E62AF281450015F6E5 /* TransactionModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E52AF281450015F6E5 /* TransactionModelManager.swift */; };
@@ -60,6 +63,9 @@
 		4534458C2AF923E2005154DF /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4534458E2AF9287B005154DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		453445912AFA1F6C005154DF /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		453445942AFA4170005154DF /* CategoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesManager.swift; sourceTree = "<group>"; };
+		4534459F2AFA496E005154DF /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
+		453445A12AFA533B005154DF /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModelManager.swift; sourceTree = "<group>"; };
 		454317E52AF281450015F6E5 /* TransactionModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModelManager.swift; sourceTree = "<group>"; };
@@ -113,6 +119,24 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
+		453445932AFA4162005154DF /* CategoryModel */ = {
+			isa = PBXGroup;
+			children = (
+				45326F4C2AB603F300301729 /* CategoryModel.swift */,
+				453445942AFA4170005154DF /* CategoriesManager.swift */,
+				453445A12AFA533B005154DF /* CategoryData.swift */,
+			);
+			path = CategoryModel;
+			sourceTree = "<group>";
+		};
+		4534459C2AFA449D005154DF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4534459F2AFA496E005154DF /* Categories.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		454317E92AF2B9940015F6E5 /* TransactionModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +179,7 @@
 		45DCB7122A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXGroup;
 			children = (
+				4534459C2AFA449D005154DF /* Data */,
 				45E169472AED98C800B7989D /* Design */,
 				455824572AD070FB00434A25 /* CoreData */,
 				45DCB72C2A9FB55A00B0326F /* Model */,
@@ -202,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				454317E92AF2B9940015F6E5 /* TransactionModel */,
-				45326F4C2AB603F300301729 /* CategoryModel.swift */,
+				453445932AFA4162005154DF /* CategoryModel */,
 				455824582AD081C800434A25 /* DateModel.swift */,
 				454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */,
 				454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */,
@@ -284,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				453445A02AFA496E005154DF /* Categories.json in Resources */,
 				45DCB7232A9FB05700B0326F /* LaunchScreen.storyboard in Resources */,
 				45DCB7202A9FB05700B0326F /* Assets.xcassets in Resources */,
 				45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */,
@@ -314,9 +340,11 @@
 				454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */,
 				45326F452AB5E62000301729 /* BaseTransactionInfoView.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
+				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,
 				451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */,
+				453445A22AFA533B005154DF /* CategoryData.swift in Sources */,
 				45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */,
 				453445922AFA1F6C005154DF /* SummaryView.swift in Sources */,
 				45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */,

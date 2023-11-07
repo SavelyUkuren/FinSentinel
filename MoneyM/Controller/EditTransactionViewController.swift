@@ -43,6 +43,7 @@ extension EditTransactionViewController: BaseTransactionInfoViewDelegate {
     func selectCategoryButtonClicked() {
         let selectCategoryVC = SelectCategoryViewController()
         selectCategoryVC.delegate = self
+        selectCategoryVC.categoryType = editTransactionView.selectedMode
         
         present(selectCategoryVC, animated: true)
     }
@@ -59,7 +60,7 @@ extension EditTransactionViewController: SelectCategoryViewControllerDelegate {
     
     func selectButtonClicked(category: CategoryModel?) {
         guard category != nil else { return }
-        editTransactionView.selectedCategory = category ?? Categories.defaultCategory
+        editTransactionView.selectedCategory = category ?? CategoriesManager.defaultCategory
         editTransactionView.selectCategoryButton.setTitle(category?.title, for: .normal)
     }
     

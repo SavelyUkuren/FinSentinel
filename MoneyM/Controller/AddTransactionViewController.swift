@@ -17,10 +17,6 @@ class AddTransactionViewController: UIViewController {
     
     private var addTransactionView: AddTransactionView!
     
-    private var selectedMode: TransactionModel.Mode = .Expense
-    
-    private var transaction = TransactionModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,6 +38,7 @@ extension AddTransactionViewController: BaseTransactionInfoViewDelegate {
     func selectCategoryButtonClicked() {
         let selectCategoryVC = SelectCategoryViewController()
         selectCategoryVC.delegate = self
+        selectCategoryVC.categoryType = addTransactionView.selectedMode
         
         present(selectCategoryVC, animated: true)
     }
@@ -58,7 +55,7 @@ extension AddTransactionViewController: BaseTransactionInfoViewDelegate {
 extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
     func selectButtonClicked(category: CategoryModel?) {
         guard category != nil else { return }
-        addTransactionView.selectedCategory = category ?? Categories.defaultCategory
+        addTransactionView.selectedCategory = category ?? CategoriesManager.defaultCategory
         addTransactionView.selectCategoryButton.setTitle(category?.title, for: .normal)
     }
 }

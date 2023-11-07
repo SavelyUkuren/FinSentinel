@@ -47,9 +47,11 @@ class TransactionTableViewCell: UITableViewCell {
     public func loadTransaction(transaction: TransactionModel) {
         
         let currencySymbol = CurrencyModelManager.shared.selectedCurrency.symbol
+        let defaultCategory = CategoriesManager.defaultCategory
+        let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID) ?? defaultCategory
         
         amountLabel.text = "\(transaction.amount!) \(currencySymbol)"
-        //categoryLabel.text = transaction.category.title
+        categoryLabel.text = category.title
         
         switch transaction.mode {
         case .Expense:
