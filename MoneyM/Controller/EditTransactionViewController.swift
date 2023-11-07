@@ -34,6 +34,12 @@ class EditTransactionViewController: UIViewController {
         
         view = editTransactionView
     }
+    
+    private func showErrorAlert(_ title: String, _ message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
+    }
 
 }
 
@@ -49,6 +55,18 @@ extension EditTransactionViewController: TransactionEditorViewDelegate {
     }
     
     func confirmButtonClicked(transaction: TransactionModel) {
+        let amountText = editTransactionView.amountTextField.text!
+        
+        guard !amountText.isEmpty else {
+            showErrorAlert("Error!", "Amount is empty!")
+            return
+        }
+        
+        guard amountText.isNumber else {
+            showErrorAlert("Error!", "The amount must contain only numbers!")
+            return
+        }
+        
         delegate?.transactionEdited(transaction: transaction)
         dismiss(animated: true)
     }
