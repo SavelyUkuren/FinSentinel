@@ -160,6 +160,15 @@
 			path = TransactionEditorView;
 			sourceTree = "<group>";
 		};
+		453445A92AFAB68A005154DF /* CurrencyModel */ = {
+			isa = PBXGroup;
+			children = (
+				454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */,
+				454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */,
+			);
+			path = CurrencyModel;
+			sourceTree = "<group>";
+		};
 		454317E92AF2B9940015F6E5 /* TransactionModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,9 +259,8 @@
 			children = (
 				454317E92AF2B9940015F6E5 /* TransactionModel */,
 				453445932AFA4162005154DF /* CategoryModel */,
+				453445A92AFAB68A005154DF /* CurrencyModel */,
 				455824582AD081C800434A25 /* DateModel.swift */,
-				454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */,
-				454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
