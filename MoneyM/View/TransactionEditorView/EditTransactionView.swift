@@ -41,6 +41,7 @@ class EditTransactionView: TransactionEditorView {
     }
 
     override func configrmButtonClicked() {
+        super.configrmButtonClicked()
         
         let transaction = TransactionModel()
         

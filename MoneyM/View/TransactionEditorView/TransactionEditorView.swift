@@ -94,7 +94,7 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
     
     @objc
     public func configrmButtonClicked() {
-        
+        selectedMode = choiceModeButton.selectedButton == .First ? .Expense : .Income
     }
     
     @objc
