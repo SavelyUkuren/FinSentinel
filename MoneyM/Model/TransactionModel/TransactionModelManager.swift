@@ -69,7 +69,7 @@ class TransactionModelManager {
         
         coreDataManager.edit(id, newTransaction)
         
-        calculateSummary(transaction: newTransaction, summary: financialSummary)
+        financialSummary = calculateAllTransactions()
     }
     
     private func groupingTransactionsByDate() -> [TableViewData] {
