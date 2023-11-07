@@ -10,7 +10,7 @@
 		451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974A92AA4775D0003A4B7 /* AddTransactionView.swift */; };
 		451974AC2AA477FA0003A4B7 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AB2AA477FA0003A4B7 /* AddTransactionViewController.swift */; };
 		451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AD2AA49F740003A4B7 /* TransactionModel.swift */; };
-		45326F452AB5E62000301729 /* BaseTransactionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */; };
+		45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F442AB5E62000301729 /* TransactionEditorView.swift */; };
 		45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F462AB5E93500301729 /* EditTransactionView.swift */; };
 		45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F482AB5E95700301729 /* EditTransactionViewController.swift */; };
 		45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4A2AB603D900301729 /* SelectCategoryViewController.swift */; };
@@ -51,7 +51,7 @@
 		451974A92AA4775D0003A4B7 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		451974AB2AA477FA0003A4B7 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
-		45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransactionInfoView.swift; sourceTree = "<group>"; };
+		45326F442AB5E62000301729 /* TransactionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorView.swift; sourceTree = "<group>"; };
 		45326F462AB5E93500301729 /* EditTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionView.swift; sourceTree = "<group>"; };
 		45326F482AB5E95700301729 /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
 		45326F4A2AB603D900301729 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
@@ -202,10 +202,10 @@
 				45E1694A2AEEA6E200B7989D /* TableViewSections */,
 				45326F502AB6110500301729 /* TableViewCells */,
 				453445902AFA1F59005154DF /* HomeView */,
-				45326F442AB5E62000301729 /* BaseTransactionInfoView.swift */,
+				45326F442AB5E62000301729 /* TransactionEditorView.swift */,
 				451974A92AA4775D0003A4B7 /* AddTransactionView.swift */,
-				4532932A2AA89822007F0EAE /* DatePickerView.swift */,
 				45326F462AB5E93500301729 /* EditTransactionView.swift */,
+				4532932A2AA89822007F0EAE /* DatePickerView.swift */,
 				45326F4E2AB6048200301729 /* SelectCategoryView.swift */,
 			);
 			path = View;
@@ -338,7 +338,7 @@
 				45326F4F2AB6048200301729 /* SelectCategoryView.swift in Sources */,
 				4534458D2AF923E2005154DF /* TransactionCollection.swift in Sources */,
 				454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */,
-				45326F452AB5E62000301729 /* BaseTransactionInfoView.swift in Sources */,
+				45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
 				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,

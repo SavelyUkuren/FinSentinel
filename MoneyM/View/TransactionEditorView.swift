@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol BaseTransactionInfoViewDelegate {
+protocol TransactionEditorViewDelegate {
     func confirmButtonClicked(transaction: TransactionModel)
     func selectCategoryButtonClicked()
 }
 
-class BaseTransactionInfoView: UIView {
+class TransactionEditorView: UIView {
     
     public var selectedMode: TransactionModel.Mode = .Expense
     public var selectedCategory: CategoryModel = CategoriesManager.defaultCategory
@@ -232,7 +232,7 @@ class BaseTransactionInfoView: UIView {
     
 }
 
-extension BaseTransactionInfoView: UITextFieldDelegate {
+extension TransactionEditorView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         amountTextField.resignFirstResponder()

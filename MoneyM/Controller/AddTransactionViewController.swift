@@ -33,7 +33,7 @@ class AddTransactionViewController: UIViewController {
 }
 
 // MARK: Base transaction info delegate
-extension AddTransactionViewController: BaseTransactionInfoViewDelegate {
+extension AddTransactionViewController: TransactionEditorViewDelegate {
     
     func selectCategoryButtonClicked() {
         let selectCategoryVC = SelectCategoryViewController()

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class EditTransactionView: BaseTransactionInfoView {
+class EditTransactionView: TransactionEditorView {
     
-    public var delegate: BaseTransactionInfoViewDelegate?
+    public var delegate: TransactionEditorViewDelegate?
     
     private var transactionID: Int = -1
     

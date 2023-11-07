@@ -7,9 +7,9 @@
 
 import UIKit
 
-class AddTransactionView: BaseTransactionInfoView {
+class AddTransactionView: TransactionEditorView {
     
-    public var delegate: BaseTransactionInfoViewDelegate?
+    public var delegate: TransactionEditorViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
