@@ -38,6 +38,8 @@
 		455824562AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */; };
 		455824592AD081C800434A25 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824582AD081C800434A25 /* DateModel.swift */; };
 		45AA89292B0DF5DC007B5873 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 45AA89282B0DF5DC007B5873 /* Currencies.json */; };
+		45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA892B2B0E13AB007B5873 /* Settings.swift */; };
+		45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA892D2B0E148C007B5873 /* SettingsModel.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7172A9FB05500B0326F /* HomeViewController.swift */; };
@@ -83,6 +85,8 @@
 		455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		455824582AD081C800434A25 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		45AA89282B0DF5DC007B5873 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
+		45AA892B2B0E13AB007B5873 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		45AA892D2B0E148C007B5873 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +209,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		45AA892A2B0E1398007B5873 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				45AA892B2B0E13AB007B5873 /* Settings.swift */,
+				45AA892D2B0E148C007B5873 /* SettingsModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		45DCB7072A9FB05500B0326F = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +284,7 @@
 		45DCB72C2A9FB55A00B0326F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45AA892A2B0E1398007B5873 /* Settings */,
 				454317E92AF2B9940015F6E5 /* TransactionModel */,
 				453445932AFA4162005154DF /* CategoryModel */,
 				453445A92AFAB68A005154DF /* CurrencyModel */,
@@ -380,12 +394,14 @@
 				45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
+				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
 				4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */,
 				45326F4F2AB6048200301729 /* SelectCategoryView.swift in Sources */,
 				4534458D2AF923E2005154DF /* TransactionCollection.swift in Sources */,
 				454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */,
 				45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
+				45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */,
 				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,

@@ -17,11 +17,15 @@ class CurrencyModelManager {
 		var currencies: [CurrencyModel]
 	}
     
-	public var currencies: [Int: CurrencyModel] = [:]
+	private var currencies: [Int: CurrencyModel] = [:]
     
     init() {
 		loadCurrencies()
     }
+	
+	public func getCurrencyBy(id: Int) -> CurrencyModel? {
+		return currencies[id]
+	}
 	
 	private func loadCurrencies() {
 		let jsonURL = Bundle.main.url(forResource: "Currencies", withExtension: "json")!

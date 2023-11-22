@@ -34,6 +34,8 @@ class HomeViewController: UIViewController {
         homeView.setDateButtonTitle(dateModel: currentDate)
         
         self.view = homeView
+		
+		addNotificationObservers()
         
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
@@ -75,17 +77,23 @@ class HomeViewController: UIViewController {
         print ("Income: \(transactionModelManager.financialSummary.income)")
     }
     
-    private func updateHomeView() {
+    @objc
+	private func updateHomeView() {
         let summary = transactionModelManager.financialSummary!
-        //let currency = CurrencyModelManager.shared.selectedCurrency!
+		let currency = Settings.shared.model.currency!
         
-        //homeView.updateBalanceLabel(amount: summary.balance, currency: currency)
-        //homeView.updateExpenseLabel(amount: summary.expense, currency: currency)
-        //homeView.updateIncomeLabel(amount: summary.income, currency: currency)
+        homeView.updateBalanceLabel(amount: summary.balance, currency: currency)
+        homeView.updateExpenseLabel(amount: summary.expense, currency: currency)
+        homeView.updateIncomeLabel(amount: summary.income, currency: currency)
         
         homeView.reloadTransactionsTableView()
     }
     
+	private func addNotificationObservers() {
+		NotificationCenter.default.addObserver(self, selector: #selector(updateHomeView),
+											   name: Settings.shared.notificationCurrencyChange, object: nil)
+	}
+	
 }
 
 // MARK: Table View
