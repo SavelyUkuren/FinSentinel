@@ -254,11 +254,3 @@ extension HomeViewController: DatePickerViewControllerDelegate {
     }
     
 }
-
-// MARK: CurrencyModel Delegate
-extension HomeViewController: CurrencyModelManagerDelegate {
-    func currencyDidUpdate() {
-        
-    }
-    
-}

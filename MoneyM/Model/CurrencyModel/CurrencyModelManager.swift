@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol CurrencyModelManagerDelegate {
-    func currencyDidUpdate()
-}
-
 class CurrencyModelManager {
 	
 	struct CurrencyData: Codable {
