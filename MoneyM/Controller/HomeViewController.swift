@@ -19,6 +19,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		configureNavigationBar()
         
         loadCurrentDate()
         
@@ -39,6 +41,7 @@ class HomeViewController: UIViewController {
         
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
+		configureSettingsButton()
     }
     
     private func loadCurrentDate() {
@@ -76,6 +79,19 @@ class HomeViewController: UIViewController {
         print ("Expense: \(transactionModelManager.financialSummary.expense)")
         print ("Income: \(transactionModelManager.financialSummary.income)")
     }
+	
+	private func configureNavigationBar() {
+		title = "MoneyM"
+		navigationController?.navigationBar.prefersLargeTitles = true
+	}
+	
+	private func configureSettingsButton() {
+		let button = UIBarButtonItem(image: UIImage(systemName: "gear"),
+									 style: .plain, target: self,
+									 action: #selector(settingsButtonClicked))
+		button.tintColor = Settings.shared.model.accentColor
+		navigationItem.rightBarButtonItem = button
+	}
     
     @objc
 	private func updateHomeView() {
@@ -102,6 +118,11 @@ class HomeViewController: UIViewController {
 		// Accent color changed
 		NotificationCenter.default.addObserver(self, selector: #selector(changeAccentColor),
 											   name: Settings.shared.notificationAccentColorChange, object: nil)
+	}
+	
+	@objc
+	private func settingsButtonClicked() {
+		
 	}
 	
 }
