@@ -1,0 +1,19 @@
+{
+  "currencies": [
+	{
+	  "id": 1,
+	  "symbol": "$",
+	  "title": "Dollar (USD)"
+	},
+	{
+	  "id": 2,
+	  "symbol": "₽",
+	  "title": "Rouble (RUB)"
+	},
+	{
+	  "id": 3,
+	  "symbol": "€",
+	  "title": "Euro (EUR)"
+	}
+  ]
+}

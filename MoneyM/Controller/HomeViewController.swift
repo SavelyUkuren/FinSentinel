@@ -37,7 +37,6 @@ class HomeViewController: UIViewController {
         
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
-        CurrencyModelManager.shared.delegate = self
     }
     
     private func loadCurrentDate() {
@@ -78,11 +77,11 @@ class HomeViewController: UIViewController {
     
     private func updateHomeView() {
         let summary = transactionModelManager.financialSummary!
-        let currency = CurrencyModelManager.shared.selectedCurrency!
+        //let currency = CurrencyModelManager.shared.selectedCurrency!
         
-        homeView.updateBalanceLabel(amount: summary.balance, currency: currency)
-        homeView.updateExpenseLabel(amount: summary.expense, currency: currency)
-        homeView.updateIncomeLabel(amount: summary.income, currency: currency)
+        //homeView.updateBalanceLabel(amount: summary.balance, currency: currency)
+        //homeView.updateExpenseLabel(amount: summary.expense, currency: currency)
+        //homeView.updateIncomeLabel(amount: summary.income, currency: currency)
         
         homeView.reloadTransactionsTableView()
     }

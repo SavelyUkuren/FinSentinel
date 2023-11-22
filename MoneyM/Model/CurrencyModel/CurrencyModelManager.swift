@@ -12,24 +12,39 @@ protocol CurrencyModelManagerDelegate {
 }
 
 class CurrencyModelManager {
+	
+	struct CurrencyData: Codable {
+		var currencies: [CurrencyModel]
+	}
     
-    static let shared = CurrencyModelManager()
+	public var currencies: [Int: CurrencyModel] = [:]
     
-    public var delegate: CurrencyModelManagerDelegate?
-    
-    private var currencies: [Int: CurrencyModel] = [:]
-    
-    private(set) var selectedCurrency: CurrencyModel!
-    
-    private init() {
-        currencies[0] = CurrencyModel(symbol: "$", title: "Dollar (USA)")
-        currencies[1] = CurrencyModel(symbol: "₽", title: "Rouble (RUB)")
-        
-        selectedCurrency = currencies[0]
+    init() {
+		loadCurrencies()
     }
+	
+	private func loadCurrencies() {
+		let jsonURL = Bundle.main.url(forResource: "Currencies", withExtension: "json")!
+		
+		if let data = loadFromJSON(jsonURL) {
+			for currency in data.currencies {
+				currencies[currency.id] = currency
+			}
+		}
+	}
     
-    public func getCurrency(byID id: Int) -> CurrencyModel? {
-        return currencies[id]
-    }
+	private func loadFromJSON(_ url: URL) -> CurrencyData? {
+		var currencyData = CurrencyData(currencies: [])
+		
+		do {
+			let data = try Data(contentsOf: url)
+			currencyData = try JSONDecoder().decode(CurrencyData.self, from: data)
+			
+		} catch {
+			fatalError("\(error)")
+		}
+		
+		return currencyData
+	}
     
 }

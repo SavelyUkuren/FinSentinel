@@ -7,14 +7,8 @@
 
 import Foundation
 
-class CurrencyModel {
-    
-    var symbol: String = ""
-    var title: String = ""
-    
-    init(symbol: String, title: String) {
-        self.symbol = symbol
-        self.title = title
-    }
-    
+struct CurrencyModel: Codable {
+	var id: Int
+    var symbol: String
+    var title: String
 }
