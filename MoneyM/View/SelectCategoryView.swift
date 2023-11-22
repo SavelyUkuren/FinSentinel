@@ -16,6 +16,8 @@ class SelectCategoryView: UIView {
     public var delegate: SelectCategoryViewDelegate?
     
     public var categories: [CategoryModel] = []
+	
+	public var accentColor: UIColor = Settings.shared.model.accentColor
     
     private var categoriesTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -84,6 +86,8 @@ class SelectCategoryView: UIView {
         ])
         
         selectButton.addTarget(self, action: #selector(selectButtonClicked), for: .touchUpInside)
+		
+		selectButton.backgroundColor = accentColor
     }
     
 }

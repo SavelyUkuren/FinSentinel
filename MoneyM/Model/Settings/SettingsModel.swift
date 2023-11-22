@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 class SettingsModel {
 	var currency: CurrencyModel!
-	
+	var accentColor: UIColor!
 }

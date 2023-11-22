@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class SummaryView: UIView {
+	
+	public var accentColor: UIColor = Settings.shared.model.accentColor
     
     private let balanceView: UIView = {
         let view = UIView()
@@ -142,6 +144,11 @@ class SummaryView: UIView {
     public func setIncome(amount: Int, currency: CurrencyModel) {
         incomeAmountLabel.text = "\(amount) \(currency.symbol)"
     }
+	
+	public func setAccentColor(_ color: UIColor) {
+		accentColor = color
+		editBalanceButton.setTitleColor(color, for: .normal)
+	}
     
     private func configureBalanceView() {
         addSubview(balanceView)
@@ -244,6 +251,8 @@ class SummaryView: UIView {
         ])
         
         editBalanceButton.addTarget(self, action: #selector(editBalanceButtonClicked), for: .touchUpInside)
+		
+		editBalanceButton.setTitleColor(accentColor, for: .normal)
     }
     
     @objc

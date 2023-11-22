@@ -40,6 +40,8 @@ class ButtonChoiceView: UIView {
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
+	
+	public var accentColor: UIColor = Settings.shared.model.accentColor
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -98,10 +100,10 @@ class ButtonChoiceView: UIView {
     @objc
     private func firstButtonClicked() {
         secondButton.backgroundColor = UIStyle.UIViewBackgroundColor
-        secondButton.setTitleColor(UIStyle.AccentColor, for: .normal)
+        secondButton.setTitleColor(accentColor, for: .normal)
 
         firstButton.setTitleColor(.white, for: .normal)
-        firstButton.backgroundColor = UIStyle.AccentColor
+        firstButton.backgroundColor = accentColor
         
         selectedButton = .First
     }
@@ -109,10 +111,10 @@ class ButtonChoiceView: UIView {
     @objc
     private func secondButtonClicked() {
         firstButton.backgroundColor = .systemGray5
-        firstButton.setTitleColor(UIStyle.AccentColor, for: .normal)
+        firstButton.setTitleColor(accentColor, for: .normal)
 
         secondButton.setTitleColor(.white, for: .normal)
-        secondButton.backgroundColor = UIStyle.AccentColor
+        secondButton.backgroundColor = accentColor
         
         selectedButton = .Second
     }

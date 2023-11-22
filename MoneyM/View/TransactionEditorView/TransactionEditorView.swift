@@ -18,6 +18,8 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
     public var selectedMode: TransactionModel.Mode = .Expense
     public var selectedCategory: CategoryModel = CategoriesManager.defaultCategory
     
+	public var accentColor: UIColor = Settings.shared.model.accentColor
+	
     public let amountLabel: UILabel = {
         let label = UILabel()
         label.text = "The amount"
@@ -44,7 +46,6 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Confirm", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIStyle.AccentColor
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
@@ -60,7 +61,6 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select category", for: .normal)
         button.backgroundColor = UIStyle.UIViewBackgroundColor
-        button.setTitleColor(UIStyle.AccentColor, for: .normal)
         button.layer.cornerRadius = UIStyle.CornerRadius
         return button
     }()
@@ -70,7 +70,6 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.tintColor = UIStyle.AccentColor
         return datePicker
     }()
     
@@ -137,6 +136,9 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
         ])
         
         confirmButton.addTarget(self, action: #selector(configrmButtonClicked), for: .touchUpInside)
+		
+		confirmButton.backgroundColor = accentColor
+		
     }
     
     internal func configureChoiceModeButton() {
@@ -151,6 +153,8 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
             choiceModeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             choiceModeButton.heightAnchor.constraint(equalToConstant: UIStyle.ButtonHeight)
         ])
+		
+		choiceModeButton.accentColor = accentColor
     }
     
     internal func configureSelectCategoryButton() {
@@ -164,6 +168,8 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
         ])
         
         selectCategoryButton.addTarget(self, action: #selector(selectCategoryButtonClicked), for: .touchUpInside)
+		
+		selectCategoryButton.setTitleColor(accentColor, for: .normal)
     }
 
     internal func configureDatePicker() {
@@ -175,6 +181,8 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
             amountTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             datePicker.subviews.first!.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+		
+		datePicker.tintColor = accentColor
     }
     
 }

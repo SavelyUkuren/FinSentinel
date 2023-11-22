@@ -27,6 +27,7 @@ class AddTransactionViewController: UIViewController {
         addTransactionView = AddTransactionView(frame: view.frame)
         addTransactionView.translatesAutoresizingMaskIntoConstraints = false
         addTransactionView.delegate = self
+		addTransactionView.accentColor = Settings.shared.model.accentColor
         self.view = addTransactionView
     }
     

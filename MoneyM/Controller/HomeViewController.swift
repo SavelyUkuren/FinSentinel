@@ -88,10 +88,20 @@ class HomeViewController: UIViewController {
         
         homeView.reloadTransactionsTableView()
     }
+	
+	@objc
+	private func changeAccentColor() {
+		homeView.setAccentColor(Settings.shared.model.accentColor)
+	}
     
 	private func addNotificationObservers() {
+		// Currency changed
 		NotificationCenter.default.addObserver(self, selector: #selector(updateHomeView),
 											   name: Settings.shared.notificationCurrencyChange, object: nil)
+		
+		// Accent color changed
+		NotificationCenter.default.addObserver(self, selector: #selector(changeAccentColor),
+											   name: Settings.shared.notificationAccentColorChange, object: nil)
 	}
 	
 }

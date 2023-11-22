@@ -18,6 +18,8 @@ class DatePickerView: UIView {
     }
     
     public var delegate: DatePickerViewDelegate?
+	
+	public var accentColor: UIColor = Settings.shared.model.accentColor
     
     private var dateModelManager: DateModelManager!
     
@@ -102,6 +104,8 @@ class DatePickerView: UIView {
         ])
         
         chooseButton.addTarget(self, action: #selector(chooseButtonClicked), for: .touchUpInside)
+		
+		chooseButton.backgroundColor = accentColor
     }
 
 }
