@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: UIViewController {
     
@@ -108,6 +109,7 @@ class HomeViewController: UIViewController {
 	@objc
 	private func changeAccentColor() {
 		homeView.setAccentColor(Settings.shared.model.accentColor)
+		navigationItem.rightBarButtonItem?.tintColor = Settings.shared.model.accentColor
 	}
     
 	private func addNotificationObservers() {
@@ -122,6 +124,9 @@ class HomeViewController: UIViewController {
 	
 	@objc
 	private func settingsButtonClicked() {
+		
+		let settingsVC = UIHostingController(rootView: SettingsView())
+		navigationController?.pushViewController(settingsVC, animated: true)
 		
 	}
 	
