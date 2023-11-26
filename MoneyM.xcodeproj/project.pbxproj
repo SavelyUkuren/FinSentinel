@@ -38,6 +38,7 @@
 		455824562AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */; };
 		455824592AD081C800434A25 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824582AD081C800434A25 /* DateModel.swift */; };
 		45A293352B1335A5002BA248 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293342B1335A5002BA248 /* CustomColorPicker.swift */; };
+		45A293372B135B00002BA248 /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293362B135B00002BA248 /* CurrencyListView.swift */; };
 		45AA89292B0DF5DC007B5873 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 45AA89282B0DF5DC007B5873 /* Currencies.json */; };
 		45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA892B2B0E13AB007B5873 /* Settings.swift */; };
 		45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA892D2B0E148C007B5873 /* SettingsModel.swift */; };
@@ -87,6 +88,7 @@
 		455824522AD0665700434A25 /* TransactionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		455824582AD081C800434A25 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		45A293342B1335A5002BA248 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
+		45A293362B135B00002BA248 /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		45AA89282B0DF5DC007B5873 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
 		45AA892B2B0E13AB007B5873 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		45AA892D2B0E148C007B5873 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -213,6 +215,22 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		45A293382B135B04002BA248 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				45A293362B135B00002BA248 /* CurrencyListView.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		45A293392B135F30002BA248 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				45A293342B1335A5002BA248 /* CustomColorPicker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		45AA892A2B0E1398007B5873 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +243,9 @@
 		45AA89312B11B754007B5873 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				45A293392B135F30002BA248 /* Views */,
+				45A293382B135B04002BA248 /* Currency */,
 				45AA89322B11B77D007B5873 /* SettingsView.swift */,
-				45A293342B1335A5002BA248 /* CustomColorPicker.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -433,6 +452,7 @@
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				453445A52AFAA83A005154DF /* ButtonChoiceView.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
+				45A293372B135B00002BA248 /* CurrencyListView.swift in Sources */,
 				451974AC2AA477FA0003A4B7 /* AddTransactionViewController.swift in Sources */,
 				455824592AD081C800434A25 /* DateModel.swift in Sources */,
 				454317E82AF282890015F6E5 /* FinancialSummary.swift in Sources */,

@@ -13,7 +13,7 @@ class CurrencyModelManager {
 		var currencies: [CurrencyModel]
 	}
     
-	private var currencies: [Int: CurrencyModel] = [:]
+	private(set) var currencies: [Int: CurrencyModel] = [:]
     
     init() {
 		loadCurrencies()
