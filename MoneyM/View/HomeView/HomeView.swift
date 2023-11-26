@@ -16,6 +16,8 @@ protocol HomeViewDelegate {
 class HomeView: UIView {
     
     public var delegate: HomeViewDelegate?
+	
+	public var accentColor: UIColor = Settings.shared.model.accentColor
 
     // MARK: Views
     private let scrollView: UIScrollView = {
@@ -137,6 +139,12 @@ class HomeView: UIView {
         
         datePickerButton.setTitle("\(month) \(year)", for: .normal)
     }
+	
+	public func setAccentColor(_ color: UIColor) {
+		addTransactionButton.backgroundColor = color
+		datePickerButton.setTitleColor(color, for: .normal)
+		summaryView.setAccentColor(color)
+	}
     
     // MARK: Configurations
     private func configureScrollView() {
@@ -168,6 +176,7 @@ class HomeView: UIView {
     
     private func configureSummaryView() {
         summaryView = SummaryView(frame: .zero)
+		
         summaryView.translatesAutoresizingMaskIntoConstraints = false
         summaryView.addActionForEditBalanceButton {
             self.delegate?.editBalanceButtonClicked()

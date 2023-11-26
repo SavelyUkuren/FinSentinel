@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: UIViewController {
     
@@ -19,6 +20,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		configureNavigationBar()
         
         loadCurrentDate()
         
@@ -34,10 +37,12 @@ class HomeViewController: UIViewController {
         homeView.setDateButtonTitle(dateModel: currentDate)
         
         self.view = homeView
+		
+		addNotificationObservers()
         
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
-        CurrencyModelManager.shared.delegate = self
+		configureSettingsButton()
     }
     
     private func loadCurrentDate() {
@@ -75,10 +80,24 @@ class HomeViewController: UIViewController {
         print ("Expense: \(transactionModelManager.financialSummary.expense)")
         print ("Income: \(transactionModelManager.financialSummary.income)")
     }
+	
+	private func configureNavigationBar() {
+		title = "MoneyM"
+		navigationController?.navigationBar.prefersLargeTitles = true
+	}
+	
+	private func configureSettingsButton() {
+		let button = UIBarButtonItem(image: UIImage(systemName: "gear"),
+									 style: .plain, target: self,
+									 action: #selector(settingsButtonClicked))
+		button.tintColor = Settings.shared.model.accentColor
+		navigationItem.rightBarButtonItem = button
+	}
     
-    private func updateHomeView() {
+    @objc
+	private func updateHomeView() {
         let summary = transactionModelManager.financialSummary!
-        let currency = CurrencyModelManager.shared.selectedCurrency!
+		let currency = Settings.shared.model.currency!
         
         homeView.updateBalanceLabel(amount: summary.balance, currency: currency)
         homeView.updateExpenseLabel(amount: summary.expense, currency: currency)
@@ -86,7 +105,31 @@ class HomeViewController: UIViewController {
         
         homeView.reloadTransactionsTableView()
     }
+	
+	@objc
+	private func changeAccentColor() {
+		homeView.setAccentColor(Settings.shared.model.accentColor)
+		navigationItem.rightBarButtonItem?.tintColor = Settings.shared.model.accentColor
+	}
     
+	private func addNotificationObservers() {
+		// Currency changed
+		NotificationCenter.default.addObserver(self, selector: #selector(updateHomeView),
+											   name: Settings.shared.notificationCurrencyChange, object: nil)
+		
+		// Accent color changed
+		NotificationCenter.default.addObserver(self, selector: #selector(changeAccentColor),
+											   name: Settings.shared.notificationAccentColorChange, object: nil)
+	}
+	
+	@objc
+	private func settingsButtonClicked() {
+		
+		let settingsVC = UIHostingController(rootView: SettingsView())
+		navigationController?.pushViewController(settingsVC, animated: true)
+		
+	}
+	
 }
 
 // MARK: Table View
@@ -234,14 +277,6 @@ extension HomeViewController: DatePickerViewControllerDelegate {
         transactionModelManager.loadData(dateModel: dateModel)
         updateHomeView()
         homeView.setDateButtonTitle(dateModel: dateModel)
-    }
-    
-}
-
-// MARK: CurrencyModel Delegate
-extension HomeViewController: CurrencyModelManagerDelegate {
-    func currencyDidUpdate() {
-        
     }
     
 }
