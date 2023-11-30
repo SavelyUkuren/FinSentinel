@@ -88,5 +88,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 		return cell
 	}
 	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		transactionsArray.count
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return transactionsArray[section].section
+	}
+	
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		50
+	}
 	
 }
