@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeDisplayLogic {
-	
+	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -24,12 +24,16 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var addTransactionButton: UIButton!
 	
 	var interactor: HomeBusinessLogic?
+	
+	private var transactionsArray: [TransactionModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		setup()
-		addTransactionButton.setTitle("Ass", for: .normal)
+		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+		
+		print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
     }
     
 	private func setup() {
@@ -52,6 +56,8 @@ class HomeViewController: UIViewController {
 // MARK: - Display logic
 extension HomeViewController: HomeDisplayLogic {
 	
-	
+	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel) {
+		transactionsArray = viewModel.data
+	}
 	
 }

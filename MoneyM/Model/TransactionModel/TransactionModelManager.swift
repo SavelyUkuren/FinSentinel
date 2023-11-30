@@ -23,7 +23,7 @@ class TransactionModelManager {
     
     private var transactionCollection: TransactionCollectionProtocol!
     
-    private var coreDataManager: CoreDataManagerProtocol!
+    //private var coreDataManager: CoreDataManagerProtocol!
     
     private var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -31,7 +31,7 @@ class TransactionModelManager {
         
         financialSummary = FinancialSummary()
         transactionCollection = TransactionCollection()
-        coreDataManager = CoreDataManager()
+        //coreDataManager = CoreDataManager()
         
         data = groupingTransactionsByDate()
     }
@@ -42,7 +42,7 @@ class TransactionModelManager {
         // Remove from allTransactions
         transactionCollection.delete(removedTransaction.id)
         
-        coreDataManager.delete(removedTransaction.id)
+        //coreDataManager.delete(removedTransaction.id)
         
         // We change the sign so that the calculations are reversed.
         // For example, when removed, income didn't increase, but decreased
@@ -57,7 +57,7 @@ class TransactionModelManager {
         
         data = groupingTransactionsByDate()
         
-        coreDataManager.add(transaction, dateModel: dateModel)
+        //coreDataManager.add(transaction, dateModel: dateModel)
         
     }
     
@@ -67,7 +67,7 @@ class TransactionModelManager {
         
         data = groupingTransactionsByDate()
         
-        coreDataManager.edit(id, newTransaction)
+        //coreDataManager.edit(id, newTransaction)
         
         financialSummary = calculateAllTransactions()
     }
@@ -97,10 +97,10 @@ class TransactionModelManager {
         transactionCollection.removeAll()
         data.removeAll()
         
-        let transactions = coreDataManager.load(dateModel)
-        transactions.forEach { transaction in
-            transactionCollection.append(transaction)
-        }
+//        let transactions = coreDataManager.load(dateModel)
+//        transactions.forEach { transaction in
+//            transactionCollection.append(transaction)
+//        }
         
         data = groupingTransactionsByDate()
         financialSummary = calculateAllTransactions()

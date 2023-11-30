@@ -2,7 +2,7 @@
 //  TransactionEntity+CoreDataProperties.swift
 //  MoneyM
 //
-//  Created by Air on 06.10.2023.
+//  Created by Air on 30.11.2023.
 //
 //
 
@@ -16,11 +16,11 @@ extension TransactionEntity {
         return NSFetchRequest<TransactionEntity>(entityName: "TransactionEntity")
     }
 
-    @NSManaged public var amount: Int16
-    @NSManaged public var categoryID: Int16
+    @NSManaged public var amount: Int64
+    @NSManaged public var categoryID: Int64
     @NSManaged public var date: Date?
-    @NSManaged public var id: Int16
-    @NSManaged public var mode: Int16
+    @NSManaged public var id: Int64
+    @NSManaged public var mode: Int64
     @NSManaged public var folder: FolderEntity?
 
 }
