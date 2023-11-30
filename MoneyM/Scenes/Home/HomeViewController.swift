@@ -13,12 +13,23 @@ protocol HomeDisplayLogic {
 
 class HomeViewController: UIViewController {
 	
+	@IBOutlet weak var balanceAmountLabel: UILabel!
+	
+	@IBOutlet weak var expenseAmountLabel: UILabel!
+	
+	@IBOutlet weak var incomeAmountLabel: UILabel!
+	
+	@IBOutlet weak var transactionsTableView: UITableView!
+	
+	@IBOutlet weak var addTransactionButton: UIButton!
+	
 	var interactor: HomeBusinessLogic?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		setup()
+		addTransactionButton.setTitle("Ass", for: .normal)
     }
     
 	private func setup() {
@@ -29,6 +40,11 @@ class HomeViewController: UIViewController {
 		viewController.interactor = interactor
 		interactor.presenter = presenter
 		presenter.viewController = viewController
+	}
+	
+	// MARK: Actions
+	@IBAction func addTransactionButtonClicked(_ sender: Any) {
+		
 	}
 	
 }
