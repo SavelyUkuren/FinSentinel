@@ -19,6 +19,9 @@
 		45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F512AB6112D00301729 /* CategoryTableViewCell.swift */; };
 		4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932A2AA89822007F0EAE /* DatePickerView.swift */; };
 		4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */; };
+		4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE072B18D0D600A92713 /* HomeViewController.swift */; };
+		4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE0A2B18D1D100A92713 /* HomeInteractor.swift */; };
+		4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE0C2B18D31F00A92713 /* HomePresenter.swift */; };
 		4534458D2AF923E2005154DF /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534458C2AF923E2005154DF /* TransactionCollection.swift */; };
 		4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534458E2AF9287B005154DF /* CoreDataManager.swift */; };
 		453445922AFA1F6C005154DF /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445912AFA1F6C005154DF /* SummaryView.swift */; };
@@ -45,7 +48,7 @@
 		45AA89332B11B77D007B5873 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA89322B11B77D007B5873 /* SettingsView.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
-		45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7172A9FB05500B0326F /* HomeViewController.swift */; };
+		45DCB7182A9FB05500B0326F /* HomeViewControllerOutdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7172A9FB05500B0326F /* HomeViewControllerOutdated.swift */; };
 		45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7192A9FB05500B0326F /* Main.storyboard */; };
 		45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB71C2A9FB05500B0326F /* MoneyM.xcdatamodeld */; };
 		45DCB7202A9FB05700B0326F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB71F2A9FB05700B0326F /* Assets.xcassets */; };
@@ -69,6 +72,9 @@
 		45326F512AB6112D00301729 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		4532932A2AA89822007F0EAE /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		4533EE072B18D0D600A92713 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4533EE0A2B18D1D100A92713 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		4533EE0C2B18D31F00A92713 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		4534458C2AF923E2005154DF /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4534458E2AF9287B005154DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		453445912AFA1F6C005154DF /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
@@ -96,7 +102,7 @@
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45DCB7172A9FB05500B0326F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		45DCB7172A9FB05500B0326F /* HomeViewControllerOutdated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerOutdated.swift; sourceTree = "<group>"; };
 		45DCB71A2A9FB05500B0326F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45DCB71D2A9FB05500B0326F /* MoneyM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoneyM.xcdatamodel; sourceTree = "<group>"; };
 		45DCB71F2A9FB05700B0326F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -126,6 +132,32 @@
 				45326F512AB6112D00301729 /* CategoryTableViewCell.swift */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		4533EE052B18CF1100A92713 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4533EE062B18CF1900A92713 /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4533EE062B18CF1900A92713 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4533EE072B18D0D600A92713 /* HomeViewController.swift */,
+				4533EE0A2B18D1D100A92713 /* HomeInteractor.swift */,
+				4533EE0C2B18D31F00A92713 /* HomePresenter.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4533EE092B18D11D00A92713 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				45DCB7192A9FB05500B0326F /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		453445902AFA1F59005154DF /* HomeView */ = {
@@ -269,6 +301,8 @@
 		45DCB7122A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXGroup;
 			children = (
+				4533EE092B18D11D00A92713 /* Storyboards */,
+				4533EE052B18CF1100A92713 /* Scenes */,
 				453445AA2AFAC00B005154DF /* Extensions */,
 				4534459C2AFA449D005154DF /* Data */,
 				45E169472AED98C800B7989D /* Design */,
@@ -278,7 +312,6 @@
 				45DCB72A2A9FB54C00B0326F /* View */,
 				45DCB7132A9FB05500B0326F /* AppDelegate.swift */,
 				45DCB7152A9FB05500B0326F /* SceneDelegate.swift */,
-				45DCB7192A9FB05500B0326F /* Main.storyboard */,
 				45DCB71F2A9FB05700B0326F /* Assets.xcassets */,
 				45DCB7212A9FB05700B0326F /* LaunchScreen.storyboard */,
 				45DCB7242A9FB05700B0326F /* Info.plist */,
@@ -305,7 +338,7 @@
 		45DCB72B2A9FB55200B0326F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				45DCB7172A9FB05500B0326F /* HomeViewController.swift */,
+				45DCB7172A9FB05500B0326F /* HomeViewControllerOutdated.swift */,
 				451974AB2AA477FA0003A4B7 /* AddTransactionViewController.swift */,
 				4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */,
 				45326F482AB5E95700301729 /* EditTransactionViewController.swift */,
@@ -424,7 +457,7 @@
 				45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */,
 				455824532AD0665700434A25 /* FolderEntity+CoreDataClass.swift in Sources */,
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
-				45DCB7182A9FB05500B0326F /* HomeViewController.swift in Sources */,
+				45DCB7182A9FB05500B0326F /* HomeViewControllerOutdated.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
@@ -434,9 +467,11 @@
 				454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */,
 				45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
+				4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */,
 				45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */,
 				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
+				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,
 				453445A82AFAB508005154DF /* TransactionEditorViewProtocol.swift in Sources */,
 				451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */,
@@ -446,6 +481,7 @@
 				453445922AFA1F6C005154DF /* SummaryView.swift in Sources */,
 				45326F4B2AB603D900301729 /* SelectCategoryViewController.swift in Sources */,
 				4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */,
+				4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */,
 				45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */,
 				45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */,
 				45E169492AED98E400B7989D /* UIStyle.swift in Sources */,

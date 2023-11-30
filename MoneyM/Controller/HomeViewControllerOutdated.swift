@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class HomeViewController: UIViewController {
+class HomeViewControllerOutdated: UIViewController {
     
     private var homeView: HomeView!
     
@@ -133,7 +133,7 @@ class HomeViewController: UIViewController {
 }
 
 // MARK: Table View
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewControllerOutdated: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UIStyle.TransactionTableViewCellHeight
@@ -212,7 +212,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Home View Delegata
 // This is where actions in HomeView are processing
-extension HomeViewController: HomeViewDelegate {
+extension HomeViewControllerOutdated: HomeViewDelegate {
     
     func editBalanceButtonClicked() {
         let alert = UIAlertController(title: "Balance", message: "Edit balance", preferredStyle: .alert)
@@ -249,7 +249,7 @@ extension HomeViewController: HomeViewDelegate {
 }
 
 // MARK: Add Transaction Delegate
-extension HomeViewController: AddTransactionViewControllerDelegate {
+extension HomeViewControllerOutdated: AddTransactionViewControllerDelegate {
     
     func transactionCreated(transaction: TransactionModel) {
         transactionModelManager.addTransaction(transaction: transaction, dateModel: currentDate)
@@ -259,7 +259,7 @@ extension HomeViewController: AddTransactionViewControllerDelegate {
 }
 
 // MARK: Edit Transaction Deletage
-extension HomeViewController: EditTransactionViewControllerDelegate {
+extension HomeViewControllerOutdated: EditTransactionViewControllerDelegate {
     
     func transactionEdited(transaction: TransactionModel) {
         transactionModelManager.editTransactionByID(id: transaction.id, newTransaction: transaction)
@@ -269,7 +269,7 @@ extension HomeViewController: EditTransactionViewControllerDelegate {
 }
 
 // MARK: Date Picker Delegate
-extension HomeViewController: DatePickerViewControllerDelegate {
+extension HomeViewControllerOutdated: DatePickerViewControllerDelegate {
     func chooseButtonClicked(dateModel: DateModel) {
  
         currentDate = dateModel
