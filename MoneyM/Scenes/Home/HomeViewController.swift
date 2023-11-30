@@ -25,15 +25,14 @@ class HomeViewController: UIViewController {
 	
 	var interactor: HomeBusinessLogic?
 	
-	private var transactionsArray: [TransactionModel] = []
+	private var transactionsArray: [Home.TransactionTableViewCellModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		setup()
-		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+		configurations()
 		
-		print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
     }
     
 	private func setup() {
@@ -44,6 +43,17 @@ class HomeViewController: UIViewController {
 		viewController.interactor = interactor
 		interactor.presenter = presenter
 		presenter.viewController = viewController
+	}
+	
+	private func configurations() {
+		configureTransactionsTableView()
+		
+		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+	}
+	
+	private func configureTransactionsTableView() {
+		transactionsTableView.delegate = self
+		transactionsTableView.dataSource = self
 	}
 	
 	// MARK: Actions
@@ -59,5 +69,24 @@ extension HomeViewController: HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel) {
 		transactionsArray = viewModel.data
 	}
+	
+}
+
+// MARK: - Table View Delegate
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		transactionsArray[section].transactions.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+		
+		let amount = transactionsArray[indexPath.section].transactions[indexPath.row].amount
+		cell.textLabel?.text = String(amount ?? -1)
+		
+		return cell
+	}
+	
 	
 }

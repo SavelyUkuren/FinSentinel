@@ -21,7 +21,8 @@ class HomePresenter: HomePresentationLogic {
 	}
 	
 	func presentTransactions(_ response: Home.FetchTransactions.Response) {
-		let viewModel = Home.FetchTransactions.ViewModel(data: response.data)
+		var data = [Home.TransactionTableViewCellModel(section: "Test", transactions: response.data)]
+		let viewModel = Home.FetchTransactions.ViewModel(data: data)
 		viewController?.displayTransactions(viewModel)
 	}
 	

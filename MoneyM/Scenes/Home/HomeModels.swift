@@ -9,6 +9,11 @@ import Foundation
 
 struct Home {
 	
+	struct TransactionTableViewCellModel {
+		var section: String
+		var transactions: [TransactionModel]
+	}
+	
 	struct FetchTransactions {
 		struct Request {
 			
@@ -17,7 +22,7 @@ struct Home {
 			var data: [TransactionModel]
 		}
 		struct ViewModel {
-			var data: [TransactionModel]
+			var data: [TransactionTableViewCellModel]
 		}
 	}
 	
