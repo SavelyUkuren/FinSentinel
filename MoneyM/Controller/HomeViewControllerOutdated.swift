@@ -240,10 +240,10 @@ extension HomeViewControllerOutdated: HomeViewDelegate {
     }
     
     func addNewTransactionButtonClicked() {
-        let addTransactionVC = AddTransactionViewController()
-        addTransactionVC.delegate = self
-        
-        present(addTransactionVC, animated: true)
+//        let addTransactionVC = AddTransactionViewController()
+//        addTransactionVC.delegate = self
+//        
+//        present(addTransactionVC, animated: true)
     }
     
 }

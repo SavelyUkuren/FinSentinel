@@ -25,6 +25,8 @@ class HomeViewController: UIViewController {
 	
 	var interactor: HomeBusinessLogic?
 	
+	var router: HomeRoutingLogic?
+	
 	private var transactionsArray: [Home.TransactionTableViewCellModel] = []
 
     override func viewDidLoad() {
@@ -39,8 +41,11 @@ class HomeViewController: UIViewController {
 		let viewController = self
 		let interactor = HomeInteractor()
 		let presenter = HomePresenter()
+		let router = HomeRoute()
 		
+		router.viewController = viewController
 		viewController.interactor = interactor
+		viewController.router = router
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 	}
@@ -58,7 +63,7 @@ class HomeViewController: UIViewController {
 	
 	// MARK: Actions
 	@IBAction func addTransactionButtonClicked(_ sender: Any) {
-		
+		router?.routeToAddNewTransaction()
 	}
 	
 }

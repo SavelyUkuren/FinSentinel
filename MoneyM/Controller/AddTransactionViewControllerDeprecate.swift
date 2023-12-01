@@ -11,7 +11,7 @@ protocol AddTransactionViewControllerDelegate {
     func transactionCreated(transaction: TransactionModel)
 }
 
-class AddTransactionViewController: UIViewController {
+class AddTransactionViewControllerDeprecate: UIViewController {
     
     public var delegate: AddTransactionViewControllerDelegate?
     
@@ -40,7 +40,7 @@ class AddTransactionViewController: UIViewController {
 }
 
 // MARK: Base transaction info delegate
-extension AddTransactionViewController: TransactionEditorViewDelegate {
+extension AddTransactionViewControllerDeprecate: TransactionEditorViewDelegate {
     
     func selectCategoryButtonClicked() {
         let selectCategoryVC = SelectCategoryViewController()
@@ -71,7 +71,7 @@ extension AddTransactionViewController: TransactionEditorViewDelegate {
 }
 
 // MARK: Select category delegate
-extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
+extension AddTransactionViewControllerDeprecate: SelectCategoryViewControllerDelegate {
     func selectButtonClicked(category: CategoryModel?) {
         guard category != nil else { return }
         addTransactionView.selectedCategory = category ?? CategoriesManager.defaultCategory
