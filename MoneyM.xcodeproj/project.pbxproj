@@ -60,6 +60,10 @@
 		45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */; };
 		45E169492AED98E400B7989D /* UIStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E169482AED98E400B7989D /* UIStyle.swift */; };
 		45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1694B2AEEA6F300B7989D /* TransactionTableViewSection.swift */; };
+		45E9FE092B19841000783D27 /* AddTransactionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FE082B19841000783D27 /* AddTransactionInteractor.swift */; };
+		45E9FE0B2B19841900783D27 /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FE0A2B19841900783D27 /* AddTransactionPresenter.swift */; };
+		45E9FE0D2B1A5E2300783D27 /* AddTransactionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FE0C2B1A5E2300783D27 /* AddTransactionRouter.swift */; };
+		45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FE0E2B1A681C00783D27 /* AddTransactionModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +122,10 @@
 		45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		45E169482AED98E400B7989D /* UIStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyle.swift; sourceTree = "<group>"; };
 		45E1694B2AEEA6F300B7989D /* TransactionTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewSection.swift; sourceTree = "<group>"; };
+		45E9FE082B19841000783D27 /* AddTransactionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionInteractor.swift; sourceTree = "<group>"; };
+		45E9FE0A2B19841900783D27 /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
+		45E9FE0C2B1A5E2300783D27 /* AddTransactionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionRouter.swift; sourceTree = "<group>"; };
+		45E9FE0E2B1A681C00783D27 /* AddTransactionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				452A715A2B1920180015E524 /* AddTransactionViewController.swift */,
+				45E9FE0C2B1A5E2300783D27 /* AddTransactionRouter.swift */,
+				45E9FE082B19841000783D27 /* AddTransactionInteractor.swift */,
+				45E9FE0A2B19841900783D27 /* AddTransactionPresenter.swift */,
+				45E9FE0E2B1A681C00783D27 /* AddTransactionModels.swift */,
 			);
 			path = AddTransaction;
 			sourceTree = "<group>";
@@ -476,6 +488,7 @@
 				4533EE152B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
 				452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */,
+				45E9FE092B19841000783D27 /* AddTransactionInteractor.swift in Sources */,
 				4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */,
 				45326F4F2AB6048200301729 /* SelectCategoryView.swift in Sources */,
 				4534458D2AF923E2005154DF /* TransactionCollection.swift in Sources */,
@@ -488,6 +501,7 @@
 				45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */,
 				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
+				45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */,
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,
 				453445A82AFAB508005154DF /* TransactionEditorViewProtocol.swift in Sources */,
@@ -503,10 +517,12 @@
 				45326F522AB6112D00301729 /* CategoryTableViewCell.swift in Sources */,
 				452A71552B190C4C0015E524 /* TransactionEntity+CoreDataClass.swift in Sources */,
 				45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */,
+				45E9FE0D2B1A5E2300783D27 /* AddTransactionRouter.swift in Sources */,
 				45E169492AED98E400B7989D /* UIStyle.swift in Sources */,
 				452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				453445A52AFAA83A005154DF /* ButtonChoiceView.swift in Sources */,
+				45E9FE0B2B19841900783D27 /* AddTransactionPresenter.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 				45A293372B135B00002BA248 /* CurrencyListView.swift in Sources */,
 				451974AC2AA477FA0003A4B7 /* AddTransactionViewControllerDeprecate.swift in Sources */,

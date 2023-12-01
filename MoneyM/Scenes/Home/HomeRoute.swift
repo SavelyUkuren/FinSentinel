@@ -19,7 +19,8 @@ class HomeRoute: HomeRoutingLogic {
 	func routeToAddNewTransaction() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let vc = storyboard.instantiateViewController(withIdentifier: "AddTransaction") as? AddTransactionViewController
-
+		vc?.delegate = viewController
+		
 		viewController?.present(vc!, animated: true)
 	}
 	

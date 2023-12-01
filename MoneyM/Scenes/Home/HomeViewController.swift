@@ -106,3 +106,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 }
+
+// MARK: - Add transaction delegate
+extension HomeViewController: AddTransactionDelegate {
+	func transactionCreated(_ transaction: TransactionModel) {
+		transactionsArray[0].transactions.append(transaction)
+		transactionsTableView.reloadData()
+	}
+}
