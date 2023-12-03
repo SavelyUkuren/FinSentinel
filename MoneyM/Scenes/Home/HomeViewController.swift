@@ -125,9 +125,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		65
 	}
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		print ()
-	}
 }
 
 // MARK: - Add transaction delegate

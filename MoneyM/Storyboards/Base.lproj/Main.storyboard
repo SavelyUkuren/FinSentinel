@@ -214,7 +214,7 @@
                             <constraint firstItem="3fi-uJ-srG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Pb7-tI-3oO"/>
                             <constraint firstItem="PYQ-Dj-kl6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="b66-TZ-8T1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3fi-uJ-srG" secondAttribute="trailing" constant="16" id="bQU-A0-6d9"/>
-                            <constraint firstItem="RDw-Pm-jqq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mKF-RF-jNT"/>
+                            <constraint firstItem="RDw-Pm-jqq" firstAttribute="topMargin" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="mKF-RF-jNT"/>
                             <constraint firstItem="RDw-Pm-jqq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="y5i-Ai-cu8"/>
                             <constraint firstAttribute="bottom" secondItem="RDw-Pm-jqq" secondAttribute="bottom" id="zYu-dn-9E8"/>
                             <constraint firstItem="PYQ-Dj-kl6" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.879108" id="zmB-4L-wqy"/>
@@ -420,8 +420,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s4c-8t-CQo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGI-5t-8Fo">
-                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="iGI-5t-8Fo">
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
