@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeBusinessLogic {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request)
+	func addTransaction(request: Home.AddTransaction.Request)
 }
 
 // MARK: - Business logic
@@ -41,16 +42,23 @@ class HomeInteractor: HomeBusinessLogic {
 		t3.date = Date(timeIntervalSince1970: 1701276337)
 		t3.mode = .Income
 		
-		transactionCollection.append(t1)
-		transactionCollection.append(t2)
-		transactionCollection.append(t3)
+		transactionCollection.add(t1)
+		transactionCollection.add(t2)
+		transactionCollection.add(t3)
+		
+		transactionCollection.printTransactions()
 	}
 	
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
 		
-		let response = Home.FetchTransactions.Response(data: Array(transactionCollection.getValues()))
+		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
 		presenter?.presentTransactions(response)
 	}
 	
-	
+	func addTransaction(request: Home.AddTransaction.Request) {
+		transactionCollection.add(request.transaction)
+		
+		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
+		presenter?.presentTransactions(response)
+	}
 }

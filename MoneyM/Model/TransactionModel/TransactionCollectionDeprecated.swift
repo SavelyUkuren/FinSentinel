@@ -17,7 +17,7 @@ protocol TransactionCollectionProtocol {
     func getTransaction(byID id: Int) -> TransactionModel?
 }
 
-class TransactionCollection: TransactionCollectionProtocol {
+class TransactionCollectionDeprecated: TransactionCollectionProtocol {
     
     private var allTransactions: [Int: TransactionModel] = [:]
     

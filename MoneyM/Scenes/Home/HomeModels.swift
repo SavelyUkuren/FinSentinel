@@ -19,13 +19,17 @@ struct Home {
 			
 		}
 		struct Response {
-			var data: [TransactionModel]
+			var data: [TransactionData]
 		}
 		struct ViewModel {
 			var data: [TransactionTableViewCellModel]
 		}
 	}
 	
-	
+	struct AddTransaction {
+		struct Request {
+			let transaction: TransactionModel
+		}
+	}
 	
 }

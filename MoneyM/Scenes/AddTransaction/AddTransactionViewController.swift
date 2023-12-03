@@ -51,10 +51,6 @@ class AddTransactionViewController: UIViewController {
 	}
 
 	@IBAction func createButtonClicked(_ sender: Any) {
-		let t = TransactionModel()
-		t.amount = Int(amountTextField.text!)
-		t.date = datePickerView.date
-		
 		let request = AddTransactionModels.CreateTransaction.Request(amount: amountTextField.text!,
 																	 date: datePickerView.date)
 		interactor?.createTransaction(request)

@@ -30,7 +30,7 @@ class TransactionModelManager {
     init() {
         
         financialSummary = FinancialSummary()
-        transactionCollection = TransactionCollection()
+        transactionCollection = TransactionCollectionDeprecated()
         //coreDataManager = CoreDataManager()
         
         data = groupingTransactionsByDate()

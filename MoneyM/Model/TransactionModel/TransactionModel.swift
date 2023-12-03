@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 
-class TransactionModel {
-    
-    enum Mode: Int {
-        case Expense, Income
-    }
-    var id: Int!
-    var date: Date!
-    var amount: Int!
-    var mode: Mode!
-    var categoryID: Int!
-    
+class TransactionModel: Identifiable {
+	
+	enum Mode: Int {
+		case Expense, Income
+	}
+	var id: Int = 0
+	var date: Date!
+	var amount: Int!
+	var mode: Mode!
+	var categoryID: Int!
+	
 }
