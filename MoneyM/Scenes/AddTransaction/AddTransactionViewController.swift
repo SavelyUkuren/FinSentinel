@@ -21,6 +21,10 @@ class AddTransactionViewController: UIViewController {
 	
 	@IBOutlet weak var datePickerView: UIDatePicker!
 	
+	@IBOutlet weak var choiceButton: ButtonChoiceView!
+	
+	@IBOutlet weak var noteTextField: UITextField!
+	
 	var interactor: AddTransactionBusinessLogic?
 	
 	var router: AddTransactionRouter?
@@ -31,7 +35,11 @@ class AddTransactionViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
-		amountTextField.text = String(randomAmount())
+		configureAmountTextField()
+		configureNoteTextField()
+		configureChoiceButton()
+		
+		//amountTextField.text = String(randomAmount())
     }
     
 	private func setup() {
@@ -46,6 +54,21 @@ class AddTransactionViewController: UIViewController {
 		presenter.viewController = viewController
 	}
 	
+	private func configureAmountTextField() {
+		amountTextField.layer.cornerRadius = 12
+		amountTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
+	}
+	
+	private func configureNoteTextField() {
+		noteTextField.layer.cornerRadius = 12
+		noteTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
+	}
+	
+	private func configureChoiceButton() {
+		choiceButton.setButtonTitle("Expense", button: .First)
+		choiceButton.setButtonTitle("Income", button: .Second)
+	}
+	
 	private func randomAmount() -> Int {
 		return Int.random(in: 0...1000)
 	}
@@ -55,6 +78,11 @@ class AddTransactionViewController: UIViewController {
 																	 date: datePickerView.date)
 		interactor?.createTransaction(request)
 	}
+	
+	@IBAction func cancelButtonClicked(_ sender: Any) {
+		dismiss(animated: true)
+	}
+	
 }
 
 // MARK: - Add transaction display logic

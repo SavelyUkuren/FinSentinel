@@ -53,6 +53,9 @@ class ButtonChoiceView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+		
+		configureStackView()
+		configureButtons()
     }
     
     public func setButtonTitle(_ title: String, button: Buttons) {
@@ -88,8 +91,8 @@ class ButtonChoiceView: UIView {
     }
     
     private func configureButtons() {
-        firstButton.backgroundColor = UIStyle.UIViewBackgroundColor
-        secondButton.backgroundColor = UIStyle.UIViewBackgroundColor
+		firstButton.backgroundColor = .systemGray4
+        secondButton.backgroundColor = .systemGray4
         
         firstButton.addTarget(self, action: #selector(firstButtonClicked), for: .touchUpInside)
         secondButton.addTarget(self, action: #selector(secondButtonClicked), for: .touchUpInside)
@@ -99,7 +102,7 @@ class ButtonChoiceView: UIView {
     
     @objc
     private func firstButtonClicked() {
-        secondButton.backgroundColor = UIStyle.UIViewBackgroundColor
+        secondButton.backgroundColor = .systemGray4
         secondButton.setTitleColor(accentColor, for: .normal)
 
         firstButton.setTitleColor(.white, for: .normal)
@@ -110,7 +113,7 @@ class ButtonChoiceView: UIView {
     
     @objc
     private func secondButtonClicked() {
-        firstButton.backgroundColor = .systemGray5
+        firstButton.backgroundColor = .systemGray4
         firstButton.setTitleColor(accentColor, for: .normal)
 
         secondButton.setTitleColor(.white, for: .normal)
