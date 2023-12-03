@@ -8,30 +8,40 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
+	
+	enum Corner {
+		
+		case topLeft
+		case topRight
+		case bottomLeft
+		case bottomRight
+		
+		var rawValue: CACornerMask {
+			switch self {
+			case .topLeft:
+				CACornerMask.layerMinXMinYCorner
+			case .topRight:
+				CACornerMask.layerMaxXMinYCorner
+			case .bottomLeft:
+				CACornerMask.layerMinXMaxYCorner
+			case .bottomRight:
+				CACornerMask.layerMaxXMaxYCorner
+			}
+		}
+	}
+
     
-    var categoryLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Category"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20)
-        return label
-    }()
-    
-    var amountLabel: UILabel = {
-        let label = UILabel()
-        label.text = "0"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 26)
-        return label
-    }()
+	@IBOutlet weak var categoryLabel: UILabel!
+	
+	@IBOutlet weak var amountLabel: UILabel!
+	
+	@IBOutlet weak var noteLabel: UILabel!
+	
+	@IBOutlet weak var categoryImageView: UIImageView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIStyle.TableViewCellBackgroundColor
-        
-        confiureCategoryLabel()
-        configureAmountLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -41,14 +51,13 @@ class TransactionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
     }
     
     public func loadTransaction(transaction: TransactionModel) {
         
 		let currencySymbol = Settings.shared.model.currency.symbol
         let defaultCategory = CategoriesManager.defaultCategory
-        let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID) ?? defaultCategory
+        let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID ?? 0) ?? defaultCategory
         
         amountLabel.text = "\(transaction.amount!) \(currencySymbol)"
         categoryLabel.text = category.title
@@ -61,27 +70,17 @@ class TransactionTableViewCell: UITableViewCell {
         case .none:
             break
         }
-        
+		
     }
-    
-    private func confiureCategoryLabel() {
-        contentView.addSubview(categoryLabel)
-        
-        NSLayoutConstraint.activate([
-            //categoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            categoryLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
-        ])
-    }
-    
-    private func configureAmountLabel() {
-        contentView.addSubview(amountLabel)
-        
-        NSLayoutConstraint.activate([
-            amountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            amountLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-        ])
-    }
+	
+	public func roundCorner(radius: CGFloat, corners: [Corner]) {
+		layer.cornerRadius = radius
+		
+		let mask: CACornerMask = corners.reduce(into: CACornerMask()) { partialResult, corner in
+			partialResult.insert(corner.rawValue)
+		}
+		layer.maskedCorners = mask
+	}
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

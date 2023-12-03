@@ -81,15 +81,31 @@ extension HomeViewController: HomeDisplayLogic {
 // MARK: - Table View Delegate
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		
+		let numberOfRows = tableView.numberOfRows(inSection: indexPath.section)
+		let transactionCell = (cell as! TransactionTableViewCell)
+		transactionCell.layer.cornerRadius = 0
+		
+		if numberOfRows == 1 {
+			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
+		} else if indexPath.row == 0 {
+			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight])
+		} else if indexPath.row == numberOfRows - 1 {
+			transactionCell.roundCorner(radius: 12, corners: [.bottomLeft, .bottomRight])
+		}
+		
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		transactionsArray[section].transactions.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TransactionTableViewCell
 		
-		let amount = transactionsArray[indexPath.section].transactions[indexPath.row].amount
-		cell.textLabel?.text = String(amount ?? -1)
+		let transaction = transactionsArray[indexPath.section].transactions[indexPath.row]
+		cell.loadTransaction(transaction: transaction)
 		
 		return cell
 	}
@@ -103,9 +119,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		50
+		20
 	}
 	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		65
+	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		print ()
+	}
 }
 
 // MARK: - Add transaction delegate
