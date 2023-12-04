@@ -91,8 +91,8 @@ class ButtonChoiceView: UIView {
     }
     
     private func configureButtons() {
-		firstButton.backgroundColor = .systemGray4
-        secondButton.backgroundColor = .systemGray4
+		firstButton.backgroundColor = .quaternarySystemFill
+        secondButton.backgroundColor = .quaternarySystemFill
         
         firstButton.addTarget(self, action: #selector(firstButtonClicked), for: .touchUpInside)
         secondButton.addTarget(self, action: #selector(secondButtonClicked), for: .touchUpInside)
@@ -102,7 +102,7 @@ class ButtonChoiceView: UIView {
     
     @objc
     private func firstButtonClicked() {
-        secondButton.backgroundColor = .systemGray4
+        secondButton.backgroundColor = .quaternarySystemFill
         secondButton.setTitleColor(accentColor, for: .normal)
 
         firstButton.setTitleColor(.white, for: .normal)
@@ -113,7 +113,7 @@ class ButtonChoiceView: UIView {
     
     @objc
     private func secondButtonClicked() {
-        firstButton.backgroundColor = .systemGray4
+        firstButton.backgroundColor = .quaternarySystemFill
         firstButton.setTitleColor(accentColor, for: .normal)
 
         secondButton.setTitleColor(.white, for: .normal)
