@@ -23,6 +23,8 @@ class HomeViewController: UIViewController {
 	
 	@IBOutlet weak var addTransactionButton: UIButton!
 	
+	@IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
+	
 	var interactor: HomeBusinessLogic?
 	
 	var router: HomeRoutingLogic?
@@ -95,6 +97,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 			transactionCell.roundCorner(radius: 12, corners: [.bottomLeft, .bottomRight])
 		}
 		
+		scrollViewHeightConstraint.constant = tableView.contentSize.height
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

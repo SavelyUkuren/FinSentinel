@@ -23,7 +23,7 @@ class HomeInteractor: HomeBusinessLogic {
 	init() {
 		transactionCollection = TransactionCollection()
 		
-		randomData()
+		//randomData()
 	}
 	
 	private func randomData() {
@@ -39,11 +39,17 @@ class HomeInteractor: HomeBusinessLogic {
 		
 		var t3 = TransactionModel()
 		t3.amount = 103
-		t3.date = Date(timeIntervalSince1970: 1701276337)
+		t3.date = Date(timeIntervalSince1970: 1701296337)
 		t3.mode = .Income
 		
 		transactionCollection.add(t1)
+		transactionCollection.add(t1)
 		transactionCollection.add(t2)
+		transactionCollection.add(t2)
+		transactionCollection.add(t2)
+		transactionCollection.add(t3)
+		transactionCollection.add(t3)
+		transactionCollection.add(t3)
 		transactionCollection.add(t3)
 		
 		transactionCollection.printTransactions()

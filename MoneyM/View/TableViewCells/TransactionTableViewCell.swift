@@ -59,7 +59,7 @@ class TransactionTableViewCell: UITableViewCell {
         let defaultCategory = CategoriesManager.defaultCategory
         let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID ?? 0) ?? defaultCategory
         
-        amountLabel.text = "\(transaction.amount!) \(currencySymbol)"
+        amountLabel.text = "\(transaction.amount ?? 0) \(currencySymbol)"
         categoryLabel.text = category.title
         
         switch transaction.mode {
