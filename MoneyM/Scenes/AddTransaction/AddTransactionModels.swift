@@ -13,6 +13,9 @@ struct AddTransactionModels {
 		struct Request {
 			var amount: String
 			var date: Date
+			var category: CategoryModel?
+			var mode: TransactionModel.Mode
+			var note: String?
 		}
 		struct Response {
 			var transactionModel: TransactionModel

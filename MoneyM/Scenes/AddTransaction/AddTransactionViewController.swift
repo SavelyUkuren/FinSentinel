@@ -30,6 +30,8 @@ class AddTransactionViewController: UIViewController {
 	var router: AddTransactionRouter?
 	
 	var delegate: AddTransactionDelegate?
+	
+	private var selectedCategory: CategoryModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +48,11 @@ class AddTransactionViewController: UIViewController {
 		let viewController = self
 		let interactor = AddTransactionInteractor()
 		let presenter = AddTransactionPresenter()
-		let router = viewController.router
+		let router = AddTransactionRouter()
 		
 		viewController.interactor = interactor
 		viewController.router = router
+		router.viewController = viewController
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 	}
@@ -74,9 +77,23 @@ class AddTransactionViewController: UIViewController {
 	}
 
 	@IBAction func createButtonClicked(_ sender: Any) {
+		
+		let mode: TransactionModel.Mode = switch choiceButton.selectedButton {
+		case .First:
+			TransactionModel.Mode.Expense
+		case .Second:
+			TransactionModel.Mode.Income
+		}
+		
 		let request = AddTransactionModels.CreateTransaction.Request(amount: amountTextField.text!,
-																	 date: datePickerView.date)
+																	 date: datePickerView.date,
+																	 category: selectedCategory,
+																	 mode: mode, note: noteTextField.text)
 		interactor?.createTransaction(request)
+	}
+	
+	@IBAction func selectCategoryButtonClicked(_ sender: Any) {
+		router?.routeToSelectCategory()
 	}
 	
 	@IBAction func cancelButtonClicked(_ sender: Any) {
@@ -90,5 +107,12 @@ extension AddTransactionViewController: AddTransactionDisplayLogic {
 	func displayCreatedTransaction(_ viewModel: AddTransactionModels.CreateTransaction.ViewModel) {
 		delegate?.transactionCreated(viewModel.transactionModel)
 		dismiss(animated: true)
+	}
+}
+
+// MARK: Select category delegate
+extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
+	func selectButtonClicked(category: CategoryModel?) {
+		selectedCategory = category
 	}
 }
