@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDw-Pm-jqq">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8Ct-OM-5Xv">
                                         <rect key="frame" x="16" y="16" width="361" height="216"/>
@@ -48,6 +48,11 @@
                                                     <constraint firstItem="DbD-0D-2Ec" firstAttribute="centerY" secondItem="Ige-mR-31I" secondAttribute="centerY" id="uct-xh-8fk"/>
                                                     <constraint firstItem="yAw-xC-PIL" firstAttribute="top" secondItem="Ige-mR-31I" secondAttribute="top" constant="8" id="xuM-Z1-kDi"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XvK-gb-aQ8">
                                                 <rect key="frame" x="0.0" y="116" width="361" height="100"/>
@@ -75,6 +80,11 @@
                                                             <constraint firstItem="mRf-yK-r1d" firstAttribute="centerY" secondItem="WtG-hr-8is" secondAttribute="centerY" id="a5a-AS-x6M"/>
                                                             <constraint firstItem="Opy-tG-j66" firstAttribute="centerX" secondItem="WtG-hr-8is" secondAttribute="centerX" id="vn0-1g-NM6"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xtb-uV-cEO">
                                                         <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="100"/>
@@ -99,6 +109,11 @@
                                                             <constraint firstItem="DLm-t4-PuE" firstAttribute="centerX" secondItem="xtb-uV-cEO" secondAttribute="centerX" id="RXP-Xi-1tY"/>
                                                             <constraint firstItem="H2B-Of-CX8" firstAttribute="top" secondItem="xtb-uV-cEO" secondAttribute="top" constant="8" id="oTz-Md-Py7"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -177,14 +192,19 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fi-uJ-srG">
-                                <rect key="frame" x="16" y="752" width="361" height="50"/>
+                                <rect key="frame" x="16" y="742" width="361" height="60"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="hCu-pA-DYZ"/>
+                                    <constraint firstAttribute="height" constant="60" id="hCu-pA-DYZ"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="addTransactionButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FGj-s3-P0O"/>
                                 </connections>
@@ -195,7 +215,7 @@
                         <constraints>
                             <constraint firstItem="RDw-Pm-jqq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7ud-Cw-CfU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3fi-uJ-srG" secondAttribute="trailing" constant="16" id="QfV-N8-kxC"/>
-                            <constraint firstItem="RDw-Pm-jqq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="R1v-h7-Q10"/>
+                            <constraint firstItem="RDw-Pm-jqq" firstAttribute="topMargin" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="R1v-h7-Q10"/>
                             <constraint firstItem="RDw-Pm-jqq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bSg-A8-LSk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3fi-uJ-srG" secondAttribute="bottom" constant="16" id="fBR-vz-l8U"/>
                             <constraint firstItem="3fi-uJ-srG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nhU-BZ-LpF"/>
@@ -403,8 +423,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s4c-8t-CQo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGI-5t-8Fo">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="iGI-5t-8Fo">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
