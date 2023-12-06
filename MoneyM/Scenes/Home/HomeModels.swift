@@ -48,4 +48,16 @@ struct Home {
 		}
 	}
 	
+	struct RemoveTransaction {
+		struct Request {
+			var transaction: TransactionModel
+		}
+		struct Response {
+			var data: [TransactionData]
+		}
+		struct ViewModel {
+			var data: [TransactionTableViewCellModel]
+		}
+	}
+	
 }

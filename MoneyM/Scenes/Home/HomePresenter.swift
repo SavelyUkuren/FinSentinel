@@ -11,6 +11,7 @@ import UIKit
 protocol HomePresentationLogic {
 	func presentTransactions(_ response: Home.FetchTransactions.Response)
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response)
+	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response)
 }
 
 // MARK: - Presentation logic
@@ -23,19 +24,12 @@ class HomePresenter: HomePresentationLogic {
 	}
 	
 	func presentTransactions(_ response: Home.FetchTransactions.Response) {
-		var presentData: [Home.TransactionTableViewCellModel] = []
-		
-		response.data.forEach { data in
-			let dateString = getDayAndMonth(data.date)
-			let transactions = data.transactions
-			
-			let model = Home.TransactionTableViewCellModel(section: dateString,
-														   transactions: transactions)
-			
-			presentData.append(model)
+		let result: [Home.TransactionTableViewCellModel] = response.data.map { tData in
+			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
+											   transactions: tData.transactions)
 		}
 		
-		let viewModel = Home.FetchTransactions.ViewModel(data: presentData)
+		let viewModel = Home.FetchTransactions.ViewModel(data: result)
 		viewController?.displayTransactions(viewModel)
 	}
 	
@@ -51,6 +45,16 @@ class HomePresenter: HomePresentationLogic {
 															 expense: expense,
 															 income: income)
 		viewController?.displayFinancialSummary(viewModel)
+	}
+	
+	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response) {
+		let result: [Home.TransactionTableViewCellModel] = response.data.map { tData in
+			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
+											   transactions: tData.transactions)
+		}
+		
+		let viewModel = Home.RemoveTransaction.ViewModel(data: result)
+		viewController?.displayRemoveTransaction(viewModel)
 	}
 	
 	private func getDayAndMonth(_ date: Date) -> String {

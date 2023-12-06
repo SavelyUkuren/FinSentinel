@@ -10,6 +10,7 @@ import UIKit
 protocol HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel)
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel)
+	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -95,6 +96,14 @@ extension HomeViewController: HomeDisplayLogic {
 		incomeAmountLabel.text = viewModel.income
 	}
 	
+	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel) {
+		transactionsArray = viewModel.data
+		transactionsTableView.reloadData()
+		
+		let request = Home.FetchFinancialSummary.Request()
+		interactor?.fetchFinancialSummary(request: request)
+	}
+	
 }
 
 // MARK: - Table View Delegate
@@ -128,6 +137,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 		cell.loadTransaction(transaction: transaction)
 		
 		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		
+		let deleteAction = UIContextualAction(style: .destructive,
+											  title: "Delete") { swipeAction, view, complition in
+			let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
+			let request = Home.RemoveTransaction.Request(transaction: transaction)
+			self.interactor?.removeTransaction(request: request)
+		}
+		
+		let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
+		
+		return swipeAction
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {

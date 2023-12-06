@@ -12,6 +12,7 @@ protocol HomeBusinessLogic {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request)
 	func fetchFinancialSummary(request: Home.FetchFinancialSummary.Request)
 	func addTransaction(request: Home.AddTransaction.Request)
+	func removeTransaction(request: Home.RemoveTransaction.Request)
 }
 
 // MARK: - Business logic
@@ -80,6 +81,17 @@ class HomeInteractor: HomeBusinessLogic {
 		
 		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
 		presenter?.presentTransactions(response)
+	}
+	
+	func removeTransaction(request: Home.RemoveTransaction.Request) {
+		let id = request.transaction.id
+		transactionCollection.removeBy(id)
+		
+		let coreDataManager = CoreDataManager()
+		coreDataManager.delete(id)
+		
+		let response = Home.RemoveTransaction.Response(data: transactionCollection.data)
+		presenter?.presentRemoveTransaction(response)
 	}
 	
 	func fetchFinancialSummary(request: Home.FetchFinancialSummary.Request) {

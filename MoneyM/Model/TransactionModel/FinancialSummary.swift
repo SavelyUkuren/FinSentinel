@@ -12,7 +12,7 @@ class FinancialSummary {
     var income: Int = 0
 	var balance: Int  {
 		get {
-			income - expense
+			income + expense
 		}
 	}
 }

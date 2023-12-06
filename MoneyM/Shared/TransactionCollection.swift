@@ -35,7 +35,9 @@ class TransactionCollection {
 	func add(_ transaction: TransactionModel) {
 		let index = findIndexIn(array: data, byDate: transaction.date!)
 		
-		transaction.id = transactionsCount
+		if transaction.id == 0 { // if ID not changed
+			transaction.id = transactionsCount
+		}
 		
 		if let index = index {
 			data[index].transactions.append(transaction)
@@ -79,7 +81,9 @@ class TransactionCollection {
 			}
 			
 			if index != nil {
-				data[i].transactions.remove(at: index!)
+				let removedTransaction = data[i].transactions.remove(at: index!)
+				removedTransaction.amount *= -1
+				summaryUpdate(removedTransaction)
 				
 				if data[i].transactions.isEmpty {
 					data.remove(at: i)
@@ -117,7 +121,7 @@ class TransactionCollection {
 	private func summaryUpdate(_ transaction: TransactionModel) {
 		switch transaction.mode {
 		case .Expense:
-			summary.expense += transaction.amount
+			summary.expense -= transaction.amount
 		case .Income:
 			summary.income += transaction.amount
 		case .none:
