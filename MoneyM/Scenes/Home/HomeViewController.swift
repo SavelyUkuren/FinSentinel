@@ -9,6 +9,7 @@ import UIKit
 
 protocol HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel)
+	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -56,6 +57,7 @@ class HomeViewController: UIViewController {
 		configureTransactionsTableView()
 		
 		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 	}
 	
 	private func configureTransactionsTableView() {
@@ -76,6 +78,13 @@ extension HomeViewController: HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel) {
 		transactionsArray = viewModel.data
 		transactionsTableView.reloadData()
+	}
+	
+	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel) {
+		balanceAmountLabel.textColor = viewModel.balanceColor
+		balanceAmountLabel.text = viewModel.balance
+		expenseAmountLabel.text = viewModel.expense
+		incomeAmountLabel.text = viewModel.income
 	}
 	
 }
@@ -135,5 +144,6 @@ extension HomeViewController: AddTransactionDelegate {
 	func transactionCreated(_ transaction: TransactionModel) {
 		let request = Home.AddTransaction.Request(transaction: transaction)
 		interactor?.addTransaction(request: request)
+		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 	}
 }

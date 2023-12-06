@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Home {
 	
@@ -29,6 +30,21 @@ struct Home {
 	struct AddTransaction {
 		struct Request {
 			let transaction: TransactionModel
+		}
+	}
+	
+	struct FetchFinancialSummary {
+		struct Request {
+			
+		}
+		struct Response {
+			var summary: FinancialSummary
+		}
+		struct ViewModel {
+			var balanceColor: UIColor
+			var balance: String
+			var expense: String
+			var income: String
 		}
 	}
 	

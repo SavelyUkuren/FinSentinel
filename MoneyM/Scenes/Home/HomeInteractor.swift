@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeBusinessLogic {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request)
+	func fetchFinancialSummary(request: Home.FetchFinancialSummary.Request)
 	func addTransaction(request: Home.AddTransaction.Request)
 }
 
@@ -23,22 +24,22 @@ class HomeInteractor: HomeBusinessLogic {
 	init() {
 		transactionCollection = TransactionCollection()
 		
-		//randomData()
+		randomData()
 	}
 	
 	private func randomData() {
 		var t1 = TransactionModel()
-		t1.amount = 101
+		t1.amount = 1
 		t1.date = Date(timeIntervalSince1970: 1701362737)
 		t1.mode = .Expense
 		
 		var t2 = TransactionModel()
-		t2.amount = 102
+		t2.amount = 2
 		t2.date = Date(timeIntervalSince1970: 1701276337)
 		t2.mode = .Income
 		
 		var t3 = TransactionModel()
-		t3.amount = 103
+		t3.amount = 3
 		t3.date = Date(timeIntervalSince1970: 1701296337)
 		t3.mode = .Income
 		
@@ -55,9 +56,12 @@ class HomeInteractor: HomeBusinessLogic {
 		transactionCollection.printTransactions()
 	}
 	
+	// MARK: HomeBusinessLogic
+	
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
+		let data = transactionCollection.data
 		
-		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
+		let response = Home.FetchTransactions.Response(data: data)
 		presenter?.presentTransactions(response)
 	}
 	
@@ -66,5 +70,10 @@ class HomeInteractor: HomeBusinessLogic {
 		
 		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
 		presenter?.presentTransactions(response)
+	}
+	
+	func fetchFinancialSummary(request: Home.FetchFinancialSummary.Request) {
+		let response = Home.FetchFinancialSummary.Response(summary: transactionCollection.summary)
+		presenter?.presentFinancialSummary(response)
 	}
 }

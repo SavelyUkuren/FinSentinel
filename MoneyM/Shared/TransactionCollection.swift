@@ -24,6 +24,8 @@ class TransactionCollection {
 	 */
 	private(set) var data: [TransactionData] = []
 	
+	private(set) var summary = FinancialSummary()
+	
 	private var transactionsCount = 0
 	
 	init() {
@@ -43,6 +45,8 @@ class TransactionCollection {
 			tData.transactions.append(transaction)
 			data.append(tData)
 		}
+		
+		summaryUpdate(transaction)
 		
 		transactionsCount += 1
 	}
@@ -84,7 +88,7 @@ class TransactionCollection {
 		for tData in data {
 			print ("\(getDateComponent(tData.date).day!) \(getDateComponent(tData.date).month!)")
 			for transaction in tData.transactions {
-				print ("\t\(transaction.amount!)")
+				print ("\t\(transaction.amount!)\t\(TransactionModel.Mode(rawValue: transaction.mode?.rawValue ?? 0)!)")
 			}
 		}
 	}
@@ -104,6 +108,15 @@ class TransactionCollection {
 		return index
 	}
 	
-	
+	private func summaryUpdate(_ transaction: TransactionModel) {
+		switch transaction.mode {
+		case .Expense:
+			summary.expense += transaction.amount
+		case .Income:
+			summary.income += transaction.amount
+		case .none:
+			break
+		}
+	}
 	
 }

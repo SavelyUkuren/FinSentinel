@@ -119,7 +119,7 @@ class TransactionModelManager {
             }
         }
         
-        result.balance = startingBalance + result.income + result.expense
+        //result.balance = startingBalance + result.income + result.expense
         
         return result
     }
@@ -133,7 +133,7 @@ class TransactionModelManager {
         case .none:
             break
         }
-        summary.balance = startingBalance + summary.income + summary.expense
+        //summary.balance = startingBalance + summary.income + summary.expense
     }
     
 }
