@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol AddTransactionRoutingLogic {
 	func routeToSelectCategory()
@@ -16,9 +17,19 @@ class AddTransactionRouter: AddTransactionRoutingLogic {
 	var viewController: AddTransactionViewController?
 	
 	func routeToSelectCategory() {
-		let selectCategoryVC = SelectCategoryViewController()
-		selectCategoryVC.delegate = viewController
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewController(identifier: "Categories") as! CategoriesViewController
+		vc.categoryType = switch viewController?.choiceButton.selectedButton {
+		case .First:
+			TransactionModel.Mode.Expense
+		case .Second:
+			TransactionModel.Mode.Income
+		case .none:
+			TransactionModel.Mode.Expense
+		}
 		
-		viewController?.present(selectCategoryVC, animated: true)
+		vc.delegate = viewController
+		
+		viewController?.present(vc, animated: true)
 	}
 }

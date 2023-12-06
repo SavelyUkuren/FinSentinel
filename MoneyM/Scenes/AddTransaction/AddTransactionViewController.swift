@@ -137,6 +137,7 @@ extension AddTransactionViewController: AddTransactionDisplayLogic {
 extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
 	func selectButtonClicked(category: CategoryModel?) {
 		selectedCategory = category
+		selectCategoryButton.setTitle(category?.title, for: .normal)
 	}
 }
 

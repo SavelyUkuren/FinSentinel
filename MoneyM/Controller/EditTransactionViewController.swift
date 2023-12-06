@@ -47,7 +47,7 @@ class EditTransactionViewController: UIViewController {
 extension EditTransactionViewController: TransactionEditorViewDelegate {
     
     func selectCategoryButtonClicked() {
-        let selectCategoryVC = SelectCategoryViewController()
+        let selectCategoryVC = CategoriesViewController()
         selectCategoryVC.delegate = self
         selectCategoryVC.categoryType = editTransactionView.selectedMode
         

@@ -43,7 +43,7 @@ class AddTransactionViewControllerDeprecate: UIViewController {
 extension AddTransactionViewControllerDeprecate: TransactionEditorViewDelegate {
     
     func selectCategoryButtonClicked() {
-        let selectCategoryVC = SelectCategoryViewController()
+        let selectCategoryVC = CategoriesViewController()
         selectCategoryVC.delegate = self
         selectCategoryVC.categoryType = addTransactionView.selectedMode
         
