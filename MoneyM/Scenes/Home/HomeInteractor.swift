@@ -24,7 +24,9 @@ class HomeInteractor: HomeBusinessLogic {
 	init() {
 		transactionCollection = TransactionCollection()
 		
-		randomData()
+		//randomData()
+		
+		print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
 	}
 	
 	private func randomData() {
@@ -59,14 +61,22 @@ class HomeInteractor: HomeBusinessLogic {
 	// MARK: HomeBusinessLogic
 	
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
-		let data = transactionCollection.data
 		
+		let coreDataManager = CoreDataManager()
+		let arr = coreDataManager.load(year: 2023, month: 12)
+		
+		transactionCollection.add(arr)
+		
+		let data = transactionCollection.data
 		let response = Home.FetchTransactions.Response(data: data)
 		presenter?.presentTransactions(response)
 	}
 	
 	func addTransaction(request: Home.AddTransaction.Request) {
 		transactionCollection.add(request.transaction)
+		
+		let coreDataManager = CoreDataManager()
+		coreDataManager.add(request.transaction)
 		
 		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
 		presenter?.presentTransactions(response)

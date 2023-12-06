@@ -19,5 +19,6 @@ class TransactionModel: Identifiable {
 	var amount: Int!
 	var mode: Mode!
 	var categoryID: Int!
+	var note: String!
 	
 }

@@ -2,7 +2,7 @@
 //  TransactionEntity+CoreDataClass.swift
 //  MoneyM
 //
-//  Created by Air on 30.11.2023.
+//  Created by Air on 06.12.2023.
 //
 //
 

@@ -51,6 +51,12 @@ class TransactionCollection {
 		transactionsCount += 1
 	}
 	
+	func add(_ transactions: [TransactionModel]) {
+		transactions.forEach { model in
+			add(model)
+		}
+	}
+	
 	func findBy(_ id: Int) -> TransactionModel? {
 		
 		for data in data {
