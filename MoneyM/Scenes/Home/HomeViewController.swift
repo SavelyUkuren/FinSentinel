@@ -68,9 +68,9 @@ class HomeViewController: UIViewController {
 	
 	private func configureFontLabels() {
 		let font = CustomFonts()
-		balanceAmountLabel.font = font.RoundedBoldFont(balanceAmountLabel.font.pointSize)
-		expenseAmountLabel.font = font.RoundedBoldFont(expenseAmountLabel.font.pointSize)
-		incomeAmountLabel.font = font.RoundedBoldFont(incomeAmountLabel.font.pointSize)
+		balanceAmountLabel.font = font.RoundedFont(balanceAmountLabel.font.pointSize, .bold)
+		expenseAmountLabel.font = font.RoundedFont(expenseAmountLabel.font.pointSize, .semibold)
+		incomeAmountLabel.font = font.RoundedFont(incomeAmountLabel.font.pointSize, .semibold)
 	}
 	
 	// MARK: Actions

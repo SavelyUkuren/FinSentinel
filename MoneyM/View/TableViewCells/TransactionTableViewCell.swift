@@ -89,7 +89,7 @@ class TransactionTableViewCell: UITableViewCell {
 	
 	private func configureFont() {
 		let font = CustomFonts()
-		amountLabel.font = font.RoundedBoldFont(amountLabel.font.pointSize)
+		amountLabel.font = font.RoundedFont(amountLabel.font.pointSize, .medium)
 	}
 
 }

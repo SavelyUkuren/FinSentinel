@@ -25,6 +25,8 @@ class AddTransactionViewController: UIViewController {
 	
 	@IBOutlet weak var noteTextField: UITextField!
 	
+	@IBOutlet weak var selectCategoryButton: UIButton!
+	
 	var interactor: AddTransactionBusinessLogic?
 	
 	var router: AddTransactionRouter?
@@ -40,9 +42,14 @@ class AddTransactionViewController: UIViewController {
 		configureAmountTextField()
 		configureNoteTextField()
 		configureChoiceButton()
+		configureFont()
 		
 		//amountTextField.text = String(randomAmount())
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		amountTextField.becomeFirstResponder()
+	}
     
 	private func setup() {
 		let viewController = self
@@ -60,6 +67,7 @@ class AddTransactionViewController: UIViewController {
 	private func configureAmountTextField() {
 		amountTextField.layer.cornerRadius = 12
 		amountTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
+		amountTextField.textColor = .systemRed
 	}
 	
 	private func configureNoteTextField() {
@@ -70,10 +78,25 @@ class AddTransactionViewController: UIViewController {
 	private func configureChoiceButton() {
 		choiceButton.setButtonTitle("Expense", button: .First)
 		choiceButton.setButtonTitle("Income", button: .Second)
+		choiceButton.delegate = self
 	}
 	
 	private func randomAmount() -> Int {
 		return Int.random(in: 0...1000)
+	}
+	
+	private func configureFont() {
+		let font = CustomFonts()
+		
+		let amountTextFieldPointSize: CGFloat = amountTextField.font!.pointSize
+		amountTextField.font = font.RoundedFont(amountTextFieldPointSize, .bold)
+		
+		let noteTextFieldPointSize: CGFloat = noteTextField.font!.pointSize
+		noteTextField.font = font.RoundedFont(noteTextFieldPointSize, .semibold)
+		
+		choiceButton.setButtonFont(font.RoundedFont(18, .medium))
+		
+		selectCategoryButton.titleLabel?.font = font.RoundedFont(18, .regular)
 	}
 
 	@IBAction func createButtonClicked(_ sender: Any) {
@@ -114,5 +137,17 @@ extension AddTransactionViewController: AddTransactionDisplayLogic {
 extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
 	func selectButtonClicked(category: CategoryModel?) {
 		selectedCategory = category
+	}
+}
+
+// MARK: Button choice delegate
+extension AddTransactionViewController: ButtonChoiceDelegate {
+	func buttonClicked(button: ButtonChoiceView.Buttons) {
+		switch button {
+		case .First: // Expense button
+			amountTextField.textColor = .systemRed
+		case .Second: // Income button
+			amountTextField.textColor = .systemGreen
+		}
 	}
 }

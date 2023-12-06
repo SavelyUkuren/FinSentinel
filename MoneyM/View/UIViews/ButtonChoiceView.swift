@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol ButtonChoiceDelegate {
+	func buttonClicked(button: ButtonChoiceView.Buttons)
+}
+
 class ButtonChoiceView: UIView {
     
     enum Buttons {
@@ -15,6 +19,8 @@ class ButtonChoiceView: UIView {
     }
     
     public var selectedButton: Buttons = .First
+	
+	public var delegate: ButtonChoiceDelegate?
     
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -66,6 +72,11 @@ class ButtonChoiceView: UIView {
             secondButton.setTitle(title, for: .normal)
         }
     }
+	
+	public func setButtonFont(_ font: UIFont?) {
+		firstButton.titleLabel?.font = font
+		secondButton.titleLabel?.font = font
+	}
     
     public func selectButton(_ button: Buttons) {
         switch button {
@@ -109,6 +120,7 @@ class ButtonChoiceView: UIView {
         firstButton.backgroundColor = accentColor
         
         selectedButton = .First
+		delegate?.buttonClicked(button: .First)
     }
     
     @objc
@@ -120,6 +132,7 @@ class ButtonChoiceView: UIView {
         secondButton.backgroundColor = accentColor
         
         selectedButton = .Second
+		delegate?.buttonClicked(button: .Second)
     }
     
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		450EDA872B20998B00E562AC /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 450EDA862B20998B00E562AC /* SF-Pro-Rounded-Bold.otf */; };
 		451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974A92AA4775D0003A4B7 /* AddTransactionView.swift */; };
 		451974AC2AA477FA0003A4B7 /* AddTransactionViewControllerDeprecate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AB2AA477FA0003A4B7 /* AddTransactionViewControllerDeprecate.swift */; };
 		451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AD2AA49F740003A4B7 /* TransactionModel.swift */; };
@@ -46,6 +45,15 @@
 		455824592AD081C800434A25 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455824582AD081C800434A25 /* DateModel.swift */; };
 		459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459317572B1CA6EF00F493C2 /* TransactionCollection.swift */; };
 		4597FA882B209D2500043461 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FA872B209D2500043461 /* CustomFonts.swift */; };
+		4597FA922B20A8CF00043461 /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */; };
+		4597FA932B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8A2B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf */; };
+		4597FA942B20A8CF00043461 /* SF-Pro-Rounded-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8B2B20A8CF00043461 /* SF-Pro-Rounded-Thin.otf */; };
+		4597FA952B20A8CF00043461 /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8C2B20A8CF00043461 /* SF-Pro-Rounded-Medium.otf */; };
+		4597FA962B20A8CF00043461 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8D2B20A8CF00043461 /* SF-Pro-Rounded-Regular.otf */; };
+		4597FA972B20A8CF00043461 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8E2B20A8CF00043461 /* SF-Pro-Rounded-Semibold.otf */; };
+		4597FA982B20A8CF00043461 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8F2B20A8CF00043461 /* SF-Pro-Rounded-Bold.otf */; };
+		4597FA992B20A8CF00043461 /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA902B20A8CF00043461 /* SF-Pro-Rounded-Black.otf */; };
+		4597FA9A2B20A8CF00043461 /* SF-Pro-Rounded-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA912B20A8CF00043461 /* SF-Pro-Rounded-Ultralight.otf */; };
 		45A293352B1335A5002BA248 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293342B1335A5002BA248 /* CustomColorPicker.swift */; };
 		45A293372B135B00002BA248 /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293362B135B00002BA248 /* CurrencyListView.swift */; };
 		45AA89292B0DF5DC007B5873 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 45AA89282B0DF5DC007B5873 /* Currencies.json */; };
@@ -70,7 +78,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		450EDA862B20998B00E562AC /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		451974A92AA4775D0003A4B7 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		451974AB2AA477FA0003A4B7 /* AddTransactionViewControllerDeprecate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerDeprecate.swift; sourceTree = "<group>"; };
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -109,6 +116,15 @@
 		455824582AD081C800434A25 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		459317572B1CA6EF00F493C2 /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4597FA872B209D2500043461 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Light.otf"; sourceTree = "<group>"; };
+		4597FA8A2B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
+		4597FA8B2B20A8CF00043461 /* SF-Pro-Rounded-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Thin.otf"; sourceTree = "<group>"; };
+		4597FA8C2B20A8CF00043461 /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
+		4597FA8D2B20A8CF00043461 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
+		4597FA8E2B20A8CF00043461 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		4597FA8F2B20A8CF00043461 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Bold.otf"; path = "../../../../../../../Library/Fonts/SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
+		4597FA902B20A8CF00043461 /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
+		4597FA912B20A8CF00043461 /* SF-Pro-Rounded-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Ultralight.otf"; sourceTree = "<group>"; };
 		45A293342B1335A5002BA248 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
 		45A293362B135B00002BA248 /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		45AA89282B0DF5DC007B5873 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
@@ -148,7 +164,15 @@
 		450EDA852B20998000E562AC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				450EDA862B20998B00E562AC /* SF-Pro-Rounded-Bold.otf */,
+				4597FA902B20A8CF00043461 /* SF-Pro-Rounded-Black.otf */,
+				4597FA8F2B20A8CF00043461 /* SF-Pro-Rounded-Bold.otf */,
+				4597FA8A2B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf */,
+				4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */,
+				4597FA8C2B20A8CF00043461 /* SF-Pro-Rounded-Medium.otf */,
+				4597FA8D2B20A8CF00043461 /* SF-Pro-Rounded-Regular.otf */,
+				4597FA8E2B20A8CF00043461 /* SF-Pro-Rounded-Semibold.otf */,
+				4597FA8B2B20A8CF00043461 /* SF-Pro-Rounded-Thin.otf */,
+				4597FA912B20A8CF00043461 /* SF-Pro-Rounded-Ultralight.otf */,
 				4597FA872B209D2500043461 /* CustomFonts.swift */,
 			);
 			path = Fonts;
@@ -488,10 +512,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				45AA89292B0DF5DC007B5873 /* Currencies.json in Resources */,
+				4597FA982B20A8CF00043461 /* SF-Pro-Rounded-Bold.otf in Resources */,
+				4597FA952B20A8CF00043461 /* SF-Pro-Rounded-Medium.otf in Resources */,
+				4597FA9A2B20A8CF00043461 /* SF-Pro-Rounded-Ultralight.otf in Resources */,
 				453445A02AFA496E005154DF /* Categories.json in Resources */,
 				45DCB7232A9FB05700B0326F /* LaunchScreen.storyboard in Resources */,
-				450EDA872B20998B00E562AC /* SF-Pro-Rounded-Bold.otf in Resources */,
+				4597FA922B20A8CF00043461 /* SF-Pro-Rounded-Light.otf in Resources */,
+				4597FA962B20A8CF00043461 /* SF-Pro-Rounded-Regular.otf in Resources */,
+				4597FA972B20A8CF00043461 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				45DCB7202A9FB05700B0326F /* Assets.xcassets in Resources */,
+				4597FA992B20A8CF00043461 /* SF-Pro-Rounded-Black.otf in Resources */,
+				4597FA942B20A8CF00043461 /* SF-Pro-Rounded-Thin.otf in Resources */,
+				4597FA932B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
