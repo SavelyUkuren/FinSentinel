@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
 	
 	private func configurations() {
 		configureTransactionsTableView()
+		configureFontLabels()
 		
 		interactor?.fetchTransactions(Home.FetchTransactions.Request())
 		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
@@ -63,6 +64,13 @@ class HomeViewController: UIViewController {
 	private func configureTransactionsTableView() {
 		transactionsTableView.delegate = self
 		transactionsTableView.dataSource = self
+	}
+	
+	private func configureFontLabels() {
+		let font = CustomFonts()
+		balanceAmountLabel.font = font.RoundedBoldFont(balanceAmountLabel.font.pointSize)
+		expenseAmountLabel.font = font.RoundedBoldFont(expenseAmountLabel.font.pointSize)
+		incomeAmountLabel.font = font.RoundedBoldFont(incomeAmountLabel.font.pointSize)
 	}
 	
 	// MARK: Actions

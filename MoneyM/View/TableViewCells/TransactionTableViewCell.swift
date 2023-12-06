@@ -50,7 +50,7 @@ class TransactionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+		configureFont()
     }
     
     public func loadTransaction(transaction: TransactionModel) {
@@ -86,5 +86,10 @@ class TransactionTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
+	
+	private func configureFont() {
+		let font = CustomFonts()
+		amountLabel.font = font.RoundedBoldFont(amountLabel.font.pointSize)
+	}
 
 }
