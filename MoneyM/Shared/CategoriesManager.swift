@@ -10,7 +10,7 @@ import Foundation
 class CategoriesManager {
     public static let shared = CategoriesManager()
     
-    public static var defaultCategory = CategoryModel(id: 0, title: "Category")
+    public static var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("category.title", comment: ""))
     
     public var categoriesData: CategoryData!
     
@@ -22,6 +22,8 @@ class CategoriesManager {
         
         do {
             categoriesData = try readJSONFile(url)
+			categoriesData.expenses = localizeCategories(categoriesData.expenses)
+			categoriesData.incomes = localizeCategories(categoriesData.incomes)
         } catch {
             print ("Error! JSON text is invalid!")
         }
@@ -41,4 +43,10 @@ class CategoriesManager {
         return categories
     }
     
+	private func localizeCategories(_ categories: [CategoryModel]) -> [CategoryModel] {
+		categories.map { model in
+			CategoryModel(id: model.id, title: NSLocalizedString(model.title, comment: ""))
+		}
+	}
+	
 }

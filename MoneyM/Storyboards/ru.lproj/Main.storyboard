@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s4c-8t-CQo">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
@@ -27,14 +27,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-mR-31I">
                                                 <rect key="frame" x="0.0" y="0.0" width="288" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAw-xC-PIL">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAw-xC-PIL" propertyAccessControl="localizable">
                                                         <rect key="frame" x="112" y="8" width="64" height="21.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="balance.title"/>
-                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbD-0D-2Ec">
                                                         <rect key="frame" x="134.5" y="33.5" width="19" height="33.5"/>
@@ -68,9 +65,6 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="expense.title"/>
-                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRf-yK-r1d">
                                                                 <rect key="frame" x="59.5" y="34.5" width="17.5" height="31.5"/>
@@ -100,9 +94,6 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="income.title"/>
-                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLm-t4-PuE">
                                                                 <rect key="frame" x="59.5" y="34.5" width="17.5" height="31.5"/>
@@ -213,7 +204,6 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="add.title"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="addTransactionButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FGj-s3-P0O"/>
@@ -232,11 +222,7 @@
                             <constraint firstItem="RDw-Pm-jqq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="wzW-zK-L4K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="xTH-JM-mVO">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="home.title"/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="xTH-JM-mVO"/>
                     <connections>
                         <outlet property="addTransactionButton" destination="3fi-uJ-srG" id="Rr8-qx-Nfw"/>
                         <outlet property="balanceAmountLabel" destination="DbD-0D-2Ec" id="UAp-pB-IIH"/>
@@ -273,9 +259,6 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="cancel.title"/>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="cancelButtonClicked:" destination="gNX-hj-8dV" eventType="touchUpInside" id="CWO-b4-Tq0"/>
                                                 </connections>
@@ -287,17 +270,11 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Create"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="create.title"/>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="createButtonClicked:" destination="gNX-hj-8dV" eventType="touchUpInside" id="gak-6o-kgh"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="add_transaction.title"/>
-                                        </userDefinedRuntimeAttributes>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -318,9 +295,6 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="amount.title"/>
-                                                        </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKB-uP-OIh" customClass="ButtonChoiceView" customModule="MoneyM" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="88" width="256" height="56"/>
@@ -351,7 +325,6 @@
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <integer key="value" value="12"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="select_category.title"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="selectCategoryButtonClicked:" destination="gNX-hj-8dV" eventType="touchUpInside" id="BBq-ub-Zb6"/>
@@ -371,9 +344,6 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="additional.title"/>
-                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5hK-SL-6v6" userLabel="Additional">
                                                 <rect key="frame" x="16" y="317" width="288" height="160"/>
@@ -392,9 +362,6 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="note.title"/>
-                                                        </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
@@ -474,21 +441,15 @@
                                     <navigationItem title="Select category" id="8cT-yo-GoH">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="5O1-8A-GFl">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="pQk-cu-edy">
-                                                <rect key="frame" x="16" y="5" width="76.5" height="34.5"/>
+                                                <rect key="frame" x="16" y="8" width="75" height="34.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="cancel.title"/>
-                                                </userDefinedRuntimeAttributes>
+                                                <buttonConfiguration key="configuration" style="plain" title="Close"/>
                                                 <connections>
                                                     <action selector="closeButtonClicked:" destination="O6I-qW-rcu" eventType="touchUpInside" id="X3r-e2-zhO"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="select_category.title"/>
-                                        </userDefinedRuntimeAttributes>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -533,7 +494,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s4c-8t-CQo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="iGI-5t-8Fo">
-                        <rect key="frame" x="0.0" y="20" width="320" height="92.5"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="98.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
