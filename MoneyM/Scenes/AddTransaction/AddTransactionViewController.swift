@@ -98,6 +98,11 @@ class AddTransactionViewController: UIViewController {
 		
 		selectCategoryButton.titleLabel?.font = font.RoundedFont(18, .regular)
 	}
+	
+	private func resetCategory() {
+		selectedCategory = CategoriesManager.defaultCategory
+		selectCategoryButton.setTitle(NSLocalizedString("select_category.title", comment: ""), for: .normal)
+	}
 
 	@IBAction func createButtonClicked(_ sender: Any) {
 		
@@ -150,5 +155,6 @@ extension AddTransactionViewController: ButtonChoiceDelegate {
 		case .Second: // Income button
 			amountTextField.textColor = .systemGreen
 		}
+		resetCategory()
 	}
 }
