@@ -12,19 +12,20 @@ protocol SettingsDisplayLogic {
 }
 
 class SettingsMasterViewController: UITableViewController {
-
+	
 	var interactor: SettingsBusinessLogic?
 	
 	private var data: [SettingsModels.TableViewSectionModel] = []
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		setup()
 		
 		let request = SettingsModels.FetchSettings.Request()
 		interactor?.fetchSettings(request)
-    }
+		
+	}
 	
 	private func setup() {
 		let viewController = self
@@ -43,26 +44,26 @@ class SettingsMasterViewController: UITableViewController {
 		dismiss(animated: true)
 	}
 	
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+	// MARK: - Table view data source
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		// #warning Incomplete implementation, return the number of sections
 		return data.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// #warning Incomplete implementation, return the number of rows
 		return data[section].cells.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		
 		cell.textLabel?.text = data[indexPath.section].cells[indexPath.row].title
-
-        return cell
-    }
-
+		
+		return cell
+	}
+	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		data[section].section
 	}
@@ -72,8 +73,10 @@ class SettingsMasterViewController: UITableViewController {
 		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
 		let vc = storyboard.instantiateViewController(withIdentifier: storyboardID)
 		
-		splitViewController?.showDetailViewController(vc, sender: nil)
+		splitViewController?.showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
+		
 	}
+	
 }
 
 
