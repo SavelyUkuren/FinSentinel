@@ -129,17 +129,16 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9v-3A-5Hb">
-                                        <rect key="frame" x="16" y="248" width="288" height="216"/>
+                                        <rect key="frame" x="0.0" y="248" width="320" height="216"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="216" id="BEE-RA-T5N"/>
                                         </constraints>
-                                        <edgeInsets key="layoutMargins" top="8" left="0.10000000000000001" bottom="8" right="0.10000000000000001"/>
                                         <prototypes>
                                             <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="65" id="6Vi-fa-O33" customClass="TransactionTableViewCell" customModule="MoneyM" customModuleProvider="target">
-                                                <rect key="frame" x="0.099999999999994316" y="55.5" width="287.79999999999995" height="65"/>
+                                                <rect key="frame" x="16" y="55.5" width="288" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Vi-fa-O33" id="JH4-25-D5P">
-                                                    <rect key="frame" x="0.0" y="0.0" width="287.80000000000001" height="65"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="288" height="65"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qk-oc-yaV">
@@ -190,11 +189,11 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="s9v-3A-5Hb" firstAttribute="leading" secondItem="8Ct-OM-5Xv" secondAttribute="leading" id="4VA-r1-y7o"/>
-                                    <constraint firstItem="s9v-3A-5Hb" firstAttribute="trailing" secondItem="8Ct-OM-5Xv" secondAttribute="trailing" id="Bfe-DS-qmZ"/>
+                                    <constraint firstItem="s9v-3A-5Hb" firstAttribute="leading" secondItem="RDw-Pm-jqq" secondAttribute="leading" id="VRF-2u-6Ce"/>
                                     <constraint firstAttribute="trailing" secondItem="8Ct-OM-5Xv" secondAttribute="trailing" constant="16" id="XPy-MO-1Gy"/>
                                     <constraint firstItem="8Ct-OM-5Xv" firstAttribute="centerX" secondItem="RDw-Pm-jqq" secondAttribute="centerX" id="dRO-XR-jHr"/>
                                     <constraint firstItem="8Ct-OM-5Xv" firstAttribute="leading" secondItem="RDw-Pm-jqq" secondAttribute="leading" constant="16" id="h5x-bF-tHO"/>
+                                    <constraint firstAttribute="trailing" secondItem="s9v-3A-5Hb" secondAttribute="trailing" id="lfx-Gh-HZR"/>
                                     <constraint firstAttribute="bottom" secondItem="s9v-3A-5Hb" secondAttribute="bottom" constant="50" id="oGp-tk-G7c"/>
                                     <constraint firstItem="8Ct-OM-5Xv" firstAttribute="top" secondItem="RDw-Pm-jqq" secondAttribute="top" constant="16" id="pYc-wP-fr9"/>
                                     <constraint firstItem="s9v-3A-5Hb" firstAttribute="top" secondItem="8Ct-OM-5Xv" secondAttribute="bottom" constant="16" id="ySn-28-gUI"/>
