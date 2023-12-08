@@ -27,9 +27,10 @@ class HomeRoute: HomeRoutingLogic {
 	
 	func routeToSettings() {
 		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-		let vc = storyboard.instantiateViewController(withIdentifier: "Settings") as? SettingsViewController
+		let vc = storyboard.instantiateViewController(withIdentifier: "Settings") as? SettingsSplitViewController
+		vc?.modalPresentationStyle = .overFullScreen
 		
-		viewController?.navigationController?.pushViewController(vc!, animated: true)
+		viewController?.present(vc!, animated: true)
 	}
 	
 }

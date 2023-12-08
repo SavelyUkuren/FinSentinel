@@ -13,6 +13,6 @@ protocol SettingsRoutingLogic {
 
 class SettingsRouter: SettingsRoutingLogic {
 	
-	var viewController: SettingsViewController?
+	var viewController: SettingsMasterViewController?
 	
 }

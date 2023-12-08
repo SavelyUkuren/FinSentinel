@@ -61,11 +61,13 @@
 		4597FAA42B20F49700043461 /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FAA32B20F49700043461 /* CategoryPresenter.swift */; };
 		4597FAA62B20F4AC00043461 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FAA52B20F4AC00043461 /* CategoryModels.swift */; };
 		459F98B62B23357C00BB89D6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459F98B52B23357C00BB89D6 /* Settings.storyboard */; };
-		459F98B92B2336E200BB89D6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98B82B2336E200BB89D6 /* SettingsViewController.swift */; };
+		459F98B92B2336E200BB89D6 /* SettingsSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98B82B2336E200BB89D6 /* SettingsSplitViewController.swift */; };
 		459F98BB2B23390D00BB89D6 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */; };
 		459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98BC2B23391500BB89D6 /* SettingsRouter.swift */; };
 		459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */; };
 		459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98C02B23392500BB89D6 /* SettingsModels.swift */; };
+		459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98C22B23484A00BB89D6 /* SettingsMasterViewController.swift */; };
+		459F98C62B23597500BB89D6 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98C52B23597500BB89D6 /* CurrencyViewController.swift */; };
 		45A293352B1335A5002BA248 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293342B1335A5002BA248 /* CustomColorPicker.swift */; };
 		45A293372B135B00002BA248 /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293362B135B00002BA248 /* CurrencyListView.swift */; };
 		45AA89292B0DF5DC007B5873 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 45AA89282B0DF5DC007B5873 /* Currencies.json */; };
@@ -144,11 +146,13 @@
 		4597FAA32B20F49700043461 /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		4597FAA52B20F4AC00043461 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
 		459F98B52B23357C00BB89D6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		459F98B82B2336E200BB89D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		459F98B82B2336E200BB89D6 /* SettingsSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSplitViewController.swift; sourceTree = "<group>"; };
 		459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		459F98BC2B23391500BB89D6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		459F98C02B23392500BB89D6 /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
+		459F98C22B23484A00BB89D6 /* SettingsMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMasterViewController.swift; sourceTree = "<group>"; };
+		459F98C52B23597500BB89D6 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		45A293342B1335A5002BA248 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
 		45A293362B135B00002BA248 /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		45AA89282B0DF5DC007B5873 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
@@ -369,13 +373,23 @@
 		459F98B72B2336CC00BB89D6 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				459F98B82B2336E200BB89D6 /* SettingsViewController.swift */,
+				459F98C42B23595000BB89D6 /* ViewControllers */,
+				459F98C02B23392500BB89D6 /* SettingsModels.swift */,
+				459F98C22B23484A00BB89D6 /* SettingsMasterViewController.swift */,
+				459F98B82B2336E200BB89D6 /* SettingsSplitViewController.swift */,
 				459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */,
 				459F98BC2B23391500BB89D6 /* SettingsRouter.swift */,
 				459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */,
-				459F98C02B23392500BB89D6 /* SettingsModels.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		459F98C42B23595000BB89D6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				459F98C52B23597500BB89D6 /* CurrencyViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		45A293382B135B04002BA248 /* Currency */ = {
@@ -604,6 +618,7 @@
 				459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
 				4533EE152B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift in Sources */,
+				459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
 				452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */,
 				45E9FE092B19841000783D27 /* AddTransactionInteractor.swift in Sources */,
@@ -614,12 +629,13 @@
 				45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */,
 				4597FAA62B20F4AC00043461 /* CategoryModels.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
-				459F98B92B2336E200BB89D6 /* SettingsViewController.swift in Sources */,
+				459F98B92B2336E200BB89D6 /* SettingsSplitViewController.swift in Sources */,
 				4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */,
 				4597FAA22B20F47400043461 /* CategoryInteractor.swift in Sources */,
 				45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */,
 				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
+				459F98C62B23597500BB89D6 /* CurrencyViewController.swift in Sources */,
 				45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */,
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				4597FA9E2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift in Sources */,
