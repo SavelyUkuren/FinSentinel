@@ -28,6 +28,7 @@ class AddTransactionInteractor: AddTransactionBusinessLogic {
 		model.date = date
 		model.mode = request.mode
 		model.categoryID = request.category?.id
+		model.note = request.note
 		
 		let response = AddTransactionModels.CreateTransaction.Response(transactionModel: model,
 																	   hasError: false,

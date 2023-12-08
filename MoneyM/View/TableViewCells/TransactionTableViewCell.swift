@@ -61,6 +61,7 @@ class TransactionTableViewCell: UITableViewCell {
         
         amountLabel.text = "\(transaction.amount ?? 0) \(currencySymbol)"
         categoryLabel.text = category.title
+		noteLabel.text = transaction.note
         
         switch transaction.mode {
         case .Expense:
