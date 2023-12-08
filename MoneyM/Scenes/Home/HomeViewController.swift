@@ -113,15 +113,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 		
 		let numberOfRows = tableView.numberOfRows(inSection: indexPath.section)
 		let transactionCell = (cell as! TransactionTableViewCell)
-		transactionCell.layer.cornerRadius = 0
-		
-		if numberOfRows == 1 {
-			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
-		} else if indexPath.row == 0 {
-			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight])
-		} else if indexPath.row == numberOfRows - 1 {
-			transactionCell.roundCorner(radius: 12, corners: [.bottomLeft, .bottomRight])
-		}
+//		transactionCell.layer.cornerRadius = 0
+//		
+//		if numberOfRows == 1 {
+//			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
+//		} else if indexPath.row == 0 {
+//			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight])
+//		} else if indexPath.row == numberOfRows - 1 {
+//			transactionCell.roundCorner(radius: 12, corners: [.bottomLeft, .bottomRight])
+//		}
 		
 		scrollViewHeightConstraint.constant = tableView.contentSize.height
 	}
