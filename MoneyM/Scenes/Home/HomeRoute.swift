@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeRoutingLogic {
 	func routeToAddNewTransaction()
+	func routeToSettings()
 }
 
 class HomeRoute: HomeRoutingLogic {
@@ -22,6 +23,13 @@ class HomeRoute: HomeRoutingLogic {
 		vc?.delegate = viewController
 		
 		viewController?.present(vc!, animated: true)
+	}
+	
+	func routeToSettings() {
+		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+		let vc = storyboard.instantiateViewController(withIdentifier: "Settings") as? SettingsViewController
+		
+		viewController?.navigationController?.pushViewController(vc!, animated: true)
 	}
 	
 }

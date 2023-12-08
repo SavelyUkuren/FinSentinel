@@ -232,6 +232,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="xTH-JM-mVO">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="d5h-P5-YC6">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dew-GH-LjN">
+                                <rect key="frame" x="229" y="4.5" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="gear" catalog="system"/>
+                                <connections>
+                                    <action selector="settingsButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hhA-Yd-Pcc"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="home.title"/>
                         </userDefinedRuntimeAttributes>
@@ -473,7 +484,7 @@
                                     <navigationItem title="Select category" id="8cT-yo-GoH">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="5O1-8A-GFl">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="pQk-cu-edy">
-                                                <rect key="frame" x="16" y="5" width="76.5" height="34.5"/>
+                                                <rect key="frame" x="16" y="8" width="76.5" height="34.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
@@ -546,6 +557,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="128" height="122"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

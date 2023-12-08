@@ -79,6 +79,9 @@ class HomeViewController: UIViewController {
 		router?.routeToAddNewTransaction()
 	}
 	
+	@IBAction func settingsButtonClicked(_ sender: Any) {
+		router?.routeToSettings()
+	}
 }
 
 // MARK: - Display logic

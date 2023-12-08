@@ -60,6 +60,12 @@
 		4597FAA22B20F47400043461 /* CategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FAA12B20F47400043461 /* CategoryInteractor.swift */; };
 		4597FAA42B20F49700043461 /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FAA32B20F49700043461 /* CategoryPresenter.swift */; };
 		4597FAA62B20F4AC00043461 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FAA52B20F4AC00043461 /* CategoryModels.swift */; };
+		459F98B62B23357C00BB89D6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459F98B52B23357C00BB89D6 /* Settings.storyboard */; };
+		459F98B92B2336E200BB89D6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98B82B2336E200BB89D6 /* SettingsViewController.swift */; };
+		459F98BB2B23390D00BB89D6 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */; };
+		459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98BC2B23391500BB89D6 /* SettingsRouter.swift */; };
+		459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */; };
+		459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F98C02B23392500BB89D6 /* SettingsModels.swift */; };
 		45A293352B1335A5002BA248 /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293342B1335A5002BA248 /* CustomColorPicker.swift */; };
 		45A293372B135B00002BA248 /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A293362B135B00002BA248 /* CurrencyListView.swift */; };
 		45AA89292B0DF5DC007B5873 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 45AA89282B0DF5DC007B5873 /* Currencies.json */; };
@@ -137,6 +143,12 @@
 		4597FAA12B20F47400043461 /* CategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInteractor.swift; sourceTree = "<group>"; };
 		4597FAA32B20F49700043461 /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		4597FAA52B20F4AC00043461 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
+		459F98B52B23357C00BB89D6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		459F98B82B2336E200BB89D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		459F98BC2B23391500BB89D6 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		459F98C02B23392500BB89D6 /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		45A293342B1335A5002BA248 /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
 		45A293362B135B00002BA248 /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		45AA89282B0DF5DC007B5873 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
@@ -213,6 +225,7 @@
 		4533EE052B18CF1100A92713 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				459F98B72B2336CC00BB89D6 /* Settings */,
 				4597FAA02B20EE6D00043461 /* Categories */,
 				452A71592B191FC90015E524 /* AddTransaction */,
 				4533EE062B18CF1900A92713 /* Home */,
@@ -236,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				45DCB7192A9FB05500B0326F /* Main.storyboard */,
+				459F98B52B23357C00BB89D6 /* Settings.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -350,6 +364,18 @@
 				453445A12AFA533B005154DF /* CategoryData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		459F98B72B2336CC00BB89D6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				459F98B82B2336E200BB89D6 /* SettingsViewController.swift */,
+				459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */,
+				459F98BC2B23391500BB89D6 /* SettingsRouter.swift */,
+				459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */,
+				459F98C02B23392500BB89D6 /* SettingsModels.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		45A293382B135B04002BA248 /* Currency */ = {
@@ -549,6 +575,7 @@
 				4597FA972B20A8CF00043461 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				45DCB7202A9FB05700B0326F /* Assets.xcassets in Resources */,
 				4597FA992B20A8CF00043461 /* SF-Pro-Rounded-Black.otf in Resources */,
+				459F98B62B23357C00BB89D6 /* Settings.storyboard in Resources */,
 				4562148D2B22E425000C5A29 /* Localizable.xcstrings in Resources */,
 				4597FA942B20A8CF00043461 /* SF-Pro-Rounded-Thin.otf in Resources */,
 				4597FA932B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf in Resources */,
@@ -574,6 +601,7 @@
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
 				45DCB7182A9FB05500B0326F /* HomeViewControllerOutdated.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
+				459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
 				4533EE152B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
@@ -586,6 +614,7 @@
 				45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */,
 				4597FAA62B20F4AC00043461 /* CategoryModels.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
+				459F98B92B2336E200BB89D6 /* SettingsViewController.swift in Sources */,
 				4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */,
 				4597FAA22B20F47400043461 /* CategoryInteractor.swift in Sources */,
 				45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */,
@@ -597,15 +626,18 @@
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,
 				453445A82AFAB508005154DF /* TransactionEditorViewProtocol.swift in Sources */,
 				451974AA2AA4775D0003A4B7 /* AddTransactionView.swift in Sources */,
+				459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */,
 				45AA89332B11B77D007B5873 /* SettingsView.swift in Sources */,
 				4533EE0F2B18F5F200A92713 /* HomeModels.swift in Sources */,
 				453445A22AFA533B005154DF /* CategoryData.swift in Sources */,
 				45DCB72E2A9FB5C300B0326F /* HomeView.swift in Sources */,
 				453445922AFA1F6C005154DF /* SummaryView.swift in Sources */,
+				459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */,
 				45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */,
 				4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */,
 				4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */,
 				456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */,
+				459F98BB2B23390D00BB89D6 /* SettingsInteractor.swift in Sources */,
 				45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */,
 				456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */,
 				45E9FE0D2B1A5E2300783D27 /* AddTransactionRouter.swift in Sources */,
