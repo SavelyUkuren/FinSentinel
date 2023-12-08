@@ -8,6 +8,12 @@
             "state" : "new",
             "value" : "%1$@ %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
         }
       }
     },
@@ -18,6 +24,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add transaction"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить транзакцию"
           }
         }
       }
@@ -30,6 +42,12 @@
             "state" : "translated",
             "value" : "Add"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить"
+          }
         }
       }
     },
@@ -40,6 +58,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Additional"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительно"
           }
         }
       }
@@ -52,6 +76,12 @@
             "state" : "translated",
             "value" : "Amount"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сумма"
+          }
         }
       }
     },
@@ -62,6 +92,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Balance"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Баланс"
           }
         }
       }
@@ -74,6 +110,12 @@
             "state" : "translated",
             "value" : "Business"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бизнес"
+          }
         }
       }
     },
@@ -84,6 +126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назад"
           }
         }
       }
@@ -96,6 +144,12 @@
             "state" : "translated",
             "value" : "Category"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категория"
+          }
         }
       }
     },
@@ -106,6 +160,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clothing"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Одежда"
           }
         }
       }
@@ -118,14 +178,34 @@
             "state" : "translated",
             "value" : "Create"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать"
+          }
         }
       }
     },
     "Currency" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Валюта"
+          }
+        }
+      }
     },
     "Currency %@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Валюта"
+          }
+        }
+      }
     },
     "debts.category" : {
       "extractionState" : "manual",
@@ -134,6 +214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Debts"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Долги"
           }
         }
       }
@@ -146,6 +232,12 @@
             "state" : "translated",
             "value" : "Education"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Образование"
+          }
         }
       }
     },
@@ -156,6 +248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entertainment"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Развлечения"
           }
         }
       }
@@ -168,6 +266,12 @@
             "state" : "translated",
             "value" : "Expense"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расходы"
+          }
         }
       }
     },
@@ -178,6 +282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Food"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еда"
           }
         }
       }
@@ -190,6 +300,12 @@
             "state" : "translated",
             "value" : "Freelance"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фриланс"
+          }
         }
       }
     },
@@ -200,6 +316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Healthcare"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здоровье"
           }
         }
       }
@@ -212,6 +334,12 @@
             "state" : "translated",
             "value" : "Home"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главная"
+          }
         }
       }
     },
@@ -222,6 +350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Housing"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дом"
           }
         }
       }
@@ -234,6 +368,12 @@
             "state" : "translated",
             "value" : "Income"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доходы"
+          }
         }
       }
     },
@@ -245,11 +385,25 @@
             "state" : "translated",
             "value" : "Investments"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инвестиции"
+          }
         }
       }
     },
     "Key" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        }
+      }
     },
     "note.title" : {
       "extractionState" : "manual",
@@ -258,6 +412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заметка"
           }
         }
       }
@@ -270,6 +430,12 @@
             "state" : "translated",
             "value" : "Other"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другое"
+          }
         }
       }
     },
@@ -280,6 +446,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pension"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пенсия"
           }
         }
       }
@@ -292,6 +464,12 @@
             "state" : "translated",
             "value" : "Rental Income"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рентный доход"
+          }
         }
       }
     },
@@ -302,6 +480,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salary"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зарплата"
           }
         }
       }
@@ -314,6 +498,12 @@
             "state" : "translated",
             "value" : "Savings"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбережения"
+          }
         }
       }
     },
@@ -325,11 +515,24 @@
             "state" : "translated",
             "value" : "Select category"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать категорию"
+          }
         }
       }
     },
     "Settings" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
     },
     "transportation.category" : {
       "extractionState" : "manual",
@@ -338,6 +541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transportation"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Транспорт"
           }
         }
       }
@@ -349,6 +558,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utilities"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коммунальные услуги"
           }
         }
       }

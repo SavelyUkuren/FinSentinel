@@ -76,8 +76,8 @@ class AddTransactionViewController: UIViewController {
 	}
 	
 	private func configureChoiceButton() {
-		choiceButton.setButtonTitle("Expense", button: .First)
-		choiceButton.setButtonTitle("Income", button: .Second)
+		choiceButton.setButtonTitle(NSLocalizedString("expense.title", comment: ""), button: .First)
+		choiceButton.setButtonTitle(NSLocalizedString("income.title", comment: ""), button: .Second)
 		choiceButton.delegate = self
 	}
 	
