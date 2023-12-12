@@ -175,9 +175,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TransactionTableViewCell
-		
 		let transaction = transactionsArray[indexPath.section].transactions[indexPath.row]
+		let cell: TransactionTableViewCell
+		
+		if transaction.note.isEmpty {
+			cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell") as! TransactionTableViewCell
+		} else {
+			cell = tableView.dequeueReusableCell(withIdentifier: "cellWithNote") as! TransactionTableViewCell_Note
+		}
+		
 		cell.loadTransaction(transaction: transaction)
 		
 		return cell

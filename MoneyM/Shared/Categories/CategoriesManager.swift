@@ -10,7 +10,7 @@ import Foundation
 class CategoriesManager {
     public static let shared = CategoriesManager()
     
-    public var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("category.title", comment: ""))
+    public var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("category.title", comment: ""), icon: "questionmark")
     
     public var categoriesData: CategoryData!
     
@@ -45,7 +45,7 @@ class CategoriesManager {
     
 	private func localizeCategories(_ categories: [CategoryModel]) -> [CategoryModel] {
 		categories.map { model in
-			CategoryModel(id: model.id, title: NSLocalizedString(model.title, comment: ""))
+			CategoryModel(id: model.id, title: NSLocalizedString(model.title, comment: ""), icon: model.icon)
 		}
 	}
 	

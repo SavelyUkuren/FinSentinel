@@ -66,9 +66,11 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CategoryTableViewCell
         
-		cell.textLabel?.text = categoriesArray[indexPath.row].title
+		let category = categoriesArray[indexPath.row]
+		cell.categoryTitle.text = category.title
+		cell.iconImageView.image = UIImage(systemName: category.icon)
         
         return cell
     }
@@ -78,6 +80,10 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
 		delegate?.selectButtonClicked(category: categoriesArray[indexPath.row])
 		dismiss(animated: true)
     }
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		50
+	}
     
 }
 

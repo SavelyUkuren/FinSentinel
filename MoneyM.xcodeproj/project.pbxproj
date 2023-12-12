@@ -66,6 +66,8 @@
 		45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */; };
 		45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */; };
 		45D65E102B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */; };
+		45D65E122B28AA4200C4A1F8 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */; };
+		45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7192A9FB05500B0326F /* Main.storyboard */; };
@@ -140,6 +142,8 @@
 		45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionModels.swift; sourceTree = "<group>"; };
 		45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionRouter.swift; sourceTree = "<group>"; };
 		45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionTableViewCell+Note.swift"; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */,
+				45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */,
+				45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -295,7 +301,7 @@
 				45CA350E2B2874710070E4A9 /* TransactionModel */,
 				453BBA4E2B28498100C9E67B /* Settings */,
 				4597FA9F2B20B0C200043461 /* CoreData */,
-				453445942AFA4170005154DF /* CategoriesManager.swift */,
+				45D65E132B28ACF600C4A1F8 /* Categories */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -315,22 +321,12 @@
 		4597FAA02B20EE6D00043461 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4597FAA72B20F9CB00043461 /* Models */,
 				4597FAA52B20F4AC00043461 /* CategoryModels.swift */,
 				45326F4A2AB603D900301729 /* CategoryViewController.swift */,
 				4597FAA12B20F47400043461 /* CategoryInteractor.swift */,
 				4597FAA32B20F49700043461 /* CategoryPresenter.swift */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		4597FAA72B20F9CB00043461 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				45326F4C2AB603F300301729 /* CategoryModel.swift */,
-				453445A12AFA533B005154DF /* CategoryData.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		459F98B72B2336CC00BB89D6 /* Settings */ = {
@@ -375,6 +371,16 @@
 				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
 			);
 			path = TransactionModel;
+			sourceTree = "<group>";
+		};
+		45D65E132B28ACF600C4A1F8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				45326F4C2AB603F300301729 /* CategoryModel.swift */,
+				453445A12AFA533B005154DF /* CategoryData.swift */,
+				453445942AFA4170005154DF /* CategoriesManager.swift */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		45DCB7072A9FB05500B0326F = {
@@ -542,10 +548,12 @@
 				45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */,
 				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,
 				458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */,
+				45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */,
 				4597FA9E2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift in Sources */,
 				459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */,
 				4533EE0F2B18F5F200A92713 /* HomeModels.swift in Sources */,
 				453445A22AFA533B005154DF /* CategoryData.swift in Sources */,
+				45D65E122B28AA4200C4A1F8 /* CategoryTableViewCell.swift in Sources */,
 				459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */,
 				45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */,
 				4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */,

@@ -35,8 +35,6 @@ class TransactionTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var amountLabel: UILabel!
 	
-	@IBOutlet weak var noteLabel: UILabel!
-	
 	@IBOutlet weak var categoryImageView: UIImageView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,8 +59,8 @@ class TransactionTableViewCell: UITableViewCell {
         
         amountLabel.text = "\(transaction.amount ?? 0) \(currencySymbol)"
         categoryLabel.text = category.title
-		noteLabel.text = transaction.note
-        
+		categoryImageView.image = UIImage(systemName: category.icon)
+		
         switch transaction.mode {
         case .Expense:
 			amountLabel.textColor = .systemRed

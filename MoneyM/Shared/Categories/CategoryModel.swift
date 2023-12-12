@@ -10,4 +10,5 @@ import Foundation
 struct CategoryModel: Codable {
     var id: Int
     var title: String
+	var icon: String
 }
