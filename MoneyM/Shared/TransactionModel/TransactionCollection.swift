@@ -134,6 +134,10 @@ class TransactionCollection {
 		data.removeAll()
 	}
 	
+	func setStartingBalance(_ value: Int) {
+		summary.startingBalance = value
+	}
+	
 	func printTransactions() {
 		for tData in data {
 			print ("\(getDateComponent(tData.date).day!) \(getDateComponent(tData.date).month!)")

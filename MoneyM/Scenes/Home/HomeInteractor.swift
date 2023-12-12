@@ -14,6 +14,7 @@ protocol HomeBusinessLogic {
 	func addTransaction(request: Home.AddTransaction.Request)
 	func removeTransaction(request: Home.RemoveTransaction.Request)
 	func editTransaction(_ request: Home.EditTransaction.Request)
+	func editStartingBalance(_ request: Home.EditStartingBalance.Request)
 }
 
 // MARK: - Business logic
@@ -23,10 +24,21 @@ class HomeInteractor: HomeBusinessLogic {
 	
 	private let transactionCollection: TransactionCollection
 	
+	private var (year, month) = (0, 0)
+	
 	init() {
 		transactionCollection = TransactionCollection()
 		
+		(year, month) = currentDate()
+		
 		print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+	}
+	
+	private func currentDate() -> (year: Int, month: Int) {
+		let calendar = Calendar.current
+		let dateComponents = calendar.dateComponents([.year, .month], from: Date.now)
+		
+		return (year: dateComponents.year!, month: dateComponents.month!)
 	}
 	
 	// MARK: HomeBusinessLogic
@@ -34,10 +46,11 @@ class HomeInteractor: HomeBusinessLogic {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
 		
 		let coreDataManager = CoreDataManager()
-		let arr = coreDataManager.load(year: 2023, month: 12)
+		let arr = coreDataManager.load(year: year, month: month)
 		
 		transactionCollection.removeAll()
 		transactionCollection.add(arr)
+		transactionCollection.setStartingBalance(coreDataManager.startingBalance)
 		
 		let data = transactionCollection.data
 		let response = Home.FetchTransactions.Response(data: data)
@@ -80,5 +93,16 @@ class HomeInteractor: HomeBusinessLogic {
 		
 		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
 		presenter?.presentTransactions(response)
+	}
+	
+	func editStartingBalance(_ request: Home.EditStartingBalance.Request) {
+		let balance = Int(request.newBalance) ?? 0
+		transactionCollection.setStartingBalance(balance)
+		
+		let coreDataManager = CoreDataManager()
+		coreDataManager.editStartingBalance(year: year, month: month, newBalance: balance)
+		
+		let response = Home.RemoveTransaction.Response(data: transactionCollection.data)
+		presenter?.presentRemoveTransaction(response)
 	}
 }

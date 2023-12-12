@@ -39,6 +39,12 @@ struct Home {
 		}
 	}
 	
+	struct EditStartingBalance {
+		struct Request {
+			let newBalance: String
+		}
+	}
+	
 	struct FetchFinancialSummary {
 		struct Request {
 			

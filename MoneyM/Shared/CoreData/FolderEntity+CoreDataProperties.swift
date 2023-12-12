@@ -2,7 +2,7 @@
 //  FolderEntity+CoreDataProperties.swift
 //  MoneyM
 //
-//  Created by Air on 30.11.2023.
+//  Created by savik on 12.12.2023.
 //
 //
 
@@ -18,6 +18,7 @@ extension FolderEntity {
 
     @NSManaged public var month: Int16
     @NSManaged public var year: Int16
+    @NSManaged public var startingBalance: Int64
     @NSManaged public var transactions: NSSet?
 
 }

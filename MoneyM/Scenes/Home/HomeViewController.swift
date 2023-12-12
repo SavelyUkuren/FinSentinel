@@ -82,6 +82,28 @@ class HomeViewController: UIViewController {
 											   name: Notifications.Currency, object: nil)
 	}
 	
+	private func showEditBalanceAlert() {
+		let alert = UIAlertController(title: "Edit starting balance",
+									  message: nil,
+									  preferredStyle: .alert)
+		
+		alert.addTextField { textField in
+			textField.placeholder = NSLocalizedString("balance.title", comment: "")
+			textField.keyboardType = .decimalPad
+		}
+		
+		alert.addAction(UIAlertAction(title: NSLocalizedString("edit.title", comment: ""),
+									  style: .default,
+									  handler: { _ in
+			let newBalance = alert.textFields![0].text!
+			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
+			self.interactor?.editStartingBalance(request)
+		}))
+		
+		
+		present(alert, animated: true)
+	}
+	
 	@objc
 	private func changeCurrency() {
 		interactor?.fetchTransactions(Home.FetchTransactions.Request())
@@ -96,6 +118,11 @@ class HomeViewController: UIViewController {
 	@IBAction func settingsButtonClicked(_ sender: Any) {
 		router?.routeToSettings()
 	}
+	
+	@IBAction func balanceButtonClicked(_ sender: Any) {
+		showEditBalanceAlert()
+	}
+	
 }
 
 // MARK: - Display logic

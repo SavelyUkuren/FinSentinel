@@ -17,7 +17,6 @@
 		4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE0C2B18D31F00A92713 /* HomePresenter.swift */; };
 		4533EE0F2B18F5F200A92713 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE0E2B18F5F200A92713 /* HomeModels.swift */; };
 		4533EE142B18F99F00A92713 /* FolderEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE102B18F99F00A92713 /* FolderEntity+CoreDataClass.swift */; };
-		4533EE152B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE112B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift */; };
 		4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534458E2AF9287B005154DF /* CoreDataManager.swift */; };
 		453445952AFA4170005154DF /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445942AFA4170005154DF /* CategoriesManager.swift */; };
 		453445A02AFA496E005154DF /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 4534459F2AFA496E005154DF /* Categories.json */; };
@@ -66,6 +65,7 @@
 		45CA35092B2855200070E4A9 /* EditTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA35082B2855200070E4A9 /* EditTransactionPresenter.swift */; };
 		45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */; };
 		45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */; };
+		45D65E102B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7192A9FB05500B0326F /* Main.storyboard */; };
@@ -91,7 +91,6 @@
 		4533EE0C2B18D31F00A92713 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		4533EE0E2B18F5F200A92713 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		4533EE102B18F99F00A92713 /* FolderEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4533EE112B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4534458E2AF9287B005154DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		453445942AFA4170005154DF /* CategoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesManager.swift; sourceTree = "<group>"; };
 		4534459F2AFA496E005154DF /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		45CA35082B2855200070E4A9 /* EditTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionPresenter.swift; sourceTree = "<group>"; };
 		45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionModels.swift; sourceTree = "<group>"; };
 		45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionRouter.swift; sourceTree = "<group>"; };
+		45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -305,8 +305,8 @@
 			children = (
 				4597FA9B2B20B0A000043461 /* TransactionEntity+CoreDataClass.swift */,
 				4597FA9C2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift */,
+				45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */,
 				4533EE102B18F99F00A92713 /* FolderEntity+CoreDataClass.swift */,
-				4533EE112B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift */,
 				4534458E2AF9287B005154DF /* CoreDataManager.swift */,
 			);
 			path = CoreData;
@@ -517,7 +517,6 @@
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
 				459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
-				4533EE152B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift in Sources */,
 				459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */,
 				45CA35092B2855200070E4A9 /* EditTransactionPresenter.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
@@ -538,6 +537,7 @@
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,
 				459F98C62B23597500BB89D6 /* CurrencyViewController.swift in Sources */,
 				45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */,
+				45D65E102B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift in Sources */,
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */,
 				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,

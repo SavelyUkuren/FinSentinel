@@ -20,6 +20,8 @@ protocol CoreDataManagerProtocol {
 class CoreDataManager: CoreDataManagerProtocol {
     
     private var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	
+	private(set) var startingBalance: Int = 0
     
     func load(year: Int, month: Int) -> [TransactionModel] {
         var transactionsArray: [TransactionModel] = []
@@ -34,6 +36,7 @@ class CoreDataManager: CoreDataManagerProtocol {
 				transactionsArray.append(model)
 			}
 			
+			startingBalance = Int(unwrapFolder.startingBalance)
 		}
         
         return transactionsArray
@@ -97,6 +100,13 @@ class CoreDataManager: CoreDataManagerProtocol {
         
         save()
     }
+	
+	func editStartingBalance(year: Int, month: Int, newBalance: Int) {
+		let folder = getFolderBy(year: year, month: month)
+		folder?.startingBalance = Int64(newBalance)
+		
+		save()
+	}
     
     public func save() {
         do {
