@@ -1,82 +1,96 @@
 {
-    "expenses": [
-        {
-            "id": 1,
-            "title": "Groceries"
-        },
-        {
-            "id": 2,
-            "title": "Transportation"
-        },
-        {
-            "id": 3,
-            "title": "Housing"
-        },
-        {
-            "id": 4,
-            "title": "Healthcare"
-        },
-        {
-            "id": 5,
-            "title": "Entertainment"
-        },
-        {
-            "id": 6,
-            "title": "Clothing"
-        },
-        {
-            "id": 7,
-            "title": "Education"
-        },
-        {
-            "id": 8,
-            "title": "Savings"
-        },
-        {
-            "id": 9,
-            "title": "Debts"
-        },
-        {
-            "id": 10,
-            "title": "Other"
-        },
-    ],
-    "incomes": [
-        {
-            "id": 11,
-            "title": "Salary"
-        },
-        {
-            "id": 12,
-            "title": "Freelance"
-        },
-        {
-            "id": 13,
-            "title": "Investments"
-        },
-        {
-            "id": 14,
-            "title": "Rental Income"
-        },
-        {
-            "id": 15,
-            "title": "Renting Out"
-        },
-        {
-            "id": 16,
-            "title": "Business"
-        },
-        {
-            "id": 17,
-            "title": "Pension"
-        },
-        {
-            "id": 18,
-            "title": "Partnership Rewards"
-        },
-        {
-            "id": 19,
-            "title": "Other"
-        }
-    ]
+	"expenses": [
+		{
+			"id": 1,
+			"title": "food.category",
+			"icon": "fork.knife"
+		},
+		{
+			"id": 2,
+			"title": "transportation.category",
+			"icon": "car.fill"
+		},
+		{
+			"id": 3,
+			"title": "housing.category",
+			"icon": "house.fill"
+		},
+		{
+			"id": 4,
+			"title": "healthcare.category",
+			"icon": "staroflife.fill"
+		},
+		{
+			"id": 5,
+			"title": "entertainment.category",
+			"icon": "gamecontroller.fill"
+		},
+		{
+			"id": 6,
+			"title": "clothing.category",
+			"icon": "tshirt.fill"
+		},
+		{
+			"id": 7,
+			"title": "education.category",
+			"icon": "book.fill"
+		},
+		{
+			"id": 8,
+			"title": "savings.category",
+			"icon": "dollarsign.arrow.circlepath"
+		},
+		{
+			"id": 9,
+			"title": "debts.category",
+			"icon": "creditcard.fill"
+		},
+		{
+			"id": 10,
+			"title": "utilities.category",
+			"icon": "hammer.fill"
+		},
+		{
+			"id": 11,
+			"title": "other.category",
+			"icon": "ellipsis.circle.fill"
+		}
+	],
+	"incomes": [
+		{
+			"id": 12,
+			"title": "salary.category",
+			"icon": "dollarsign.circle.fill"
+		},
+		{
+			"id": 13,
+			"title": "freelance.category",
+			"icon": "brain.head.profile"
+		},
+		{
+			"id": 14,
+			"title": "investments.category",
+			"icon": "chart.pie.fill"
+		},
+		{
+			"id": 15,
+			"title": "rental_income.category",
+			"icon": "house.fill"
+		},
+		{
+			"id": 16,
+			"title": "business.category",
+			"icon": "briefcase.fill"
+		},
+		{
+			"id": 17,
+			"title": "pension.category",
+			"icon": "person.2.fill"
+		},
+		{
+			"id": 18,
+			"title": "other.category",
+			"icon": "ellipsis.circle.fill"
+		}
+	]
 }
