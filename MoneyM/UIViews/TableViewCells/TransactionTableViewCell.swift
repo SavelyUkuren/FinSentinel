@@ -57,18 +57,13 @@ class TransactionTableViewCell: UITableViewCell {
 		let defaultCategory = CategoriesManager.shared.defaultCategory
         let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID ?? 0) ?? defaultCategory
         
-        amountLabel.text = "\(transaction.amount ?? 0) \(currencySymbol)"
+		let operatorSymbol = transaction.mode == .Expense ? "-" : "+"
+		
+        amountLabel.text = "\(operatorSymbol)\(transaction.amount ?? 0) \(currencySymbol)"
         categoryLabel.text = category.title
 		categoryImageView.image = UIImage(systemName: category.icon)
 		
-        switch transaction.mode {
-        case .Expense:
-			amountLabel.textColor = .systemRed
-        case .Income:
-			amountLabel.textColor = .systemGreen
-        case .none:
-            break
-        }
+		amountLabel.textColor = transaction.mode == .Expense ? .systemRed : .systemGreen
 		
     }
 	

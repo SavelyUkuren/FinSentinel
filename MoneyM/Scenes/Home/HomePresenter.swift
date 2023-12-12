@@ -36,9 +36,13 @@ class HomePresenter: HomePresentationLogic {
 	
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response) {
 		let currency = Settings.shared.model.currency.symbol
+		
+		let expenseOperator = abs(response.summary.expense) == 0 ? "" : "-"
+		let incomeOperator = response.summary.income == 0 ? "" : "+"
 		let balance = "\(response.summary.balance) \(currency)"
-		let expense = "\(response.summary.expense) \(currency)"
-		let income = "\(response.summary.income) \(currency)"
+		let expense = "\(expenseOperator)\(abs(response.summary.expense)) \(currency)"
+		let income = "\(incomeOperator)\(response.summary.income) \(currency)"
+		
 		let balanceColor: UIColor = response.summary.balance < 0 ? .systemRed : .systemGreen
 		
 		let viewModel = Home.FetchFinancialSummary.ViewModel(balanceColor: balanceColor,
