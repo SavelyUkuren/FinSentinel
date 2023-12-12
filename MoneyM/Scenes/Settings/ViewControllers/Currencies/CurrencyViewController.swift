@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CurrencyViewControllerDelegate {
+	func didSelectCurrency(_ currency: CurrencyModel)
+}
+
 class CurrencyViewController: UIViewController {
+	
+	public var delegate: CurrencyViewControllerDelegate?
 
 	@IBOutlet weak var currenciesTableView: UITableView!
 	
@@ -17,6 +23,8 @@ class CurrencyViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		title = NSLocalizedString("currency.title", comment: "")
 		
 		currenciesTableView.delegate = self
 		currenciesTableView.dataSource = self
@@ -43,5 +51,15 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
 		return cell
 	}
 	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+		
+		let currency = currenciesArray[indexPath.row]
+		delegate?.didSelectCurrency(currency)
+	}
+	
+	func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+		tableView.cellForRow(at: indexPath)?.accessoryType = .none
+	}
 	
 }

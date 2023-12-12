@@ -24,7 +24,8 @@ class HomePresenter: HomePresentationLogic {
 	}
 	
 	func presentTransactions(_ response: Home.FetchTransactions.Response) {
-		let result: [Home.TransactionTableViewCellModel] = response.data.map { tData in
+		let sortedData = response.data.sorted { $0.date > $1.date }
+		let result: [Home.TransactionTableViewCellModel] = sortedData.map { tData in
 			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
 											   transactions: tData.transactions)
 		}

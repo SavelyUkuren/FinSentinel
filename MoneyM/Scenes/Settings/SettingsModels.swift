@@ -32,4 +32,16 @@ struct SettingsModels {
 		}
 	}
 	
+	struct ChangeCurrency {
+		struct Request {
+			var currency: CurrencyModel
+		}
+		struct Response {
+			
+		}
+		struct ViewModel {
+			
+		}
+	}
+	
 }

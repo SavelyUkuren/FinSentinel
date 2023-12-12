@@ -9,6 +9,7 @@ import UIKit
 
 protocol SettingsDisplayLogic {
 	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel)
+	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel)
 }
 
 class SettingsMasterViewController: UITableViewController {
@@ -73,6 +74,8 @@ class SettingsMasterViewController: UITableViewController {
 		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
 		let vc = storyboard.instantiateViewController(withIdentifier: storyboardID)
 		
+		(vc as? CurrencyViewController)?.delegate = self
+		
 		splitViewController?.showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
 		
 	}
@@ -85,5 +88,17 @@ extension SettingsMasterViewController: SettingsDisplayLogic {
 	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel) {
 		data = viewModel.data
 		tableView.reloadData()
+	}
+	
+	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel) {
+		
+	}
+}
+
+// MARK: - CurrencyViewController delegate
+extension SettingsMasterViewController: CurrencyViewControllerDelegate {
+	func didSelectCurrency(_ currency: CurrencyModel) {
+		let request = SettingsModels.ChangeCurrency.Request(currency: currency)
+		interactor?.changeCurrency(request)
 	}
 }

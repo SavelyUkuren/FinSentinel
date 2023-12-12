@@ -114,12 +114,12 @@ class HomeViewControllerOutdated: UIViewController {
     
 	private func addNotificationObservers() {
 		// Currency changed
-		NotificationCenter.default.addObserver(self, selector: #selector(updateHomeView),
-											   name: Settings.shared.notificationCurrencyChange, object: nil)
+//		NotificationCenter.default.addObserver(self, selector: #selector(updateHomeView),
+//											   name: Settings.shared.notificationCurrencyChange, object: nil)
 		
 		// Accent color changed
-		NotificationCenter.default.addObserver(self, selector: #selector(changeAccentColor),
-											   name: Settings.shared.notificationAccentColorChange, object: nil)
+//		NotificationCenter.default.addObserver(self, selector: #selector(changeAccentColor),
+//											   name: Settings.shared.notificationAccentColorChange, object: nil)
 	}
 	
 	@objc

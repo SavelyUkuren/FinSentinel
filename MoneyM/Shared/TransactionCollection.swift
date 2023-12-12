@@ -94,6 +94,12 @@ class TransactionCollection {
 		
 	}
 	
+	func removeAll() {
+		summary.expense = 0
+		summary.income = 0
+		data.removeAll()
+	}
+	
 	func printTransactions() {
 		for tData in data {
 			print ("\(getDateComponent(tData.date).day!) \(getDateComponent(tData.date).month!)")

@@ -34,6 +34,8 @@
 		453445A52AFAA83A005154DF /* ButtonChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445A42AFAA83A005154DF /* ButtonChoiceView.swift */; };
 		453445A82AFAB508005154DF /* TransactionEditorViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445A72AFAB508005154DF /* TransactionEditorViewProtocol.swift */; };
 		453445AC2AFAC017005154DF /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453445AB2AFAC017005154DF /* StringExtension.swift */; };
+		453BBA502B2849BF00C9E67B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453BBA4F2B2849BF00C9E67B /* Notifications.swift */; };
+		453BBA522B2849E600C9E67B /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453BBA512B2849E600C9E67B /* UserDefaultKeys.swift */; };
 		454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */; };
 		454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */; };
 		454317E62AF281450015F6E5 /* TransactionModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E52AF281450015F6E5 /* TransactionModelManager.swift */; };
@@ -119,6 +121,8 @@
 		453445A42AFAA83A005154DF /* ButtonChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonChoiceView.swift; sourceTree = "<group>"; };
 		453445A72AFAB508005154DF /* TransactionEditorViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorViewProtocol.swift; sourceTree = "<group>"; };
 		453445AB2AFAC017005154DF /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		453BBA4F2B2849BF00C9E67B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		453BBA512B2849E600C9E67B /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModelManager.swift; sourceTree = "<group>"; };
 		454317E52AF281450015F6E5 /* TransactionModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModelManager.swift; sourceTree = "<group>"; };
@@ -314,6 +318,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		453BBA4E2B28498100C9E67B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				45AA892B2B0E13AB007B5873 /* Settings.swift */,
+				453BBA512B2849E600C9E67B /* UserDefaultKeys.swift */,
+				45AA892D2B0E148C007B5873 /* SettingsModel.swift */,
+				453BBA4F2B2849BF00C9E67B /* Notifications.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		454317E92AF2B9940015F6E5 /* TransactionModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +353,7 @@
 		459317562B1CA6E200F493C2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				453BBA4E2B28498100C9E67B /* Settings */,
 				4597FA9F2B20B0C200043461 /* CoreData */,
 				453445942AFA4170005154DF /* CategoriesManager.swift */,
 				459317572B1CA6EF00F493C2 /* TransactionCollection.swift */,
@@ -385,8 +401,8 @@
 				459F98C02B23392500BB89D6 /* SettingsModels.swift */,
 				459F98C22B23484A00BB89D6 /* SettingsMasterViewController.swift */,
 				459F98BA2B23390D00BB89D6 /* SettingsInteractor.swift */,
-				459F98BC2B23391500BB89D6 /* SettingsRouter.swift */,
 				459F98BE2B23391B00BB89D6 /* SettingsPresenter.swift */,
+				459F98BC2B23391500BB89D6 /* SettingsRouter.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -419,8 +435,6 @@
 		45AA892A2B0E1398007B5873 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				45AA892B2B0E13AB007B5873 /* Settings.swift */,
-				45AA892D2B0E148C007B5873 /* SettingsModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -629,6 +643,7 @@
 				459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
 				452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */,
+				453BBA502B2849BF00C9E67B /* Notifications.swift in Sources */,
 				45E9FE092B19841000783D27 /* AddTransactionInteractor.swift in Sources */,
 				4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */,
 				4534458D2AF923E2005154DF /* TransactionCollectionDeprecated.swift in Sources */,
@@ -639,6 +654,7 @@
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
 				4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */,
 				4597FAA22B20F47400043461 /* CategoryInteractor.swift in Sources */,
+				453BBA522B2849E600C9E67B /* UserDefaultKeys.swift in Sources */,
 				45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */,
 				453445952AFA4170005154DF /* CategoriesManager.swift in Sources */,
 				45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */,

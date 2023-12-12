@@ -14,6 +14,10 @@ class CurrencyModelManager {
 	}
     
 	private(set) var currencies: [Int: CurrencyModel] = [:]
+	
+	var defaultCurrency: CurrencyModel {
+		currencies[1]!
+	}
     
     init() {
 		loadCurrencies()

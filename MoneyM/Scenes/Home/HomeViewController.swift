@@ -60,6 +60,8 @@ class HomeViewController: UIViewController {
 		
 		interactor?.fetchTransactions(Home.FetchTransactions.Request())
 		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		
+		addNotificationObservers()
 	}
 	
 	private func configureTransactionsTableView() {
@@ -72,6 +74,18 @@ class HomeViewController: UIViewController {
 		balanceAmountLabel.font = font.RoundedFont(balanceAmountLabel.font.pointSize, .bold)
 		expenseAmountLabel.font = font.RoundedFont(expenseAmountLabel.font.pointSize, .semibold)
 		incomeAmountLabel.font = font.RoundedFont(incomeAmountLabel.font.pointSize, .semibold)
+	}
+	
+	private func addNotificationObservers() {
+		// Currency changed
+		NotificationCenter.default.addObserver(self, selector: #selector(changeCurrency),
+											   name: Notifications.Currency, object: nil)
+	}
+	
+	@objc
+	private func changeCurrency() {
+		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 	}
 	
 	// MARK: Actions
