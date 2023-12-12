@@ -20,7 +20,8 @@ class AddTransactionInteractor: AddTransactionBusinessLogic {
 	}
 	
 	func createTransaction(_ request: AddTransactionModels.CreateTransaction.Request) {
-		let amount = Int(request.amount)
+		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
+		let amount = Int(amountStr)
 		let date = request.date
 		
 		let model = TransactionModel()

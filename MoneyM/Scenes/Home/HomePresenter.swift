@@ -39,16 +39,20 @@ class HomePresenter: HomePresentationLogic {
 		
 		let expenseOperator = abs(response.summary.expense) == 0 ? "" : "-"
 		let incomeOperator = response.summary.income == 0 ? "" : "+"
-		let balance = "\(response.summary.balance) \(currency)"
-		let expense = "\(expenseOperator)\(abs(response.summary.expense)) \(currency)"
-		let income = "\(incomeOperator)\(response.summary.income) \(currency)"
+		let balance = response.summary.balance
+		let expense = abs(response.summary.expense)
+		let income = response.summary.income
+		
+		let balanceString = "\(balance.thousandSeparator) \(currency)"
+		let expenseString = "\(expenseOperator)\(expense.thousandSeparator) \(currency)"
+		let incomeString = "\(incomeOperator)\(income.thousandSeparator) \(currency)"
 		
 		let balanceColor: UIColor = response.summary.balance < 0 ? .systemRed : .systemGreen
 		
 		let viewModel = Home.FetchFinancialSummary.ViewModel(balanceColor: balanceColor,
-															 balance: balance,
-															 expense: expense,
-															 income: income)
+															 balance: balanceString,
+															 expense: expenseString,
+															 income: incomeString)
 		viewController?.displayFinancialSummary(viewModel)
 	}
 	

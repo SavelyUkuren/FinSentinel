@@ -128,6 +128,15 @@ class AddTransactionViewController: UIViewController {
 		dismiss(animated: true)
 	}
 	
+	@IBAction func amountTextFieldChanged(_ sender: Any) {
+		if let text = amountTextField.text {
+			// Remove spaces from current string "1 000" -> "1000"
+			let numberStr = text.components(separatedBy: .whitespaces).joined()
+			let number = Int(numberStr)
+			let separatorNumber = number?.thousandSeparator
+			amountTextField.text = separatorNumber
+		}
+	}
 }
 
 // MARK: - Add transaction display logic

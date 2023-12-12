@@ -68,6 +68,7 @@
 		45D65E102B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */; };
 		45D65E122B28AA4200C4A1F8 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */; };
 		45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */; };
+		45D65E172B28D19500C4A1F8 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E162B28D19500C4A1F8 /* IntExtension.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7192A9FB05500B0326F /* Main.storyboard */; };
@@ -144,6 +145,7 @@
 		45D65E0F2B2896FB00C4A1F8 /* FolderEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionTableViewCell+Note.swift"; sourceTree = "<group>"; };
+		45D65E162B28D19500C4A1F8 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				453445AB2AFAC017005154DF /* StringExtension.swift */,
+				45D65E162B28D19500C4A1F8 /* IntExtension.swift */,
 				4562148E2B22E66F000C5A29 /* UILabelExtension.swift */,
 				456214902B22E834000C5A29 /* UINavigationItem.swift */,
 				456214922B22E9C2000C5A29 /* UITextFieldExtension.swift */,
@@ -556,6 +559,7 @@
 				45D65E122B28AA4200C4A1F8 /* CategoryTableViewCell.swift in Sources */,
 				459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */,
 				45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */,
+				45D65E172B28D19500C4A1F8 /* IntExtension.swift in Sources */,
 				4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */,
 				456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */,
 				459F98BB2B23390D00BB89D6 /* SettingsInteractor.swift in Sources */,

@@ -19,7 +19,7 @@ class EditTransactionPresenter: EditTransactionPresentLogic {
 	func presentLoadTransaction(_ response: EditTransactionModels.LoadTransaction.Response) {
 		let categoryManager = CategoriesManager.shared
 		
-		let amount = String(response.transaction.amount)
+		let amount = String(response.transaction.amount.thousandSeparator)
 		let mode = response.transaction.mode ?? .Expense
 		let category = categoryManager.findCategoryBy(id: response.transaction.categoryID ?? 0) ?? CategoriesManager.shared.defaultCategory
 		let date = response.transaction.date!

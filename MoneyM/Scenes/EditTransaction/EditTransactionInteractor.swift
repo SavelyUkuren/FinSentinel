@@ -21,7 +21,8 @@ class EditTransactionInteractor: EditTransactionBusinessLogic {
 	}
 	
 	func editTransaction(_ request: EditTransactionModels.EditTransaction.Request) {
-		let amount = Int(request.amount)
+		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
+		let amount = Int(amountStr)
 		let date = request.date
 		
 		let model = TransactionModel()

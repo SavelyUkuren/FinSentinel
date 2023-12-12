@@ -378,6 +378,9 @@
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="amount.title"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="amountTextFieldChanged:" destination="gNX-hj-8dV" eventType="editingChanged" id="ho6-Jq-8yN"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKB-uP-OIh" customClass="ButtonChoiceView" customModule="MoneyM" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="88" width="329" height="56"/>
@@ -711,6 +714,9 @@
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="amount.title"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="amountTextFieldChanged:" destination="WvQ-Xd-aiJ" eventType="editingChanged" id="VaC-4t-0Jf"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dol-Z6-24c" customClass="ButtonChoiceView" customModule="MoneyM" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="88" width="329" height="56"/>

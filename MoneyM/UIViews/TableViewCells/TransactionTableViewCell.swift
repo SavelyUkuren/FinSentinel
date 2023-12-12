@@ -58,8 +58,9 @@ class TransactionTableViewCell: UITableViewCell {
         let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID ?? 0) ?? defaultCategory
         
 		let operatorSymbol = transaction.mode == .Expense ? "-" : "+"
+		let amount = transaction.amount.thousandSeparator
 		
-        amountLabel.text = "\(operatorSymbol)\(transaction.amount ?? 0) \(currencySymbol)"
+        amountLabel.text = "\(operatorSymbol)\(amount) \(currencySymbol)"
         categoryLabel.text = category.title
 		categoryImageView.image = UIImage(systemName: category.icon)
 		
