@@ -2,81 +2,77 @@
     "expenses": [
         {
             "id": 1,
-            "title": "Groceries"
+            "title": "food.category"
         },
         {
             "id": 2,
-            "title": "Transportation"
+            "title": "transportation.category"
         },
         {
             "id": 3,
-            "title": "Housing"
+            "title": "housing.category"
         },
         {
             "id": 4,
-            "title": "Healthcare"
+            "title": "healthcare.category"
         },
         {
             "id": 5,
-            "title": "Entertainment"
+            "title": "entertainment.category"
         },
         {
             "id": 6,
-            "title": "Clothing"
+            "title": "clothing.category"
         },
         {
             "id": 7,
-            "title": "Education"
+            "title": "education.category"
         },
         {
             "id": 8,
-            "title": "Savings"
+            "title": "savings.category"
         },
         {
             "id": 9,
-            "title": "Debts"
+            "title": "debts.category"
         },
+		{
+			"id": 10,
+			"title": "utilities.category"
+		},
         {
-            "id": 10,
-            "title": "Other"
+            "id": 11,
+            "title": "other.category"
         },
     ],
     "incomes": [
         {
             "id": 11,
-            "title": "Salary"
+            "title": "salary.category"
         },
         {
             "id": 12,
-            "title": "Freelance"
+            "title": "freelance.category"
         },
         {
             "id": 13,
-            "title": "Investments"
+            "title": "investments.category"
         },
         {
             "id": 14,
-            "title": "Rental Income"
+            "title": "rental_income.category"
         },
         {
             "id": 15,
-            "title": "Renting Out"
+            "title": "business.category"
         },
         {
             "id": 16,
-            "title": "Business"
+            "title": "pension.category"
         },
         {
             "id": 17,
-            "title": "Pension"
-        },
-        {
-            "id": 18,
-            "title": "Partnership Rewards"
-        },
-        {
-            "id": 19,
-            "title": "Other"
+            "title": "other.category"
         }
     ]
 }
