@@ -33,6 +33,12 @@ struct Home {
 		}
 	}
 	
+	struct EditTransaction {
+		struct Request {
+			let transaction: TransactionModel
+		}
+	}
+	
 	struct FetchFinancialSummary {
 		struct Request {
 			

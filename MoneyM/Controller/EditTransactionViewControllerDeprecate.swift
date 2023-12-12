@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol EditTransactionViewControllerDelegate {
+protocol EditTransactionViewControllerDelegateDeprecated {
     func transactionEdited(transaction: TransactionModel)
 }
 
-class EditTransactionViewController: UIViewController {
+class EditTransactionViewControllerDeprecate: UIViewController {
     
-    public var delegate: EditTransactionViewControllerDelegate?
+    public var delegate: EditTransactionViewControllerDelegateDeprecated?
 
     public var transaction: TransactionModel!
     
@@ -44,7 +44,7 @@ class EditTransactionViewController: UIViewController {
 }
 
 // MARK: Base transaction info delegate
-extension EditTransactionViewController: TransactionEditorViewDelegate {
+extension EditTransactionViewControllerDeprecate: TransactionEditorViewDelegate {
     
     func selectCategoryButtonClicked() {
         let selectCategoryVC = CategoriesViewController()
@@ -74,11 +74,11 @@ extension EditTransactionViewController: TransactionEditorViewDelegate {
 }
 
 // MARK: Select category delegate
-extension EditTransactionViewController: SelectCategoryViewControllerDelegate {
+extension EditTransactionViewControllerDeprecate: SelectCategoryViewControllerDelegate {
     
     func selectButtonClicked(category: CategoryModel?) {
         guard category != nil else { return }
-        editTransactionView.selectedCategory = category ?? CategoriesManager.defaultCategory
+		editTransactionView.selectedCategory = category ?? CategoriesManager.shared.defaultCategory
         editTransactionView.selectCategoryButton.setTitle(category?.title, for: .normal)
     }
     

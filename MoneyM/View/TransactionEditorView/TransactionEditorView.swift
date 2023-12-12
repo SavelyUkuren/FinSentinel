@@ -16,7 +16,7 @@ class TransactionEditorView: UIView, TransactionEditorViewProtocol {
     public var delegate: TransactionEditorViewDelegate?
     
     public var selectedMode: TransactionModel.Mode = .Expense
-    public var selectedCategory: CategoryModel = CategoriesManager.defaultCategory
+	public var selectedCategory: CategoryModel = CategoriesManager.shared.defaultCategory
     
 	public var accentColor: UIColor = Settings.shared.model.accentColor
 	

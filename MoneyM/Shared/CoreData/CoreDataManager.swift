@@ -58,8 +58,28 @@ class CoreDataManager: CoreDataManagerProtocol {
         save()
     }
     
-    func edit(_ id: Int, _ newTransaction: TransactionModel) {
-        
+	func edit(_ id: Int, _ newTransaction: TransactionModel) {
+		
+		let fetchRequest = TransactionEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+		
+		do {
+			
+			let response = try context.fetch(fetchRequest)
+			let transactionEntity = convertTransactionToEntity(newTransaction, context: context)
+			
+			if let foundTransaction = response.first {
+				foundTransaction.amount = transactionEntity.amount
+				foundTransaction.categoryID = transactionEntity.categoryID
+				foundTransaction.date = transactionEntity.date
+				foundTransaction.mode = transactionEntity.mode
+				foundTransaction.note = transactionEntity.note
+			}
+			
+		} catch {
+			fatalError("Error with edit transaction in CoreData")
+		}
+		
         save()
     }
     

@@ -59,6 +59,40 @@ class TransactionCollection {
 		}
 	}
 	
+	func editBy(id: Int, newTransaction: TransactionModel) {
+		let foundTransactionIndex = firstIndex(id)
+		
+		// Change summary before edit transaction
+		let transactionModel = findBy(id)
+		if let unwrapTransaction = transactionModel {
+			unwrapTransaction.amount *= -1
+			summaryUpdate(unwrapTransaction)
+		}
+		
+		
+		if let unwrapIndex = foundTransactionIndex {
+			
+			data[unwrapIndex.section].transactions[unwrapIndex.row] = newTransaction
+			summaryUpdate(newTransaction)
+		}
+	}
+	
+	func firstIndex(_ id: Int) -> IndexPath? {
+		var indexPath = IndexPath(row: 0, section: 0)
+		
+		for data in data {
+			let index = data.transactions.firstIndex { transaction in
+				transaction.id == id
+			}
+			if index != nil {
+				indexPath.row = index!
+				return indexPath
+			}
+			indexPath.section += 1
+		}
+		return nil
+	}
+	
 	func findBy(_ id: Int) -> TransactionModel? {
 		
 		for data in data {

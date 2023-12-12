@@ -159,13 +159,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		
 		let deleteAction = UIContextualAction(style: .destructive,
-											  title: "Delete") { swipeAction, view, complition in
+											  title: NSLocalizedString("delete.title", comment: "")) { swipeAction, view, complition in
 			let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
 			let request = Home.RemoveTransaction.Request(transaction: transaction)
 			self.interactor?.removeTransaction(request: request)
 		}
 		
-		let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
+		let editAction = UIContextualAction(style: .normal,
+											title: NSLocalizedString("edit.title", comment: "")) { swipeAction, view, completion in
+			let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
+			self.router?.routeToEditTransaction(transaction: transaction)
+		}
+		editAction.backgroundColor = .systemBlue
+		
+		let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
 		
 		return swipeAction
 	}
@@ -192,6 +199,15 @@ extension HomeViewController: AddTransactionDelegate {
 	func transactionCreated(_ transaction: TransactionModel) {
 		let request = Home.AddTransaction.Request(transaction: transaction)
 		interactor?.addTransaction(request: request)
+		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+	}
+}
+
+// MARK: - EditTransaction delegate
+extension HomeViewController: EditTransactionDelegate {
+	func didEditTransaction(_ newTransaction: TransactionModel) {
+		let request = Home.EditTransaction.Request(transaction: newTransaction)
+		interactor?.editTransaction(request)
 		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 	}
 }

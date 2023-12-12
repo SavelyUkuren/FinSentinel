@@ -1,22 +1,23 @@
 //
-//  AddTransactionViewController.swift
+//  EditTransactionViewController.swift
 //  MoneyM
 //
-//  Created by Air on 30.11.2023.
+//  Created by savik on 12.12.2023.
 //
 
 import UIKit
 
-protocol AddTransactionDelegate {
-	func transactionCreated(_ transaction: TransactionModel)
+protocol EditTransactionDelegate {
+	func didEditTransaction(_ newTransaction: TransactionModel)
 }
 
-protocol AddTransactionDisplayLogic {
-	func displayCreatedTransaction(_ viewModel: AddTransactionModels.CreateTransaction.ViewModel)
+protocol EditTransactionDisplayLogic {
+	func displayLoadTransaction(_ viewModel: EditTransactionModels.LoadTransaction.ViewModel)
+	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel)
 }
 
-class AddTransactionViewController: UIViewController {
-	
+class EditTransactionViewController: UIViewController {
+
 	@IBOutlet weak var amountTextField: UITextField!
 	
 	@IBOutlet weak var datePickerView: UIDatePicker!
@@ -27,35 +28,37 @@ class AddTransactionViewController: UIViewController {
 	
 	@IBOutlet weak var selectCategoryButton: UIButton!
 	
-	var interactor: AddTransactionBusinessLogic?
+	var interactor: EditTransactionBusinessLogic?
 	
-	var router: AddTransactionRouter?
+	var router: EditTransactionRouter?
 	
-	var delegate: AddTransactionDelegate?
+	var transaction: TransactionModel?
+	
+	var delegate: EditTransactionDelegate?
 	
 	private var selectedCategory: CategoryModel?
-
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setup()
+		setup()
 		configureAmountTextField()
 		configureNoteTextField()
 		configureChoiceButton()
 		configureFont()
 		
-		//amountTextField.text = String(randomAmount())
+		if let unwrapTransaction = transaction {
+			let request = EditTransactionModels.LoadTransaction.Request(transaction: unwrapTransaction)
+			interactor?.loadTransaction(request)
+		}
+		
     }
-	
-	override func viewDidAppear(_ animated: Bool) {
-		amountTextField.becomeFirstResponder()
-	}
     
 	private func setup() {
 		let viewController = self
-		let interactor = AddTransactionInteractor()
-		let presenter = AddTransactionPresenter()
-		let router = AddTransactionRouter()
+		let interactor = EditTransactionInteractor()
+		let presenter = EditTransactionPresenter()
+		let router = EditTransactionRouter()
 		
 		viewController.interactor = interactor
 		viewController.router = router
@@ -64,6 +67,10 @@ class AddTransactionViewController: UIViewController {
 		presenter.viewController = viewController
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		amountTextField.becomeFirstResponder()
+	}
+
 	private func configureAmountTextField() {
 		amountTextField.layer.cornerRadius = 12
 		amountTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
@@ -79,10 +86,6 @@ class AddTransactionViewController: UIViewController {
 		choiceButton.setButtonTitle(NSLocalizedString("expense.title", comment: ""), button: .First)
 		choiceButton.setButtonTitle(NSLocalizedString("income.title", comment: ""), button: .Second)
 		choiceButton.delegate = self
-	}
-	
-	private func randomAmount() -> Int {
-		return Int.random(in: 0...1000)
 	}
 	
 	private func configureFont() {
@@ -104,7 +107,7 @@ class AddTransactionViewController: UIViewController {
 		selectCategoryButton.setTitle(NSLocalizedString("select_category.title", comment: ""), for: .normal)
 	}
 
-	@IBAction func createButtonClicked(_ sender: Any) {
+	@IBAction func editButtonClicked(_ sender: Any) {
 		
 		let mode: TransactionModel.Mode = switch choiceButton.selectedButton {
 		case .First:
@@ -113,11 +116,11 @@ class AddTransactionViewController: UIViewController {
 			TransactionModel.Mode.Income
 		}
 		
-		let request = AddTransactionModels.CreateTransaction.Request(amount: amountTextField.text!,
+		let request = EditTransactionModels.EditTransaction.Request(amount: amountTextField.text!,
 																	 date: datePickerView.date,
 																	 category: selectedCategory,
 																	 mode: mode, note: noteTextField.text)
-		interactor?.createTransaction(request)
+		interactor?.editTransaction(request)
 	}
 	
 	@IBAction func selectCategoryButtonClicked(_ sender: Any) {
@@ -130,16 +133,36 @@ class AddTransactionViewController: UIViewController {
 	
 }
 
-// MARK: - Add transaction display logic
-extension AddTransactionViewController: AddTransactionDisplayLogic {
-	func displayCreatedTransaction(_ viewModel: AddTransactionModels.CreateTransaction.ViewModel) {
-		delegate?.transactionCreated(viewModel.transactionModel)
+// MARK: - EditTransaction display logic
+extension EditTransactionViewController: EditTransactionDisplayLogic {
+	func displayLoadTransaction(_ viewModel: EditTransactionModels.LoadTransaction.ViewModel) {
+		amountTextField.text = viewModel.amount
+		
+		switch viewModel.mode {
+			case .Expense:
+				choiceButton.selectButton(.First)
+			case .Income:
+				choiceButton.selectButton(.Second)
+		}
+		
+		selectedCategory = viewModel.category
+		selectCategoryButton.setTitle(selectedCategory?.title, for: .normal)
+		
+		datePickerView.date = viewModel.date
+		noteTextField.text = viewModel.note
+		
+	}
+	
+	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel) {
+		let transactionModel = viewModel.transactionModel
+		transactionModel.id = transaction!.id
+		delegate?.didEditTransaction(transactionModel)
 		dismiss(animated: true)
 	}
 }
 
 // MARK: Select category delegate
-extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
+extension EditTransactionViewController: SelectCategoryViewControllerDelegate {
 	func selectButtonClicked(category: CategoryModel?) {
 		selectedCategory = category
 		selectCategoryButton.setTitle(category?.title, for: .normal)
@@ -147,7 +170,7 @@ extension AddTransactionViewController: SelectCategoryViewControllerDelegate {
 }
 
 // MARK: Button choice delegate
-extension AddTransactionViewController: ButtonChoiceDelegate {
+extension EditTransactionViewController: ButtonChoiceDelegate {
 	func buttonClicked(button: ButtonChoiceView.Buttons) {
 		switch button {
 		case .First: // Expense button

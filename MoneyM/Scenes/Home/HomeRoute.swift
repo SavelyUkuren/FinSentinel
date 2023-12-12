@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeRoutingLogic {
 	func routeToAddNewTransaction()
+	func routeToEditTransaction(transaction: TransactionModel)
 	func routeToSettings()
 }
 
@@ -20,6 +21,16 @@ class HomeRoute: HomeRoutingLogic {
 	func routeToAddNewTransaction() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let vc = storyboard.instantiateViewController(withIdentifier: "AddTransaction") as? AddTransactionViewController
+		vc?.delegate = viewController
+		
+		viewController?.present(vc!, animated: true)
+	}
+	
+	func routeToEditTransaction(transaction: TransactionModel) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewController(withIdentifier: "EditTransaction") as? EditTransactionViewController
+		
+		vc?.transaction = transaction
 		vc?.delegate = viewController
 		
 		viewController?.present(vc!, animated: true)

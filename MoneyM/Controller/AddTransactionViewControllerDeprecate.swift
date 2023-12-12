@@ -74,7 +74,7 @@ extension AddTransactionViewControllerDeprecate: TransactionEditorViewDelegate {
 extension AddTransactionViewControllerDeprecate: SelectCategoryViewControllerDelegate {
     func selectButtonClicked(category: CategoryModel?) {
         guard category != nil else { return }
-        addTransactionView.selectedCategory = category ?? CategoriesManager.defaultCategory
+		addTransactionView.selectedCategory = category ?? CategoriesManager.shared.defaultCategory
         addTransactionView.selectCategoryButton.setTitle(category?.title, for: .normal)
     }
 }

@@ -54,9 +54,9 @@ class HomeViewControllerOutdated: UIViewController {
     }
     
     private func editTransaction(indexPath: IndexPath) {
-        let editTransactionVC = EditTransactionViewController()
-        editTransactionVC.delegate = self
-        editTransactionVC.transaction = self.transactionModelManager.data[indexPath.section].transactions[indexPath.row]
+        let editTransactionVC = EditTransactionViewControllerDeprecate()
+//        editTransactionVC.delegate = self
+//        editTransactionVC.transaction = self.transactionModelManager.data[indexPath.section].transactions[indexPath.row]
         
         self.present(editTransactionVC, animated: true)
     }
@@ -258,15 +258,6 @@ extension HomeViewControllerOutdated: AddTransactionViewControllerDelegate {
     
 }
 
-// MARK: Edit Transaction Deletage
-extension HomeViewControllerOutdated: EditTransactionViewControllerDelegate {
-    
-    func transactionEdited(transaction: TransactionModel) {
-        transactionModelManager.editTransactionByID(id: transaction.id, newTransaction: transaction)
-        updateHomeView()
-    }
-    
-}
 
 // MARK: Date Picker Delegate
 extension HomeViewControllerOutdated: DatePickerViewControllerDelegate {

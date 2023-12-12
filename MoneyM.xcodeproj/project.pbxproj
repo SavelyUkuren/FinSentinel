@@ -14,7 +14,7 @@
 		452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A715A2B1920180015E524 /* AddTransactionViewController.swift */; };
 		45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F442AB5E62000301729 /* TransactionEditorView.swift */; };
 		45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F462AB5E93500301729 /* EditTransactionView.swift */; };
-		45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F482AB5E95700301729 /* EditTransactionViewController.swift */; };
+		45326F492AB5E95700301729 /* EditTransactionViewControllerDeprecate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F482AB5E95700301729 /* EditTransactionViewControllerDeprecate.swift */; };
 		45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4A2AB603D900301729 /* CategoryViewController.swift */; };
 		45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4C2AB603F300301729 /* CategoryModel.swift */; };
 		4532932B2AA89822007F0EAE /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532932A2AA89822007F0EAE /* DatePickerView.swift */; };
@@ -76,6 +76,11 @@
 		45AA892C2B0E13AB007B5873 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA892B2B0E13AB007B5873 /* Settings.swift */; };
 		45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA892D2B0E148C007B5873 /* SettingsModel.swift */; };
 		45AA89332B11B77D007B5873 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA89322B11B77D007B5873 /* SettingsView.swift */; };
+		45CA35052B2854E70070E4A9 /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA35042B2854E70070E4A9 /* EditTransactionViewController.swift */; };
+		45CA35072B2855150070E4A9 /* EditTransactionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA35062B2855150070E4A9 /* EditTransactionInteractor.swift */; };
+		45CA35092B2855200070E4A9 /* EditTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA35082B2855200070E4A9 /* EditTransactionPresenter.swift */; };
+		45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */; };
+		45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB7182A9FB05500B0326F /* HomeViewControllerOutdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7172A9FB05500B0326F /* HomeViewControllerOutdated.swift */; };
@@ -101,7 +106,7 @@
 		452A715A2B1920180015E524 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		45326F442AB5E62000301729 /* TransactionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorView.swift; sourceTree = "<group>"; };
 		45326F462AB5E93500301729 /* EditTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionView.swift; sourceTree = "<group>"; };
-		45326F482AB5E95700301729 /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
+		45326F482AB5E95700301729 /* EditTransactionViewControllerDeprecate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewControllerDeprecate.swift; sourceTree = "<group>"; };
 		45326F4A2AB603D900301729 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		45326F4C2AB603F300301729 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		4532932A2AA89822007F0EAE /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
@@ -163,6 +168,11 @@
 		45AA892B2B0E13AB007B5873 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		45AA892D2B0E148C007B5873 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		45AA89322B11B77D007B5873 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		45CA35042B2854E70070E4A9 /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
+		45CA35062B2855150070E4A9 /* EditTransactionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionInteractor.swift; sourceTree = "<group>"; };
+		45CA35082B2855200070E4A9 /* EditTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionPresenter.swift; sourceTree = "<group>"; };
+		45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionModels.swift; sourceTree = "<group>"; };
+		45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionRouter.swift; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +243,7 @@
 		4533EE052B18CF1100A92713 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				45CA35032B2854BB0070E4A9 /* EditTransaction */,
 				459F98B72B2336CC00BB89D6 /* Settings */,
 				4597FAA02B20EE6D00043461 /* Categories */,
 				452A71592B191FC90015E524 /* AddTransaction */,
@@ -449,6 +460,18 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		45CA35032B2854BB0070E4A9 /* EditTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				45CA35042B2854E70070E4A9 /* EditTransactionViewController.swift */,
+				45CA35062B2855150070E4A9 /* EditTransactionInteractor.swift */,
+				45CA35082B2855200070E4A9 /* EditTransactionPresenter.swift */,
+				45CA350A2B28552B0070E4A9 /* EditTransactionModels.swift */,
+				45CA350C2B2855340070E4A9 /* EditTransactionRouter.swift */,
+			);
+			path = EditTransaction;
+			sourceTree = "<group>";
+		};
 		45DCB7072A9FB05500B0326F = {
 			isa = PBXGroup;
 			children = (
@@ -509,7 +532,7 @@
 				45DCB7172A9FB05500B0326F /* HomeViewControllerOutdated.swift */,
 				451974AB2AA477FA0003A4B7 /* AddTransactionViewControllerDeprecate.swift */,
 				4532932C2AA89A24007F0EAE /* DatePickerViewController.swift */,
-				45326F482AB5E95700301729 /* EditTransactionViewController.swift */,
+				45326F482AB5E95700301729 /* EditTransactionViewControllerDeprecate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -633,7 +656,7 @@
 				4562148F2B22E66F000C5A29 /* UILabelExtension.swift in Sources */,
 				451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */,
 				4597FA882B209D2500043461 /* CustomFonts.swift in Sources */,
-				45326F492AB5E95700301729 /* EditTransactionViewController.swift in Sources */,
+				45326F492AB5E95700301729 /* EditTransactionViewControllerDeprecate.swift in Sources */,
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
 				45DCB7182A9FB05500B0326F /* HomeViewControllerOutdated.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
@@ -641,6 +664,7 @@
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
 				4533EE152B18F99F00A92713 /* FolderEntity+CoreDataProperties.swift in Sources */,
 				459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */,
+				45CA35092B2855200070E4A9 /* EditTransactionPresenter.swift in Sources */,
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
 				452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */,
 				453BBA502B2849BF00C9E67B /* Notifications.swift in Sources */,
@@ -649,7 +673,9 @@
 				4534458D2AF923E2005154DF /* TransactionCollectionDeprecated.swift in Sources */,
 				4533EE142B18F99F00A92713 /* FolderEntity+CoreDataClass.swift in Sources */,
 				454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */,
+				45CA35072B2855150070E4A9 /* EditTransactionInteractor.swift in Sources */,
 				45326F452AB5E62000301729 /* TransactionEditorView.swift in Sources */,
+				45CA35052B2854E70070E4A9 /* EditTransactionViewController.swift in Sources */,
 				4597FAA62B20F4AC00043461 /* CategoryModels.swift in Sources */,
 				45326F472AB5E93500301729 /* EditTransactionView.swift in Sources */,
 				4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */,
@@ -661,6 +687,8 @@
 				459F98C62B23597500BB89D6 /* CurrencyViewController.swift in Sources */,
 				45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */,
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
+				45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */,
+				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,
 				458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */,
 				4597FA9E2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift in Sources */,
 				4532932D2AA89A24007F0EAE /* DatePickerViewController.swift in Sources */,
