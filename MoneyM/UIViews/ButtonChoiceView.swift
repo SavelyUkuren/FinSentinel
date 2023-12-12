@@ -35,7 +35,7 @@ class ButtonChoiceView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("", for: .normal)
-        button.layer.cornerRadius = UIStyle.CornerRadius
+        button.layer.cornerRadius = 12
         return button
     }()
     
@@ -43,7 +43,7 @@ class ButtonChoiceView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("", for: .normal)
-        button.layer.cornerRadius = UIStyle.CornerRadius
+        button.layer.cornerRadius = 12
         return button
     }()
 	

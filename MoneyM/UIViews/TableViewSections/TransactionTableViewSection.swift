@@ -28,7 +28,7 @@ class TransactionTableViewSection: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIStyle.TableViewCellBackgroundColor
+//        backgroundColor = UIStyle.TableViewCellBackgroundColor
         
         configureDayLabel()
         configureMonthLabel()

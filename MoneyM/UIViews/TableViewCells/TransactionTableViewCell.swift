@@ -65,9 +65,9 @@ class TransactionTableViewCell: UITableViewCell {
         
         switch transaction.mode {
         case .Expense:
-            amountLabel.textColor = UIStyle.ExpenseColor
+			amountLabel.textColor = .systemRed
         case .Income:
-            amountLabel.textColor = UIStyle.IncomeColor
+			amountLabel.textColor = .systemGreen
         case .none:
             break
         }

@@ -45,7 +45,7 @@ class Settings {
 	}
 	
 	private func loadAccentColor() -> UIColor {
-		return UIStyle.AccentColor
+		return .systemBlue
 	}
 	
 }
