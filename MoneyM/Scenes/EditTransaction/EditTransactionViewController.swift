@@ -106,6 +106,14 @@ class EditTransactionViewController: UIViewController {
 		selectedCategory = CategoriesManager.shared.defaultCategory
 		selectCategoryButton.setTitle(NSLocalizedString("select_category.title", comment: ""), for: .normal)
 	}
+	
+	private func showAlertMessage(title: String, message: String) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let alertAction = UIAlertAction(title: NSLocalizedString("ok.title", comment: ""), style: .default)
+		alertController.addAction(alertAction)
+		
+		present(alertController, animated: true)
+	}
 
 	@IBAction func editButtonClicked(_ sender: Any) {
 		
@@ -164,10 +172,19 @@ extension EditTransactionViewController: EditTransactionDisplayLogic {
 	}
 	
 	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel) {
-		let transactionModel = viewModel.transactionModel
-		transactionModel.id = transaction!.id
-		delegate?.didEditTransaction(transactionModel)
-		dismiss(animated: true)
+		if viewModel.hasError, let errorMessage = viewModel.errorMessage {
+			showAlertMessage(title: NSLocalizedString("error.title", comment: ""), message: errorMessage)
+		}
+		
+		if let editedTransaction = viewModel.transactionModel,
+		   let inputTransaction = self.transaction
+		{
+			let transactionCopy = editedTransaction
+			transactionCopy.id = inputTransaction.id
+			delegate?.didEditTransaction(transactionCopy)
+			dismiss(animated: true)
+		}
+		
 	}
 }
 

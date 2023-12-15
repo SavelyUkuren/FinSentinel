@@ -18,12 +18,12 @@ struct AddTransactionModels {
 			var note: String?
 		}
 		struct Response {
-			var transactionModel: TransactionModel
+			var transactionModel: TransactionModel?
 			var hasError: Bool
 			var errorMessage: String?
 		}
 		struct ViewModel {
-			var transactionModel: TransactionModel
+			var transactionModel: TransactionModel?
 			var hasError: Bool
 			var errorMessage: String?
 		}

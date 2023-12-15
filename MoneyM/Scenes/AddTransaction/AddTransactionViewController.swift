@@ -103,6 +103,14 @@ class AddTransactionViewController: UIViewController {
 		selectedCategory = CategoriesManager.shared.defaultCategory
 		selectCategoryButton.setTitle(NSLocalizedString("select_category.title", comment: ""), for: .normal)
 	}
+	
+	private func showAlertMessage(title: String, message: String) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let alertAction = UIAlertAction(title: NSLocalizedString("ok.title", comment: ""), style: .default)
+		alertController.addAction(alertAction)
+		
+		present(alertController, animated: true)
+	}
 
 	@IBAction func createButtonClicked(_ sender: Any) {
 		
@@ -142,8 +150,14 @@ class AddTransactionViewController: UIViewController {
 // MARK: - Add transaction display logic
 extension AddTransactionViewController: AddTransactionDisplayLogic {
 	func displayCreatedTransaction(_ viewModel: AddTransactionModels.CreateTransaction.ViewModel) {
-		delegate?.transactionCreated(viewModel.transactionModel)
-		dismiss(animated: true)
+		if viewModel.hasError, let errorMessage = viewModel.errorMessage {
+			showAlertMessage(title: NSLocalizedString("error.title", comment: ""), message: errorMessage)
+		}
+		
+		if let transaction = viewModel.transactionModel {
+			delegate?.transactionCreated(transaction)
+			dismiss(animated: true)
+		}
 	}
 }
 
