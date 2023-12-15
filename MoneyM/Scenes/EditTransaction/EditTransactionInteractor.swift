@@ -22,7 +22,9 @@ class EditTransactionInteractor: EditTransactionBusinessLogic {
 	
 	func editTransaction(_ request: EditTransactionModels.EditTransaction.Request) {
 		
-		guard !request.amount.isEmpty else {
+		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
+		
+		guard !amountStr.isEmpty else {
 			let hasError = true
 			let errorMessage = NSLocalizedString("enter_amount.error", comment: "")
 			
@@ -32,7 +34,7 @@ class EditTransactionInteractor: EditTransactionBusinessLogic {
 			return
 		}
 		
-		guard request.amount.isNumber else {
+		guard amountStr.isNumber else {
 			let hasError = true
 			let errorMessage = NSLocalizedString("amount_textfield_has_number.error", comment: "")
 			
@@ -42,7 +44,7 @@ class EditTransactionInteractor: EditTransactionBusinessLogic {
 			return
 		}
 		
-		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
+		
 		let amount = Int(amountStr)
 		let date = request.date
 		

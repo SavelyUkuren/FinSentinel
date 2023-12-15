@@ -21,7 +21,9 @@ class AddTransactionInteractor: AddTransactionBusinessLogic {
 	
 	func createTransaction(_ request: AddTransactionModels.CreateTransaction.Request) {
 		
-		guard !request.amount.isEmpty else {
+		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
+		
+		guard !amountStr.isEmpty else {
 			let hasError = true
 			let errorMessage = NSLocalizedString("enter_amount.error", comment: "")
 			
@@ -31,7 +33,7 @@ class AddTransactionInteractor: AddTransactionBusinessLogic {
 			return
 		}
 		
-		guard request.amount.isNumber else {
+		guard amountStr.isNumber else {
 			let hasError = true
 			let errorMessage = NSLocalizedString("amount_textfield_has_number.error", comment: "")
 			
@@ -41,7 +43,6 @@ class AddTransactionInteractor: AddTransactionBusinessLogic {
 			return
 		}
 		
-		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
 		let amount = Int(amountStr)
 		let date = request.date
 		
