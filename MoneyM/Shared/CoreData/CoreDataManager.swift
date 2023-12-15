@@ -12,8 +12,8 @@ import UIKit
 protocol CoreDataManagerProtocol {
 	func load(year: Int, month: Int) -> [TransactionModel]
     func add(_ transactionModel: TransactionModel)
-    func edit(_ id: Int, _ newTransaction: TransactionModel)
-    func delete(_ id: Int)
+    func edit(_ id: UUID, _ newTransaction: TransactionModel)
+    func delete(_ id: UUID)
     func save()
 }
 
@@ -61,22 +61,21 @@ class CoreDataManager: CoreDataManagerProtocol {
         save()
     }
     
-	func edit(_ id: Int, _ newTransaction: TransactionModel) {
+	func edit(_ id: UUID, _ newTransaction: TransactionModel) {
 		
 		let fetchRequest = TransactionEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+		fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
 		
 		do {
 			
 			let response = try context.fetch(fetchRequest)
-			let transactionEntity = convertTransactionToEntity(newTransaction, context: context)
 			
 			if let foundTransaction = response.first {
-				foundTransaction.amount = transactionEntity.amount
-				foundTransaction.categoryID = transactionEntity.categoryID
-				foundTransaction.date = transactionEntity.date
-				foundTransaction.mode = transactionEntity.mode
-				foundTransaction.note = transactionEntity.note
+				foundTransaction.amount = Int64(newTransaction.amount)
+				foundTransaction.categoryID = Int64(newTransaction.categoryID)
+				foundTransaction.date = newTransaction.date
+				foundTransaction.mode = Int64(newTransaction.mode.rawValue)
+				foundTransaction.note = newTransaction.note
 			}
 			
 		} catch {
@@ -86,10 +85,10 @@ class CoreDataManager: CoreDataManagerProtocol {
         save()
     }
     
-    func delete(_ id: Int) {
+    func delete(_ id: UUID) {
         
         let fetchRequest = TransactionEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+		fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
         
         do {
             let requestedData = try context.fetch(fetchRequest)
@@ -149,7 +148,7 @@ class CoreDataManager: CoreDataManagerProtocol {
 	private func convertTransactionToEntity(_ transaction: TransactionModel, context: NSManagedObjectContext) -> TransactionEntity {
 		let entity = TransactionEntity(context: context)
 		
-		entity.id = Int64(transaction.id)
+		entity.id = transaction.id
 		entity.amount = Int64(transaction.amount)
 		entity.categoryID = Int64(transaction.categoryID ?? 0)
 		entity.date = transaction.date
@@ -162,7 +161,7 @@ class CoreDataManager: CoreDataManagerProtocol {
 	private func convertEntityToTransaction(_ transaction: TransactionEntity) -> TransactionModel {
 		let model = TransactionModel()
 		
-		model.id = Int(transaction.id)
+		model.id = transaction.id
 		model.amount = Int(transaction.amount)
 		model.categoryID = Int(transaction.categoryID)
 		model.date = transaction.date

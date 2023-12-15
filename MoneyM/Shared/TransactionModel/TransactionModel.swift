@@ -14,7 +14,7 @@ class TransactionModel: Identifiable {
 	enum Mode: Int {
 		case Expense, Income
 	}
-	var id: Int = 0
+	var id = UUID()
 	var date: Date!
 	var amount: Int!
 	var mode: Mode!

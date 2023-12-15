@@ -19,7 +19,7 @@ extension TransactionEntity {
     @NSManaged public var amount: Int64
     @NSManaged public var categoryID: Int64
     @NSManaged public var date: Date?
-    @NSManaged public var id: Int64
+    @NSManaged public var id: UUID
     @NSManaged public var mode: Int64
     @NSManaged public var note: String?
     @NSManaged public var folder: FolderEntity?

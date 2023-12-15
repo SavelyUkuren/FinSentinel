@@ -35,10 +35,6 @@ class TransactionCollection {
 	func add(_ transaction: TransactionModel) {
 		let index = findIndexIn(array: data, byDate: transaction.date!)
 		
-		if transaction.id == 0 { // if ID not changed
-			transaction.id = transactionsCount
-		}
-		
 		if let index = index {
 			data[index].transactions.append(transaction)
 		} else {
@@ -59,7 +55,7 @@ class TransactionCollection {
 		}
 	}
 	
-	func editBy(id: Int, newTransaction: TransactionModel) {
+	func editBy(id: UUID, newTransaction: TransactionModel) {
 		let foundTransactionIndex = firstIndex(id)
 		
 		// Change summary before edit transaction
@@ -77,7 +73,7 @@ class TransactionCollection {
 		}
 	}
 	
-	func firstIndex(_ id: Int) -> IndexPath? {
+	func firstIndex(_ id: UUID) -> IndexPath? {
 		var indexPath = IndexPath(row: 0, section: 0)
 		
 		for data in data {
@@ -93,7 +89,7 @@ class TransactionCollection {
 		return nil
 	}
 	
-	func findBy(_ id: Int) -> TransactionModel? {
+	func findBy(_ id: UUID) -> TransactionModel? {
 		
 		for data in data {
 			let foundTransaction = data.transactions.first { transaction in
@@ -107,7 +103,7 @@ class TransactionCollection {
 		return nil
 	}
 	
-	func removeBy(_ id: Int) {
+	func removeBy(_ id: UUID) {
 		for (i, currentData) in data.enumerated() {
 			
 			let index = currentData.transactions.firstIndex { transaction in
