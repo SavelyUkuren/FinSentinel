@@ -33,6 +33,8 @@
 		456214912B22E834000C5A29 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214902B22E834000C5A29 /* UINavigationItem.swift */; };
 		456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214922B22E9C2000C5A29 /* UITextFieldExtension.swift */; };
 		456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214942B22E9FB000C5A29 /* UIButtonExtension.swift */; };
+		4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709092B2C94E1002E3FD4 /* MoneyMTests.swift */; };
+		457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */; };
 		458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DF7902B2388C10048B4E9 /* DetailViewController.swift */; };
 		459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459317572B1CA6EF00F493C2 /* TransactionCollection.swift */; };
 		4597FA882B209D2500043461 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FA872B209D2500043461 /* CustomFonts.swift */; };
@@ -83,6 +85,16 @@
 		45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FE0E2B1A681C00783D27 /* AddTransactionModels.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4577090B2B2C94E1002E3FD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45DCB7082A9FB05500B0326F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45DCB70F2A9FB05500B0326F;
+			remoteInfo = MoneyM;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		452A71572B191F5C0015E524 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
@@ -110,6 +122,9 @@
 		456214902B22E834000C5A29 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
 		456214922B22E9C2000C5A29 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		456214942B22E9FB000C5A29 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		457709092B2C94E1002E3FD4 /* MoneyMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMTests.swift; sourceTree = "<group>"; };
+		457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
 		458DF7902B2388C10048B4E9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		459317572B1CA6EF00F493C2 /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4597FA872B209D2500043461 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
@@ -163,6 +178,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		457709042B2C94E1002E3FD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DCB70D2A9FB05500B0326F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -288,6 +310,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		457709082B2C94E1002E3FD4 /* MoneyMTests */ = {
+			isa = PBXGroup;
+			children = (
+				457709092B2C94E1002E3FD4 /* MoneyMTests.swift */,
+				457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */,
+			);
+			path = MoneyMTests;
+			sourceTree = "<group>";
+		};
 		458DF78F2B2368D60048B4E9 /* Currencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				45DCB7122A9FB05500B0326F /* MoneyM */,
+				457709082B2C94E1002E3FD4 /* MoneyMTests */,
 				45DCB7112A9FB05500B0326F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -398,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				45DCB7102A9FB05500B0326F /* MoneyM.app */,
+				457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -434,6 +467,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		457709062B2C94E1002E3FD4 /* MoneyMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4577090F2B2C94E1002E3FD4 /* Build configuration list for PBXNativeTarget "MoneyMTests" */;
+			buildPhases = (
+				457709032B2C94E1002E3FD4 /* Sources */,
+				457709042B2C94E1002E3FD4 /* Frameworks */,
+				457709052B2C94E1002E3FD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4577090C2B2C94E1002E3FD4 /* PBXTargetDependency */,
+			);
+			name = MoneyMTests;
+			productName = MoneyMTests;
+			productReference = 457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		45DCB70F2A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45DCB7272A9FB05700B0326F /* Build configuration list for PBXNativeTarget "MoneyM" */;
@@ -458,9 +509,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					457709062B2C94E1002E3FD4 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 45DCB70F2A9FB05500B0326F;
+					};
 					45DCB70F2A9FB05500B0326F = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -481,11 +536,19 @@
 			projectRoot = "";
 			targets = (
 				45DCB70F2A9FB05500B0326F /* MoneyM */,
+				457709062B2C94E1002E3FD4 /* MoneyMTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		457709052B2C94E1002E3FD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DCB70E2A9FB05500B0326F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,6 +575,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		457709032B2C94E1002E3FD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */,
+				4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DCB70C2A9FB05500B0326F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -579,6 +651,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4577090C2B2C94E1002E3FD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45DCB70F2A9FB05500B0326F /* MoneyM */;
+			targetProxy = 4577090B2B2C94E1002E3FD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		45DCB7192A9FB05500B0326F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -599,6 +679,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4577090D2B2C94E1002E3FD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8BPKDD8276;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoneyM";
+			};
+			name = Debug;
+		};
+		4577090E2B2C94E1002E3FD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8BPKDD8276;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoneyM";
+			};
+			name = Release;
+		};
 		45DCB7252A9FB05700B0326F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -776,6 +903,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4577090F2B2C94E1002E3FD4 /* Build configuration list for PBXNativeTarget "MoneyMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4577090D2B2C94E1002E3FD4 /* Debug */,
+				4577090E2B2C94E1002E3FD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45DCB70B2A9FB05500B0326F /* Build configuration list for PBXProject "MoneyM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
