@@ -58,7 +58,7 @@ class CoreDataManager: CoreDataManagerProtocol {
 		let transactionEntity = convertTransactionToEntity(transactionModel, context: context)
 		folder?.addToTransactions(transactionEntity)
         
-        save()
+        //save()
     }
     
 	func edit(_ id: UUID, _ newTransaction: TransactionModel) {
@@ -82,7 +82,7 @@ class CoreDataManager: CoreDataManagerProtocol {
 			fatalError("Error with edit transaction in CoreData")
 		}
 		
-        save()
+        //save()
     }
     
     func delete(_ id: UUID) {
@@ -97,14 +97,14 @@ class CoreDataManager: CoreDataManagerProtocol {
             fatalError("Error with removing transaction from CoreData")
         }
         
-        save()
+        //save()
     }
 	
 	func editStartingBalance(year: Int, month: Int, newBalance: Int) {
 		let folder = getFolderBy(year: year, month: month)
 		folder?.startingBalance = Int64(newBalance)
 		
-		save()
+		//save()
 	}
     
     public func save() {

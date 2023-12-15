@@ -35,6 +35,7 @@
 		456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214942B22E9FB000C5A29 /* UIButtonExtension.swift */; };
 		4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709092B2C94E1002E3FD4 /* MoneyMTests.swift */; };
 		457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */; };
+		457709132B2CB2C9002E3FD4 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */; };
 		458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DF7902B2388C10048B4E9 /* DetailViewController.swift */; };
 		459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459317572B1CA6EF00F493C2 /* TransactionCollection.swift */; };
 		4597FA882B209D2500043461 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FA872B209D2500043461 /* CustomFonts.swift */; };
@@ -125,6 +126,7 @@
 		457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		457709092B2C94E1002E3FD4 /* MoneyMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMTests.swift; sourceTree = "<group>"; };
 		457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
+		457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		458DF7902B2388C10048B4E9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		459317572B1CA6EF00F493C2 /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4597FA872B209D2500043461 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				457709092B2C94E1002E3FD4 /* MoneyMTests.swift */,
 				457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */,
+				457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */,
 			);
 			path = MoneyMTests;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */,
+				457709132B2CB2C9002E3FD4 /* CoreDataManagerTests.swift in Sources */,
 				4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
