@@ -84,5 +84,17 @@ struct Home {
 			let alert: UIAlertController
 		}
 	}
-	
+
+	struct AlertDatePicker {
+		struct Request {
+			let action: (_ month: Int, _ year: Int) -> Void
+		}
+		struct Response {
+			let action: (_ month: Int, _ year: Int) -> Void
+		}
+		struct ViewModel {
+			let alert: UIAlertController
+		}
+	}
+
 }

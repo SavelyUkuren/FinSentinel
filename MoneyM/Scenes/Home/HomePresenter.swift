@@ -13,6 +13,7 @@ protocol HomePresentationLogic {
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response)
 	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response)
 	func presentAlertEditStartingBalance(_ response: Home.AlertEditStartingBalance.Response)
+	func presentAlertDatePicker(_ response: Home.AlertDatePicker.Response)
 }
 
 // MARK: - Presentation logic
@@ -79,13 +80,33 @@ class HomePresenter: HomePresentationLogic {
 
 		alert.addAction(UIAlertAction(title: NSLocalizedString("edit.title", comment: ""),
 									  style: .default,
-									  handler: {_ in 
+									  handler: {_ in
 			let balance = alert.textFields?[0].text ?? ""
 			response.action(balance)
 		}))
 
 		let viewModel = Home.AlertEditStartingBalance.ViewModel(alert: alert)
 		viewController?.displayAlertEditStartingBalance(viewModel)
+	}
+
+	func presentAlertDatePicker(_ response: Home.AlertDatePicker.Response) {
+		let datePickerVC = UIViewController()
+		let pickerView = MonthYearWheelPicker()
+		pickerView.minimumDate = Date(timeIntervalSince1970: 0)
+		pickerView.maximumDate = .now
+
+		datePickerVC.view = pickerView
+
+		let alert = UIAlertController(title: NSLocalizedString("select_date.title", comment: ""), message: nil, preferredStyle: .actionSheet)
+		alert.setValue(datePickerVC, forKey: "contentViewController")
+
+		let selectAction = UIAlertAction(title: NSLocalizedString("select.title", comment: ""), style: .default) { _ in
+			response.action(pickerView.month, pickerView.year)
+		}
+		alert.addAction(selectAction)
+
+		let viewModel = Home.AlertDatePicker.ViewModel(alert: alert)
+		viewController?.displayAlertDatePicker(viewModel)
 	}
 
 	private func getDayAndMonth(_ date: Date) -> String {

@@ -12,6 +12,7 @@ protocol HomeDisplayLogic {
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel)
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel)
 	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel)
+	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -84,7 +85,7 @@ class HomeViewController: UIViewController {
 	private func configureDatePickerButton() {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "MMMM Y"
-		
+
 		let title = formatter.string(from: .now)
 		datePickerButton.setTitle(title, for: .normal)
 	}
@@ -93,26 +94,6 @@ class HomeViewController: UIViewController {
 		// Currency changed
 		NotificationCenter.default.addObserver(self, selector: #selector(changeCurrency),
 											   name: Notifications.Currency, object: nil)
-	}
-
-	private func showDatePicker() {
-		let datePickerVC = UIViewController()
-		let pickerView = MonthYearWheelPicker()
-		pickerView.minimumDate = Date(timeIntervalSince1970: 0)
-		pickerView.maximumDate = .now
-
-		datePickerVC.view = pickerView
-
-		let alert = UIAlertController(title: "Select date", message: nil, preferredStyle: .actionSheet)
-		alert.setValue(datePickerVC, forKey: "contentViewController")
-
-		let selectAction = UIAlertAction(title: "Select", style: .default) { _ in
-			let request = Home.FetchTransactions.Request(month: pickerView.month, year: pickerView.year)
-			self.interactor?.fetchTransactions(request)
-		}
-		alert.addAction(selectAction)
-
-		present(alert, animated: true)
 	}
 
 	@objc
@@ -141,7 +122,14 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func selectDateButtonClicked(_ sender: Any) {
-		showDatePicker()
+
+		let action = { (month: Int, year: Int) in
+			let request = Home.FetchTransactions.Request(month: month, year: year)
+			self.interactor?.fetchTransactions(request)
+		}
+
+		let request = Home.AlertDatePicker.Request(action: action)
+		interactor?.showAlertDatePicker(request)
 	}
 
 }
@@ -168,8 +156,12 @@ extension HomeViewController: HomeDisplayLogic {
 		let request = Home.FetchFinancialSummary.Request()
 		interactor?.fetchFinancialSummary(request: request)
 	}
-	
+
 	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel) {
+		present(viewModel.alert, animated: true)
+	}
+
+	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel) {
 		present(viewModel.alert, animated: true)
 	}
 

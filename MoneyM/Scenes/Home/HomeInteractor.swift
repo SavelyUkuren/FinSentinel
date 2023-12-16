@@ -16,6 +16,7 @@ protocol HomeBusinessLogic {
 	func editTransaction(_ request: Home.EditTransaction.Request)
 	func editStartingBalance(_ request: Home.EditStartingBalance.Request)
 	func showAlertEditStartingBalance(_ request: Home.AlertEditStartingBalance.Request)
+	func showAlertDatePicker(_ request: Home.AlertDatePicker.Request)
 }
 
 // MARK: - Business logic
@@ -113,5 +114,10 @@ class HomeInteractor: HomeBusinessLogic {
 	func showAlertEditStartingBalance(_ request: Home.AlertEditStartingBalance.Request) {
 		let response = Home.AlertEditStartingBalance.Response(action: request.action)
 		presenter?.presentAlertEditStartingBalance(response)
+	}
+
+	func showAlertDatePicker(_ request: Home.AlertDatePicker.Request) {
+		let response = Home.AlertDatePicker.Response(action: request.action)
+		presenter?.presentAlertDatePicker(response)
 	}
 }
