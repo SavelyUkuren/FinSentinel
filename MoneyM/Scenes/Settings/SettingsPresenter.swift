@@ -10,6 +10,7 @@ import Foundation
 protocol SettingsPresentLogic {
 	func presentSettings(_ response: SettingsModels.FetchSettings.Response)
 	func presentCurrencyChange(_ response: SettingsModels.ChangeCurrency.Response)
+	func presentAppTheme(_ response: SettingsModels.ChangeAppTheme.Response)
 }
 
 class SettingsPresenter: SettingsPresentLogic {
@@ -27,4 +28,9 @@ class SettingsPresenter: SettingsPresentLogic {
 		viewController?.displayCurrencyChange(viewModel)
 	}
 
+	func presentAppTheme(_ response: SettingsModels.ChangeAppTheme.Response) {
+		let viewModel = SettingsModels.ChangeAppTheme.ViewModel(userInterfaceStyle: response.userInterfaceStyle)
+		viewController?.displayAppTheme(viewModel)
+	}
+	
 }

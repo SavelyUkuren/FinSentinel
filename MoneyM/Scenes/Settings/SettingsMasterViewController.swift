@@ -10,6 +10,7 @@ import UIKit
 protocol SettingsDisplayLogic: AnyObject {
 	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel)
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel)
+	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel)
 }
 
 class SettingsMasterViewController: UITableViewController {
@@ -82,6 +83,7 @@ class SettingsMasterViewController: UITableViewController {
 		let viewController = storyboard.instantiateViewController(withIdentifier: storyboardID)
 
 		(viewController as? CurrencyViewController)?.delegate = self
+		(viewController as? AppearanceViewController)?.delegate = self
 
 		splitViewController?.showDetailViewController(UINavigationController(rootViewController: viewController), sender: self)
 
@@ -99,6 +101,11 @@ extension SettingsMasterViewController: SettingsDisplayLogic {
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel) {
 
 	}
+	
+	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel) {
+		let sceneDelegate = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)
+		sceneDelegate?.changeAppearance(viewModel.userInterfaceStyle)
+	}
 }
 
 // MARK: - CurrencyViewController delegate
@@ -107,4 +114,13 @@ extension SettingsMasterViewController: CurrencyViewControllerDelegate {
 		let request = SettingsModels.ChangeCurrency.Request(currency: currency)
 		interactor?.changeCurrency(request)
 	}
+}
+
+// MARK: - Appearance delegate
+extension SettingsMasterViewController: AppearanceDelegate {
+	func themeDidChange(_ theme: AppearanceModel.Theme) {
+		let request = SettingsModels.ChangeAppTheme.Request(theme: theme)
+		interactor?.changeAppTheme(request)
+	}
+	
 }

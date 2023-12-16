@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		451104F12B2E030C0066F868 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */; };
+		451104FD2B2E19480066F868 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451104F72B2E19480066F868 /* AppearanceViewController.swift */; };
+		451105022B2E2D150066F868 /* AppearanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451105012B2E2D150066F868 /* AppearanceModel.swift */; };
 		451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AD2AA49F740003A4B7 /* TransactionModel.swift */; };
 		452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A71572B191F5C0015E524 /* HomeRoute.swift */; };
 		452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A715A2B1920180015E524 /* AddTransactionViewController.swift */; };
@@ -101,6 +103,8 @@
 
 /* Begin PBXFileReference section */
 		451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		451104F72B2E19480066F868 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
+		451105012B2E2D150066F868 /* AppearanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModel.swift; sourceTree = "<group>"; };
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		452A71572B191F5C0015E524 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
 		452A715A2B1920180015E524 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,15 @@
 				4597FA872B209D2500043461 /* CustomFonts.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		451104F22B2E16A90066F868 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				451104F72B2E19480066F868 /* AppearanceViewController.swift */,
+				451105012B2E2D150066F868 /* AppearanceModel.swift */,
+			);
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 		452A71592B191FC90015E524 /* AddTransaction */ = {
@@ -407,6 +420,7 @@
 		459F98C42B23595000BB89D6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				451104F22B2E16A90066F868 /* Appearance */,
 				458DF78F2B2368D60048B4E9 /* Currencies */,
 				458DF7902B2388C10048B4E9 /* DetailViewController.swift */,
 			);
@@ -676,6 +690,7 @@
 				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,
 				458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */,
 				45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */,
+				451104FD2B2E19480066F868 /* AppearanceViewController.swift in Sources */,
 				4597FA9E2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift in Sources */,
 				459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */,
 				4533EE0F2B18F5F200A92713 /* HomeModels.swift in Sources */,
@@ -691,6 +706,7 @@
 				456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */,
 				45E9FE0D2B1A5E2300783D27 /* AddTransactionRouter.swift in Sources */,
 				452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */,
+				451105022B2E2D150066F868 /* AppearanceModel.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				453445A52AFAA83A005154DF /* ButtonChoiceView.swift in Sources */,
 				451104F12B2E030C0066F868 /* SettingsTableViewCell.swift in Sources */,

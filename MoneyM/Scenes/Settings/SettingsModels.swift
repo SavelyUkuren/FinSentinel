@@ -45,5 +45,17 @@ struct SettingsModels {
 
 		}
 	}
+	
+	struct ChangeAppTheme {
+		struct Request {
+			let theme: AppearanceModel.Theme
+		}
+		struct Response {
+			let userInterfaceStyle: UIUserInterfaceStyle
+		}
+		struct ViewModel {
+			let userInterfaceStyle: UIUserInterfaceStyle
+		}
+	}
 
 }

@@ -18,6 +18,7 @@ class Settings {
 	private init() {
 		model.currency = loadCurrency()
 		model.accentColor = loadAccentColor()
+		model.userInterfaceStyle = loadAppTheme()
 	}
 
 	public func changeCurrency(_ newCurrency: CurrencyModel) {
@@ -29,6 +30,11 @@ class Settings {
 	public func changeAccentColor(_ newColor: UIColor) {
 		model.accentColor = newColor
 		NotificationCenter.default.post(name: Notifications.AccentColor, object: newColor)
+	}
+	
+	public func changeAppTheme(_ newTheme: UIUserInterfaceStyle) {
+		model.userInterfaceStyle = newTheme
+		defaults.set(newTheme.rawValue, forKey: UserDefaultKeys.userInterfaceStyle)
 	}
 
 	private func loadCurrency() -> CurrencyModel {
@@ -48,4 +54,9 @@ class Settings {
 		return .systemBlue
 	}
 
+	private func loadAppTheme() -> UIUserInterfaceStyle {
+		let theme = defaults.integer(forKey: UserDefaultKeys.userInterfaceStyle)
+		return UIUserInterfaceStyle(rawValue: theme) ?? .unspecified
+	}
+	
 }

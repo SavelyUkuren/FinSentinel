@@ -11,4 +11,5 @@ import UIKit
 class SettingsModel {
 	var currency: CurrencyModel!
 	var accentColor: UIColor!
+	var userInterfaceStyle: UIUserInterfaceStyle!
 }
