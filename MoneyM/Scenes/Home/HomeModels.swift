@@ -73,4 +73,16 @@ struct Home {
 		}
 	}
 
+	struct AlertEditStartingBalance {
+		struct Request {
+			let action: (_ newBalance: String) -> Void
+		}
+		struct Response {
+			let action: (_ newBalance: String) -> Void
+		}
+		struct ViewModel {
+			let alert: UIAlertController
+		}
+	}
+	
 }

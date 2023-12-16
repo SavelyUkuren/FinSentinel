@@ -11,6 +11,7 @@ protocol HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel)
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel)
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel)
+	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -28,7 +29,7 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
 
 	@IBOutlet weak var datePickerButton: UIButton!
-	
+
 	var interactor: HomeBusinessLogic?
 
 	var router: HomeRoutingLogic?
@@ -94,27 +95,6 @@ class HomeViewController: UIViewController {
 											   name: Notifications.Currency, object: nil)
 	}
 
-	private func showEditBalanceAlert() {
-		let alert = UIAlertController(title: "Edit starting balance",
-									  message: nil,
-									  preferredStyle: .alert)
-
-		alert.addTextField { textField in
-			textField.placeholder = NSLocalizedString("balance.title", comment: "")
-			textField.keyboardType = .decimalPad
-		}
-
-		alert.addAction(UIAlertAction(title: NSLocalizedString("edit.title", comment: ""),
-									  style: .default,
-									  handler: { _ in
-			let newBalance = alert.textFields![0].text!
-			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
-			self.interactor?.editStartingBalance(request)
-		}))
-
-		present(alert, animated: true)
-	}
-
 	private func showDatePicker() {
 		let datePickerVC = UIViewController()
 		let pickerView = MonthYearWheelPicker()
@@ -151,7 +131,13 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func balanceButtonClicked(_ sender: Any) {
-		showEditBalanceAlert()
+		let action = { (newBalance: String) -> Void in
+			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
+			self.interactor?.editStartingBalance(request)
+		}
+
+		let request = Home.AlertEditStartingBalance.Request(action: action)
+		interactor?.showAlertEditStartingBalance(request)
 	}
 
 	@IBAction func selectDateButtonClicked(_ sender: Any) {
@@ -181,6 +167,10 @@ extension HomeViewController: HomeDisplayLogic {
 
 		let request = Home.FetchFinancialSummary.Request()
 		interactor?.fetchFinancialSummary(request: request)
+	}
+	
+	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel) {
+		present(viewModel.alert, animated: true)
 	}
 
 }

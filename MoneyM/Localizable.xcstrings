@@ -295,6 +295,23 @@
         }
       }
     },
+    "edit_starting_balance.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit starting balance"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить начальный баланс"
+          }
+        }
+      }
+    },
     "edit_transaction.title" : {
       "extractionState" : "manual",
       "localizations" : {
