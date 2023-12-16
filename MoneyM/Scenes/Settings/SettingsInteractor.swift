@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SettingsBusinessLogic {
 	func fetchSettings(_ request: SettingsModels.FetchSettings.Request)
@@ -19,13 +20,8 @@ class SettingsInteractor: SettingsBusinessLogic {
 	func fetchSettings(_ request: SettingsModels.FetchSettings.Request) {
 		var dataArray: [SettingsModels.TableViewSectionModel] = []
 
-		let dataCells = [SettingsModels.TableViewCellModel(title: NSLocalizedString("currency.title", comment: ""),
-														   storyboardID: "Currency")]
+		dataArray.append(configureCurrency())
 
-		let dataSection = SettingsModels.TableViewSectionModel(section: NSLocalizedString("data.title", comment: ""),
-															   cells: dataCells)
-
-		dataArray.append(dataSection)
 		let response = SettingsModels.FetchSettings.Response(data: dataArray)
 		presenter?.presentSettings(response)
 	}
@@ -35,6 +31,17 @@ class SettingsInteractor: SettingsBusinessLogic {
 
 		let response = SettingsModels.ChangeCurrency.Response()
 		presenter?.presentCurrencyChange(response)
+	}
+
+	private func configureCurrency() -> SettingsModels.TableViewSectionModel {
+		let dataCells = [SettingsModels.TableViewCellModel(title: NSLocalizedString("currency.title", comment: ""),
+														   icon: UIImage(systemName: "dollarsign.circle"),
+														   iconBackgroundColor: .systemPink,
+														   storyboardID: "Currency")]
+
+		let dataSection = SettingsModels.TableViewSectionModel(section: NSLocalizedString("data.title", comment: ""),
+															   cells: dataCells)
+		return dataSection
 	}
 
 }

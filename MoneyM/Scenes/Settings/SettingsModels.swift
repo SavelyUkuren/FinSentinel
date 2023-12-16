@@ -12,6 +12,8 @@ struct SettingsModels {
 
 	struct TableViewCellModel {
 		var title: String
+		var icon: UIImage?
+		var iconBackgroundColor: UIColor
 		var storyboardID: String
 	}
 

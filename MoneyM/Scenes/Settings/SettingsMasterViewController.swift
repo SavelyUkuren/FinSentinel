@@ -58,11 +58,18 @@ class SettingsMasterViewController: UITableViewController {
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-		cell.textLabel?.text = data[indexPath.section].cells[indexPath.row].title
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingsTableViewCell {
 
-		return cell
+			cell.titleLabel.text = data[indexPath.section].cells[indexPath.row].title
+			cell.iconBackgroundView.backgroundColor = data[indexPath.section].cells[indexPath.row].iconBackgroundColor
+			cell.iconImageView.image = data[indexPath.section].cells[indexPath.row].icon
+			cell.iconImageView.tintColor = .white
+
+			return cell
+		}
+
+		return UITableViewCell()
 	}
 
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
