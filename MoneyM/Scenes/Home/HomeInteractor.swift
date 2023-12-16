@@ -17,6 +17,7 @@ protocol HomeBusinessLogic {
 	func editStartingBalance(_ request: Home.EditStartingBalance.Request)
 	func showAlertEditStartingBalance(_ request: Home.AlertEditStartingBalance.Request)
 	func showAlertDatePicker(_ request: Home.AlertDatePicker.Request)
+	func updateDatePickerButton(_ request: Home.DatePickerButton.Request)
 }
 
 // MARK: - Business logic
@@ -49,6 +50,8 @@ class HomeInteractor: HomeBusinessLogic {
 
 		let coreDataManager = CoreDataManager()
 		let arr = coreDataManager.load(year: request.year, month: request.month)
+		year = request.year
+		month = request.month
 
 		transactionCollection.removeAll()
 		transactionCollection.add(arr)
@@ -120,4 +123,10 @@ class HomeInteractor: HomeBusinessLogic {
 		let response = Home.AlertDatePicker.Response(action: request.action)
 		presenter?.presentAlertDatePicker(response)
 	}
+
+	func updateDatePickerButton(_ request: Home.DatePickerButton.Request) {
+		let response = Home.DatePickerButton.Response(month: month, year: year)
+		presenter?.presentDatePickerButton(response)
+	}
+
 }

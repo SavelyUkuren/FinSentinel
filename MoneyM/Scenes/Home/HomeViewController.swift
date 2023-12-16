@@ -13,6 +13,7 @@ protocol HomeDisplayLogic {
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel)
 	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel)
 	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel)
+	func displayDatePickerButton(_ viewModel: Home.DatePickerButton.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -67,7 +68,7 @@ class HomeViewController: UIViewController {
 
 		addNotificationObservers()
 
-		configureDatePickerButton()
+		interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
 	}
 
 	private func configureTransactionsTableView() {
@@ -80,14 +81,6 @@ class HomeViewController: UIViewController {
 		balanceAmountLabel.font = font.roundedFont(balanceAmountLabel.font.pointSize, .bold)
 		expenseAmountLabel.font = font.roundedFont(expenseAmountLabel.font.pointSize, .semibold)
 		incomeAmountLabel.font = font.roundedFont(incomeAmountLabel.font.pointSize, .semibold)
-	}
-
-	private func configureDatePickerButton() {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "MMMM Y"
-
-		let title = formatter.string(from: .now)
-		datePickerButton.setTitle(title, for: .normal)
 	}
 
 	private func addNotificationObservers() {
@@ -126,6 +119,8 @@ class HomeViewController: UIViewController {
 		let action = { (month: Int, year: Int) in
 			let request = Home.FetchTransactions.Request(month: month, year: year)
 			self.interactor?.fetchTransactions(request)
+
+			self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
 		}
 
 		let request = Home.AlertDatePicker.Request(action: action)
@@ -163,6 +158,10 @@ extension HomeViewController: HomeDisplayLogic {
 
 	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel) {
 		present(viewModel.alert, animated: true)
+	}
+
+	func displayDatePickerButton(_ viewModel: Home.DatePickerButton.ViewModel) {
+		datePickerButton.setTitle(viewModel.title, for: .normal)
 	}
 
 }

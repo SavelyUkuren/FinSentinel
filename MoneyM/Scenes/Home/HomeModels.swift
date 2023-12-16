@@ -97,4 +97,17 @@ struct Home {
 		}
 	}
 
+	struct DatePickerButton {
+		struct Request {
+
+		}
+		struct Response {
+			let month: Int
+			let year: Int
+		}
+		struct ViewModel {
+			let title: String
+		}
+	}
+
 }

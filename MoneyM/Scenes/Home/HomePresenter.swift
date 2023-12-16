@@ -14,6 +14,7 @@ protocol HomePresentationLogic {
 	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response)
 	func presentAlertEditStartingBalance(_ response: Home.AlertEditStartingBalance.Response)
 	func presentAlertDatePicker(_ response: Home.AlertDatePicker.Response)
+	func presentDatePickerButton(_ response: Home.DatePickerButton.Response)
 }
 
 // MARK: - Presentation logic
@@ -107,6 +108,23 @@ class HomePresenter: HomePresentationLogic {
 
 		let viewModel = Home.AlertDatePicker.ViewModel(alert: alert)
 		viewController?.displayAlertDatePicker(viewModel)
+	}
+
+	func presentDatePickerButton(_ response: Home.DatePickerButton.Response) {
+
+		var dateComponents = DateComponents()
+		dateComponents.month = response.month
+		dateComponents.year = response.year
+
+		let date = Calendar.current.date(from: dateComponents)
+
+		let formatter = DateFormatter()
+		formatter.dateFormat = "MMM y"
+
+		let title = formatter.string(from: date ?? .now)
+
+		let viewModel = Home.DatePickerButton.ViewModel(title: title)
+		viewController?.displayDatePickerButton(viewModel)
 	}
 
 	private func getDayAndMonth(_ date: Date) -> String {
