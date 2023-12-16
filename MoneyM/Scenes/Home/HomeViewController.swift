@@ -120,6 +120,7 @@ class HomeViewController: UIViewController {
 			let request = Home.FetchTransactions.Request(month: month, year: year)
 			self.interactor?.fetchTransactions(request)
 
+			self.interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 			self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
 		}
 
