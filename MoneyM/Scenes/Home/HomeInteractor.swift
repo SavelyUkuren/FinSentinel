@@ -46,7 +46,7 @@ class HomeInteractor: HomeBusinessLogic {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
 
 		let coreDataManager = CoreDataManager()
-		let arr = coreDataManager.load(year: year, month: month)
+		let arr = coreDataManager.load(year: request.year, month: request.month)
 
 		transactionCollection.removeAll()
 		transactionCollection.add(arr)

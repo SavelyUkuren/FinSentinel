@@ -140,7 +140,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9v-3A-5Hb">
-                                        <rect key="frame" x="0.0" y="248" width="393" height="216"/>
+                                        <rect key="frame" x="0.0" y="283" width="393" height="216"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="216" id="BEE-RA-T5N"/>
                                         </constraints>
@@ -249,8 +249,27 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tu9-6w-dNP">
+                                        <rect key="frame" x="16" y="248" width="361" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="fWj-4j-a6G"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Date"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="selectDateButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NYV-Sq-5nh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Tu9-6w-dNP" firstAttribute="top" secondItem="8Ct-OM-5Xv" secondAttribute="bottom" constant="16" id="D5E-Ph-nYe"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tu9-6w-dNP" secondAttribute="trailing" constant="16" id="Or4-vt-H1d"/>
+                                    <constraint firstItem="s9v-3A-5Hb" firstAttribute="top" secondItem="Tu9-6w-dNP" secondAttribute="bottom" id="QHf-2R-sgW"/>
                                     <constraint firstItem="s9v-3A-5Hb" firstAttribute="leading" secondItem="RDw-Pm-jqq" secondAttribute="leading" id="VRF-2u-6Ce"/>
                                     <constraint firstAttribute="trailing" secondItem="8Ct-OM-5Xv" secondAttribute="trailing" constant="16" id="XPy-MO-1Gy"/>
                                     <constraint firstItem="8Ct-OM-5Xv" firstAttribute="centerX" secondItem="RDw-Pm-jqq" secondAttribute="centerX" id="dRO-XR-jHr"/>
@@ -258,7 +277,7 @@
                                     <constraint firstAttribute="trailing" secondItem="s9v-3A-5Hb" secondAttribute="trailing" id="lfx-Gh-HZR"/>
                                     <constraint firstAttribute="bottom" secondItem="s9v-3A-5Hb" secondAttribute="bottom" constant="50" id="oGp-tk-G7c"/>
                                     <constraint firstItem="8Ct-OM-5Xv" firstAttribute="top" secondItem="RDw-Pm-jqq" secondAttribute="top" constant="16" id="pYc-wP-fr9"/>
-                                    <constraint firstItem="s9v-3A-5Hb" firstAttribute="top" secondItem="8Ct-OM-5Xv" secondAttribute="bottom" constant="16" id="ySn-28-gUI"/>
+                                    <constraint firstItem="Tu9-6w-dNP" firstAttribute="leading" secondItem="RDw-Pm-jqq" secondAttribute="leading" constant="16" id="yoZ-bK-7lK"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fi-uJ-srG">
@@ -312,6 +331,7 @@
                     <connections>
                         <outlet property="addTransactionButton" destination="3fi-uJ-srG" id="Rr8-qx-Nfw"/>
                         <outlet property="balanceAmountLabel" destination="DbD-0D-2Ec" id="UAp-pB-IIH"/>
+                        <outlet property="datePickerButton" destination="Tu9-6w-dNP" id="Tk5-tD-PFv"/>
                         <outlet property="expenseAmountLabel" destination="mRf-yK-r1d" id="SXU-vp-xZD"/>
                         <outlet property="incomeAmountLabel" destination="DLm-t4-PuE" id="C08-W7-MP7"/>
                         <outlet property="scrollViewHeightConstraint" destination="BEE-RA-T5N" id="N2X-rI-qvX"/>
@@ -320,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="3.1690140845070425"/>
+            <point key="canvasLocation" x="944.27480916030527" y="2.8169014084507045"/>
         </scene>
         <!--Test-->
         <scene sceneID="WO9-lB-qPs">

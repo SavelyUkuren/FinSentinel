@@ -27,6 +27,8 @@ class HomeViewController: UIViewController {
 
 	@IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
 
+	@IBOutlet weak var datePickerButton: UIButton!
+	
 	var interactor: HomeBusinessLogic?
 
 	var router: HomeRoutingLogic?
@@ -58,10 +60,12 @@ class HomeViewController: UIViewController {
 		configureTransactionsTableView()
 		configureFontLabels()
 
-		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: 12, year: 2023))
 		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 
 		addNotificationObservers()
+
+		configureDatePickerButton()
 	}
 
 	private func configureTransactionsTableView() {
@@ -74,6 +78,14 @@ class HomeViewController: UIViewController {
 		balanceAmountLabel.font = font.roundedFont(balanceAmountLabel.font.pointSize, .bold)
 		expenseAmountLabel.font = font.roundedFont(expenseAmountLabel.font.pointSize, .semibold)
 		incomeAmountLabel.font = font.roundedFont(incomeAmountLabel.font.pointSize, .semibold)
+	}
+
+	private func configureDatePickerButton() {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "MMMM Y"
+		
+		let title = formatter.string(from: .now)
+		datePickerButton.setTitle(title, for: .normal)
 	}
 
 	private func addNotificationObservers() {
@@ -103,9 +115,29 @@ class HomeViewController: UIViewController {
 		present(alert, animated: true)
 	}
 
+	private func showDatePicker() {
+		let datePickerVC = UIViewController()
+		let pickerView = MonthYearWheelPicker()
+		pickerView.minimumDate = Date(timeIntervalSince1970: 0)
+		pickerView.maximumDate = .now
+
+		datePickerVC.view = pickerView
+
+		let alert = UIAlertController(title: "Select date", message: nil, preferredStyle: .actionSheet)
+		alert.setValue(datePickerVC, forKey: "contentViewController")
+
+		let selectAction = UIAlertAction(title: "Select", style: .default) { _ in
+			let request = Home.FetchTransactions.Request(month: pickerView.month, year: pickerView.year)
+			self.interactor?.fetchTransactions(request)
+		}
+		alert.addAction(selectAction)
+
+		present(alert, animated: true)
+	}
+
 	@objc
 	private func changeCurrency() {
-		interactor?.fetchTransactions(Home.FetchTransactions.Request())
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: 12, year: 2023))
 		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
 	}
 
@@ -120,6 +152,10 @@ class HomeViewController: UIViewController {
 
 	@IBAction func balanceButtonClicked(_ sender: Any) {
 		showEditBalanceAlert()
+	}
+
+	@IBAction func selectDateButtonClicked(_ sender: Any) {
+		showDatePicker()
 	}
 
 }

@@ -36,6 +36,7 @@
 		4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709092B2C94E1002E3FD4 /* MoneyMTests.swift */; };
 		457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */; };
 		457709132B2CB2C9002E3FD4 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */; };
+		4577091E2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */; };
 		458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DF7902B2388C10048B4E9 /* DetailViewController.swift */; };
 		459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459317572B1CA6EF00F493C2 /* TransactionCollection.swift */; };
 		4597FA882B209D2500043461 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FA872B209D2500043461 /* CustomFonts.swift */; };
@@ -127,6 +128,7 @@
 		457709092B2C94E1002E3FD4 /* MoneyMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMTests.swift; sourceTree = "<group>"; };
 		457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
 		457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearWheelPicker.swift; sourceTree = "<group>"; };
 		458DF7902B2388C10048B4E9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		459317572B1CA6EF00F493C2 /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4597FA872B209D2500043461 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		453445A32AFAA81D005154DF /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				4577091F2B2D9F57002E3FD4 /* DatePicker */,
 				45E1694A2AEEA6E200B7989D /* TableViewSections */,
 				45326F502AB6110500301729 /* TableViewCells */,
 				453445A42AFAA83A005154DF /* ButtonChoiceView.swift */,
@@ -320,6 +323,14 @@
 				457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */,
 			);
 			path = MoneyMTests;
+			sourceTree = "<group>";
+		};
+		4577091F2B2D9F57002E3FD4 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */,
+			);
+			path = DatePicker;
 			sourceTree = "<group>";
 		};
 		458DF78F2B2368D60048B4E9 /* Currencies */ = {
@@ -620,6 +631,7 @@
 				451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */,
 				4597FA882B209D2500043461 /* CustomFonts.swift in Sources */,
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
+				4577091E2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
 				459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,

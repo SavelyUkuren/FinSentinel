@@ -17,7 +17,8 @@ struct Home {
 
 	struct FetchTransactions {
 		struct Request {
-
+			let month: Int
+			let year: Int
 		}
 		struct Response {
 			var data: [TransactionData]
