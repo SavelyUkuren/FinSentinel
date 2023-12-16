@@ -13,23 +13,26 @@ protocol AddTransactionRoutingLogic {
 }
 
 class AddTransactionRouter: AddTransactionRoutingLogic {
-	
+
 	var viewController: AddTransactionViewController?
-	
+
 	func routeToSelectCategory() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc = storyboard.instantiateViewController(identifier: "Categories") as! CategoriesViewController
-		vc.categoryType = switch viewController?.choiceButton.selectedButton {
-		case .First:
-			TransactionModel.Mode.Expense
-		case .Second:
-			TransactionModel.Mode.Income
-		case .none:
-			TransactionModel.Mode.Expense
+		if let categoriesVC = storyboard.instantiateViewController(identifier: "Categories") as? CategoriesViewController {
+
+			categoriesVC.categoryType = switch viewController?.choiceButton.selectedButton {
+			case .first:
+				TransactionModel.Mode.expense
+			case .second:
+				TransactionModel.Mode.income
+			case .none:
+				TransactionModel.Mode.expense
+			}
+
+			categoriesVC.delegate = viewController
+
+			viewController?.present(categoriesVC, animated: true)
 		}
-		
-		vc.delegate = viewController
-		
-		viewController?.present(vc, animated: true)
+
 	}
 }

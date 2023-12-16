@@ -8,11 +8,11 @@
 import Foundation
 
 protocol SettingsRoutingLogic {
-	
+
 }
 
 class SettingsRouter: SettingsRoutingLogic {
-	
+
 	var viewController: SettingsMasterViewController?
-	
+
 }

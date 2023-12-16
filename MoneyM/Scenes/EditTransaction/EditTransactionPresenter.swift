@@ -13,18 +13,18 @@ protocol EditTransactionPresentLogic {
 }
 
 class EditTransactionPresenter: EditTransactionPresentLogic {
-	
+
 	var viewController: EditTransactionViewController?
-	
+
 	func presentLoadTransaction(_ response: EditTransactionModels.LoadTransaction.Response) {
 		let categoryManager = CategoriesManager.shared
-		
+
 		let amount = String(response.transaction.amount.thousandSeparator)
-		let mode = response.transaction.mode ?? .Expense
+		let mode = response.transaction.mode ?? .expense
 		let category = categoryManager.findCategoryBy(id: response.transaction.categoryID ?? 0) ?? CategoriesManager.shared.defaultCategory
 		let date = response.transaction.date!
 		let note = response.transaction.note ?? ""
-		
+
 		let viewModel = EditTransactionModels.LoadTransaction.ViewModel(amount: amount,
 																		mode: mode,
 																		category: category,
@@ -32,7 +32,7 @@ class EditTransactionPresenter: EditTransactionPresentLogic {
 																		note: note)
 		viewController?.displayLoadTransaction(viewModel)
 	}
-	
+
 	func presentEditTransaction(_ response: EditTransactionModels.EditTransaction.Response) {
 		let viewModel = EditTransactionModels.EditTransaction.ViewModel(transactionModel: response.transactionModel,
 																		 hasError: response.hasError, errorMessage: response.errorMessage)

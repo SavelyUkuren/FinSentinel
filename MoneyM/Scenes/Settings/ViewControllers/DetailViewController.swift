@@ -12,12 +12,5 @@ class DetailViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		(splitViewController?.viewControllers[0] as? UINavigationController)?.popViewController(animated: false)
 	}
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-		
-		
-    }
 
 }

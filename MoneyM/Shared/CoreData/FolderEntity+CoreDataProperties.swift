@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension FolderEntity {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<FolderEntity> {
@@ -40,6 +39,6 @@ extension FolderEntity {
 
 }
 
-extension FolderEntity : Identifiable {
+extension FolderEntity: Identifiable {
 
 }

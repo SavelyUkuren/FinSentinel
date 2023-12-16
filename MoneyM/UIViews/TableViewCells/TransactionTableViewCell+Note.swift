@@ -7,21 +7,10 @@
 
 import UIKit
 
-class TransactionTableViewCell_Note: TransactionTableViewCell {
+class TransactionTableViewCellNote: TransactionTableViewCell {
 
 	@IBOutlet weak var noteLabel: UILabel!
-	
-	override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-	
 	override func loadTransaction(transaction: TransactionModel) {
 		super.loadTransaction(transaction: transaction)
 		noteLabel.text = transaction.note

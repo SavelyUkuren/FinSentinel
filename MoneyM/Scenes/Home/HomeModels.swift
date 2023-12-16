@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 struct Home {
-	
+
 	struct TransactionTableViewCellModel {
 		var section: String
 		var transactions: [TransactionModel]
 	}
-	
+
 	struct FetchTransactions {
 		struct Request {
-			
+
 		}
 		struct Response {
 			var data: [TransactionData]
@@ -26,28 +26,28 @@ struct Home {
 			var data: [TransactionTableViewCellModel]
 		}
 	}
-	
+
 	struct AddTransaction {
 		struct Request {
 			let transaction: TransactionModel
 		}
 	}
-	
+
 	struct EditTransaction {
 		struct Request {
 			let transaction: TransactionModel
 		}
 	}
-	
+
 	struct EditStartingBalance {
 		struct Request {
 			let newBalance: String
 		}
 	}
-	
+
 	struct FetchFinancialSummary {
 		struct Request {
-			
+
 		}
 		struct Response {
 			var summary: FinancialSummary
@@ -59,7 +59,7 @@ struct Home {
 			var income: String
 		}
 	}
-	
+
 	struct RemoveTransaction {
 		struct Request {
 			var transaction: TransactionModel
@@ -71,5 +71,5 @@ struct Home {
 			var data: [TransactionTableViewCellModel]
 		}
 	}
-	
+
 }

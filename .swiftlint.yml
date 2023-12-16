@@ -1,0 +1,7 @@
+
+disabled_rules:
+ - nesting
+
+
+line_length:
+ warning: 200

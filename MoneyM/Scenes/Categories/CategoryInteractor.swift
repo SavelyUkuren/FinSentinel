@@ -12,23 +12,23 @@ protocol CategoryBusinessLogic {
 }
 
 class CategoryInteractor: CategoryBusinessLogic {
-	
+
 	var presenter: CategoryPresentLogic?
-	
+
 	func fetchCategories(_ request: CategoryModels.FetchCategories.Request) {
 		let categoriesManager = CategoriesManager.shared
-		
+
 		let categories: [CategoryModel]
-		
+
 		switch request.categoryType {
-		case .Expense:
+		case .expense:
 			categories = categoriesManager.categoriesData.expenses
-		case .Income:
+		case .income:
 			categories = categoriesManager.categoriesData.incomes
 		}
-		
+
 		let response = CategoryModels.FetchCategories.Response(categories: categories)
 		presenter?.presentCategories(response)
 	}
-	
+
 }

@@ -12,13 +12,13 @@ protocol AddTransactionPresentationLogic {
 }
 
 class AddTransactionPresenter: AddTransactionPresentationLogic {
-	
+
 	var viewController: AddTransactionDisplayLogic?
-	
+
 	init() {
-		
+
 	}
-	
+
 	func presentCreatedTransaction(_ response: AddTransactionModels.CreateTransaction.Response) {
 		let viewModel = AddTransactionModels.CreateTransaction.ViewModel(transactionModel: response.transactionModel,
 																		 hasError: response.hasError, errorMessage: response.errorMessage)

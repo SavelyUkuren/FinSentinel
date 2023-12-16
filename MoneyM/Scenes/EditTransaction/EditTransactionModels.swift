@@ -8,7 +8,7 @@
 import Foundation
 
 struct EditTransactionModels {
-	
+
 	struct LoadTransaction {
 		struct Request {
 			let transaction: TransactionModel
@@ -24,8 +24,7 @@ struct EditTransactionModels {
 			let note: String
 		}
 	}
-	
-	
+
 	struct EditTransaction {
 		struct Request {
 			var amount: String

@@ -8,7 +8,7 @@
 import Foundation
 
 struct AddTransactionModels {
-	
+
 	struct CreateTransaction {
 		struct Request {
 			var amount: String
@@ -28,5 +28,5 @@ struct AddTransactionModels {
 			var errorMessage: String?
 		}
 	}
-	
+
 }
