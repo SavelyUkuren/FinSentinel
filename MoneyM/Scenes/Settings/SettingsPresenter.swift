@@ -8,7 +8,6 @@
 import Foundation
 
 protocol SettingsPresentLogic {
-	func presentSettings(_ response: SettingsModels.FetchSettings.Response)
 	func presentCurrencyChange(_ response: SettingsModels.ChangeCurrency.Response)
 	func presentAppTheme(_ response: SettingsModels.ChangeAppTheme.Response)
 }
@@ -16,11 +15,6 @@ protocol SettingsPresentLogic {
 class SettingsPresenter: SettingsPresentLogic {
 
 	var viewController: SettingsDisplayLogic?
-
-	func presentSettings(_ response: SettingsModels.FetchSettings.Response) {
-		let viewModel = SettingsModels.FetchSettings.ViewModel(data: response.data)
-		viewController?.displaySettings(viewModel)
-	}
 
 	func presentCurrencyChange(_ response: SettingsModels.ChangeCurrency.Response) {
 
@@ -32,5 +26,5 @@ class SettingsPresenter: SettingsPresentLogic {
 		let viewModel = SettingsModels.ChangeAppTheme.ViewModel(userInterfaceStyle: response.userInterfaceStyle)
 		viewController?.displayAppTheme(viewModel)
 	}
-	
+
 }

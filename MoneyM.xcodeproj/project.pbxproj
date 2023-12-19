@@ -41,7 +41,6 @@
 		457709132B2CB2C9002E3FD4 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */; };
 		4577091E2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */; };
 		457709262B2DE542002E3FD4 /* HomeViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709252B2DE542002E3FD4 /* HomeViewControllerTableView.swift */; };
-		458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DF7902B2388C10048B4E9 /* DetailViewController.swift */; };
 		459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459317572B1CA6EF00F493C2 /* TransactionCollection.swift */; };
 		4597FA882B209D2500043461 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FA872B209D2500043461 /* CustomFonts.swift */; };
 		4597FA922B20A8CF00043461 /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */; };
@@ -137,7 +136,6 @@
 		457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearWheelPicker.swift; sourceTree = "<group>"; };
 		457709252B2DE542002E3FD4 /* HomeViewControllerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTableView.swift; sourceTree = "<group>"; };
-		458DF7902B2388C10048B4E9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		459317572B1CA6EF00F493C2 /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		4597FA872B209D2500043461 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Light.otf"; sourceTree = "<group>"; };
@@ -422,7 +420,6 @@
 			children = (
 				451104F22B2E16A90066F868 /* Appearance */,
 				458DF78F2B2368D60048B4E9 /* Currencies */,
-				458DF7902B2388C10048B4E9 /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -688,7 +685,6 @@
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */,
 				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,
-				458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */,
 				45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */,
 				451104FD2B2E19480066F868 /* AppearanceViewController.swift in Sources */,
 				4597FA9E2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift in Sources */,

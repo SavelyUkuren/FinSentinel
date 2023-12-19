@@ -8,13 +8,13 @@
 import Foundation
 
 struct AppearanceModel {
-	
+
 	enum Sections: Int {
 		case theme = 0
 	}
-	
+
 	enum Theme: Int {
 		case system, light, dark
 	}
-	
+
 }

@@ -31,7 +31,7 @@ class Settings {
 		model.accentColor = newColor
 		NotificationCenter.default.post(name: Notifications.AccentColor, object: newColor)
 	}
-	
+
 	public func changeAppTheme(_ newTheme: UIUserInterfaceStyle) {
 		model.userInterfaceStyle = newTheme
 		defaults.set(newTheme.rawValue, forKey: UserDefaultKeys.userInterfaceStyle)
@@ -58,5 +58,5 @@ class Settings {
 		let theme = defaults.integer(forKey: UserDefaultKeys.userInterfaceStyle)
 		return UIUserInterfaceStyle(rawValue: theme) ?? .unspecified
 	}
-	
+
 }

@@ -10,30 +10,6 @@ import UIKit
 
 struct SettingsModels {
 
-	struct TableViewCellModel {
-		var title: String
-		var icon: UIImage?
-		var iconBackgroundColor: UIColor
-		var storyboardID: String
-	}
-
-	struct TableViewSectionModel {
-		var section: String
-		var cells: [TableViewCellModel]
-	}
-
-	struct FetchSettings {
-		struct Request {
-
-		}
-		struct Response {
-			var data: [TableViewSectionModel]
-		}
-		struct ViewModel {
-			var data: [TableViewSectionModel]
-		}
-	}
-
 	struct ChangeCurrency {
 		struct Request {
 			var currency: CurrencyModel
@@ -45,7 +21,7 @@ struct SettingsModels {
 
 		}
 	}
-	
+
 	struct ChangeAppTheme {
 		struct Request {
 			let theme: AppearanceModel.Theme

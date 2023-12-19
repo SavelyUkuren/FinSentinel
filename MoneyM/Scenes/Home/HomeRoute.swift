@@ -11,7 +11,6 @@ import UIKit
 protocol HomeRoutingLogic {
 	func routeToAddNewTransaction()
 	func routeToEditTransaction(transaction: TransactionModel)
-	func routeToSettings()
 }
 
 class HomeRoute: HomeRoutingLogic {
@@ -35,14 +34,6 @@ class HomeRoute: HomeRoutingLogic {
 			editTransactionVC.delegate = viewController
 
 			viewController?.present(editTransactionVC, animated: true)
-		}
-	}
-
-	func routeToSettings() {
-		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-		if let splitVC = storyboard.instantiateViewController(withIdentifier: "Settings") as? UISplitViewController {
-
-			viewController?.present(splitVC, animated: true)
 		}
 	}
 

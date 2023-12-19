@@ -8,25 +8,22 @@
 import UIKit
 
 protocol SettingsDisplayLogic: AnyObject {
-	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel)
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel)
 	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel)
 }
 
 class SettingsMasterViewController: UITableViewController {
 
-	var interactor: SettingsBusinessLogic?
+	enum Sections: Int {
+		case data, appearance
+	}
 
-	private var data: [SettingsModels.TableViewSectionModel] = []
+	var interactor: SettingsBusinessLogic?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		setup()
-
-		let request = SettingsModels.FetchSettings.Request()
-		interactor?.fetchSettings(request)
-
 	}
 
 	private func setup() {
@@ -47,61 +44,36 @@ class SettingsMasterViewController: UITableViewController {
 	}
 
 	// MARK: - Table view data source
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-	override func numberOfSections(in tableView: UITableView) -> Int {
-		// #warning Incomplete implementation, return the number of sections
-		return data.count
-	}
-
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
-		return data[section].cells.count
-	}
-
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-		if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingsTableViewCell {
-
-			cell.titleLabel.text = data[indexPath.section].cells[indexPath.row].title
-			cell.iconBackgroundView.backgroundColor = data[indexPath.section].cells[indexPath.row].iconBackgroundColor
-			cell.iconImageView.image = data[indexPath.section].cells[indexPath.row].icon
-			cell.iconImageView.tintColor = .white
-
-			return cell
+		if let currencyVC = segue.destination as? CurrencyViewController {
+			currencyVC.delegate = self
+		} else if let appearanceVC = segue.destination as? AppearanceViewController {
+			appearanceVC.delegate = self
 		}
 
-		return UITableViewCell()
 	}
 
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		data[section].section
+		var title: String?
+
+		if section == Sections.data.rawValue {
+			title = NSLocalizedString("data.title", comment: "")
+		} else if section == Sections.appearance.rawValue {
+			title = NSLocalizedString("general.title", comment: "")
+		}
+
+		return title
 	}
-
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let storyboardID = data[indexPath.section].cells[indexPath.row].storyboardID
-		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-		let viewController = storyboard.instantiateViewController(withIdentifier: storyboardID)
-
-		(viewController as? CurrencyViewController)?.delegate = self
-		(viewController as? AppearanceViewController)?.delegate = self
-
-		splitViewController?.showDetailViewController(UINavigationController(rootViewController: viewController), sender: self)
-
-	}
-
 }
 
 // MARK: - Display logic
 extension SettingsMasterViewController: SettingsDisplayLogic {
-	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel) {
-		data = viewModel.data
-		tableView.reloadData()
-	}
 
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel) {
 
 	}
-	
+
 	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel) {
 		let sceneDelegate = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)
 		sceneDelegate?.changeAppearance(viewModel.userInterfaceStyle)
@@ -122,5 +94,5 @@ extension SettingsMasterViewController: AppearanceDelegate {
 		let request = SettingsModels.ChangeAppTheme.Request(theme: theme)
 		interactor?.changeAppTheme(request)
 	}
-	
+
 }

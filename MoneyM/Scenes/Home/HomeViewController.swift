@@ -100,10 +100,6 @@ class HomeViewController: UIViewController {
 		router?.routeToAddNewTransaction()
 	}
 
-	@IBAction func settingsButtonClicked(_ sender: Any) {
-		router?.routeToSettings()
-	}
-
 	@IBAction func balanceButtonClicked(_ sender: Any) {
 		let action = { (newBalance: String) -> Void in
 			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
