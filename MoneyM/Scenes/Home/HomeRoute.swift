@@ -19,22 +19,25 @@ class HomeRoute: HomeRoutingLogic {
 
 	func routeToAddNewTransaction() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		if let addTransactionVC = storyboard.instantiateViewController(withIdentifier: "AddTransaction") as? AddTransactionViewController {
-			addTransactionVC.delegate = viewController
-
-			viewController?.present(addTransactionVC, animated: true)
+		let addTransactionVC = storyboard.instantiateViewController(identifier: "TransactionViewer") { coder in
+			return AddTransactionViewController(coder: coder)
 		}
+		
+		addTransactionVC.delegate = viewController
+		
+		viewController?.present(addTransactionVC, animated: true)
 	}
 
 	func routeToEditTransaction(transaction: TransactionModel) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		if let editTransactionVC = storyboard.instantiateViewController(withIdentifier: "EditTransaction") as? EditTransactionViewController {
-
-			editTransactionVC.transaction = transaction
-			editTransactionVC.delegate = viewController
-
-			viewController?.present(editTransactionVC, animated: true)
+		let editTransactionVC = storyboard.instantiateViewController(identifier: "TransactionViewer") { coder in
+			return EditTransactionViewController(coder: coder)
 		}
+		
+		editTransactionVC.transaction = transaction
+		editTransactionVC.delegate = viewController
+
+		viewController?.present(editTransactionVC, animated: true)
 	}
 
 }

@@ -13,6 +13,7 @@
 		451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AD2AA49F740003A4B7 /* TransactionModel.swift */; };
 		452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A71572B191F5C0015E524 /* HomeRoute.swift */; };
 		452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A715A2B1920180015E524 /* AddTransactionViewController.swift */; };
+		452B9CC12B31EE3400D40894 /* TransactionViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */; };
 		45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4A2AB603D900301729 /* CategoryViewController.swift */; };
 		45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4C2AB603F300301729 /* CategoryModel.swift */; };
 		4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE072B18D0D600A92713 /* HomeViewController.swift */; };
@@ -107,6 +108,7 @@
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		452A71572B191F5C0015E524 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
 		452A715A2B1920180015E524 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewerViewController.swift; sourceTree = "<group>"; };
 		45326F4A2AB603D900301729 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		45326F4C2AB603F300301729 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		4533EE072B18D0D600A92713 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,14 @@
 			path = AddTransaction;
 			sourceTree = "<group>";
 		};
+		452B9CBF2B31EE1000D40894 /* TransactionViewer */ = {
+			isa = PBXGroup;
+			children = (
+				452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */,
+			);
+			path = TransactionViewer;
+			sourceTree = "<group>";
+		};
 		45326F502AB6110500301729 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +267,7 @@
 		4533EE052B18CF1100A92713 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				452B9CBF2B31EE1000D40894 /* TransactionViewer */,
 				45CA35032B2854BB0070E4A9 /* EditTransaction */,
 				459F98B72B2336CC00BB89D6 /* Settings */,
 				4597FAA02B20EE6D00043461 /* Categories */,
@@ -659,6 +670,7 @@
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
 				4577091E2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
+				452B9CC12B31EE3400D40894 /* TransactionViewerViewController.swift in Sources */,
 				459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
 				459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */,
