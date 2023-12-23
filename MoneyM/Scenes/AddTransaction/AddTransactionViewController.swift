@@ -42,11 +42,11 @@ class AddTransactionViewController: TransactionViewerViewController {
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 	}
-	
+
 	private func configureConfirmButton() {
 		confirmButton.setTitle(NSLocalizedString("create.title", comment: ""), for: .normal)
 	}
-	
+
 	override func confirmButtonClicked(_ sender: Any) {
 
 		let mode: TransactionModel.Mode = switch choiceButton.selectedButton {
@@ -62,7 +62,7 @@ class AddTransactionViewController: TransactionViewerViewController {
 																	 mode: mode, note: noteTextField.text)
 		interactor?.createTransaction(request)
 	}
-	
+
 	override func selectCategoryButtonClicked(_ sender: Any) {
 		router?.routeToSelectCategory()
 	}

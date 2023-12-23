@@ -22,9 +22,9 @@ class HomeRoute: HomeRoutingLogic {
 		let addTransactionVC = storyboard.instantiateViewController(identifier: "TransactionViewer") { coder in
 			return AddTransactionViewController(coder: coder)
 		}
-		
+
 		addTransactionVC.delegate = viewController
-		
+
 		viewController?.present(addTransactionVC, animated: true)
 	}
 
@@ -33,7 +33,7 @@ class HomeRoute: HomeRoutingLogic {
 		let editTransactionVC = storyboard.instantiateViewController(identifier: "TransactionViewer") { coder in
 			return EditTransactionViewController(coder: coder)
 		}
-		
+
 		editTransactionVC.transaction = transaction
 		editTransactionVC.delegate = viewController
 

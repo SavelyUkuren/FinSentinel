@@ -57,7 +57,7 @@ class HomeInteractor: HomeBusinessLogic {
 		transactionCollection.add(arr)
 		transactionCollection.setStartingBalance(coreDataManager.startingBalance)
 
-		let data = transactionCollection.data
+		let data = transactionCollection.transactionsGroupedByDate
 		let response = Home.FetchTransactions.Response(data: data)
 		presenter?.presentTransactions(response)
 	}
@@ -68,7 +68,7 @@ class HomeInteractor: HomeBusinessLogic {
 		let coreDataManager = CoreDataManager()
 		coreDataManager.add(request.transaction)
 		coreDataManager.save()
-		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
+		let response = Home.FetchTransactions.Response(data: transactionCollection.transactionsGroupedByDate)
 		presenter?.presentTransactions(response)
 	}
 
@@ -80,7 +80,7 @@ class HomeInteractor: HomeBusinessLogic {
 		coreDataManager.delete(id)
 		coreDataManager.save()
 
-		let response = Home.RemoveTransaction.Response(data: transactionCollection.data)
+		let response = Home.RemoveTransaction.Response(data: transactionCollection.transactionsGroupedByDate)
 		presenter?.presentRemoveTransaction(response)
 	}
 
@@ -98,7 +98,7 @@ class HomeInteractor: HomeBusinessLogic {
 							 request.transaction)
 		coreDataManager.save()
 
-		let response = Home.FetchTransactions.Response(data: transactionCollection.data)
+		let response = Home.FetchTransactions.Response(data: transactionCollection.transactionsGroupedByDate)
 		presenter?.presentTransactions(response)
 	}
 
@@ -110,7 +110,7 @@ class HomeInteractor: HomeBusinessLogic {
 		coreDataManager.editStartingBalance(year: year, month: month, newBalance: balance)
 		coreDataManager.save()
 
-		let response = Home.RemoveTransaction.Response(data: transactionCollection.data)
+		let response = Home.RemoveTransaction.Response(data: transactionCollection.transactionsGroupedByDate)
 		presenter?.presentRemoveTransaction(response)
 	}
 

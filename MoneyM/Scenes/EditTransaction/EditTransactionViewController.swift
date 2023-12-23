@@ -38,7 +38,7 @@ class EditTransactionViewController: TransactionViewerViewController {
 		}
 
     }
-	
+
 	private func configureConfirmButton() {
 		confirmButton.setTitle(NSLocalizedString("edit.title", comment: ""), for: .normal)
 	}
@@ -55,7 +55,7 @@ class EditTransactionViewController: TransactionViewerViewController {
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 	}
-	
+
 	override func confirmButtonClicked(_ sender: Any) {
 
 		let mode: TransactionModel.Mode = switch choiceButton.selectedButton {

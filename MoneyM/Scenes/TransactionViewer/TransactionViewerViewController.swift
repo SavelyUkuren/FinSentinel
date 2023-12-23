@@ -8,7 +8,7 @@
 import UIKit
 
 class TransactionViewerViewController: UIViewController {
-	
+
 	@IBOutlet weak var amountTextField: UITextField!
 
 	@IBOutlet weak var datePickerView: UIDatePicker!
@@ -18,9 +18,9 @@ class TransactionViewerViewController: UIViewController {
 	@IBOutlet weak var noteTextField: UITextField!
 
 	@IBOutlet weak var selectCategoryButton: UIButton!
-	
+
 	@IBOutlet weak var confirmButton: UIButton!
-	
+
 	public var selectedCategory: CategoryModel?
 
     override func viewDidLoad() {
@@ -31,11 +31,11 @@ class TransactionViewerViewController: UIViewController {
 		configureChoiceButton()
 		configureFont()
     }
-	
+
 	override func viewDidAppear(_ animated: Bool) {
 		amountTextField.becomeFirstResponder()
 	}
-	
+
 	private func configureAmountTextField() {
 		amountTextField.layer.cornerRadius = 12
 		amountTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
@@ -52,7 +52,7 @@ class TransactionViewerViewController: UIViewController {
 		choiceButton.setButtonTitle(NSLocalizedString("income.title", comment: ""), button: .second)
 		choiceButton.delegate = self
 	}
-	
+
 	private func configureFont() {
 		let font = CustomFonts()
 
@@ -79,14 +79,14 @@ class TransactionViewerViewController: UIViewController {
 
 		present(alertController, animated: true)
 	}
-	
+
 	// MARK: Actions
 	@IBAction func confirmButtonClicked(_ sender: Any) {
-		
+
 	}
 
 	@IBAction func selectCategoryButtonClicked(_ sender: Any) {
-		
+
 	}
 
 	@IBAction func cancelButtonClicked(_ sender: Any) {
@@ -102,7 +102,7 @@ class TransactionViewerViewController: UIViewController {
 			amountTextField.text = separatorNumber
 		}
 	}
-	
+
 }
 
 // MARK: Select category delegate

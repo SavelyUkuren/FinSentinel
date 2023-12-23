@@ -12,17 +12,18 @@ class TransactionData {
 	var transactions: [TransactionModel] = []
 }
 
+/* Structure of Collection look's like
+	Day Month
+		Transaction 1
+		Transaction 2
+	Day Month
+		Transaction 3
+		Transaction 4
+ */
+
 class TransactionCollection {
 
-	/* Structure of array look like
-		Day Month
-			Transaction 1
-			Transaction 2
-		Day Month
-			Transaction 3
-			Transaction 4
-	 */
-	private(set) var data: [TransactionData] = []
+	private(set) var transactionsGroupedByDate: [TransactionData] = []
 
 	private(set) var summary = FinancialSummary()
 
@@ -33,15 +34,11 @@ class TransactionCollection {
 	}
 
 	func add(_ transaction: TransactionModel) {
-		let index = findIndexIn(array: data, byDate: transaction.date!)
 
-		if let index = index {
-			data[index].transactions.append(transaction)
+		if let index = firstIndexInGroupedTransactions(byDate: transaction.date!) {
+			transactionsGroupedByDate[index].transactions.append(transaction)
 		} else {
-			let tData = TransactionData()
-			tData.date = transaction.date!
-			tData.transactions.append(transaction)
-			data.append(tData)
+			createData(date: transaction.date!, transaction: transaction)
 		}
 
 		summaryUpdate(transaction)
@@ -59,7 +56,7 @@ class TransactionCollection {
 		let foundTransactionIndex = firstIndex(id)
 
 		// Change summary before edit transaction
-		let transactionModel = findBy(id)
+		let transactionModel = findTransactionBy(id)
 		if let unwrapTransaction = transactionModel {
 			unwrapTransaction.amount *= -1
 			summaryUpdate(unwrapTransaction)
@@ -67,16 +64,18 @@ class TransactionCollection {
 
 		if let unwrapIndex = foundTransactionIndex {
 
-			data[unwrapIndex.section].transactions[unwrapIndex.row] = newTransaction
+			transactionsGroupedByDate[unwrapIndex.section].transactions[unwrapIndex.row] = newTransaction
 			summaryUpdate(newTransaction)
 		}
 	}
 
+	// Finding transaction indexPath in 'transactionsGroupedByDate' array
 	func firstIndex(_ id: UUID) -> IndexPath? {
+		// section = date, row = transaction
 		var indexPath = IndexPath(row: 0, section: 0)
 
-		for data in data {
-			let index = data.transactions.firstIndex { transaction in
+		for transactionData in transactionsGroupedByDate {
+			let index = transactionData.transactions.firstIndex { transaction in
 				transaction.id == id
 			}
 			if index != nil {
@@ -88,34 +87,27 @@ class TransactionCollection {
 		return nil
 	}
 
-	func findBy(_ id: UUID) -> TransactionModel? {
-
-		for data in data {
-			let foundTransaction = data.transactions.first { transaction in
-				transaction.id == id
-			}
-			if foundTransaction != nil {
-				return foundTransaction
-			}
-		}
-
-		return nil
+	func findTransactionBy(_ id: UUID) -> TransactionModel? {
+		return transactionsGroupedByDate.compactMap {
+			$0.transactions.first { $0.id == id }
+		}.first
 	}
 
 	func removeBy(_ id: UUID) {
-		for (index, currentData) in data.enumerated() {
+		for (index, currentData) in transactionsGroupedByDate.enumerated() {
 
 			let transactionIndex = currentData.transactions.firstIndex { transaction in
 				transaction.id == id
 			}
 
 			if transactionIndex != nil {
-				let removedTransaction = data[index].transactions.remove(at: transactionIndex!)
+				let removedTransaction = transactionsGroupedByDate[index].transactions.remove(at: transactionIndex!)
+				// multiply by -1 so that the amount that was deleted is added to the balance
 				removedTransaction.amount *= -1
 				summaryUpdate(removedTransaction)
 
-				if data[index].transactions.isEmpty {
-					data.remove(at: index)
+				if transactionsGroupedByDate[index].transactions.isEmpty {
+					transactionsGroupedByDate.remove(at: index)
 				}
 			}
 
@@ -126,7 +118,7 @@ class TransactionCollection {
 	func removeAll() {
 		summary.expense = 0
 		summary.income = 0
-		data.removeAll()
+		transactionsGroupedByDate.removeAll()
 	}
 
 	func setStartingBalance(_ value: Int) {
@@ -134,7 +126,7 @@ class TransactionCollection {
 	}
 
 	func printTransactions() {
-		for tData in data {
+		for tData in transactionsGroupedByDate {
 			print("\(getDateComponent(tData.date).day!) \(getDateComponent(tData.date).month!)")
 			for transaction in tData.transactions {
 				print("\t\(transaction.amount!)\t\(TransactionModel.Mode(rawValue: transaction.mode?.rawValue ?? 0)!)")
@@ -147,10 +139,10 @@ class TransactionCollection {
 		return calendar.dateComponents([.day, .month], from: date)
 	}
 
-	private func findIndexIn(array: [TransactionData], byDate date: Date) -> Int? {
+	private func firstIndexInGroupedTransactions(byDate date: Date) -> Int? {
 		let dateComponent = getDateComponent(date)
 		// Find index by day and month in TransactionData
-		let index = array.firstIndex { transactionData in
+		let index = transactionsGroupedByDate.firstIndex { transactionData in
 			dateComponent.day == getDateComponent(transactionData.date).day &&
 			dateComponent.month == getDateComponent(transactionData.date).month
 		}
@@ -166,6 +158,13 @@ class TransactionCollection {
 		case .none:
 			break
 		}
+	}
+
+	private func createData(date: Date, transaction: TransactionModel) {
+		let tData = TransactionData()
+		tData.date = transaction.date!
+		tData.transactions.append(transaction)
+		transactionsGroupedByDate.append(tData)
 	}
 
 }

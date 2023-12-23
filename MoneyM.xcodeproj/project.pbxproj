@@ -382,7 +382,7 @@
 		459317562B1CA6E200F493C2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				45CA350E2B2874710070E4A9 /* TransactionModel */,
+				45CA350E2B2874710070E4A9 /* Transaction */,
 				453BBA4E2B28498100C9E67B /* Settings */,
 				4597FA9F2B20B0C200043461 /* CoreData */,
 				45D65E132B28ACF600C4A1F8 /* Categories */,
@@ -447,14 +447,14 @@
 			path = EditTransaction;
 			sourceTree = "<group>";
 		};
-		45CA350E2B2874710070E4A9 /* TransactionModel */ = {
+		45CA350E2B2874710070E4A9 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
 				459317572B1CA6EF00F493C2 /* TransactionCollection.swift */,
 				454317E72AF282890015F6E5 /* FinancialSummary.swift */,
 				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
 			);
-			path = TransactionModel;
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		45D65E132B28ACF600C4A1F8 /* Categories */ = {

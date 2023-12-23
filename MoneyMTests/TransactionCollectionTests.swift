@@ -36,12 +36,12 @@ final class TransactionCollectionTests: XCTestCase {
 		transactionCollection.add(transaction)
 
 		// Checking transactions count in collection
-		XCTAssert(transactionCollection.data[0].date == date)
-		XCTAssertEqual(transactionCollection.data.count, 1)
-		XCTAssertEqual(transactionCollection.data[0].transactions.count, 1)
+		XCTAssert(transactionCollection.transactionsGroupedByDate[0].date == date)
+		XCTAssertEqual(transactionCollection.transactionsGroupedByDate.count, 1)
+		XCTAssertEqual(transactionCollection.transactionsGroupedByDate[0].transactions.count, 1)
 
 		// Checking transaction in collection
-		let testsTransaction = transactionCollection.data[0].transactions[0]
+		let testsTransaction = transactionCollection.transactionsGroupedByDate[0].transactions[0]
 		XCTAssertEqual(testsTransaction.amount, 120)
 		XCTAssertEqual(testsTransaction.mode, .expense)
 		XCTAssertEqual(testsTransaction.date, date)
@@ -75,7 +75,7 @@ final class TransactionCollectionTests: XCTestCase {
 
 		XCTAssertEqual(transaction.id, editedTransaction.id)
 
-		let testsTransaction = transactionCollection.data[0].transactions[0]
+		let testsTransaction = transactionCollection.transactionsGroupedByDate[0].transactions[0]
 		XCTAssertEqual(testsTransaction.amount, editedTransaction.amount)
 		XCTAssertEqual(testsTransaction.mode, editedTransaction.mode)
 		XCTAssertEqual(testsTransaction.date, editedTransaction.date)
@@ -95,12 +95,12 @@ final class TransactionCollectionTests: XCTestCase {
 
 		transactionCollection.add(transaction)
 
-		XCTAssertEqual(transactionCollection.data.count, 1)
-		XCTAssertEqual(transactionCollection.data[0].transactions.count, 1)
+		XCTAssertEqual(transactionCollection.transactionsGroupedByDate.count, 1)
+		XCTAssertEqual(transactionCollection.transactionsGroupedByDate[0].transactions.count, 1)
 
 		transactionCollection.removeBy(transaction.id)
 
-		XCTAssertEqual(transactionCollection.data.count, 0)
+		XCTAssertEqual(transactionCollection.transactionsGroupedByDate.count, 0)
 	}
 
 	func testFinancialSummary() {
