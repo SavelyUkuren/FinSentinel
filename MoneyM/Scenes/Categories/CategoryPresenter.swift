@@ -13,7 +13,7 @@ protocol CategoryPresentLogic {
 
 class CategoryPresenter: CategoryPresentLogic {
 
-	var viewController: CategoryDisplayLogic?
+	public var viewController: CategoryDisplayLogic?
 
 	func presentCategories(_ response: CategoryModels.FetchCategories.Response) {
 		let viewModel = CategoryModels.FetchCategories.ViewModel(categories: response.categories)

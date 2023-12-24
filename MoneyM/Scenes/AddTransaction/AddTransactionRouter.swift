@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-protocol AddTransactionRoutingLogic {
+protocol AddTransactionRoutingLogic: AnyObject {
 	func routeToSelectCategory()
 }
 
 class AddTransactionRouter: AddTransactionRoutingLogic {
 
-	var viewController: AddTransactionViewController?
+	public weak var viewController: AddTransactionViewController?
 
 	func routeToSelectCategory() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)

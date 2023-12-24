@@ -13,7 +13,7 @@ protocol CurrencyViewControllerDelegate: AnyObject {
 
 class CurrencyViewController: UIViewController {
 
-	public var delegate: CurrencyViewControllerDelegate?
+	public weak var delegate: CurrencyViewControllerDelegate?
 
 	@IBOutlet weak var currenciesTableView: UITableView!
 

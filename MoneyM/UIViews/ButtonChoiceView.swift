@@ -20,7 +20,7 @@ class ButtonChoiceView: UIView {
 
     public var selectedButton: Buttons = .first
 
-	public var delegate: ButtonChoiceDelegate?
+	public weak var delegate: ButtonChoiceDelegate?
 
     private var stackView: UIStackView = {
         let stackView = UIStackView()

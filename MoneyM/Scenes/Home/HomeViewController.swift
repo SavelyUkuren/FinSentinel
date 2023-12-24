@@ -32,9 +32,9 @@ class HomeViewController: UIViewController {
 
 	@IBOutlet weak var datePickerButton: UIButton!
 
-	var interactor: HomeBusinessLogic?
+	public var interactor: HomeBusinessLogic?
 
-	var router: HomeRoutingLogic?
+	public var router: HomeRoutingLogic?
 
 	private(set) var transactionsArray: [Home.TransactionTableViewCellModel] = []
 
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
 		configureFontLabels()
 
 		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: 12, year: 2023))
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 
 		addNotificationObservers()
 
@@ -92,7 +92,7 @@ class HomeViewController: UIViewController {
 	@objc
 	private func changeCurrency() {
 		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: 12, year: 2023))
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 
 	// MARK: Actions
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
 			let request = Home.FetchTransactions.Request(month: month, year: year)
 			self.interactor?.fetchTransactions(request)
 
-			self.interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+			self.interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 			self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
 		}
 
@@ -146,7 +146,7 @@ extension HomeViewController: HomeDisplayLogic {
 		transactionsTableView.reloadData()
 
 		let request = Home.FetchFinancialSummary.Request()
-		interactor?.fetchFinancialSummary(request: request)
+		interactor?.fetchFinancialSummary(request)
 	}
 
 	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel) {
@@ -167,8 +167,8 @@ extension HomeViewController: HomeDisplayLogic {
 extension HomeViewController: AddTransactionDelegate {
 	func transactionCreated(_ transaction: TransactionModel) {
 		let request = Home.AddTransaction.Request(transaction: transaction)
-		interactor?.addTransaction(request: request)
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.addTransaction(request)
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 }
 
@@ -177,6 +177,6 @@ extension HomeViewController: EditTransactionDelegate {
 	func didEditTransaction(_ newTransaction: TransactionModel) {
 		let request = Home.EditTransaction.Request(transaction: newTransaction)
 		interactor?.editTransaction(request)
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 }

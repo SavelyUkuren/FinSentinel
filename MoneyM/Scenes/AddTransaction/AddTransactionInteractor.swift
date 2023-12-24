@@ -13,7 +13,7 @@ protocol AddTransactionBusinessLogic: AnyObject {
 
 class AddTransactionInteractor {
 
-	var presenter: AddTransactionPresentationLogic?
+	public var presenter: AddTransactionPresentationLogic?
 
 	init() {
 

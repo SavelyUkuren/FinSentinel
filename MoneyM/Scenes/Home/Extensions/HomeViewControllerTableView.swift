@@ -44,7 +44,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 											  title: NSLocalizedString("delete.title", comment: "")) { _, _, _ in
 			let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
 			let request = Home.RemoveTransaction.Request(transaction: transaction)
-			self.interactor?.removeTransaction(request: request)
+			self.interactor?.removeTransaction(request)
 		}
 
 		let editAction = UIContextualAction(style: .normal,
@@ -74,7 +74,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 										attributes: .destructive) { _ in
 				let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
 				let request = Home.RemoveTransaction.Request(transaction: transaction)
-				self.interactor?.removeTransaction(request: request)
+				self.interactor?.removeTransaction(request)
 			}
 
 			return UIMenu(children: [editAction, deleteAction])

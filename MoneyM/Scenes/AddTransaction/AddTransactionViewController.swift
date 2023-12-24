@@ -11,17 +11,17 @@ protocol AddTransactionDelegate: AnyObject {
 	func transactionCreated(_ transaction: TransactionModel)
 }
 
-protocol AddTransactionDisplayLogic {
+protocol AddTransactionDisplayLogic: AnyObject {
 	func displayCreatedTransaction(_ viewModel: AddTransactionModels.Create.ViewModel)
 }
 
 class AddTransactionViewController: TransactionViewerViewController {
 
-	var interactor: AddTransactionBusinessLogic?
+	public var interactor: AddTransactionBusinessLogic?
 
-	var router: AddTransactionRouter?
+	public var router: AddTransactionRouter?
 
-	var delegate: AddTransactionDelegate?
+	public weak var delegate: AddTransactionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,13 @@ class AddTransactionViewController: TransactionViewerViewController {
         setup()
 		configureConfirmButton()
     }
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		router = nil
+		interactor = nil
+		delegate = nil
+	}
 
 	private func setup() {
 		let viewController = self

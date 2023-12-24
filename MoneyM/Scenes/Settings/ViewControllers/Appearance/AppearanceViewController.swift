@@ -20,7 +20,7 @@ class AppearanceViewController: UITableViewController {
 		case system, light, dark
 	}
 
-	var delegate: AppearanceDelegate?
+	public weak var delegate: AppearanceDelegate?
 
 	override func viewWillAppear(_ animated: Bool) {
 		let indexPath = lastSelectedTheme()

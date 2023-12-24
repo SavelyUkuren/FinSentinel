@@ -15,7 +15,7 @@ protocol HomeRoutingLogic {
 
 class HomeRoute: HomeRoutingLogic {
 
-	var viewController: HomeViewController?
+	public var viewController: HomeViewController?
 
 	func routeToAddNewTransaction() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)

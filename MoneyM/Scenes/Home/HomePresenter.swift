@@ -20,7 +20,7 @@ protocol HomePresentationLogic {
 // MARK: - Presentation logic
 class HomePresenter: HomePresentationLogic {
 
-	var viewController: HomeDisplayLogic?
+	public var viewController: HomeDisplayLogic?
 
 	init() {
 

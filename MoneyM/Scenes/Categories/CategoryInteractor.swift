@@ -13,7 +13,7 @@ protocol CategoryBusinessLogic {
 
 class CategoryInteractor: CategoryBusinessLogic {
 
-	var presenter: CategoryPresentLogic?
+	public var presenter: CategoryPresentLogic?
 
 	func fetchCategories(_ request: CategoryModels.FetchCategories.Request) {
 		let categoriesManager = CategoriesManager.shared

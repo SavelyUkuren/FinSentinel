@@ -18,13 +18,13 @@ protocol EditTransactionDisplayLogic: AnyObject {
 
 class EditTransactionViewController: TransactionViewerViewController {
 
-	var interactor: EditTransactionBusinessLogic?
+	public var interactor: EditTransactionBusinessLogic?
 
-	var router: EditTransactionRouter?
+	public var router: EditTransactionRouter?
 
-	var transaction: TransactionModel?
+	public var transaction: TransactionModel?
 
-	var delegate: EditTransactionDelegate?
+	public var delegate: EditTransactionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,14 @@ class EditTransactionViewController: TransactionViewerViewController {
 		}
 
     }
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		interactor = nil
+		router = nil
+		delegate = nil
+	}
 
 	private func configureConfirmButton() {
 		confirmButton.setTitle(NSLocalizedString("edit.title", comment: ""), for: .normal)

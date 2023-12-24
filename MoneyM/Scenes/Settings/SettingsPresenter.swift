@@ -14,7 +14,7 @@ protocol SettingsPresentLogic {
 
 class SettingsPresenter: SettingsPresentLogic {
 
-	var viewController: SettingsDisplayLogic?
+	public var viewController: SettingsDisplayLogic?
 
 	func presentCurrencyChange(_ response: SettingsModels.ChangeCurrency.Response) {
 

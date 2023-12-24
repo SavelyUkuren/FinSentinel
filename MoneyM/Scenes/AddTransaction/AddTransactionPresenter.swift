@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol AddTransactionPresentationLogic {
+protocol AddTransactionPresentationLogic: AnyObject {
 	func presentCreatedTransaction(_ response: AddTransactionModels.Create.Response)
 }
 
 class AddTransactionPresenter {
 
-	var viewController: AddTransactionDisplayLogic?
+	public var viewController: AddTransactionDisplayLogic?
 
 	init() {
 
@@ -23,11 +23,11 @@ class AddTransactionPresenter {
 
 // MARK: - AddTransactionPresenter present logic
 extension AddTransactionPresenter: AddTransactionPresentationLogic {
-	
+
 	func presentCreatedTransaction(_ response: AddTransactionModels.Create.Response) {
 		let viewModel = AddTransactionModels.Create.ViewModel(model: response.model,
 																		 hasError: response.hasError, errorMessage: response.errorMessage)
 		viewController?.displayCreatedTransaction(viewModel)
 	}
-	
+
 }

@@ -18,12 +18,17 @@ class SettingsMasterViewController: UITableViewController {
 		case data, appearance
 	}
 
-	var interactor: SettingsBusinessLogic?
+	public var interactor: SettingsBusinessLogic?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		setup()
+	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		interactor = nil
 	}
 
 	private func setup() {

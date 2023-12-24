@@ -19,7 +19,7 @@ class CategoriesViewController: UIViewController {
 
 	@IBOutlet weak var categoriesTableView: UITableView!
 
-    public var delegate: SelectCategoryViewControllerDelegate?
+    public weak var delegate: SelectCategoryViewControllerDelegate?
 
     public var categoryType: TransactionModel.Mode = .expense
 
@@ -27,7 +27,7 @@ class CategoriesViewController: UIViewController {
 
 	private var categoriesArray: [CategoryModel] = []
 
-	var interactor: CategoryBusinessLogic?
+	public var interactor: CategoryBusinessLogic?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,13 @@ class CategoriesViewController: UIViewController {
 		let request = CategoryModels.FetchCategories.Request(categoryType: categoryType)
 		interactor?.fetchCategories(request)
     }
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		interactor = nil
+		delegate = nil
+	}
 
 	func setup() {
 		let viewController = self

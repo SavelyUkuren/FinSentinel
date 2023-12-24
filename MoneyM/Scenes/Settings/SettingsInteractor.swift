@@ -15,7 +15,7 @@ protocol SettingsBusinessLogic {
 
 class SettingsInteractor: SettingsBusinessLogic {
 
-	var presenter: SettingsPresentLogic?
+	public var presenter: SettingsPresentLogic?
 
 	func changeCurrency(_ request: SettingsModels.ChangeCurrency.Request) {
 		Settings.shared.changeCurrency(request.currency)

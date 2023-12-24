@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol HomeBusinessLogic {
+protocol HomeBusinessLogic: AnyObject {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request)
-	func fetchFinancialSummary(request: Home.FetchFinancialSummary.Request)
-	func addTransaction(request: Home.AddTransaction.Request)
-	func removeTransaction(request: Home.RemoveTransaction.Request)
+	func fetchFinancialSummary(_ request: Home.FetchFinancialSummary.Request)
+	func addTransaction(_ request: Home.AddTransaction.Request)
+	func removeTransaction(_ request: Home.RemoveTransaction.Request)
 	func editTransaction(_ request: Home.EditTransaction.Request)
 	func editStartingBalance(_ request: Home.EditStartingBalance.Request)
 	func showAlertEditStartingBalance(_ request: Home.AlertEditStartingBalance.Request)
@@ -23,7 +23,7 @@ protocol HomeBusinessLogic {
 // MARK: - Business logic
 class HomeInteractor: HomeBusinessLogic {
 
-	var presenter: HomePresentationLogic?
+	public var presenter: HomePresentationLogic?
 
 	private let transactionCollection: TransactionCollection
 
@@ -62,7 +62,7 @@ class HomeInteractor: HomeBusinessLogic {
 		presenter?.presentTransactions(response)
 	}
 
-	func addTransaction(request: Home.AddTransaction.Request) {
+	func addTransaction(_ request: Home.AddTransaction.Request) {
 		transactionCollection.add(request.transaction)
 
 		let coreDataManager = CoreDataManager()
@@ -72,7 +72,7 @@ class HomeInteractor: HomeBusinessLogic {
 		presenter?.presentTransactions(response)
 	}
 
-	func removeTransaction(request: Home.RemoveTransaction.Request) {
+	func removeTransaction(_ request: Home.RemoveTransaction.Request) {
 		let id = request.transaction.id
 		transactionCollection.removeBy(id)
 
@@ -84,7 +84,7 @@ class HomeInteractor: HomeBusinessLogic {
 		presenter?.presentRemoveTransaction(response)
 	}
 
-	func fetchFinancialSummary(request: Home.FetchFinancialSummary.Request) {
+	func fetchFinancialSummary(_ request: Home.FetchFinancialSummary.Request) {
 		let response = Home.FetchFinancialSummary.Response(summary: transactionCollection.summary)
 		presenter?.presentFinancialSummary(response)
 	}
