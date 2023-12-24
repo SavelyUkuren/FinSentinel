@@ -12,8 +12,8 @@ protocol EditTransactionDelegate: AnyObject {
 }
 
 protocol EditTransactionDisplayLogic: AnyObject {
-	func displayLoadTransaction(_ viewModel: EditTransactionModels.LoadTransaction.ViewModel)
-	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel)
+	func displayTransaction(_ viewModel: EditTransactionModels.Load.ViewModel)
+	func displayEditedTransaction(_ viewModel: EditTransactionModels.Edit.ViewModel)
 }
 
 class EditTransactionViewController: TransactionViewerViewController {
@@ -33,8 +33,8 @@ class EditTransactionViewController: TransactionViewerViewController {
 		configureConfirmButton()
 
 		if let unwrapTransaction = transaction {
-			let request = EditTransactionModels.LoadTransaction.Request(transaction: unwrapTransaction)
-			interactor?.loadTransaction(request)
+			let request = EditTransactionModels.Load.Request(transaction: unwrapTransaction)
+			interactor?.load(request)
 		}
 
     }
@@ -65,11 +65,11 @@ class EditTransactionViewController: TransactionViewerViewController {
 			TransactionModel.Mode.income
 		}
 
-		let request = EditTransactionModels.EditTransaction.Request(amount: amountTextField.text!,
+		let request = EditTransactionModels.Edit.Request(amount: amountTextField.text!,
 																	 date: datePickerView.date,
 																	 category: selectedCategory,
 																	 mode: mode, note: noteTextField.text)
-		interactor?.editTransaction(request)
+		interactor?.edit(request)
 	}
 
 	override func selectCategoryButtonClicked(_ sender: Any) {
@@ -80,7 +80,7 @@ class EditTransactionViewController: TransactionViewerViewController {
 
 // MARK: - EditTransaction display logic
 extension EditTransactionViewController: EditTransactionDisplayLogic {
-	func displayLoadTransaction(_ viewModel: EditTransactionModels.LoadTransaction.ViewModel) {
+	func displayTransaction(_ viewModel: EditTransactionModels.Load.ViewModel) {
 		amountTextField.text = viewModel.amount
 
 		switch viewModel.mode {
@@ -98,12 +98,12 @@ extension EditTransactionViewController: EditTransactionDisplayLogic {
 
 	}
 
-	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel) {
+	func displayEditedTransaction(_ viewModel: EditTransactionModels.Edit.ViewModel) {
 		if viewModel.hasError, let errorMessage = viewModel.errorMessage {
 			showAlertMessage(title: NSLocalizedString("error.title", comment: ""), message: errorMessage)
 		}
 
-		if let editedTransaction = viewModel.transactionModel,
+		if let editedTransaction = viewModel.model,
 		   let inputTransaction = self.transaction {
 			let transactionCopy = editedTransaction
 			transactionCopy.id = inputTransaction.id

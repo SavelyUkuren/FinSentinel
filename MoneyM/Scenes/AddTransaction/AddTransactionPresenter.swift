@@ -8,10 +8,10 @@
 import Foundation
 
 protocol AddTransactionPresentationLogic {
-	func presentCreatedTransaction(_ response: AddTransactionModels.CreateTransaction.Response)
+	func presentCreatedTransaction(_ response: AddTransactionModels.Create.Response)
 }
 
-class AddTransactionPresenter: AddTransactionPresentationLogic {
+class AddTransactionPresenter {
 
 	var viewController: AddTransactionDisplayLogic?
 
@@ -19,9 +19,15 @@ class AddTransactionPresenter: AddTransactionPresentationLogic {
 
 	}
 
-	func presentCreatedTransaction(_ response: AddTransactionModels.CreateTransaction.Response) {
-		let viewModel = AddTransactionModels.CreateTransaction.ViewModel(transactionModel: response.transactionModel,
+}
+
+// MARK: - AddTransactionPresenter present logic
+extension AddTransactionPresenter: AddTransactionPresentationLogic {
+	
+	func presentCreatedTransaction(_ response: AddTransactionModels.Create.Response) {
+		let viewModel = AddTransactionModels.Create.ViewModel(model: response.model,
 																		 hasError: response.hasError, errorMessage: response.errorMessage)
 		viewController?.displayCreatedTransaction(viewModel)
 	}
+	
 }

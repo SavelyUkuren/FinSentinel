@@ -12,7 +12,7 @@ protocol AddTransactionDelegate: AnyObject {
 }
 
 protocol AddTransactionDisplayLogic {
-	func displayCreatedTransaction(_ viewModel: AddTransactionModels.CreateTransaction.ViewModel)
+	func displayCreatedTransaction(_ viewModel: AddTransactionModels.Create.ViewModel)
 }
 
 class AddTransactionViewController: TransactionViewerViewController {
@@ -56,11 +56,11 @@ class AddTransactionViewController: TransactionViewerViewController {
 			TransactionModel.Mode.income
 		}
 
-		let request = AddTransactionModels.CreateTransaction.Request(amount: amountTextField.text!,
+		let request = AddTransactionModels.Create.Request(amount: amountTextField.text!,
 																	 date: datePickerView.date,
 																	 category: selectedCategory,
 																	 mode: mode, note: noteTextField.text)
-		interactor?.createTransaction(request)
+		interactor?.create(request)
 	}
 
 	override func selectCategoryButtonClicked(_ sender: Any) {
@@ -71,12 +71,12 @@ class AddTransactionViewController: TransactionViewerViewController {
 
 // MARK: - Add transaction display logic
 extension AddTransactionViewController: AddTransactionDisplayLogic {
-	func displayCreatedTransaction(_ viewModel: AddTransactionModels.CreateTransaction.ViewModel) {
+	func displayCreatedTransaction(_ viewModel: AddTransactionModels.Create.ViewModel) {
 		if viewModel.hasError, let errorMessage = viewModel.errorMessage {
 			showAlertMessage(title: NSLocalizedString("error.title", comment: ""), message: errorMessage)
 		}
 
-		if let transaction = viewModel.transactionModel {
+		if let transaction = viewModel.model {
 			delegate?.transactionCreated(transaction)
 			dismiss(animated: true)
 		}
