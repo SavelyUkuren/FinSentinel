@@ -38,10 +38,10 @@ class CategoriesViewController: UIViewController {
 		let request = CategoryModels.FetchCategories.Request(categoryType: categoryType)
 		interactor?.fetchCategories(request)
     }
-	
+
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
-		
+
 		interactor = nil
 		delegate = nil
 	}

@@ -13,14 +13,14 @@ protocol EditTransactionBusinessLogic: AnyObject {
 }
 
 class EditTransactionInteractor {
-	
+
 	var presenter: EditTransactionPresentLogic?
 
 }
 
 // MARK: - EditTransactionInteractor business logic
 extension EditTransactionInteractor: EditTransactionBusinessLogic {
-	
+
 	func load(_ request: EditTransactionModels.Load.Request) {
 		let response = EditTransactionModels.Load.Response(transaction: request.transaction)
 		presenter?.presentTransaction(response)
@@ -65,5 +65,5 @@ extension EditTransactionInteractor: EditTransactionBusinessLogic {
 																	  errorMessage: nil)
 		presenter?.presentEditedTransaction(response)
 	}
-	
+
 }

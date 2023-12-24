@@ -18,12 +18,12 @@ class AddTransactionInteractor {
 	init() {
 
 	}
-	
+
 }
 
 // MARK: - AddTransactionInteractor business logic
 extension AddTransactionInteractor: AddTransactionBusinessLogic {
-	
+
 	func create(_ request: AddTransactionModels.Create.Request) {
 
 		let amountStr = request.amount.components(separatedBy: .whitespaces).joined()
@@ -63,5 +63,5 @@ extension AddTransactionInteractor: AddTransactionBusinessLogic {
 																	   errorMessage: nil)
 		presenter?.presentCreatedTransaction(response)
 	}
-	
+
 }

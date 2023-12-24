@@ -20,7 +20,7 @@ class EditTransactionPresenter {
 
 // MARK: - EditTransactionPresenter present logic
 extension EditTransactionPresenter: EditTransactionPresentLogic {
-	
+
 	func presentTransaction(_ response: EditTransactionModels.Load.Response) {
 		let categoryManager = CategoriesManager.shared
 
@@ -43,5 +43,5 @@ extension EditTransactionPresenter: EditTransactionPresentLogic {
 																		 hasError: response.hasError, errorMessage: response.errorMessage)
 		viewController?.displayEditedTransaction(viewModel)
 	}
-	
+
 }

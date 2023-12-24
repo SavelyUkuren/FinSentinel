@@ -20,14 +20,17 @@ class CategoriesManager {
 
         categoriesData = CategoryData(expenses: [], incomes: [])
 
-        do {
-            categoriesData = try readJSONFile(url)
-			categoriesData.expenses = localizeCategories(categoriesData.expenses)
-			categoriesData.incomes = localizeCategories(categoriesData.incomes)
-        } catch {
-            print("Error! JSON text is invalid!")
-        }
+		DispatchQueue.global(qos: .background).async { [self] in
+			do {
 
+				categoriesData = try readJSONFile(url)
+				categoriesData.expenses = localizeCategories(categoriesData.expenses)
+				categoriesData.incomes = localizeCategories(categoriesData.incomes)
+
+			} catch {
+				print("Error! JSON text is invalid!")
+			}
+		}
     }
 
     public func findCategoryBy(id: Int) -> CategoryModel? {

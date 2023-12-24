@@ -38,10 +38,10 @@ class EditTransactionViewController: TransactionViewerViewController {
 		}
 
     }
-	
+
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
-		
+
 		interactor = nil
 		router = nil
 		delegate = nil

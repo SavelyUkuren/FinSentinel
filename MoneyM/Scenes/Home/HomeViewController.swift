@@ -131,7 +131,9 @@ extension HomeViewController: HomeDisplayLogic {
 
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel) {
 		transactionsArray = viewModel.data
-		transactionsTableView.reloadData()
+		DispatchQueue.main.async {
+			self.transactionsTableView.reloadData()
+		}
 	}
 
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel) {

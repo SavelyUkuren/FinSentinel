@@ -23,6 +23,12 @@ class CoreDataManager: CoreDataManagerProtocol {
 
 	private(set) var startingBalance: Int = 0
 
+	private var concurrencyQueue: DispatchQueue?
+
+	init() {
+		concurrencyQueue = DispatchQueue(label: "com.savikapps.coredata_manager", qos: .background, attributes: .concurrent)
+	}
+
     func load(year: Int, month: Int) -> [TransactionModel] {
         var transactionsArray: [TransactionModel] = []
 
@@ -46,19 +52,24 @@ class CoreDataManager: CoreDataManagerProtocol {
     func add(_ transactionModel: TransactionModel) {
         var folder: FolderEntity?
 
-		let components = getComponentsFrom(transactionModel.date, components: [.year, .month])
-		let year = components.year!
-		let month = components.month!
+		concurrencyQueue?.async { [self] in
 
-		folder = getFolderBy(year: year, month: month)
+			let components = getComponentsFrom(transactionModel.date, components: [.year, .month])
+			let year = components.year!
+			let month = components.month!
 
-		if folder == nil, let context = context {
-			folder = createFolder(year, month, context)
-		}
+			folder = getFolderBy(year: year, month: month)
 
-		if let context = context {
-			let transactionEntity = convertToEntity(transactionModel, context: context)
-			folder?.addToTransactions(transactionEntity)
+			if folder == nil, let context = context {
+				folder = createFolder(year, month, context)
+			}
+
+			if let context = context {
+				let transactionEntity = convertToEntity(transactionModel, context: context)
+				folder?.addToTransactions(transactionEntity)
+			}
+
+			save()
 		}
 
     }
@@ -67,50 +78,56 @@ class CoreDataManager: CoreDataManagerProtocol {
 
 		guard let context = context else { return }
 
-		let fetchRequest = TransactionEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+		concurrencyQueue?.async { [self] in
+			let fetchRequest = TransactionEntity.fetchRequest()
+			fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
 
-		do {
+			do {
 
-			let response = try context.fetch(fetchRequest)
+				let response = try context.fetch(fetchRequest)
 
-			if let foundTransaction = response.first {
-				foundTransaction.amount = Int64(newTransaction.amount)
-				foundTransaction.categoryID = Int64(newTransaction.categoryID)
-				foundTransaction.date = newTransaction.date
-				foundTransaction.mode = Int64(newTransaction.mode.rawValue)
-				foundTransaction.note = newTransaction.note
+				if let foundTransaction = response.first {
+					foundTransaction.amount = Int64(newTransaction.amount)
+					foundTransaction.categoryID = Int64(newTransaction.categoryID)
+					foundTransaction.date = newTransaction.date
+					foundTransaction.mode = Int64(newTransaction.mode.rawValue)
+					foundTransaction.note = newTransaction.note
+				}
+
+			} catch {
+				fatalError("Error with edit transaction in CoreData")
 			}
 
-		} catch {
-			fatalError("Error with edit transaction in CoreData")
+			save()
 		}
 
-        // save()
     }
 
     func delete(_ id: UUID) {
 
 		guard let context = context else { return }
 
-        let fetchRequest = TransactionEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+		concurrencyQueue?.async { [self] in
+			let fetchRequest = TransactionEntity.fetchRequest()
+			fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
 
-        do {
-            let requestedData = try context.fetch(fetchRequest)
-            context.delete(requestedData.first!)
-        } catch {
-            fatalError("Error with removing transaction from CoreData")
-        }
+			do {
+				let requestedData = try context.fetch(fetchRequest)
+				context.delete(requestedData.first!)
+			} catch {
+				fatalError("Error with removing transaction from CoreData")
+			}
 
-        // save()
+			save()
+		}
+
     }
 
 	func editStartingBalance(year: Int, month: Int, newBalance: Int) {
 		let folder = getFolderBy(year: year, month: month)
 		folder?.startingBalance = Int64(newBalance)
 
-		// save()
+		save()
 	}
 
     public func save() {
