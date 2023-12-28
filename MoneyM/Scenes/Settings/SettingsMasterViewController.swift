@@ -25,12 +25,7 @@ class SettingsMasterViewController: UITableViewController {
 
 		setup()
 	}
-
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-		interactor = nil
-	}
-
+	
 	private func setup() {
 		let viewController = self
 		let router = SettingsRouter()
