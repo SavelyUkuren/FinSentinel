@@ -25,7 +25,7 @@ class SettingsMasterViewController: UITableViewController {
 
 		setup()
 	}
-	
+
 	private func setup() {
 		let viewController = self
 		let router = SettingsRouter()

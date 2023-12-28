@@ -104,11 +104,11 @@ class HomePresenter: HomePresentationLogic {
 		let selectAction = UIAlertAction(title: NSLocalizedString("select.title", comment: ""), style: .default) { _ in
 			response.action(pickerView.month, pickerView.year)
 		}
-		
-		let cancelAction = UIAlertAction(title: NSLocalizedString("cancel.title", comment: ""), style: .destructive) {_ in 
+
+		let cancelAction = UIAlertAction(title: NSLocalizedString("cancel.title", comment: ""), style: .destructive) {_ in
 			alert.dismiss(animated: true)
 		}
-		
+
 		alert.addAction(selectAction)
 		alert.addAction(cancelAction)
 

@@ -38,6 +38,8 @@ class HomeViewController: UIViewController {
 
 	private(set) var transactionsArray: [Home.TransactionTableViewCellModel] = []
 
+	private var (month, year): (Int, Int) = (0, 0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,7 +65,9 @@ class HomeViewController: UIViewController {
 		configureTransactionsTableView()
 		configureFontLabels()
 
-		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: 12, year: 2023))
+		month = currentDate().month
+		year = currentDate().year
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
 		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 
 		addNotificationObservers()
@@ -89,9 +93,15 @@ class HomeViewController: UIViewController {
 											   name: Notifications.Currency, object: nil)
 	}
 
+	private func currentDate() -> (month: Int, year: Int) {
+		let date = Date.now
+		let dateComponents = Calendar.current.dateComponents([.month, .year], from: date)
+		return (dateComponents.month!, dateComponents.year!)
+	}
+
 	@objc
 	private func changeCurrency() {
-		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: 12, year: 2023))
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
 		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 
@@ -113,6 +123,8 @@ class HomeViewController: UIViewController {
 	@IBAction func selectDateButtonClicked(_ sender: Any) {
 
 		let action = { (month: Int, year: Int) in
+			self.month = month
+			self.year = year
 			let request = Home.FetchTransactions.Request(month: month, year: year)
 			self.interactor?.fetchTransactions(request)
 

@@ -9,19 +9,13 @@ import UIKit
 
 class SettingsSplitViewController: UISplitViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
-		
+
 		if let settingsVC = viewControllers.first?.children.first as? SettingsMasterViewController {
 			settingsVC.interactor = nil
 		}
-		
+
 	}
-	
+
 }
