@@ -30,6 +30,7 @@ class HomeInteractor: HomeBusinessLogic {
 	private var (year, month) = (0, 0)
 
 	init() {
+		_ = CategoriesManager.shared // Load categories
 		transactionCollection = TransactionCollection()
 
 		(year, month) = currentDate()
