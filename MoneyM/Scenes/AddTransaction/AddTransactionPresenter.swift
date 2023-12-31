@@ -7,21 +7,27 @@
 
 import Foundation
 
-protocol AddTransactionPresentationLogic {
-	func presentCreatedTransaction(_ response: AddTransactionModels.CreateTransaction.Response)
+protocol AddTransactionPresentationLogic: AnyObject {
+	func presentCreatedTransaction(_ response: AddTransactionModels.Create.Response)
 }
 
-class AddTransactionPresenter: AddTransactionPresentationLogic {
-	
-	var viewController: AddTransactionDisplayLogic?
-	
+class AddTransactionPresenter {
+
+	public var viewController: AddTransactionDisplayLogic?
+
 	init() {
-		
+
 	}
-	
-	func presentCreatedTransaction(_ response: AddTransactionModels.CreateTransaction.Response) {
-		let viewModel = AddTransactionModels.CreateTransaction.ViewModel(transactionModel: response.transactionModel,
+
+}
+
+// MARK: - AddTransactionPresenter present logic
+extension AddTransactionPresenter: AddTransactionPresentationLogic {
+
+	func presentCreatedTransaction(_ response: AddTransactionModels.Create.Response) {
+		let viewModel = AddTransactionModels.Create.ViewModel(model: response.model,
 																		 hasError: response.hasError, errorMessage: response.errorMessage)
 		viewController?.displayCreatedTransaction(viewModel)
 	}
+
 }

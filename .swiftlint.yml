@@ -1,0 +1,10 @@
+
+disabled_rules:
+ - nesting
+
+
+line_length:
+ warning: 200
+
+excluded:
+ MoneyM/UIViews/DatePicker/MonthYearWheelPicker.swift

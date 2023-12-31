@@ -8,7 +8,7 @@
 import Foundation
 
 class CategoryModels {
-	
+
 	struct FetchCategories {
 		struct Request {
 			var categoryType: TransactionModel.Mode
@@ -20,5 +20,5 @@ class CategoryModels {
 			var categories: [CategoryModel]
 		}
 	}
-	
+
 }

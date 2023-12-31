@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class CustomFonts {
-	
-	let RoundedFont: (_ size: CGFloat, UIFont.Weight) -> UIFont? = { (size, weight)  in
-		var font: UIFont? = nil
+
+	let roundedFont: (_ size: CGFloat, UIFont.Weight) -> UIFont? = { (size, weight)  in
+		var font: UIFont?
 		switch weight {
 		case .black:
 			font = UIFont(name: "SFProRounded-Black", size: size)
@@ -33,9 +33,8 @@ class CustomFonts {
 			font = UIFont(name: "SFProRounded-Ultralight", size: size)
 		default:
 			font = UIFont(name: "SFProRounded-Regular", size: size)
-			break
 		}
 		return font
 	}
-	
+
 }

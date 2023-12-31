@@ -8,8 +8,8 @@
 import Foundation
 
 struct EditTransactionModels {
-	
-	struct LoadTransaction {
+
+	struct Load {
 		struct Request {
 			let transaction: TransactionModel
 		}
@@ -24,9 +24,8 @@ struct EditTransactionModels {
 			let note: String
 		}
 	}
-	
-	
-	struct EditTransaction {
+
+	struct Edit {
 		struct Request {
 			var amount: String
 			var date: Date
@@ -35,12 +34,12 @@ struct EditTransactionModels {
 			var note: String?
 		}
 		struct Response {
-			var transactionModel: TransactionModel
+			var model: TransactionModel?
 			var hasError: Bool
 			var errorMessage: String?
 		}
 		struct ViewModel {
-			var transactionModel: TransactionModel
+			var model: TransactionModel?
 			var hasError: Bool
 			var errorMessage: String?
 		}

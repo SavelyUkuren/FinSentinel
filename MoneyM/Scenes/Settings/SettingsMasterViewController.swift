@@ -7,91 +7,76 @@
 
 import UIKit
 
-protocol SettingsDisplayLogic {
-	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel)
+protocol SettingsDisplayLogic: AnyObject {
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel)
+	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel)
 }
 
 class SettingsMasterViewController: UITableViewController {
-	
-	var interactor: SettingsBusinessLogic?
-	
-	private var data: [SettingsModels.TableViewSectionModel] = []
-	
+
+	enum Sections: Int {
+		case data, appearance
+	}
+
+	public var interactor: SettingsBusinessLogic?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		setup()
-		
-		let request = SettingsModels.FetchSettings.Request()
-		interactor?.fetchSettings(request)
-		
 	}
-	
+
 	private func setup() {
 		let viewController = self
 		let router = SettingsRouter()
 		let interactor = SettingsInteractor()
 		let presenter = SettingsPresenter()
-		
+
 		viewController.interactor = interactor
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 		router.viewController = viewController
 	}
-	
+
 	// MARK: Actions
 	@IBAction func cancelButtonClicked(_ sender: Any) {
 		dismiss(animated: true)
 	}
-	
-	// MARK: - Table view data source
-	
-	override func numberOfSections(in tableView: UITableView) -> Int {
-		// #warning Incomplete implementation, return the number of sections
-		return data.count
-	}
-	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
-		return data[section].cells.count
-	}
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-		
-		cell.textLabel?.text = data[indexPath.section].cells[indexPath.row].title
-		
-		return cell
-	}
-	
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		data[section].section
-	}
-	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let storyboardID = data[indexPath.section].cells[indexPath.row].storyboardID
-		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-		let vc = storyboard.instantiateViewController(withIdentifier: storyboardID)
-		
-		(vc as? CurrencyViewController)?.delegate = self
-		
-		splitViewController?.showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
-		
-	}
-	
-}
 
+	// MARK: - Table view data source
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+		if let currencyVC = segue.destination as? CurrencyViewController {
+			currencyVC.delegate = self
+		} else if let appearanceVC = segue.destination as? AppearanceViewController {
+			appearanceVC.delegate = self
+		}
+
+	}
+
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		var title: String?
+
+		if section == Sections.data.rawValue {
+			title = NSLocalizedString("data.title", comment: "")
+		} else if section == Sections.appearance.rawValue {
+			title = NSLocalizedString("general.title", comment: "")
+		}
+
+		return title
+	}
+}
 
 // MARK: - Display logic
 extension SettingsMasterViewController: SettingsDisplayLogic {
-	func displaySettings(_ viewModel: SettingsModels.FetchSettings.ViewModel) {
-		data = viewModel.data
-		tableView.reloadData()
-	}
-	
+
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel) {
-		
+
+	}
+
+	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel) {
+		let sceneDelegate = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)
+		sceneDelegate?.changeAppearance(viewModel.userInterfaceStyle)
 	}
 }
 
@@ -101,4 +86,13 @@ extension SettingsMasterViewController: CurrencyViewControllerDelegate {
 		let request = SettingsModels.ChangeCurrency.Request(currency: currency)
 		interactor?.changeCurrency(request)
 	}
+}
+
+// MARK: - Appearance delegate
+extension SettingsMasterViewController: AppearanceDelegate {
+	func themeDidChange(_ theme: AppearanceModel.Theme) {
+		let request = SettingsModels.ChangeAppTheme.Request(theme: theme)
+		interactor?.changeAppTheme(request)
+	}
+
 }

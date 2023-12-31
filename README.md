@@ -1,9 +1,9 @@
-# MoneyM v 1.1
+# MoneyM v 1.2
 
 Finance Manager for iOS
 
-<img src="https://github.com/SavelyUkuren/MoneyM/assets/125015568/2db75b39-9d34-464e-a07b-2c18da52afe5" width="294" height="639">
-<img src="https://github.com/SavelyUkuren/MoneyM/assets/125015568/28721b76-9cc0-48da-b5d7-17f5c3403826" width="294" height="639">
+<img src="https://github.com/SavelyUkuren/MoneyM/assets/125015568/d0e79a15-0dcc-46f6-9466-210a68c508ad" width="294" height="639">
+<img src="https://github.com/SavelyUkuren/MoneyM/assets/125015568/529aa306-58d8-4a8e-b3b7-a9487cdd9cba" width="294" height="639">
 
 <hr>
 

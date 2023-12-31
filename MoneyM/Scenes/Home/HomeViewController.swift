@@ -11,228 +11,178 @@ protocol HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel)
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel)
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel)
+	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel)
+	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel)
+	func displayDatePickerButton(_ viewModel: Home.DatePickerButton.ViewModel)
 }
 
 class HomeViewController: UIViewController {
-	
+
 	@IBOutlet weak var balanceAmountLabel: UILabel!
-	
+
 	@IBOutlet weak var expenseAmountLabel: UILabel!
-	
+
 	@IBOutlet weak var incomeAmountLabel: UILabel!
-	
+
 	@IBOutlet weak var transactionsTableView: UITableView!
-	
+
 	@IBOutlet weak var addTransactionButton: UIButton!
-	
+
 	@IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
-	
-	var interactor: HomeBusinessLogic?
-	
-	var router: HomeRoutingLogic?
-	
-	private var transactionsArray: [Home.TransactionTableViewCellModel] = []
+
+	@IBOutlet weak var datePickerButton: UIButton!
+
+	public var interactor: HomeBusinessLogic?
+
+	public var router: HomeRoutingLogic?
+
+	private(set) var transactionsArray: [Home.TransactionTableViewCellModel] = []
+
+	private var (month, year): (Int, Int) = (0, 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		setup()
 		configurations()
-		
+
     }
-    
+
 	private func setup() {
 		let viewController = self
 		let interactor = HomeInteractor()
 		let presenter = HomePresenter()
 		let router = HomeRoute()
-		
+
 		router.viewController = viewController
 		viewController.interactor = interactor
 		viewController.router = router
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 	}
-	
+
 	private func configurations() {
 		configureTransactionsTableView()
 		configureFontLabels()
-		
-		interactor?.fetchTransactions(Home.FetchTransactions.Request())
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
-		
+
+		month = currentDate().month
+		year = currentDate().year
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+
 		addNotificationObservers()
+
+		interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
 	}
-	
+
 	private func configureTransactionsTableView() {
 		transactionsTableView.delegate = self
 		transactionsTableView.dataSource = self
 	}
-	
+
 	private func configureFontLabels() {
 		let font = CustomFonts()
-		balanceAmountLabel.font = font.RoundedFont(balanceAmountLabel.font.pointSize, .bold)
-		expenseAmountLabel.font = font.RoundedFont(expenseAmountLabel.font.pointSize, .semibold)
-		incomeAmountLabel.font = font.RoundedFont(incomeAmountLabel.font.pointSize, .semibold)
+		balanceAmountLabel.font = font.roundedFont(balanceAmountLabel.font.pointSize, .bold)
+		expenseAmountLabel.font = font.roundedFont(expenseAmountLabel.font.pointSize, .semibold)
+		incomeAmountLabel.font = font.roundedFont(incomeAmountLabel.font.pointSize, .semibold)
 	}
-	
+
 	private func addNotificationObservers() {
 		// Currency changed
 		NotificationCenter.default.addObserver(self, selector: #selector(changeCurrency),
 											   name: Notifications.Currency, object: nil)
 	}
-	
-	private func showEditBalanceAlert() {
-		let alert = UIAlertController(title: "Edit starting balance",
-									  message: nil,
-									  preferredStyle: .alert)
-		
-		alert.addTextField { textField in
-			textField.placeholder = NSLocalizedString("balance.title", comment: "")
-			textField.keyboardType = .decimalPad
-		}
-		
-		alert.addAction(UIAlertAction(title: NSLocalizedString("edit.title", comment: ""),
-									  style: .default,
-									  handler: { _ in
-			let newBalance = alert.textFields![0].text!
-			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
-			self.interactor?.editStartingBalance(request)
-		}))
-		
-		
-		present(alert, animated: true)
+
+	private func currentDate() -> (month: Int, year: Int) {
+		let date = Date.now
+		let dateComponents = Calendar.current.dateComponents([.month, .year], from: date)
+		return (dateComponents.month!, dateComponents.year!)
 	}
-	
+
 	@objc
 	private func changeCurrency() {
-		interactor?.fetchTransactions(Home.FetchTransactions.Request())
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
-	
+
 	// MARK: Actions
 	@IBAction func addTransactionButtonClicked(_ sender: Any) {
 		router?.routeToAddNewTransaction()
 	}
-	
-	@IBAction func settingsButtonClicked(_ sender: Any) {
-		router?.routeToSettings()
-	}
-	
+
 	@IBAction func balanceButtonClicked(_ sender: Any) {
-		showEditBalanceAlert()
+		let action = { (newBalance: String) -> Void in
+			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
+			self.interactor?.editStartingBalance(request)
+		}
+
+		let request = Home.AlertEditStartingBalance.Request(action: action)
+		interactor?.showAlertEditStartingBalance(request)
 	}
-	
+
+	@IBAction func selectDateButtonClicked(_ sender: Any) {
+
+		let action = { (month: Int, year: Int) in
+			self.month = month
+			self.year = year
+			let request = Home.FetchTransactions.Request(month: month, year: year)
+			self.interactor?.fetchTransactions(request)
+
+			self.interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+			self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
+		}
+
+		let request = Home.AlertDatePicker.Request(action: action)
+		interactor?.showAlertDatePicker(request)
+	}
+
 }
 
 // MARK: - Display logic
 extension HomeViewController: HomeDisplayLogic {
-	
+
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel) {
 		transactionsArray = viewModel.data
-		transactionsTableView.reloadData()
+		DispatchQueue.main.async {
+			self.transactionsTableView.reloadData()
+		}
 	}
-	
+
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel) {
 		balanceAmountLabel.textColor = viewModel.balanceColor
 		balanceAmountLabel.text = viewModel.balance
 		expenseAmountLabel.text = viewModel.expense
 		incomeAmountLabel.text = viewModel.income
 	}
-	
+
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel) {
 		transactionsArray = viewModel.data
 		transactionsTableView.reloadData()
-		
-		let request = Home.FetchFinancialSummary.Request()
-		interactor?.fetchFinancialSummary(request: request)
-	}
-	
-}
 
-// MARK: - Table View Delegate
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-	
-	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		
-		let numberOfRows = tableView.numberOfRows(inSection: indexPath.section)
-		let transactionCell = (cell as! TransactionTableViewCell)
-//		transactionCell.layer.cornerRadius = 0
-//		
-//		if numberOfRows == 1 {
-//			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
-//		} else if indexPath.row == 0 {
-//			transactionCell.roundCorner(radius: 12, corners: [.topLeft, .topRight])
-//		} else if indexPath.row == numberOfRows - 1 {
-//			transactionCell.roundCorner(radius: 12, corners: [.bottomLeft, .bottomRight])
-//		}
-		
-		scrollViewHeightConstraint.constant = tableView.contentSize.height
+		let request = Home.FetchFinancialSummary.Request()
+		interactor?.fetchFinancialSummary(request)
 	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		transactionsArray[section].transactions.count
+
+	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel) {
+		present(viewModel.alert, animated: true)
 	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let transaction = transactionsArray[indexPath.section].transactions[indexPath.row]
-		let cell: TransactionTableViewCell
-		
-		if transaction.note.isEmpty {
-			cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell") as! TransactionTableViewCell
-		} else {
-			cell = tableView.dequeueReusableCell(withIdentifier: "cellWithNote") as! TransactionTableViewCell_Note
-		}
-		
-		cell.loadTransaction(transaction: transaction)
-		
-		return cell
+
+	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel) {
+		present(viewModel.alert, animated: true)
 	}
-	
-	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-		
-		let deleteAction = UIContextualAction(style: .destructive,
-											  title: NSLocalizedString("delete.title", comment: "")) { swipeAction, view, complition in
-			let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
-			let request = Home.RemoveTransaction.Request(transaction: transaction)
-			self.interactor?.removeTransaction(request: request)
-		}
-		
-		let editAction = UIContextualAction(style: .normal,
-											title: NSLocalizedString("edit.title", comment: "")) { swipeAction, view, completion in
-			let transaction = self.transactionsArray[indexPath.section].transactions[indexPath.row]
-			self.router?.routeToEditTransaction(transaction: transaction)
-		}
-		editAction.backgroundColor = .systemBlue
-		
-		let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
-		
-		return swipeAction
+
+	func displayDatePickerButton(_ viewModel: Home.DatePickerButton.ViewModel) {
+		datePickerButton.setTitle(viewModel.title, for: .normal)
 	}
-	
-	func numberOfSections(in tableView: UITableView) -> Int {
-		transactionsArray.count
-	}
-	
-	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return transactionsArray[section].section
-	}
-	
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		20
-	}
-	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		65
-	}
+
 }
 
 // MARK: - Add transaction delegate
 extension HomeViewController: AddTransactionDelegate {
 	func transactionCreated(_ transaction: TransactionModel) {
 		let request = Home.AddTransaction.Request(transaction: transaction)
-		interactor?.addTransaction(request: request)
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.addTransaction(request)
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 }
 
@@ -241,6 +191,6 @@ extension HomeViewController: EditTransactionDelegate {
 	func didEditTransaction(_ newTransaction: TransactionModel) {
 		let request = Home.EditTransaction.Request(transaction: newTransaction)
 		interactor?.editTransaction(request)
-		interactor?.fetchFinancialSummary(request: Home.FetchFinancialSummary.Request())
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 }

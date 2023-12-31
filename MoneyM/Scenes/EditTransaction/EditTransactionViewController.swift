@@ -7,187 +7,117 @@
 
 import UIKit
 
-protocol EditTransactionDelegate {
+protocol EditTransactionDelegate: AnyObject {
 	func didEditTransaction(_ newTransaction: TransactionModel)
 }
 
-protocol EditTransactionDisplayLogic {
-	func displayLoadTransaction(_ viewModel: EditTransactionModels.LoadTransaction.ViewModel)
-	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel)
+protocol EditTransactionDisplayLogic: AnyObject {
+	func displayTransaction(_ viewModel: EditTransactionModels.Load.ViewModel)
+	func displayEditedTransaction(_ viewModel: EditTransactionModels.Edit.ViewModel)
 }
 
-class EditTransactionViewController: UIViewController {
+class EditTransactionViewController: TransactionViewerViewController {
 
-	@IBOutlet weak var amountTextField: UITextField!
-	
-	@IBOutlet weak var datePickerView: UIDatePicker!
-	
-	@IBOutlet weak var choiceButton: ButtonChoiceView!
-	
-	@IBOutlet weak var noteTextField: UITextField!
-	
-	@IBOutlet weak var selectCategoryButton: UIButton!
-	
-	var interactor: EditTransactionBusinessLogic?
-	
-	var router: EditTransactionRouter?
-	
-	var transaction: TransactionModel?
-	
-	var delegate: EditTransactionDelegate?
-	
-	private var selectedCategory: CategoryModel?
-	
+	public var interactor: EditTransactionBusinessLogic?
+
+	public var router: EditTransactionRouter?
+
+	public var transaction: TransactionModel?
+
+	public var delegate: EditTransactionDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		setup()
-		configureAmountTextField()
-		configureNoteTextField()
-		configureChoiceButton()
-		configureFont()
-		
+		configureConfirmButton()
+
 		if let unwrapTransaction = transaction {
-			let request = EditTransactionModels.LoadTransaction.Request(transaction: unwrapTransaction)
-			interactor?.loadTransaction(request)
+			let request = EditTransactionModels.Load.Request(transaction: unwrapTransaction)
+			interactor?.load(request)
 		}
-		
+
     }
-    
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+
+		interactor = nil
+		router = nil
+		delegate = nil
+	}
+
+	private func configureConfirmButton() {
+		confirmButton.setTitle(NSLocalizedString("edit.title", comment: ""), for: .normal)
+	}
+
 	private func setup() {
 		let viewController = self
 		let interactor = EditTransactionInteractor()
 		let presenter = EditTransactionPresenter()
 		let router = EditTransactionRouter()
-		
+
 		viewController.interactor = interactor
 		viewController.router = router
 		router.viewController = viewController
 		interactor.presenter = presenter
 		presenter.viewController = viewController
 	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		amountTextField.becomeFirstResponder()
-	}
 
-	private func configureAmountTextField() {
-		amountTextField.layer.cornerRadius = 12
-		amountTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
-		amountTextField.textColor = .systemRed
-	}
-	
-	private func configureNoteTextField() {
-		noteTextField.layer.cornerRadius = 12
-		noteTextField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0)
-	}
-	
-	private func configureChoiceButton() {
-		choiceButton.setButtonTitle(NSLocalizedString("expense.title", comment: ""), button: .First)
-		choiceButton.setButtonTitle(NSLocalizedString("income.title", comment: ""), button: .Second)
-		choiceButton.delegate = self
-	}
-	
-	private func configureFont() {
-		let font = CustomFonts()
-		
-		let amountTextFieldPointSize: CGFloat = amountTextField.font!.pointSize
-		amountTextField.font = font.RoundedFont(amountTextFieldPointSize, .bold)
-		
-		let noteTextFieldPointSize: CGFloat = noteTextField.font!.pointSize
-		noteTextField.font = font.RoundedFont(noteTextFieldPointSize, .semibold)
-		
-		choiceButton.setButtonFont(font.RoundedFont(18, .medium))
-		
-		selectCategoryButton.titleLabel?.font = font.RoundedFont(18, .regular)
-	}
-	
-	private func resetCategory() {
-		selectedCategory = CategoriesManager.shared.defaultCategory
-		selectCategoryButton.setTitle(NSLocalizedString("select_category.title", comment: ""), for: .normal)
-	}
+	override func confirmButtonClicked(_ sender: Any) {
 
-	@IBAction func editButtonClicked(_ sender: Any) {
-		
 		let mode: TransactionModel.Mode = switch choiceButton.selectedButton {
-		case .First:
-			TransactionModel.Mode.Expense
-		case .Second:
-			TransactionModel.Mode.Income
+		case .first:
+			TransactionModel.Mode.expense
+		case .second:
+			TransactionModel.Mode.income
 		}
-		
-		let request = EditTransactionModels.EditTransaction.Request(amount: amountTextField.text!,
+
+		let request = EditTransactionModels.Edit.Request(amount: amountTextField.text!,
 																	 date: datePickerView.date,
 																	 category: selectedCategory,
 																	 mode: mode, note: noteTextField.text)
-		interactor?.editTransaction(request)
+		interactor?.edit(request)
 	}
-	
-	@IBAction func selectCategoryButtonClicked(_ sender: Any) {
+
+	override func selectCategoryButtonClicked(_ sender: Any) {
 		router?.routeToSelectCategory()
 	}
-	
-	@IBAction func cancelButtonClicked(_ sender: Any) {
-		dismiss(animated: true)
-	}
-	
-	@IBAction func amountTextFieldChanged(_ sender: Any) {
-		if let text = amountTextField.text {
-			// Remove spaces from current string "1 000" -> "1000"
-			let numberStr = text.components(separatedBy: .whitespaces).joined()
-			let number = Int(numberStr)
-			let separatorNumber = number?.thousandSeparator
-			amountTextField.text = separatorNumber
-		}
-	}
-	
+
 }
 
 // MARK: - EditTransaction display logic
 extension EditTransactionViewController: EditTransactionDisplayLogic {
-	func displayLoadTransaction(_ viewModel: EditTransactionModels.LoadTransaction.ViewModel) {
+	func displayTransaction(_ viewModel: EditTransactionModels.Load.ViewModel) {
 		amountTextField.text = viewModel.amount
-		
+
 		switch viewModel.mode {
-			case .Expense:
-				choiceButton.selectButton(.First)
-			case .Income:
-				choiceButton.selectButton(.Second)
+		case .expense:
+			choiceButton.selectButton(.first)
+		case .income:
+			choiceButton.selectButton(.second)
 		}
-		
+
 		selectedCategory = viewModel.category
 		selectCategoryButton.setTitle(selectedCategory?.title, for: .normal)
-		
+
 		datePickerView.date = viewModel.date
 		noteTextField.text = viewModel.note
-		
-	}
-	
-	func displayEditTransaction(_ viewModel: EditTransactionModels.EditTransaction.ViewModel) {
-		let transactionModel = viewModel.transactionModel
-		transactionModel.id = transaction!.id
-		delegate?.didEditTransaction(transactionModel)
-		dismiss(animated: true)
-	}
-}
 
-// MARK: Select category delegate
-extension EditTransactionViewController: SelectCategoryViewControllerDelegate {
-	func selectButtonClicked(category: CategoryModel?) {
-		selectedCategory = category
-		selectCategoryButton.setTitle(category?.title, for: .normal)
 	}
-}
 
-// MARK: Button choice delegate
-extension EditTransactionViewController: ButtonChoiceDelegate {
-	func buttonClicked(button: ButtonChoiceView.Buttons) {
-		switch button {
-		case .First: // Expense button
-			amountTextField.textColor = .systemRed
-		case .Second: // Income button
-			amountTextField.textColor = .systemGreen
+	func displayEditedTransaction(_ viewModel: EditTransactionModels.Edit.ViewModel) {
+		if viewModel.hasError, let errorMessage = viewModel.errorMessage {
+			showAlertMessage(title: NSLocalizedString("error.title", comment: ""), message: errorMessage)
 		}
-		resetCategory()
+
+		if let editedTransaction = viewModel.model,
+		   let inputTransaction = self.transaction {
+			let transactionCopy = editedTransaction
+			transactionCopy.id = inputTransaction.id
+			delegate?.didEditTransaction(transactionCopy)
+			dismiss(animated: true)
+		}
+
 	}
 }

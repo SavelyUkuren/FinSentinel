@@ -8,34 +8,40 @@
 import Foundation
 
 protocol EditTransactionPresentLogic {
-	func presentLoadTransaction(_ response: EditTransactionModels.LoadTransaction.Response)
-	func presentEditTransaction(_ response: EditTransactionModels.EditTransaction.Response)
+	func presentTransaction(_ response: EditTransactionModels.Load.Response)
+	func presentEditedTransaction(_ response: EditTransactionModels.Edit.Response)
 }
 
-class EditTransactionPresenter: EditTransactionPresentLogic {
-	
+class EditTransactionPresenter {
+
 	var viewController: EditTransactionViewController?
-	
-	func presentLoadTransaction(_ response: EditTransactionModels.LoadTransaction.Response) {
+
+}
+
+// MARK: - EditTransactionPresenter present logic
+extension EditTransactionPresenter: EditTransactionPresentLogic {
+
+	func presentTransaction(_ response: EditTransactionModels.Load.Response) {
 		let categoryManager = CategoriesManager.shared
-		
+
 		let amount = String(response.transaction.amount.thousandSeparator)
-		let mode = response.transaction.mode ?? .Expense
+		let mode = response.transaction.mode ?? .expense
 		let category = categoryManager.findCategoryBy(id: response.transaction.categoryID ?? 0) ?? CategoriesManager.shared.defaultCategory
 		let date = response.transaction.date!
 		let note = response.transaction.note ?? ""
-		
-		let viewModel = EditTransactionModels.LoadTransaction.ViewModel(amount: amount,
+
+		let viewModel = EditTransactionModels.Load.ViewModel(amount: amount,
 																		mode: mode,
 																		category: category,
 																		date: date,
 																		note: note)
-		viewController?.displayLoadTransaction(viewModel)
+		viewController?.displayTransaction(viewModel)
 	}
-	
-	func presentEditTransaction(_ response: EditTransactionModels.EditTransaction.Response) {
-		let viewModel = EditTransactionModels.EditTransaction.ViewModel(transactionModel: response.transactionModel,
+
+	func presentEditedTransaction(_ response: EditTransactionModels.Edit.Response) {
+		let viewModel = EditTransactionModels.Edit.ViewModel(model: response.model,
 																		 hasError: response.hasError, errorMessage: response.errorMessage)
-		viewController?.displayEditTransaction(viewModel)
+		viewController?.displayEditedTransaction(viewModel)
 	}
+
 }

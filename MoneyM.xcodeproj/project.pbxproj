@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		451104F12B2E030C0066F868 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */; };
+		451104FD2B2E19480066F868 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451104F72B2E19480066F868 /* AppearanceViewController.swift */; };
+		451105022B2E2D150066F868 /* AppearanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451105012B2E2D150066F868 /* AppearanceModel.swift */; };
 		451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AD2AA49F740003A4B7 /* TransactionModel.swift */; };
 		452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A71572B191F5C0015E524 /* HomeRoute.swift */; };
 		452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A715A2B1920180015E524 /* AddTransactionViewController.swift */; };
+		452B9CC12B31EE3400D40894 /* TransactionViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */; };
 		45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4A2AB603D900301729 /* CategoryViewController.swift */; };
 		45326F4D2AB603F300301729 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45326F4C2AB603F300301729 /* CategoryModel.swift */; };
 		4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4533EE072B18D0D600A92713 /* HomeViewController.swift */; };
@@ -33,8 +37,13 @@
 		456214912B22E834000C5A29 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214902B22E834000C5A29 /* UINavigationItem.swift */; };
 		456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214922B22E9C2000C5A29 /* UITextFieldExtension.swift */; };
 		456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214942B22E9FB000C5A29 /* UIButtonExtension.swift */; };
-		458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DF7902B2388C10048B4E9 /* DetailViewController.swift */; };
+		4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709092B2C94E1002E3FD4 /* MoneyMTests.swift */; };
+		457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */; };
+		457709132B2CB2C9002E3FD4 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */; };
+		4577091E2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */; };
+		457709262B2DE542002E3FD4 /* HomeViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457709252B2DE542002E3FD4 /* HomeViewControllerTableView.swift */; };
 		459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459317572B1CA6EF00F493C2 /* TransactionCollection.swift */; };
+		45947F922B3D701C00623AF8 /* SettingsSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947F912B3D701C00623AF8 /* SettingsSplitViewController.swift */; };
 		4597FA882B209D2500043461 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FA872B209D2500043461 /* CustomFonts.swift */; };
 		4597FA922B20A8CF00043461 /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */; };
 		4597FA932B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4597FA8A2B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf */; };
@@ -83,10 +92,24 @@
 		45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FE0E2B1A681C00783D27 /* AddTransactionModels.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4577090B2B2C94E1002E3FD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45DCB7082A9FB05500B0326F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45DCB70F2A9FB05500B0326F;
+			remoteInfo = MoneyM;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		451104F72B2E19480066F868 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
+		451105012B2E2D150066F868 /* AppearanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModel.swift; sourceTree = "<group>"; };
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		452A71572B191F5C0015E524 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
 		452A715A2B1920180015E524 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewerViewController.swift; sourceTree = "<group>"; };
 		45326F4A2AB603D900301729 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		45326F4C2AB603F300301729 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		4533EE072B18D0D600A92713 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -110,8 +133,14 @@
 		456214902B22E834000C5A29 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
 		456214922B22E9C2000C5A29 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		456214942B22E9FB000C5A29 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
-		458DF7902B2388C10048B4E9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		457709092B2C94E1002E3FD4 /* MoneyMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMTests.swift; sourceTree = "<group>"; };
+		457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
+		457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearWheelPicker.swift; sourceTree = "<group>"; };
+		457709252B2DE542002E3FD4 /* HomeViewControllerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTableView.swift; sourceTree = "<group>"; };
 		459317572B1CA6EF00F493C2 /* TransactionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
+		45947F912B3D701C00623AF8 /* SettingsSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSplitViewController.swift; sourceTree = "<group>"; };
 		4597FA872B209D2500043461 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		4597FA892B20A8CE00043461 /* SF-Pro-Rounded-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Light.otf"; sourceTree = "<group>"; };
 		4597FA8A2B20A8CF00043461 /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
@@ -163,6 +192,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		457709042B2C94E1002E3FD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DCB70D2A9FB05500B0326F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +226,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		451104F22B2E16A90066F868 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				451104F72B2E19480066F868 /* AppearanceViewController.swift */,
+				451105012B2E2D150066F868 /* AppearanceModel.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
 		452A71592B191FC90015E524 /* AddTransaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,12 +247,21 @@
 			path = AddTransaction;
 			sourceTree = "<group>";
 		};
+		452B9CBF2B31EE1000D40894 /* TransactionViewer */ = {
+			isa = PBXGroup;
+			children = (
+				452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */,
+			);
+			path = TransactionViewer;
+			sourceTree = "<group>";
+		};
 		45326F502AB6110500301729 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				45DCB72F2AA33F7A00B0326F /* TransactionTableViewCell.swift */,
 				45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */,
 				45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */,
+				451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -215,6 +269,7 @@
 		4533EE052B18CF1100A92713 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				452B9CBF2B31EE1000D40894 /* TransactionViewer */,
 				45CA35032B2854BB0070E4A9 /* EditTransaction */,
 				459F98B72B2336CC00BB89D6 /* Settings */,
 				4597FAA02B20EE6D00043461 /* Categories */,
@@ -227,6 +282,7 @@
 		4533EE062B18CF1900A92713 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				457709242B2DE525002E3FD4 /* Extensions */,
 				4533EE0E2B18F5F200A92713 /* HomeModels.swift */,
 				4533EE072B18D0D600A92713 /* HomeViewController.swift */,
 				452A71572B191F5C0015E524 /* HomeRoute.swift */,
@@ -257,6 +313,7 @@
 		453445A32AFAA81D005154DF /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				4577091F2B2D9F57002E3FD4 /* DatePicker */,
 				45E1694A2AEEA6E200B7989D /* TableViewSections */,
 				45326F502AB6110500301729 /* TableViewCells */,
 				453445A42AFAA83A005154DF /* ButtonChoiceView.swift */,
@@ -288,6 +345,32 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		457709082B2C94E1002E3FD4 /* MoneyMTests */ = {
+			isa = PBXGroup;
+			children = (
+				457709092B2C94E1002E3FD4 /* MoneyMTests.swift */,
+				457709102B2C9695002E3FD4 /* TransactionCollectionTests.swift */,
+				457709122B2CB2C9002E3FD4 /* CoreDataManagerTests.swift */,
+			);
+			path = MoneyMTests;
+			sourceTree = "<group>";
+		};
+		4577091F2B2D9F57002E3FD4 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		457709242B2DE525002E3FD4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				457709252B2DE542002E3FD4 /* HomeViewControllerTableView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		458DF78F2B2368D60048B4E9 /* Currencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +384,7 @@
 		459317562B1CA6E200F493C2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				45CA350E2B2874710070E4A9 /* TransactionModel */,
+				45CA350E2B2874710070E4A9 /* Transaction */,
 				453BBA4E2B28498100C9E67B /* Settings */,
 				4597FA9F2B20B0C200043461 /* CoreData */,
 				45D65E132B28ACF600C4A1F8 /* Categories */,
@@ -348,8 +431,9 @@
 		459F98C42B23595000BB89D6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				451104F22B2E16A90066F868 /* Appearance */,
 				458DF78F2B2368D60048B4E9 /* Currencies */,
-				458DF7902B2388C10048B4E9 /* DetailViewController.swift */,
+				45947F912B3D701C00623AF8 /* SettingsSplitViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -366,14 +450,14 @@
 			path = EditTransaction;
 			sourceTree = "<group>";
 		};
-		45CA350E2B2874710070E4A9 /* TransactionModel */ = {
+		45CA350E2B2874710070E4A9 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
 				459317572B1CA6EF00F493C2 /* TransactionCollection.swift */,
 				454317E72AF282890015F6E5 /* FinancialSummary.swift */,
 				451974AD2AA49F740003A4B7 /* TransactionModel.swift */,
 			);
-			path = TransactionModel;
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		45D65E132B28ACF600C4A1F8 /* Categories */ = {
@@ -390,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				45DCB7122A9FB05500B0326F /* MoneyM */,
+				457709082B2C94E1002E3FD4 /* MoneyMTests */,
 				45DCB7112A9FB05500B0326F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -398,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				45DCB7102A9FB05500B0326F /* MoneyM.app */,
+				457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -434,6 +520,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		457709062B2C94E1002E3FD4 /* MoneyMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4577090F2B2C94E1002E3FD4 /* Build configuration list for PBXNativeTarget "MoneyMTests" */;
+			buildPhases = (
+				457709032B2C94E1002E3FD4 /* Sources */,
+				457709042B2C94E1002E3FD4 /* Frameworks */,
+				457709052B2C94E1002E3FD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4577090C2B2C94E1002E3FD4 /* PBXTargetDependency */,
+			);
+			name = MoneyMTests;
+			productName = MoneyMTests;
+			productReference = 457709072B2C94E1002E3FD4 /* MoneyMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		45DCB70F2A9FB05500B0326F /* MoneyM */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45DCB7272A9FB05700B0326F /* Build configuration list for PBXNativeTarget "MoneyM" */;
@@ -441,6 +545,7 @@
 				45DCB70C2A9FB05500B0326F /* Sources */,
 				45DCB70D2A9FB05500B0326F /* Frameworks */,
 				45DCB70E2A9FB05500B0326F /* Resources */,
+				4577091A2B2CF203002E3FD4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -458,9 +563,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					457709062B2C94E1002E3FD4 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 45DCB70F2A9FB05500B0326F;
+					};
 					45DCB70F2A9FB05500B0326F = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -481,11 +590,19 @@
 			projectRoot = "";
 			targets = (
 				45DCB70F2A9FB05500B0326F /* MoneyM */,
+				457709062B2C94E1002E3FD4 /* MoneyMTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		457709052B2C94E1002E3FD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DCB70E2A9FB05500B0326F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,7 +628,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4577091A2B2CF203002E3FD4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		457709032B2C94E1002E3FD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457709112B2C9695002E3FD4 /* TransactionCollectionTests.swift in Sources */,
+				457709132B2CB2C9002E3FD4 /* CoreDataManagerTests.swift in Sources */,
+				4577090A2B2C94E1002E3FD4 /* MoneyMTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45DCB70C2A9FB05500B0326F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -521,9 +668,13 @@
 				4597FA9D2B20B0A000043461 /* TransactionEntity+CoreDataClass.swift in Sources */,
 				4562148F2B22E66F000C5A29 /* UILabelExtension.swift in Sources */,
 				451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */,
+				457709262B2DE542002E3FD4 /* HomeViewControllerTableView.swift in Sources */,
 				4597FA882B209D2500043461 /* CustomFonts.swift in Sources */,
 				45DCB71E2A9FB05500B0326F /* MoneyM.xcdatamodeld in Sources */,
+				45947F922B3D701C00623AF8 /* SettingsSplitViewController.swift in Sources */,
+				4577091E2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift in Sources */,
 				454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */,
+				452B9CC12B31EE3400D40894 /* TransactionViewerViewController.swift in Sources */,
 				459F98BD2B23391500BB89D6 /* SettingsRouter.swift in Sources */,
 				45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */,
 				459F98C32B23484A00BB89D6 /* SettingsMasterViewController.swift in Sources */,
@@ -550,8 +701,8 @@
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */,
 				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,
-				458DF7912B2388C10048B4E9 /* DetailViewController.swift in Sources */,
 				45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */,
+				451104FD2B2E19480066F868 /* AppearanceViewController.swift in Sources */,
 				4597FA9E2B20B0A000043461 /* TransactionEntity+CoreDataProperties.swift in Sources */,
 				459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */,
 				4533EE0F2B18F5F200A92713 /* HomeModels.swift in Sources */,
@@ -567,8 +718,10 @@
 				456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */,
 				45E9FE0D2B1A5E2300783D27 /* AddTransactionRouter.swift in Sources */,
 				452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */,
+				451105022B2E2D150066F868 /* AppearanceModel.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
 				453445A52AFAA83A005154DF /* ButtonChoiceView.swift in Sources */,
+				451104F12B2E030C0066F868 /* SettingsTableViewCell.swift in Sources */,
 				459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */,
 				45E9FE0B2B19841900783D27 /* AddTransactionPresenter.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
@@ -578,6 +731,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4577090C2B2C94E1002E3FD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45DCB70F2A9FB05500B0326F /* MoneyM */;
+			targetProxy = 4577090B2B2C94E1002E3FD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		45DCB7192A9FB05500B0326F /* Main.storyboard */ = {
@@ -599,6 +760,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4577090D2B2C94E1002E3FD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8BPKDD8276;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoneyM";
+			};
+			name = Debug;
+		};
+		4577090E2B2C94E1002E3FD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8BPKDD8276;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoneyM";
+			};
+			name = Release;
+		};
 		45DCB7252A9FB05700B0326F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -734,7 +942,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -764,7 +973,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -776,6 +986,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4577090F2B2C94E1002E3FD4 /* Build configuration list for PBXNativeTarget "MoneyMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4577090D2B2C94E1002E3FD4 /* Debug */,
+				4577090E2B2C94E1002E3FD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45DCB70B2A9FB05500B0326F /* Build configuration list for PBXProject "MoneyM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

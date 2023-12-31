@@ -11,37 +11,33 @@ import UIKit
 protocol HomeRoutingLogic {
 	func routeToAddNewTransaction()
 	func routeToEditTransaction(transaction: TransactionModel)
-	func routeToSettings()
 }
 
 class HomeRoute: HomeRoutingLogic {
-	
-	var viewController: HomeViewController?
-	
+
+	public var viewController: HomeViewController?
+
 	func routeToAddNewTransaction() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc = storyboard.instantiateViewController(withIdentifier: "AddTransaction") as? AddTransactionViewController
-		vc?.delegate = viewController
-		
-		viewController?.present(vc!, animated: true)
+		let addTransactionVC = storyboard.instantiateViewController(identifier: "TransactionViewer") { coder in
+			return AddTransactionViewController(coder: coder)
+		}
+
+		addTransactionVC.delegate = viewController
+
+		viewController?.present(addTransactionVC, animated: true)
 	}
-	
+
 	func routeToEditTransaction(transaction: TransactionModel) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc = storyboard.instantiateViewController(withIdentifier: "EditTransaction") as? EditTransactionViewController
-		
-		vc?.transaction = transaction
-		vc?.delegate = viewController
-		
-		viewController?.present(vc!, animated: true)
+		let editTransactionVC = storyboard.instantiateViewController(identifier: "TransactionViewer") { coder in
+			return EditTransactionViewController(coder: coder)
+		}
+
+		editTransactionVC.transaction = transaction
+		editTransactionVC.delegate = viewController
+
+		viewController?.present(editTransactionVC, animated: true)
 	}
-	
-	func routeToSettings() {
-		let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-		let vc = storyboard.instantiateViewController(withIdentifier: "Settings") as? UISplitViewController
-//		vc?.modalPresentationStyle = .overFullScreen
-		
-		viewController?.present(vc!, animated: true)
-	}
-	
+
 }

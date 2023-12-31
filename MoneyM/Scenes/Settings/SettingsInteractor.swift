@@ -6,35 +6,39 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SettingsBusinessLogic {
-	func fetchSettings(_ request: SettingsModels.FetchSettings.Request)
 	func changeCurrency(_ request: SettingsModels.ChangeCurrency.Request)
+	func changeAppTheme(_ request: SettingsModels.ChangeAppTheme.Request)
 }
 
 class SettingsInteractor: SettingsBusinessLogic {
-	
-	var presenter: SettingsPresentLogic?
-	
-	func fetchSettings(_ request: SettingsModels.FetchSettings.Request) {
-		var dataArray: [SettingsModels.TableViewSectionModel] = []
-		
-		let dataCells = [SettingsModels.TableViewCellModel(title: NSLocalizedString("currency.title", comment: ""),
-														   storyboardID: "Currency")]
-		
-		let dataSection = SettingsModels.TableViewSectionModel(section: NSLocalizedString("data.title", comment: ""),
-															   cells: dataCells)
-		
-		dataArray.append(dataSection)
-		let response = SettingsModels.FetchSettings.Response(data: dataArray)
-		presenter?.presentSettings(response)
-	}
-	
+
+	public var presenter: SettingsPresentLogic?
+
 	func changeCurrency(_ request: SettingsModels.ChangeCurrency.Request) {
 		Settings.shared.changeCurrency(request.currency)
-		
+
 		let response = SettingsModels.ChangeCurrency.Response()
 		presenter?.presentCurrencyChange(response)
 	}
-	
+
+	func changeAppTheme(_ request: SettingsModels.ChangeAppTheme.Request) {
+		let userInterfaceStyle: UIUserInterfaceStyle
+		switch request.theme {
+		case .system:
+			userInterfaceStyle = .unspecified
+		case .light:
+			userInterfaceStyle = .light
+		case .dark:
+			userInterfaceStyle = .dark
+		}
+
+		Settings.shared.changeAppTheme(userInterfaceStyle)
+
+		let response = SettingsModels.ChangeAppTheme.Response(userInterfaceStyle: userInterfaceStyle)
+		presenter?.presentAppTheme(response)
+	}
+
 }

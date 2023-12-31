@@ -8,17 +8,16 @@
 import Foundation
 import UIKit
 
-
 class TransactionModel: Identifiable {
-	
+
 	enum Mode: Int {
-		case Expense, Income
+		case expense, income
 	}
-	var id: Int = 0
+	var id = UUID()
 	var date: Date!
 	var amount: Int!
 	var mode: Mode!
 	var categoryID: Int!
 	var note: String!
-	
+
 }
