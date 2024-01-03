@@ -107,8 +107,8 @@ class HomeInteractor: HomeBusinessLogic {
 		let coreDataManager = CoreDataManager()
 		coreDataManager.editStartingBalance(year: year, month: month, newBalance: balance)
 
-		let response = Home.RemoveTransaction.Response(data: transactionCollection.transactionsGroupedByDate)
-		presenter?.presentRemoveTransaction(response)
+		let response = Home.EditStartingBalance.Response(financialSummary: transactionCollection.summary)
+		presenter?.presentStartingBalance(response)
 	}
 
 	func showAlertEditStartingBalance(_ request: Home.AlertEditStartingBalance.Request) {

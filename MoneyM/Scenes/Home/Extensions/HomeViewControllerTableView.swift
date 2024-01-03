@@ -12,7 +12,17 @@ import UIKit
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		scrollViewHeightConstraint.constant = tableView.contentSize.height
+
+		let spacingBetweenComponents: CGFloat = 16
+		let componentsBeforeTableView: CGFloat = 3
+		
+		var height = tableView.contentSize.height
+		height += financialSummaryCollectionView.frame.height
+		height += datePickerButton.frame.height
+		height += addTransactionButton.frame.height
+		height += spacingBetweenComponents * componentsBeforeTableView
+		
+		scrollViewHeightConstraint.constant = height
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

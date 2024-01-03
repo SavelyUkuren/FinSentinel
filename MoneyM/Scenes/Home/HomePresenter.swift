@@ -15,6 +15,7 @@ protocol HomePresentationLogic {
 	func presentAlertEditStartingBalance(_ response: Home.AlertEditStartingBalance.Response)
 	func presentAlertDatePicker(_ response: Home.AlertDatePicker.Response)
 	func presentDatePickerButton(_ response: Home.DatePickerButton.Response)
+	func presentStartingBalance(_ response: Home.EditStartingBalance.Response)
 }
 
 // MARK: - Presentation logic
@@ -38,25 +39,24 @@ class HomePresenter: HomePresentationLogic {
 	}
 
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response) {
-		let currency = Settings.shared.model.currency.symbol
-
-		let expenseOperator = abs(response.summary.expense) == 0 ? "" : "-"
-		let incomeOperator = response.summary.income == 0 ? "" : "+"
-		let balance = response.summary.balance
-		let expense = abs(response.summary.expense)
-		let income = response.summary.income
-
-		let balanceString = "\(balance.thousandSeparator) \(currency)"
-		let expenseString = "\(expenseOperator)\(expense.thousandSeparator) \(currency)"
-		let incomeString = "\(incomeOperator)\(income.thousandSeparator) \(currency)"
-
-		let balanceColor: UIColor = response.summary.balance < 0 ? .systemRed : .systemGreen
-
-		let viewModel = Home.FetchFinancialSummary.ViewModel(balanceColor: balanceColor,
-															 balance: balanceString,
-															 expense: expenseString,
-															 income: incomeString)
+		
+		let (startingBalance, balance, expense, income) = financialSumaryBeauty(financialSummary: response.summary)
+		
+		let viewModel = Home.FetchFinancialSummary.ViewModel(startingBalance: startingBalance,
+															 balance: balance,
+															 expense: expense,
+															 income: income)
 		viewController?.displayFinancialSummary(viewModel)
+	}
+	
+	func presentStartingBalance(_ response: Home.EditStartingBalance.Response) {
+		let (startingBalance, balance, expense, income) = financialSumaryBeauty(financialSummary: response.financialSummary)
+		
+		let viewModel = Home.EditStartingBalance.ViewModel(startingBalance: startingBalance,
+															 balance: balance,
+															 expense: expense,
+															 income: income)
+		viewController?.displayStartingBalance(viewModel)
 	}
 
 	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response) {
@@ -139,6 +139,43 @@ class HomePresenter: HomePresentationLogic {
 		dateFormatter.dateFormat = "d MMMM"
 
 		return dateFormatter.string(from: date)
+	}
+	
+	private func financialSumaryBeauty(financialSummary: FinancialSummary) -> (startingBalance: FinancialSummaryCellModel,
+																			   balance: FinancialSummaryCellModel,
+																			   expense: FinancialSummaryCellModel,
+																			   income: FinancialSummaryCellModel) {
+		let currency = Settings.shared.model.currency.symbol
+
+		let expenseOperator = abs(financialSummary.expense) == 0 ? "" : "-"
+		let incomeOperator = financialSummary.income == 0 ? "" : "+"
+		
+		let startingBalance = financialSummary.startingBalance
+		let balance = financialSummary.balance
+		let expense = abs(financialSummary.expense)
+		let income = financialSummary.income
+
+		let startingBalanceString = "\(startingBalance.thousandSeparator) \(currency)"
+		let balanceString = "\(balance.thousandSeparator) \(currency)"
+		let expenseString = "\(expenseOperator)\(expense.thousandSeparator) \(currency)"
+		let incomeString = "\(incomeOperator)\(income.thousandSeparator) \(currency)"
+
+		let balanceColor: UIColor = financialSummary.balance < 0 ? .systemRed : .systemGreen
+
+		let startingBalanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("starting_balance.title", comment: ""),
+														   amount: startingBalanceString,
+														   amountColor: .systemGreen)
+		let balanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("balance.title", comment: ""),
+														   amount: balanceString,
+														   amountColor: balanceColor)
+		let expenseFSCM = FinancialSummaryCellModel(title: NSLocalizedString("expense.title", comment: ""),
+														   amount: expenseString,
+														   amountColor: .systemRed)
+		let incomeFSCM = FinancialSummaryCellModel(title: NSLocalizedString("income.title", comment: ""),
+														   amount: incomeString,
+														   amountColor: .systemGreen)
+		
+		return (startingBalanceFSCM, balanceFSCM, expenseFSCM, incomeFSCM)
 	}
 
 }

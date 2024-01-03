@@ -14,10 +14,13 @@ protocol HomeDisplayLogic {
 	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel)
 	func displayAlertDatePicker(_ viewModel: Home.AlertDatePicker.ViewModel)
 	func displayDatePickerButton(_ viewModel: Home.DatePickerButton.ViewModel)
+	func displayStartingBalance(_ viewModel: Home.EditStartingBalance.ViewModel)
 }
 
 class HomeViewController: UIViewController {
 
+	@IBOutlet weak var financialSummaryCollectionView: UICollectionView!
+	
 	@IBOutlet weak var balanceAmountLabel: UILabel!
 
 	@IBOutlet weak var expenseAmountLabel: UILabel!
@@ -31,12 +34,18 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
 
 	@IBOutlet weak var datePickerButton: UIButton!
+	
+	@IBOutlet weak var menuButton: UIButton!
 
 	public var interactor: HomeBusinessLogic?
 
 	public var router: HomeRoutingLogic?
 
 	private(set) var transactionsArray: [Home.TransactionTableViewCellModel] = []
+	
+	private(set) var financialSummaryData: [FinancialSummaryCellModel] = []
+	
+	let financialSummaryCellSpacing: CGFloat = 16
 
 	private var (month, year): (Int, Int) = (0, 0)
 
@@ -48,6 +57,11 @@ class HomeViewController: UIViewController {
 
     }
 
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+		updateFinancialSummaryCellSize()
+	}
+	
 	private func setup() {
 		let viewController = self
 		let interactor = HomeInteractor()
@@ -62,8 +76,9 @@ class HomeViewController: UIViewController {
 	}
 
 	private func configurations() {
+		configureFinancialSummaryCollectionView()
 		configureTransactionsTableView()
-		configureFontLabels()
+		configureMenuButton()
 
 		month = currentDate().month
 		year = currentDate().year
@@ -73,6 +88,12 @@ class HomeViewController: UIViewController {
 		addNotificationObservers()
 
 		interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
+		
+	}
+	
+	private func configureFinancialSummaryCollectionView() {
+		financialSummaryCollectionView.delegate = self
+		financialSummaryCollectionView.dataSource = self
 	}
 
 	private func configureTransactionsTableView() {
@@ -98,6 +119,29 @@ class HomeViewController: UIViewController {
 		let dateComponents = Calendar.current.dateComponents([.month, .year], from: date)
 		return (dateComponents.month!, dateComponents.year!)
 	}
+	
+	private func configureMenuButton() {
+		let actions: [UIAction] = [
+			UIAction(title: NSLocalizedString("settings.title", comment: ""),
+					 image: UIImage(systemName: "gearshape"),
+					 handler: { _ in
+				self.router?.routeToSettings()
+			})
+		]
+		
+		menuButton.menu = UIMenu(title: "", children: actions)
+		menuButton.showsMenuAsPrimaryAction = true
+	}
+	
+	private func updateFinancialSummaryCellSize() {
+		if let flowLayout = financialSummaryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+			let width = financialSummaryCollectionView.bounds.width / 2 - financialSummaryCellSpacing / 2
+			let height = financialSummaryCollectionView.bounds.height / 2 - financialSummaryCellSpacing / 2
+			
+			flowLayout.itemSize = CGSize(width: width, height: height)
+			flowLayout.invalidateLayout()
+		}
+	}
 
 	@objc
 	private func changeCurrency() {
@@ -108,16 +152,6 @@ class HomeViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func addTransactionButtonClicked(_ sender: Any) {
 		router?.routeToAddNewTransaction()
-	}
-
-	@IBAction func balanceButtonClicked(_ sender: Any) {
-		let action = { (newBalance: String) -> Void in
-			let request = Home.EditStartingBalance.Request(newBalance: newBalance)
-			self.interactor?.editStartingBalance(request)
-		}
-
-		let request = Home.AlertEditStartingBalance.Request(action: action)
-		interactor?.showAlertEditStartingBalance(request)
 	}
 
 	@IBAction func selectDateButtonClicked(_ sender: Any) {
@@ -149,10 +183,17 @@ extension HomeViewController: HomeDisplayLogic {
 	}
 
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel) {
-		balanceAmountLabel.textColor = viewModel.balanceColor
-		balanceAmountLabel.text = viewModel.balance
-		expenseAmountLabel.text = viewModel.expense
-		incomeAmountLabel.text = viewModel.income
+		
+		financialSummaryData.removeAll()
+		
+		financialSummaryData.append(viewModel.startingBalance)
+		financialSummaryData.append(viewModel.balance)
+		financialSummaryData.append(viewModel.expense)
+		financialSummaryData.append(viewModel.income)
+		
+		DispatchQueue.main.async {
+			self.financialSummaryCollectionView.reloadData()
+		}
 	}
 
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel) {
@@ -173,6 +214,19 @@ extension HomeViewController: HomeDisplayLogic {
 
 	func displayDatePickerButton(_ viewModel: Home.DatePickerButton.ViewModel) {
 		datePickerButton.setTitle(viewModel.title, for: .normal)
+	}
+	
+	func displayStartingBalance(_ viewModel: Home.EditStartingBalance.ViewModel) {
+		financialSummaryData.removeAll()
+		
+		financialSummaryData.append(viewModel.startingBalance)
+		financialSummaryData.append(viewModel.balance)
+		financialSummaryData.append(viewModel.expense)
+		financialSummaryData.append(viewModel.income)
+		
+		DispatchQueue.main.async {
+			self.financialSummaryCollectionView.reloadData()
+		}
 	}
 
 }

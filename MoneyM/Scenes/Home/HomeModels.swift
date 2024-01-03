@@ -44,6 +44,15 @@ struct Home {
 		struct Request {
 			let newBalance: String
 		}
+		struct Response {
+			let financialSummary: FinancialSummary
+		}
+		struct ViewModel {
+			let startingBalance: FinancialSummaryCellModel
+			let balance: FinancialSummaryCellModel
+			let expense: FinancialSummaryCellModel
+			let income: FinancialSummaryCellModel
+		}
 	}
 
 	struct FetchFinancialSummary {
@@ -54,10 +63,10 @@ struct Home {
 			var summary: FinancialSummary
 		}
 		struct ViewModel {
-			var balanceColor: UIColor
-			var balance: String
-			var expense: String
-			var income: String
+			let startingBalance: FinancialSummaryCellModel
+			let balance: FinancialSummaryCellModel
+			let expense: FinancialSummaryCellModel
+			let income: FinancialSummaryCellModel
 		}
 	}
 
