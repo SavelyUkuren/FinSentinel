@@ -11,6 +11,8 @@ import UIKit
 
 protocol CoreDataManagerProtocol: AnyObject {
 	func load(year: Int, month: Int) -> [TransactionModel]
+	func load(year: Int) -> [TransactionModel]
+	func load() -> [TransactionModel]
     func add(_ transactionModel: TransactionModel)
     func edit(_ id: UUID, _ newTransaction: TransactionModel)
     func delete(_ id: UUID)
@@ -48,6 +50,53 @@ class CoreDataManager: CoreDataManagerProtocol {
 
         return transactionsArray
     }
+	
+	func load(year: Int) -> [TransactionModel] {
+		var transactionsArray: [TransactionModel] = []
+		
+		let calendar = Calendar.current
+		let startDate = calendar.date(from: DateComponents(year: year, month: 1, day: 1))!
+		let endDate = calendar.date(from: DateComponents(year: year, month: 12, day: 31))!
+		
+		let request = TransactionEntity.fetchRequest()
+		request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startDate as CVarArg,
+										endDate as CVarArg)
+		
+		do {
+			
+			let transactionEntities = try context?.fetch(request)
+			transactionEntities?.forEach({ entity in
+				let transactionModel = convertEntityToTransaction(entity)
+				transactionsArray.append(transactionModel)
+			})
+			
+			
+		} catch {
+			fatalError("Error with load transactions!")
+		}
+		
+		return transactionsArray
+	}
+	
+	func load() -> [TransactionModel] {
+		var transactionsArray: [TransactionModel] = []
+		
+		let request = TransactionEntity.fetchRequest()
+		
+		do {
+			
+			let transactionEntities = try context?.fetch(request)
+			transactionEntities?.forEach({ entity in
+				let transactionModel = convertEntityToTransaction(entity)
+				transactionsArray.append(transactionModel)
+			})
+			
+		} catch {
+			fatalError("Error with load transactions!")
+		}
+		
+		return transactionsArray
+	}
 
     func add(_ transactionModel: TransactionModel) {
         var folder: FolderEntity?

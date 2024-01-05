@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol AnalyticsPresentLogic {
-	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactionsByMonth.Response)
+	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response)
 }
 
 class AnalyticsPresenter {
@@ -26,7 +26,7 @@ class AnalyticsPresenter {
 
 // MARK: - Analytics present logic
 extension AnalyticsPresenter: AnalyticsPresentLogic {
-	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactionsByMonth.Response) {
+	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response) {
 		
 		var categories: [AnalyticsModels.CategorySummaryModel] = []
 		
@@ -43,7 +43,7 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 																   amount: String(amount)))
 		}
 		
-		let viewModel = AnalyticsModels.FetchTransactionsByMonth.ViewModel(categories: categories)
+		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categories)
 		viewController?.displayAnalyticsData(viewModel)
 	}
 }

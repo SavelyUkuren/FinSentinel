@@ -8,18 +8,10 @@
 import UIKit
 
 protocol AnalyticsDisplayLogic {
-	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactionsByMonth.ViewModel)
+	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactions.ViewModel)
 }
 
 class AnalyticsViewController: UIViewController {
-	
-	enum Mode {
-		case expense, income
-	}
-	
-	enum Period {
-		case month, year, all
-	}
 
 	@IBOutlet weak var modeSegmentControl: UISegmentedControl!
 	
@@ -35,9 +27,9 @@ class AnalyticsViewController: UIViewController {
 	
 	public var interactor: AnalyticsBusinessLogic?
 	
-	private var mode: Mode = .expense
+	private var mode: AnalyticsModels.Mode = .expense
 	
-	private var period: Period = .month
+	private var period: AnalyticsModels.Period = .month
 	
 	private var (month, year) = (0, 0)
 	
@@ -53,7 +45,7 @@ class AnalyticsViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		let request = AnalyticsModels.FetchTransactionsByMonth.Request(month: month, year: year)
+		let request = AnalyticsModels.FetchTransactions.Request(month: month, year: year, period: period)
 		interactor?.fetchTransactions(request)
 	}
 	
@@ -74,7 +66,7 @@ class AnalyticsViewController: UIViewController {
 		amountsByCategoriesTableView.delegate = self
 		amountsByCategoriesTableView.dataSource = self
 		
-		let request = AnalyticsModels.FetchTransactionsByMonth.Request(month: month, year: year)
+		let request = AnalyticsModels.FetchTransactions.Request(month: month, year: year, period: period)
 		interactor?.fetchTransactions(request)
 	}
 
@@ -101,10 +93,39 @@ class AnalyticsViewController: UIViewController {
 			default:
 				period = .month
 		}
+		let request = AnalyticsModels.FetchTransactions.Request(month: month, year: year, period: period)
+		self.interactor?.fetchTransactions(request)
 	}
 	
 	@IBAction func didPeriodButtonClicked(_ sender: Any) {
+
+		let datePickerVC = UIViewController()
+		let pickerView = MonthYearWheelPicker()
+		pickerView.minimumDate = Date(timeIntervalSince1970: 0)
+		pickerView.maximumDate = .now
+
+		datePickerVC.view = pickerView
+
+		let alert = UIAlertController(title: NSLocalizedString("select_date.title", comment: ""), message: nil, preferredStyle: .actionSheet)
+		alert.setValue(datePickerVC, forKey: "contentViewController")
+
+		let selectAction = UIAlertAction(title: NSLocalizedString("select.title", comment: ""), style: .default) { _ in
+			self.year = pickerView.year
+			self.month = pickerView.month
+			
+			let request = AnalyticsModels.FetchTransactions.Request(month: self.month, year: self.year, period: self.period)
+			self.interactor?.fetchTransactions(request)
+		}
+
+		let cancelAction = UIAlertAction(title: NSLocalizedString("cancel.title", comment: ""), style: .destructive) {_ in
+			alert.dismiss(animated: true)
+		}
+
+		alert.addAction(selectAction)
+		alert.addAction(cancelAction)
 		
+		present(alert, animated: true)
+
 	}
 	
 }
@@ -132,7 +153,7 @@ extension AnalyticsViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Analytics display logic
 extension AnalyticsViewController: AnalyticsDisplayLogic {
-	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactionsByMonth.ViewModel) {
+	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactions.ViewModel) {
 		categories = viewModel.categories
 		amountsByCategoriesTableView.reloadData()
 	}
