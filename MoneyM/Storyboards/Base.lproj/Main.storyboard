@@ -673,13 +673,20 @@
                                                     <segment title="Expense"/>
                                                     <segment title="Income"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="didModeSegmentValueChanged:" destination="ln8-cl-FJa" eventType="valueChanged" id="R5F-rW-3xU"/>
+                                                </connections>
                                             </segmentedControl>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KeW-Sh-Eok">
                                                 <rect key="frame" x="16" y="63" width="398" height="32"/>
                                                 <segments>
                                                     <segment title="Months"/>
                                                     <segment title="Years"/>
+                                                    <segment title="All"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="didPeriodSegmentValueChanged:" destination="ln8-cl-FJa" eventType="valueChanged" id="8y5-Zw-tdF"/>
+                                                </connections>
                                             </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bWb-G5-vMC">
                                                 <rect key="frame" x="16" y="110" width="398" height="50"/>
@@ -710,6 +717,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
+                                                            <action selector="didPeriodButtonClicked:" destination="ln8-cl-FJa" eventType="touchUpInside" id="aKd-MM-g1f"/>
                                                             <action selector="selectDateButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DHf-CL-Xd8"/>
                                                             <action selector="selectDateButtonClicked:" destination="awt-qX-fG1" eventType="touchUpInside" id="cny-IU-yIC"/>
                                                         </connections>
@@ -811,7 +819,7 @@
                                                     <constraint firstAttribute="height" constant="502" id="EeN-uv-ATC"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWithNote" rowHeight="65" id="260-7v-Z5c" customClass="TransactionTableViewCellNote" customModule="MoneyM" customModuleProvider="target">
+                                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="65" id="260-7v-Z5c" customClass="TransactionTableViewCellNote" customModule="MoneyM" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="55.333332061767578" width="390" height="65"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="260-7v-Z5c" id="diw-gv-x82">
@@ -819,18 +827,9 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFB-PS-qn0">
-                                                                    <rect key="frame" x="67" y="10.999999999999998" width="70.333333333333314" height="20.333333333333329"/>
+                                                                    <rect key="frame" x="67" y="22.333333333333336" width="70.333333333333314" height="20.333333333333336"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gz-oX-69y">
-                                                                    <rect key="frame" x="67" y="34.666666666666664" width="35" height="19.333333333333336"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="fvN-lK-8Ib"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PL-w4-GiT">
@@ -851,13 +850,11 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottomMargin" secondItem="2gz-oX-69y" secondAttribute="bottom" id="K9z-RH-pcP"/>
-                                                                <constraint firstItem="2gz-oX-69y" firstAttribute="leading" secondItem="pY7-S3-Yo1" secondAttribute="trailing" constant="16" id="OsN-ei-rOb"/>
                                                                 <constraint firstItem="pY7-S3-Yo1" firstAttribute="centerY" secondItem="diw-gv-x82" secondAttribute="centerY" id="Pen-27-kez"/>
                                                                 <constraint firstItem="5PL-w4-GiT" firstAttribute="trailing" secondItem="diw-gv-x82" secondAttribute="trailingMargin" id="Z6k-60-xke"/>
-                                                                <constraint firstItem="gFB-PS-qn0" firstAttribute="leading" secondItem="pY7-S3-Yo1" secondAttribute="trailing" constant="16" id="iZf-bC-ZLD"/>
+                                                                <constraint firstItem="gFB-PS-qn0" firstAttribute="leading" secondItem="pY7-S3-Yo1" secondAttribute="trailing" constant="16" id="asW-fh-jfN"/>
+                                                                <constraint firstItem="gFB-PS-qn0" firstAttribute="centerY" secondItem="diw-gv-x82" secondAttribute="centerY" id="tS3-LI-B8H"/>
                                                                 <constraint firstItem="5PL-w4-GiT" firstAttribute="centerY" secondItem="diw-gv-x82" secondAttribute="centerY" id="tWi-cR-cPJ"/>
-                                                                <constraint firstItem="gFB-PS-qn0" firstAttribute="top" secondItem="diw-gv-x82" secondAttribute="topMargin" id="uJe-2t-Bgd"/>
                                                                 <constraint firstItem="pY7-S3-Yo1" firstAttribute="leading" secondItem="diw-gv-x82" secondAttribute="leading" constant="16" id="uT5-BL-mkn"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
@@ -865,7 +862,6 @@
                                                             <outlet property="amountLabel" destination="5PL-w4-GiT" id="hU3-Tp-3iV"/>
                                                             <outlet property="categoryImageView" destination="pY7-S3-Yo1" id="tsP-g1-hrF"/>
                                                             <outlet property="categoryLabel" destination="gFB-PS-qn0" id="PpG-sR-chA"/>
-                                                            <outlet property="noteLabel" destination="2gz-oX-69y" id="xg2-cV-Unj"/>
                                                         </connections>
                                                     </tableViewCell>
                                                     <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="defaultCell" rowHeight="65" id="5GE-rv-vqJ" customClass="TransactionTableViewCell" customModule="MoneyM" customModuleProvider="target">
@@ -958,6 +954,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Analytics" id="eec-Le-fh0"/>
+                    <connections>
+                        <outlet property="amountsByCategoriesTableView" destination="v5m-JY-CtY" id="1UB-gQ-krQ"/>
+                        <outlet property="chartView" destination="29r-1q-rQb" id="e8P-x1-OKN"/>
+                        <outlet property="modeSegmentControl" destination="Ogt-MH-ejh" id="AyU-lm-c0Z"/>
+                        <outlet property="periodSegmentControl" destination="KeW-Sh-Eok" id="6gW-AV-kbI"/>
+                        <outlet property="periodSelectButton" destination="67i-7I-aQu" id="CSG-bV-rUZ"/>
+                        <outlet property="summaryCollectionView" destination="rGP-j5-RZL" id="P0u-PU-c58"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzk-T4-0mQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
