@@ -82,6 +82,10 @@
 		45D65E122B28AA4200C4A1F8 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */; };
 		45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */; };
 		45D65E172B28D19500C4A1F8 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D65E162B28D19500C4A1F8 /* IntExtension.swift */; };
+		45D7AFCA2B47EF0900DD0DC4 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFC92B47EF0900DD0DC4 /* AnalyticsViewController.swift */; };
+		45D7AFCC2B47EF2500DD0DC4 /* AnalyticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFCB2B47EF2500DD0DC4 /* AnalyticsInteractor.swift */; };
+		45D7AFCE2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFCD2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift */; };
+		45D7AFD02B47EF3300DD0DC4 /* AnalyticsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFCF2B47EF3300DD0DC4 /* AnalyticsModels.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7192A9FB05500B0326F /* Main.storyboard */; };
@@ -183,6 +187,10 @@
 		45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionTableViewCell+Note.swift"; sourceTree = "<group>"; };
 		45D65E162B28D19500C4A1F8 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		45D7AFC92B47EF0900DD0DC4 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		45D7AFCB2B47EF2500DD0DC4 /* AnalyticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsInteractor.swift; sourceTree = "<group>"; };
+		45D7AFCD2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPresenter.swift; sourceTree = "<group>"; };
+		45D7AFCF2B47EF3300DD0DC4 /* AnalyticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsModels.swift; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +285,7 @@
 		4533EE052B18CF1100A92713 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				45D7AFC82B47EEF100DD0DC4 /* Analytics */,
 				452B9CBF2B31EE1000D40894 /* TransactionViewer */,
 				45CA35032B2854BB0070E4A9 /* EditTransaction */,
 				459F98B72B2336CC00BB89D6 /* Settings */,
@@ -496,6 +505,17 @@
 				453445942AFA4170005154DF /* CategoriesManager.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		45D7AFC82B47EEF100DD0DC4 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				45D7AFC92B47EF0900DD0DC4 /* AnalyticsViewController.swift */,
+				45D7AFCB2B47EF2500DD0DC4 /* AnalyticsInteractor.swift */,
+				45D7AFCD2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift */,
+				45D7AFCF2B47EF3300DD0DC4 /* AnalyticsModels.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		45DCB7072A9FB05500B0326F = {
@@ -720,6 +740,7 @@
 				45CA35072B2855150070E4A9 /* EditTransactionInteractor.swift in Sources */,
 				45CA35052B2854E70070E4A9 /* EditTransactionViewController.swift in Sources */,
 				4597FAA62B20F4AC00043461 /* CategoryModels.swift in Sources */,
+				45D7AFCE2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift in Sources */,
 				4533EE082B18D0D600A92713 /* HomeViewController.swift in Sources */,
 				4597FAA22B20F47400043461 /* CategoryInteractor.swift in Sources */,
 				453BBA522B2849E600C9E67B /* UserDefaultKeys.swift in Sources */,
@@ -738,6 +759,7 @@
 				459F98C12B23392500BB89D6 /* SettingsModels.swift in Sources */,
 				4533EE0F2B18F5F200A92713 /* HomeModels.swift in Sources */,
 				453445A22AFA533B005154DF /* CategoryData.swift in Sources */,
+				45D7AFCC2B47EF2500DD0DC4 /* AnalyticsInteractor.swift in Sources */,
 				45D65E122B28AA4200C4A1F8 /* CategoryTableViewCell.swift in Sources */,
 				459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */,
 				4572F8D72B4584DB009EF154 /* FinancialSummaryCollectionViewCell.swift in Sources */,
@@ -749,6 +771,7 @@
 				45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */,
 				456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */,
 				45E9FE0D2B1A5E2300783D27 /* AddTransactionRouter.swift in Sources */,
+				45D7AFD02B47EF3300DD0DC4 /* AnalyticsModels.swift in Sources */,
 				452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */,
 				451105022B2E2D150066F868 /* AppearanceModel.swift in Sources */,
 				45DCB7302AA33F7A00B0326F /* TransactionTableViewCell.swift in Sources */,
@@ -756,6 +779,7 @@
 				451104F12B2E030C0066F868 /* SettingsTableViewCell.swift in Sources */,
 				459317582B1CA6EF00F493C2 /* TransactionCollection.swift in Sources */,
 				45E9FE0B2B19841900783D27 /* AddTransactionPresenter.swift in Sources */,
+				45D7AFCA2B47EF0900DD0DC4 /* AnalyticsViewController.swift in Sources */,
 				45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */,
 				456214912B22E834000C5A29 /* UINavigationItem.swift in Sources */,
 				454317E82AF282890015F6E5 /* FinancialSummary.swift in Sources */,
