@@ -29,6 +29,7 @@ struct AnalyticsModels {
 			let month: Int
 			let year: Int
 			let period: Period
+			let mode: Mode
 		}
 		struct Response {
 			let transactions: [TransactionModel]

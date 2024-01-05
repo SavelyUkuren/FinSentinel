@@ -34,6 +34,18 @@ extension AnalyticsInteractor: AnalyticsBusinessLogic {
 				break
 		}
 		
+		// Filtering transactions by selected mode (expense or income)
+		if request.mode == .expense {
+			transactions = transactions.filter { transactionModel in
+				transactionModel.mode == .expense
+			}
+		}
+		else if request.mode == .income {
+			transactions = transactions.filter { transactionModel in
+				transactionModel.mode == .income
+			}
+		}
+		
 		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions)
 		presenter?.presentAnalyticsData(response)
 	}

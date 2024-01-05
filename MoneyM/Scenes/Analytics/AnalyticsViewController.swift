@@ -45,7 +45,10 @@ class AnalyticsViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		let request = AnalyticsModels.FetchTransactions.Request(month: month, year: year, period: period)
+		let request = AnalyticsModels.FetchTransactions.Request(month: month,
+																year: year,
+																period: period,
+																mode: mode)
 		interactor?.fetchTransactions(request)
 	}
 	
@@ -66,7 +69,10 @@ class AnalyticsViewController: UIViewController {
 		amountsByCategoriesTableView.delegate = self
 		amountsByCategoriesTableView.dataSource = self
 		
-		let request = AnalyticsModels.FetchTransactions.Request(month: month, year: year, period: period)
+		let request = AnalyticsModels.FetchTransactions.Request(month: month,
+																year: year,
+																period: period,
+																mode: mode)
 		interactor?.fetchTransactions(request)
 	}
 
@@ -80,6 +86,11 @@ class AnalyticsViewController: UIViewController {
 			default:
 				mode = .expense
 		}
+		let request = AnalyticsModels.FetchTransactions.Request(month: month,
+																year: year,
+																period: period,
+																mode: mode)
+		self.interactor?.fetchTransactions(request)
 	}
 	
 	@IBAction func didPeriodSegmentValueChanged(_ sender: Any) {
@@ -93,7 +104,10 @@ class AnalyticsViewController: UIViewController {
 			default:
 				period = .month
 		}
-		let request = AnalyticsModels.FetchTransactions.Request(month: month, year: year, period: period)
+		let request = AnalyticsModels.FetchTransactions.Request(month: month,
+																year: year,
+																period: period,
+																mode: mode)
 		self.interactor?.fetchTransactions(request)
 	}
 	
@@ -113,7 +127,10 @@ class AnalyticsViewController: UIViewController {
 			self.year = pickerView.year
 			self.month = pickerView.month
 			
-			let request = AnalyticsModels.FetchTransactions.Request(month: self.month, year: self.year, period: self.period)
+			let request = AnalyticsModels.FetchTransactions.Request(month: self.month,
+																	year: self.year,
+																	period: self.period,
+																	mode: self.mode)
 			self.interactor?.fetchTransactions(request)
 		}
 
