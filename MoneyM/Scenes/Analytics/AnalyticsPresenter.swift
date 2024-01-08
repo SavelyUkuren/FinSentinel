@@ -45,7 +45,18 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 																   amount: String(amount)))
 		}
 		
-		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categories)
+		var summary: [FinancialSummaryCellModel] = []
+		let amount = (response.mode == .expense) ? -response.totalAmount : response.totalAmount
+		let amountString = amount.thousandSeparator + Settings.shared.model.currency.symbol
+		
+		let totalAmountModel = FinancialSummaryCellModel(title: "Total amount",
+														 amount: amountString,
+														 amountColor: response.mode == .expense ? .systemRed : .systemGreen)
+		
+		summary.append(totalAmountModel)
+		
+		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categories,
+																	summary: summary)
 		viewController?.displayAnalyticsData(viewModel)
 	}
 	

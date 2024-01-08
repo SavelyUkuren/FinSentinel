@@ -37,6 +37,8 @@ class AnalyticsViewController: UIViewController {
 	
 	private var categories: [AnalyticsModels.CategorySummaryModel] = []
 	
+	private var summary: [FinancialSummaryCellModel] = []
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -68,8 +70,13 @@ class AnalyticsViewController: UIViewController {
 		month = 1
 		year = 2024
 		
+		periodSelectButton.setTitle("\(month) \(year)", for: .normal)
+		
 		amountsByCategoriesTableView.delegate = self
 		amountsByCategoriesTableView.dataSource = self
+		
+		summaryCollectionView.delegate = self
+		summaryCollectionView.dataSource = self
 		
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
@@ -181,11 +188,35 @@ extension AnalyticsViewController: UITableViewDelegate, UITableViewDataSource {
 	
 }
 
+// MARK: - CollectionView delegate
+extension AnalyticsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		summary.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FinancialSummaryCollectionViewCell
+		
+		let index = indexPath.row
+		
+		cell.amountLabel.text = summary[index].amount
+		cell.amountLabel.textColor = summary[index].amountColor
+		cell.titleLabel.text = summary[index].title
+		
+		return cell
+	}
+}
+
 // MARK: - Analytics display logic
 extension AnalyticsViewController: AnalyticsDisplayLogic {
 	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactions.ViewModel) {
 		categories = viewModel.categories
-		amountsByCategoriesTableView.reloadData()
+		summary = viewModel.summary
+		
+		DispatchQueue.main.async {
+			self.amountsByCategoriesTableView.reloadData()
+			self.summaryCollectionView.reloadData()
+		}
 	}
 	
 	func displayMonthYearWheelAlert(_ viewModel: AnalyticsModels.ShowMonthYearWheel.ViewModel) {

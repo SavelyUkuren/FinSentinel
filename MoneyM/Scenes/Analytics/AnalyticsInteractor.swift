@@ -48,7 +48,11 @@ extension AnalyticsInteractor: AnalyticsBusinessLogic {
 			}
 		}
 		
-		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions)
+		let totalAmount = transactions.reduce(0, { $0 + $1.amount })
+		
+		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions,
+																  mode: request.mode,
+																  totalAmount: totalAmount)
 		presenter?.presentAnalyticsData(response)
 	}
 	

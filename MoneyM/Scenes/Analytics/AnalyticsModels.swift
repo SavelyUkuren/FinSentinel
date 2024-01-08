@@ -33,9 +33,12 @@ struct AnalyticsModels {
 		}
 		struct Response {
 			let transactions: [TransactionModel]
+			let mode: Mode
+			let totalAmount: Int
 		}
 		struct ViewModel {
 			let categories: [CategorySummaryModel]
+			let summary: [FinancialSummaryCellModel]
 		}
 	}
 	
