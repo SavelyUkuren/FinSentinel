@@ -39,4 +39,28 @@ struct AnalyticsModels {
 		}
 	}
 	
+	struct ShowMonthYearWheel {
+		struct Request {
+			let action: (_ month: Int, _ year: Int) -> ()
+		}
+		struct Response {
+			let action: (_ month: Int, _ year: Int) -> ()
+		}
+		struct ViewModel {
+			let alert: UIAlertController
+		}
+	}
+	
+	struct ShowYearsWheel {
+		struct Request {
+			let action: (_ year: Int) -> ()
+		}
+		struct Response {
+			let action: (_ year: Int) -> ()
+		}
+		struct ViewModel {
+			let alert: UIAlertController
+		}
+	}
+	
 }

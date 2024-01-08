@@ -9,6 +9,8 @@ import UIKit
 
 protocol AnalyticsDisplayLogic {
 	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactions.ViewModel)
+	func displayMonthYearWheelAlert(_ viewModel: AnalyticsModels.ShowMonthYearWheel.ViewModel)
+	func displayYearsWheelAlert(_ viewModel: AnalyticsModels.ShowYearsWheel.ViewModel)
 }
 
 class AnalyticsViewController: UIViewController {
@@ -75,6 +77,14 @@ class AnalyticsViewController: UIViewController {
 																mode: mode)
 		interactor?.fetchTransactions(request)
 	}
+	
+	private func updateData() {
+		let request = AnalyticsModels.FetchTransactions.Request(month: month,
+																year: year,
+																period: period,
+																mode: mode)
+		interactor?.fetchTransactions(request)
+	}
 
 	// MARK: - Actions
 	@IBAction func didModeSegmentValueChanged(_ sender: Any) {
@@ -97,10 +107,15 @@ class AnalyticsViewController: UIViewController {
 		switch periodSegmentControl.selectedSegmentIndex {
 			case 0:
 				period = .month
+				periodSelectButton.setTitle("\(month) \(year)", for: .normal)
+				periodSelectButton.isEnabled = true
 			case 1:
 				period = .year
+				periodSelectButton.setTitle("\(year)", for: .normal)
+				periodSelectButton.isEnabled = true
 			case 2:
 				period = .all
+				periodSelectButton.isEnabled = false
 			default:
 				period = .month
 		}
@@ -112,36 +127,34 @@ class AnalyticsViewController: UIViewController {
 	}
 	
 	@IBAction func didPeriodButtonClicked(_ sender: Any) {
-
-		let datePickerVC = UIViewController()
-		let pickerView = MonthYearWheelPicker()
-		pickerView.minimumDate = Date(timeIntervalSince1970: 0)
-		pickerView.maximumDate = .now
-
-		datePickerVC.view = pickerView
-
-		let alert = UIAlertController(title: NSLocalizedString("select_date.title", comment: ""), message: nil, preferredStyle: .actionSheet)
-		alert.setValue(datePickerVC, forKey: "contentViewController")
-
-		let selectAction = UIAlertAction(title: NSLocalizedString("select.title", comment: ""), style: .default) { _ in
-			self.year = pickerView.year
-			self.month = pickerView.month
-			
-			let request = AnalyticsModels.FetchTransactions.Request(month: self.month,
-																	year: self.year,
-																	period: self.period,
-																	mode: self.mode)
-			self.interactor?.fetchTransactions(request)
-		}
-
-		let cancelAction = UIAlertAction(title: NSLocalizedString("cancel.title", comment: ""), style: .destructive) {_ in
-			alert.dismiss(animated: true)
-		}
-
-		alert.addAction(selectAction)
-		alert.addAction(cancelAction)
 		
-		present(alert, animated: true)
+		if period == .month {
+			
+			let action: (Int, Int) -> () = { month, year in
+				self.year = year
+				self.month = month
+				self.periodSelectButton.setTitle("\(month) \(year)", for: .normal)
+				self.updateData()
+			}
+			
+			let request = AnalyticsModels.ShowMonthYearWheel.Request(action: action)
+			interactor?.showMonthAndYearWheelAlert(request)
+			
+		} else if period == .year {
+			
+			let action: (Int) -> () = { year in
+				self.year = year
+				self.periodSelectButton.setTitle("\(year)", for: .normal)
+				self.updateData()
+			}
+			
+			let request = AnalyticsModels.ShowYearsWheel.Request(action: action)
+			interactor?.showYearsWheelAlert(request)
+			
+		} else if period == .all {
+			
+			self.updateData()
+		}
 
 	}
 	
@@ -174,4 +187,13 @@ extension AnalyticsViewController: AnalyticsDisplayLogic {
 		categories = viewModel.categories
 		amountsByCategoriesTableView.reloadData()
 	}
+	
+	func displayMonthYearWheelAlert(_ viewModel: AnalyticsModels.ShowMonthYearWheel.ViewModel) {
+		present(viewModel.alert, animated: true)
+	}
+	
+	func displayYearsWheelAlert(_ viewModel: AnalyticsModels.ShowYearsWheel.ViewModel) {
+		present(viewModel.alert, animated: true)
+	}
+	
 }

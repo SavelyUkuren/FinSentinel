@@ -192,7 +192,7 @@ open class MonthYearWheelPicker: UIPickerView {
         var months: [String] = []
         var month = 0
         for _ in 1...12 {
-            months.append(DateFormatter().monthSymbols[month].capitalized)
+            months.append(DateFormatter().standaloneMonthSymbols[month].capitalized)
             month += 1
         }
         self.months = months

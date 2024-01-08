@@ -9,6 +9,8 @@ import Foundation
 
 protocol AnalyticsBusinessLogic {
 	func fetchTransactions(_ request: AnalyticsModels.FetchTransactions.Request)
+	func showMonthAndYearWheelAlert(_ request: AnalyticsModels.ShowMonthYearWheel.Request)
+	func showYearsWheelAlert(_ request: AnalyticsModels.ShowYearsWheel.Request)
 }
 
 class AnalyticsInteractor {
@@ -49,4 +51,15 @@ extension AnalyticsInteractor: AnalyticsBusinessLogic {
 		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions)
 		presenter?.presentAnalyticsData(response)
 	}
+	
+	func showMonthAndYearWheelAlert(_ request: AnalyticsModels.ShowMonthYearWheel.Request) {
+		let response = AnalyticsModels.ShowMonthYearWheel.Response(action: request.action)
+		presenter?.presentMonthYearWheelAlert(response)
+	}
+	
+	func showYearsWheelAlert(_ request: AnalyticsModels.ShowYearsWheel.Request) {
+		let response = AnalyticsModels.ShowYearsWheel.Response(action: request.action)
+		presenter?.presentYearsWheelAlert(response)
+	}
+	
 }

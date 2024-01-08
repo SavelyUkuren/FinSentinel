@@ -86,6 +86,7 @@
 		45D7AFCC2B47EF2500DD0DC4 /* AnalyticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFCB2B47EF2500DD0DC4 /* AnalyticsInteractor.swift */; };
 		45D7AFCE2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFCD2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift */; };
 		45D7AFD02B47EF3300DD0DC4 /* AnalyticsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFCF2B47EF3300DD0DC4 /* AnalyticsModels.swift */; };
+		45D7AFD22B48946800DD0DC4 /* YearWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7AFD12B48946800DD0DC4 /* YearWheelPicker.swift */; };
 		45DCB7142A9FB05500B0326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7132A9FB05500B0326F /* AppDelegate.swift */; };
 		45DCB7162A9FB05500B0326F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DCB7152A9FB05500B0326F /* SceneDelegate.swift */; };
 		45DCB71B2A9FB05500B0326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DCB7192A9FB05500B0326F /* Main.storyboard */; };
@@ -191,6 +192,7 @@
 		45D7AFCB2B47EF2500DD0DC4 /* AnalyticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsInteractor.swift; sourceTree = "<group>"; };
 		45D7AFCD2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPresenter.swift; sourceTree = "<group>"; };
 		45D7AFCF2B47EF3300DD0DC4 /* AnalyticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsModels.swift; sourceTree = "<group>"; };
+		45D7AFD12B48946800DD0DC4 /* YearWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearWheelPicker.swift; sourceTree = "<group>"; };
 		45DCB7102A9FB05500B0326F /* MoneyM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DCB7132A9FB05500B0326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DCB7152A9FB05500B0326F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				4577091D2B2D9BBB002E3FD4 /* MonthYearWheelPicker.swift */,
+				45D7AFD12B48946800DD0DC4 /* YearWheelPicker.swift */,
 			);
 			path = DatePicker;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				459F98BF2B23391B00BB89D6 /* SettingsPresenter.swift in Sources */,
 				4572F8D72B4584DB009EF154 /* FinancialSummaryCollectionViewCell.swift in Sources */,
 				45326F4B2AB603D900301729 /* CategoryViewController.swift in Sources */,
+				45D7AFD22B48946800DD0DC4 /* YearWheelPicker.swift in Sources */,
 				45D65E172B28D19500C4A1F8 /* IntExtension.swift in Sources */,
 				4533EE0D2B18D31F00A92713 /* HomePresenter.swift in Sources */,
 				456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */,
