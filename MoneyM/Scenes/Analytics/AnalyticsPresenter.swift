@@ -45,15 +45,35 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 																   amount: String(amount)))
 		}
 		
+		let currencySymbol = Settings.shared.model.currency.symbol
+		
 		var summary: [FinancialSummaryCellModel] = []
 		let amount = (response.mode == .expense) ? -response.totalAmount : response.totalAmount
-		let amountString = amount.thousandSeparator + Settings.shared.model.currency.symbol
+		let amountString = amount.thousandSeparator + currencySymbol
 		
 		let totalAmountModel = FinancialSummaryCellModel(title: "Total amount",
 														 amount: amountString,
 														 amountColor: response.mode == .expense ? .systemRed : .systemGreen)
 		
 		summary.append(totalAmountModel)
+		
+		if response.period != .all {
+			var averageTitle = ""
+			if response.period == .month {
+				averageTitle = "Average per day"
+			} else if response.period == .year {
+				averageTitle = "Average per months"
+			}
+			
+			let average = (response.mode == .expense) ? -response.average : response.average
+			let averageString = average.thousandSeparator + currencySymbol
+			let averageModel = FinancialSummaryCellModel(title: averageTitle,
+														 amount: averageString,
+														 amountColor: response.mode == .expense ? .systemRed : .systemGreen)
+			
+			summary.append(averageModel)
+		}
+		
 		
 		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categories,
 																	summary: summary)

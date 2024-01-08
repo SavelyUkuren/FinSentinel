@@ -17,6 +17,22 @@ class AnalyticsInteractor {
 	
 	public var presenter: AnalyticsPresentLogic?
 	
+	private func maxDaysInMonth(month: Int, year: Int) -> Int? {
+		guard month >= 1 && month <= 12 else { return nil }
+		
+		func isLeapYear(year: Int) -> Bool {
+			return year % 4 == 0
+		}
+		
+		var daysArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+		
+		if month == 2 {
+			daysArray[1] += 1
+		}
+		
+		return daysArray[month - 1]
+	}
+	
 }
 
 // MARK: - Analytics business logic
@@ -49,10 +65,20 @@ extension AnalyticsInteractor: AnalyticsBusinessLogic {
 		}
 		
 		let totalAmount = transactions.reduce(0, { $0 + $1.amount })
+		var averageByPeriod = -1
+		if request.period == .month {
+			if let maxDays = maxDaysInMonth(month: request.month, year: request.year) {
+				averageByPeriod = totalAmount / maxDays
+			}
+		} else if request.period == .year {
+			averageByPeriod = totalAmount / 12
+		}
 		
 		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions,
 																  mode: request.mode,
-																  totalAmount: totalAmount)
+																  period: request.period,
+																  totalAmount: totalAmount,
+																  average: averageByPeriod)
 		presenter?.presentAnalyticsData(response)
 	}
 	

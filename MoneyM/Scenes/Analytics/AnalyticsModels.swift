@@ -34,7 +34,9 @@ struct AnalyticsModels {
 		struct Response {
 			let transactions: [TransactionModel]
 			let mode: Mode
+			let period: Period
 			let totalAmount: Int
+			let average: Int
 		}
 		struct ViewModel {
 			let categories: [CategorySummaryModel]
