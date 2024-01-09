@@ -33,6 +33,7 @@
 		454317E02AF23CE70015F6E5 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317DF2AF23CE70015F6E5 /* CurrencyModel.swift */; };
 		454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E12AF2662A0015F6E5 /* CurrencyModelManager.swift */; };
 		454317E82AF282890015F6E5 /* FinancialSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454317E72AF282890015F6E5 /* FinancialSummary.swift */; };
+		455307072B4C5478005D5DCD /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 455307062B4C5478005D5DCD /* DGCharts */; };
 		4562148D2B22E425000C5A29 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4562148C2B22E425000C5A29 /* Localizable.xcstrings */; };
 		4562148F2B22E66F000C5A29 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4562148E2B22E66F000C5A29 /* UILabelExtension.swift */; };
 		456214912B22E834000C5A29 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456214902B22E834000C5A29 /* UINavigationItem.swift */; };
@@ -110,6 +111,19 @@
 			remoteInfo = MoneyM;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		45858EC12B4D35B700CBF36D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -221,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455307072B4C5478005D5DCD /* DGCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,12 +612,16 @@
 				45DCB70D2A9FB05500B0326F /* Frameworks */,
 				45DCB70E2A9FB05500B0326F /* Resources */,
 				4577091A2B2CF203002E3FD4 /* ShellScript */,
+				45858EC12B4D35B700CBF36D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MoneyM;
+			packageProductDependencies = (
+				455307062B4C5478005D5DCD /* DGCharts */,
+			);
 			productName = MoneyM;
 			productReference = 45DCB7102A9FB05500B0326F /* MoneyM.app */;
 			productType = "com.apple.product-type.application";
@@ -636,6 +655,9 @@
 				ru,
 			);
 			mainGroup = 45DCB7072A9FB05500B0326F;
+			packageReferences = (
+				455307052B4C5478005D5DCD /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 45DCB7112A9FB05500B0326F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1004,7 +1026,7 @@
 				);
 				MARKETING_VERSION = 1.2;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyMTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1035,7 +1057,7 @@
 				);
 				MARKETING_VERSION = 1.2;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.savikapps.MoneyMTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1074,6 +1096,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		455307052B4C5478005D5DCD /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		455307062B4C5478005D5DCD /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 455307052B4C5478005D5DCD /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		45DCB71C2A9FB05500B0326F /* MoneyM.xcdatamodeld */ = {

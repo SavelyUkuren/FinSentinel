@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import DGCharts
 
 struct AnalyticsModels {
 	
@@ -33,6 +34,7 @@ struct AnalyticsModels {
 		}
 		struct Response {
 			let transactions: [TransactionModel]
+			let chartDataSet: BarChartDataSet
 			let mode: Mode
 			let period: Period
 			let totalAmount: Int
@@ -41,6 +43,7 @@ struct AnalyticsModels {
 		struct ViewModel {
 			let categories: [CategorySummaryModel]
 			let summary: [FinancialSummaryCellModel]
+			let chartData: BarChartData
 		}
 	}
 	

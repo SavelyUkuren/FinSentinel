@@ -742,21 +742,11 @@
                                                     <constraint firstAttribute="height" constant="50" id="9dc-lm-XNL"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29r-1q-rQb">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29r-1q-rQb" customClass="BarChartView" customModule="DGCharts">
                                                 <rect key="frame" x="16" y="176" width="398" height="200"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkv-PJ-WYj">
-                                                        <rect key="frame" x="158.33333333333334" y="90" width="81.333333333333343" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="tkv-PJ-WYj" firstAttribute="centerX" secondItem="29r-1q-rQb" secondAttribute="centerX" id="WCs-jS-qS4"/>
                                                     <constraint firstAttribute="height" constant="200" id="lXm-00-nTH"/>
-                                                    <constraint firstItem="tkv-PJ-WYj" firstAttribute="centerY" secondItem="29r-1q-rQb" secondAttribute="centerY" id="zUY-Pt-zub"/>
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rGP-j5-RZL">

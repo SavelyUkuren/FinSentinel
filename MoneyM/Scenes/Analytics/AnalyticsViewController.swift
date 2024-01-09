@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DGCharts
 
 protocol AnalyticsDisplayLogic {
 	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactions.ViewModel)
@@ -21,7 +22,7 @@ class AnalyticsViewController: UIViewController {
 	
 	@IBOutlet weak var periodSelectButton: UIButton!
 	
-	@IBOutlet weak var chartView: UIView!
+	@IBOutlet weak var chartView: BarChartView!
 	
 	@IBOutlet weak var summaryCollectionView: UICollectionView!
 	
@@ -217,6 +218,9 @@ extension AnalyticsViewController: AnalyticsDisplayLogic {
 			self.amountsByCategoriesTableView.reloadData()
 			self.summaryCollectionView.reloadData()
 		}
+		
+		chartView.data = viewModel.chartData
+		
 	}
 	
 	func displayMonthYearWheelAlert(_ viewModel: AnalyticsModels.ShowMonthYearWheel.ViewModel) {

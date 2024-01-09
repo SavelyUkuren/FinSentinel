@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import DGCharts
 
 protocol AnalyticsPresentLogic {
 	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response)
@@ -74,9 +75,11 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 			summary.append(averageModel)
 		}
 		
+		let chartData = BarChartData(dataSet: response.chartDataSet)
 		
 		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categories,
-																	summary: summary)
+																	summary: summary,
+																	chartData: chartData)
 		viewController?.displayAnalyticsData(viewModel)
 	}
 	

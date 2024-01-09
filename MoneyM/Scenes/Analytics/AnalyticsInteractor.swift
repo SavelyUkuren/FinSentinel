@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DGCharts
 
 protocol AnalyticsBusinessLogic {
 	func fetchTransactions(_ request: AnalyticsModels.FetchTransactions.Request)
@@ -74,7 +75,40 @@ extension AnalyticsInteractor: AnalyticsBusinessLogic {
 			averageByPeriod = totalAmount / 12
 		}
 		
+		let dataSet = BarChartDataSet(entries: [])
+		
+		if request.period == .month {
+			for day in 1...maxDaysInMonth(month: request.month, year: request.year)! {
+				dataSet.append(BarChartDataEntry(x: Double(day), y: 0))
+			}
+			
+			let groupedTransactionsByDay = Dictionary(grouping: transactions) { transaction in
+				Calendar.current.dateComponents([.day], from: transaction.date)
+			}
+			
+			groupedTransactionsByDay.keys.forEach { key in
+				let dayTotalAmount = groupedTransactionsByDay[key]?.reduce(0, { $0 + $1.amount })
+				dataSet[key.day!] = BarChartDataEntry(x: Double(key.day!), y: Double(dayTotalAmount!))
+			}
+		} else if request.period == .year {
+			for day in 1...12 {
+				dataSet.append(BarChartDataEntry(x: Double(day), y: 0))
+			}
+			
+			let groupedTransactionsByDay = Dictionary(grouping: transactions) { transaction in
+				Calendar.current.dateComponents([.month], from: transaction.date)
+			}
+			
+			groupedTransactionsByDay.keys.forEach { key in
+				let monthTotalAmount = groupedTransactionsByDay[key]?.reduce(0, { $0 + $1.amount })
+				dataSet[key.month! - 1] = BarChartDataEntry(x: Double(key.month!), y: Double(monthTotalAmount!))
+			}
+		}
+		
+		
+		
 		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions,
+																  chartDataSet: dataSet,
 																  mode: request.mode,
 																  period: request.period,
 																  totalAmount: totalAmount,
