@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FinancialSummary {
+struct FinancialSummaryModel {
 	var startingBalance: Int = 0
     var expense: Int = 0
     var income: Int = 0

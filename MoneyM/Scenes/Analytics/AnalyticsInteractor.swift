@@ -39,81 +39,81 @@ class AnalyticsInteractor {
 // MARK: - Analytics business logic
 extension AnalyticsInteractor: AnalyticsBusinessLogic {
 	func fetchTransactions(_ request: AnalyticsModels.FetchTransactions.Request) {
-		let coreDataManager = CoreDataManager()
-		
-		var transactions: [TransactionModel] = []
-		
-		switch request.period {
-			case .month:
-				transactions = coreDataManager.load(year: request.year, month: request.month)
-			case .year:
-				transactions = coreDataManager.load(year: request.year)
-			case .all:
-				transactions = coreDataManager.load()
-				break
-		}
-		
-		// Filtering transactions by selected mode (expense or income)
-		if request.mode == .expense {
-			transactions = transactions.filter { transactionModel in
-				transactionModel.mode == .expense
-			}
-		}
-		else if request.mode == .income {
-			transactions = transactions.filter { transactionModel in
-				transactionModel.mode == .income
-			}
-		}
-		
-		let totalAmount = transactions.reduce(0, { $0 + $1.amount })
-		var averageByPeriod = -1
-		if request.period == .month {
-			if let maxDays = maxDaysInMonth(month: request.month, year: request.year) {
-				averageByPeriod = totalAmount / maxDays
-			}
-		} else if request.period == .year {
-			averageByPeriod = totalAmount / 12
-		}
-		
-		let dataSet = BarChartDataSet(entries: [])
-		
-		if request.period == .month {
-			for day in 1...maxDaysInMonth(month: request.month, year: request.year)! {
-				dataSet.append(BarChartDataEntry(x: Double(day), y: 0))
-			}
-			
-			let groupedTransactionsByDay = Dictionary(grouping: transactions) { transaction in
-				Calendar.current.dateComponents([.day], from: transaction.date)
-			}
-			
-			groupedTransactionsByDay.keys.forEach { key in
-				let dayTotalAmount = groupedTransactionsByDay[key]?.reduce(0, { $0 + $1.amount })
-				dataSet[key.day!] = BarChartDataEntry(x: Double(key.day!), y: Double(dayTotalAmount!))
-			}
-		} else if request.period == .year {
-			for day in 1...12 {
-				dataSet.append(BarChartDataEntry(x: Double(day), y: 0))
-			}
-			
-			let groupedTransactionsByDay = Dictionary(grouping: transactions) { transaction in
-				Calendar.current.dateComponents([.month], from: transaction.date)
-			}
-			
-			groupedTransactionsByDay.keys.forEach { key in
-				let monthTotalAmount = groupedTransactionsByDay[key]?.reduce(0, { $0 + $1.amount })
-				dataSet[key.month! - 1] = BarChartDataEntry(x: Double(key.month!), y: Double(monthTotalAmount!))
-			}
-		}
-		
-		
-		
-		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions,
-																  chartDataSet: dataSet,
-																  mode: request.mode,
-																  period: request.period,
-																  totalAmount: totalAmount,
-																  average: averageByPeriod)
-		presenter?.presentAnalyticsData(response)
+//		let coreDataManager = CoreDataManager()
+//		
+//		var transactions: [TransactionModel] = []
+//		
+//		switch request.period {
+//			case .month:
+//				transactions = coreDataManager.load(year: request.year, month: request.month)
+//			case .year:
+//				transactions = coreDataManager.load(year: request.year)
+//			case .all:
+//				transactions = coreDataManager.load()
+//				break
+//		}
+//		
+//		// Filtering transactions by selected mode (expense or income)
+//		if request.mode == .expense {
+//			transactions = transactions.filter { transactionModel in
+//				transactionModel.mode == .expense
+//			}
+//		}
+//		else if request.mode == .income {
+//			transactions = transactions.filter { transactionModel in
+//				transactionModel.mode == .income
+//			}
+//		}
+//		
+//		let totalAmount = transactions.reduce(0, { $0 + $1.amount })
+//		var averageByPeriod = -1
+//		if request.period == .month {
+//			if let maxDays = maxDaysInMonth(month: request.month, year: request.year) {
+//				averageByPeriod = totalAmount / maxDays
+//			}
+//		} else if request.period == .year {
+//			averageByPeriod = totalAmount / 12
+//		}
+//		
+//		let dataSet = BarChartDataSet(entries: [])
+//		
+//		if request.period == .month {
+//			for day in 1...maxDaysInMonth(month: request.month, year: request.year)! {
+//				dataSet.append(BarChartDataEntry(x: Double(day), y: 0))
+//			}
+//			
+//			let groupedTransactionsByDay = Dictionary(grouping: transactions) { transaction in
+//				Calendar.current.dateComponents([.day], from: transaction.date)
+//			}
+//			
+//			groupedTransactionsByDay.keys.forEach { key in
+//				let dayTotalAmount = groupedTransactionsByDay[key]?.reduce(0, { $0 + $1.amount })
+//				dataSet[key.day!] = BarChartDataEntry(x: Double(key.day!), y: Double(dayTotalAmount!))
+//			}
+//		} else if request.period == .year {
+//			for day in 1...12 {
+//				dataSet.append(BarChartDataEntry(x: Double(day), y: 0))
+//			}
+//			
+//			let groupedTransactionsByDay = Dictionary(grouping: transactions) { transaction in
+//				Calendar.current.dateComponents([.month], from: transaction.date)
+//			}
+//			
+//			groupedTransactionsByDay.keys.forEach { key in
+//				let monthTotalAmount = groupedTransactionsByDay[key]?.reduce(0, { $0 + $1.amount })
+//				dataSet[key.month! - 1] = BarChartDataEntry(x: Double(key.month!), y: Double(monthTotalAmount!))
+//			}
+//		}
+//		
+//		
+//		
+//		let response = AnalyticsModels.FetchTransactions.Response(transactions: transactions,
+//																  chartDataSet: dataSet,
+//																  mode: request.mode,
+//																  period: request.period,
+//																  totalAmount: totalAmount,
+//																  average: averageByPeriod)
+//		presenter?.presentAnalyticsData(response)
 	}
 	
 	func showMonthAndYearWheelAlert(_ request: AnalyticsModels.ShowMonthYearWheel.Request) {

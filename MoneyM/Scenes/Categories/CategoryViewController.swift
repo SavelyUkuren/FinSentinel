@@ -12,7 +12,7 @@ protocol SelectCategoryViewControllerDelegate: AnyObject {
 }
 
 protocol CategoryDisplayLogic {
-	func displayCategories(_ viewModel: CategoryModels.FetchCategories.ViewModel)
+	//func displayCategories(_ viewModel: CategoryModels.FetchCategories.ViewModel)
 }
 
 class CategoriesViewController: UIViewController {
@@ -21,13 +21,13 @@ class CategoriesViewController: UIViewController {
 
     public weak var delegate: SelectCategoryViewControllerDelegate?
 
-    public var categoryType: TransactionModel.Mode = .expense
+    //public var categoryType: TransactionModel.Mode = .expense
 
     private var selectedIndex: IndexPath!
 
 	private var categoriesArray: [CategoryModel] = []
 
-	public var interactor: CategoryBusinessLogic?
+	//public var interactor: CategoryBusinessLogic?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,25 +35,25 @@ class CategoriesViewController: UIViewController {
 		setup()
 		configureCategoriesTableView()
 
-		let request = CategoryModels.FetchCategories.Request(categoryType: categoryType)
-		interactor?.fetchCategories(request)
+//		let request = CategoryModels.FetchCategories.Request(categoryType: categoryType)
+//		interactor?.fetchCategories(request)
     }
 
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 
-		interactor = nil
+		//interactor = nil
 		delegate = nil
 	}
 
 	func setup() {
-		let viewController = self
-		let interactor = CategoryInteractor()
-		let presenter = CategoryPresenter()
-
-		viewController.interactor = interactor
-		interactor.presenter = presenter
-		presenter.viewController = viewController
+//		let viewController = self
+//		let interactor = CategoryInteractor()
+//		let presenter = CategoryPresenter()
+//
+//		viewController.interactor = interactor
+//		interactor.presenter = presenter
+//		presenter.viewController = viewController
 	}
 
 	func configureCategoriesTableView() {
@@ -98,8 +98,8 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Display logic
 extension CategoriesViewController: CategoryDisplayLogic {
-	func displayCategories(_ viewModel: CategoryModels.FetchCategories.ViewModel) {
-		categoriesArray = viewModel.categories
-		categoriesTableView.reloadData()
-	}
+//	func displayCategories(_ viewModel: CategoryModels.FetchCategories.ViewModel) {
+//		categoriesArray = viewModel.categories
+//		categoriesTableView.reloadData()
+//	}
 }

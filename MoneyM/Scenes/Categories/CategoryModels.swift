@@ -9,16 +9,16 @@ import Foundation
 
 class CategoryModels {
 
-	struct FetchCategories {
-		struct Request {
-			var categoryType: TransactionModel.Mode
-		}
-		struct Response {
-			var categories: [CategoryModel]
-		}
-		struct ViewModel {
-			var categories: [CategoryModel]
-		}
-	}
+//	struct FetchCategories {
+//		struct Request {
+//			var categoryType: TransactionModel.Mode
+//		}
+//		struct Response {
+//			var categories: [CategoryModel]
+//		}
+//		struct ViewModel {
+//			var categories: [CategoryModel]
+//		}
+//	}
 
 }

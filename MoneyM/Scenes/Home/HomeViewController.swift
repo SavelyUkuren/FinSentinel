@@ -231,20 +231,20 @@ extension HomeViewController: HomeDisplayLogic {
 
 }
 
-// MARK: - Add transaction delegate
-extension HomeViewController: AddTransactionDelegate {
-	func transactionCreated(_ transaction: TransactionModel) {
-		let request = Home.AddTransaction.Request(transaction: transaction)
-		interactor?.addTransaction(request)
-		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
-	}
-}
-
-// MARK: - EditTransaction delegate
-extension HomeViewController: EditTransactionDelegate {
-	func didEditTransaction(_ newTransaction: TransactionModel) {
-		let request = Home.EditTransaction.Request(transaction: newTransaction)
-		interactor?.editTransaction(request)
-		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
-	}
-}
+//// MARK: - Add transaction delegate
+//extension HomeViewController: AddTransactionDelegate {
+//	func transactionCreated(_ transaction: TransactionModel) {
+//		let request = Home.AddTransaction.Request(transaction: transaction)
+//		interactor?.addTransaction(request)
+//		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+//	}
+//}
+//
+//// MARK: - EditTransaction delegate
+//extension HomeViewController: EditTransactionDelegate {
+//	func didEditTransaction(_ newTransaction: TransactionModel) {
+//		let request = Home.EditTransaction.Request(transaction: newTransaction)
+//		interactor?.editTransaction(request)
+//		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+//	}
+//}

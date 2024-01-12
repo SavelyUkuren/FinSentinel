@@ -20,9 +20,10 @@ class AnalyticsPresenter {
 	public var viewController: AnalyticsDisplayLogic?
 	
 	private func calculateTotalSumOfTransactions(transactions: [TransactionModel]) -> Int {
-		return transactions.reduce(into: 0) { amount, transaction in
-			amount += transaction.amount
-		}
+//		return transactions.reduce(into: 0) { amount, transaction in
+//			amount += transaction.amount
+//		}
+		-1
 	}
 	
 }

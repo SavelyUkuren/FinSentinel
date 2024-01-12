@@ -21,7 +21,7 @@ struct Home {
 			let year: Int
 		}
 		struct Response {
-			var data: [TransactionData]
+			//var data: [TransactionData]
 		}
 		struct ViewModel {
 			var data: [TransactionTableViewCellModel]
@@ -45,7 +45,7 @@ struct Home {
 			let newBalance: String
 		}
 		struct Response {
-			let financialSummary: FinancialSummary
+			let financialSummary: FinancialSummaryModel
 		}
 		struct ViewModel {
 			let startingBalance: FinancialSummaryCellModel
@@ -60,7 +60,7 @@ struct Home {
 
 		}
 		struct Response {
-			var summary: FinancialSummary
+			var summary: FinancialSummaryModel
 		}
 		struct ViewModel {
 			let startingBalance: FinancialSummaryCellModel
@@ -75,7 +75,7 @@ struct Home {
 			var transaction: TransactionModel
 		}
 		struct Response {
-			var data: [TransactionData]
+			//var data: [TransactionData]
 		}
 		struct ViewModel {
 			var data: [TransactionTableViewCellModel]

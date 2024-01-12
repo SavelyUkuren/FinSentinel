@@ -28,14 +28,14 @@ class HomePresenter: HomePresentationLogic {
 	}
 
 	func presentTransactions(_ response: Home.FetchTransactions.Response) {
-		let sortedData = response.data.sorted { $0.date > $1.date }
-		let result: [Home.TransactionTableViewCellModel] = sortedData.map { tData in
-			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
-											   transactions: tData.transactions)
-		}
-
-		let viewModel = Home.FetchTransactions.ViewModel(data: result)
-		viewController?.displayTransactions(viewModel)
+//		let sortedData = response.data.sorted { $0.date > $1.date }
+//		let result: [Home.TransactionTableViewCellModel] = sortedData.map { tData in
+//			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
+//											   transactions: tData.transactions)
+//		}
+//
+//		let viewModel = Home.FetchTransactions.ViewModel(data: result)
+//		viewController?.displayTransactions(viewModel)
 	}
 
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response) {
@@ -60,13 +60,13 @@ class HomePresenter: HomePresentationLogic {
 	}
 
 	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response) {
-		let result: [Home.TransactionTableViewCellModel] = response.data.map { tData in
-			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
-											   transactions: tData.transactions)
-		}
-
-		let viewModel = Home.RemoveTransaction.ViewModel(data: result)
-		viewController?.displayRemoveTransaction(viewModel)
+//		let result: [Home.TransactionTableViewCellModel] = response.data.map { tData in
+//			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
+//											   transactions: tData.transactions)
+//		}
+//
+//		let viewModel = Home.RemoveTransaction.ViewModel(data: result)
+//		viewController?.displayRemoveTransaction(viewModel)
 	}
 
 	func presentAlertEditStartingBalance(_ response: Home.AlertEditStartingBalance.Response) {
@@ -141,7 +141,7 @@ class HomePresenter: HomePresentationLogic {
 		return dateFormatter.string(from: date)
 	}
 	
-	private func financialSumaryBeauty(financialSummary: FinancialSummary) -> (startingBalance: FinancialSummaryCellModel,
+	private func financialSumaryBeauty(financialSummary: FinancialSummaryModel) -> (startingBalance: FinancialSummaryCellModel,
 																			   balance: FinancialSummaryCellModel,
 																			   expense: FinancialSummaryCellModel,
 																			   income: FinancialSummaryCellModel) {
