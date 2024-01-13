@@ -10,4 +10,5 @@ import Foundation
 struct UserDefaultKeys {
 	static var currencyID = "currencyID"
 	static var userInterfaceStyle = "userInterfaceStyle"
+	static var startingBalance = "startingBalance"
 }

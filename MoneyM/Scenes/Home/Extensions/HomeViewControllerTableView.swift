@@ -32,12 +32,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let transaction = transactionsArray[indexPath.section].transactions[indexPath.row]
 		let cell: UITableViewCell?
-		cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell")
-//		if transaction.note.isEmpty {
-//			cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell")
-//		} else {
-//			cell = tableView.dequeueReusableCell(withIdentifier: "cellWithNote")
-//		}
+		
+		if let unwrappedNote = transaction.note, !unwrappedNote.isEmpty {
+			cell = tableView.dequeueReusableCell(withIdentifier: "cellWithNote")
+		} else {
+			cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell")
+		}
 
 		if let defaultCell = cell as? TransactionTableViewCell {
 			defaultCell.loadTransaction(transaction: transaction)

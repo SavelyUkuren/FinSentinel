@@ -10,7 +10,9 @@ import UIKit
 
 protocol HomePresentationLogic {
 	func presentTransactions(_ response: Home.FetchTransactions.Response)
+	func presentAddedTransaction(_ response: Home.AddTransaction.Response)
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response)
+	func presentEditedTransaction(_ response: Home.EditTransaction.Response)
 	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response)
 	func presentAlertEditStartingBalance(_ response: Home.AlertEditStartingBalance.Response)
 	func presentAlertDatePicker(_ response: Home.AlertDatePicker.Response)
@@ -19,7 +21,7 @@ protocol HomePresentationLogic {
 }
 
 // MARK: - Presentation logic
-class HomePresenter: HomePresentationLogic {
+class HomePresenter {
 
 	public var viewController: HomeDisplayLogic?
 
@@ -27,20 +29,94 @@ class HomePresenter: HomePresentationLogic {
 
 	}
 
+	private func getDayAndMonth(_ date: Date) -> String {
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "d MMMM"
+
+		return dateFormatter.string(from: date)
+	}
+
+	private func groupTransactionsByDay(_ transactions: [TransactionModel]) -> [(key: DateComponents, value: [TransactionModel])] {
+		return Dictionary(grouping: transactions, by: { transaction in
+			
+			Calendar.current.dateComponents([.day, .month], from: transaction.dateOfCreation)
+			
+		}).sorted(by: { $0.key.day! > $1.key.day! })
+	}
+	
+	// Transform dictionary grouped transactions by day to TransactionTableViewCellModel
+	private func transformToTransactionTableViewCellModel(_ groupedTransactions: [(key: DateComponents, value: [TransactionModel])]) -> [TransactionTableViewCellModel] {
+		return groupedTransactions.map { (key: DateComponents, value: [TransactionModel]) in
+			let date = Calendar.current.date(from: key)
+			let dayAndMonthName = getDayAndMonth(date!)
+			
+			return TransactionTableViewCellModel(section: "\(dayAndMonthName)",
+										  transactions: value)
+		}
+	}
+	
+	private func financialSummaryBeauty(_ financialSummary: FinancialSummaryModel) -> (FinancialSummaryCellModel,
+																					   FinancialSummaryCellModel,
+																					   FinancialSummaryCellModel,
+																					   FinancialSummaryCellModel) {
+		let beautifier = FinancialSummaryBeautifier()
+		beautifier.financialSummary = financialSummary
+		
+		let beautifierError = "Beautifier error"
+		
+		let startingBalance = beautifier.startingBalance ?? beautifierError
+		let balance = beautifier.balance ?? beautifierError
+		let expense = beautifier.expense ?? beautifierError
+		let income = beautifier.income ?? beautifierError
+		
+		let startingBalanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("starting_balance.title", comment: ""),
+															amount: startingBalance,
+															amountColor: beautifier.startingBalanceColor)
+		let balanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("balance.title", comment: ""),
+													amount: balance,
+													amountColor: beautifier.balanceColor)
+		let expenseFSCM = FinancialSummaryCellModel(title: NSLocalizedString("expense.title", comment: ""),
+													amount: expense,
+													amountColor: beautifier.expenseColor)
+		let incomeFSCM = FinancialSummaryCellModel(title: NSLocalizedString("income.title", comment: ""),
+												   amount: income,
+												   amountColor: beautifier.incomeColor)
+		
+		return (startingBalanceFSCM, balanceFSCM, expenseFSCM, incomeFSCM)
+	}
+	
+}
+
+// MARK: - HomePresent Logic
+extension HomePresenter: HomePresentationLogic {
 	func presentTransactions(_ response: Home.FetchTransactions.Response) {
-//		let sortedData = response.data.sorted { $0.date > $1.date }
-//		let result: [Home.TransactionTableViewCellModel] = sortedData.map { tData in
-//			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
-//											   transactions: tData.transactions)
-//		}
-//
-//		let viewModel = Home.FetchTransactions.ViewModel(data: result)
-//		viewController?.displayTransactions(viewModel)
+		let groupedTransactionsByDay = groupTransactionsByDay(response.transactions)
+		let transactionCellModels = transformToTransactionTableViewCellModel(groupedTransactionsByDay)
+
+		let viewModel = Home.FetchTransactions.ViewModel(data: transactionCellModels)
+		viewController?.displayTransactions(viewModel)
+	}
+	
+	func presentAddedTransaction(_ response: Home.AddTransaction.Response) {
+		let groupedTransactionsByDay = groupTransactionsByDay(response.transactions)
+		let transactionCellModels = transformToTransactionTableViewCellModel(groupedTransactionsByDay)
+		
+		let viewModel = Home.AddTransaction.ViewModel(data: transactionCellModels)
+		viewController?.displayAddedTransaction(viewModel)
+	}
+	
+	func presentEditedTransaction(_ response: Home.EditTransaction.Response) {
+		let groupedTransactionsByDay = groupTransactionsByDay(response.transactions)
+		let transactionCellModels = transformToTransactionTableViewCellModel(groupedTransactionsByDay)
+		
+		let viewModel = Home.EditTransaction.ViewModel(data: transactionCellModels)
+		viewController?.displayEditedTransaction(viewModel)
 	}
 
 	func presentFinancialSummary(_ response: Home.FetchFinancialSummary.Response) {
 		
-		let (startingBalance, balance, expense, income) = financialSumaryBeauty(financialSummary: response.summary)
+		let (startingBalance, balance, expense, income) = financialSummaryBeauty(response.summary)
 		
 		let viewModel = Home.FetchFinancialSummary.ViewModel(startingBalance: startingBalance,
 															 balance: balance,
@@ -50,7 +126,7 @@ class HomePresenter: HomePresentationLogic {
 	}
 	
 	func presentStartingBalance(_ response: Home.EditStartingBalance.Response) {
-		let (startingBalance, balance, expense, income) = financialSumaryBeauty(financialSummary: response.financialSummary)
+		let (startingBalance, balance, expense, income) = financialSummaryBeauty(response.financialSummary)
 		
 		let viewModel = Home.EditStartingBalance.ViewModel(startingBalance: startingBalance,
 															 balance: balance,
@@ -60,13 +136,11 @@ class HomePresenter: HomePresentationLogic {
 	}
 
 	func presentRemoveTransaction(_ response: Home.RemoveTransaction.Response) {
-//		let result: [Home.TransactionTableViewCellModel] = response.data.map { tData in
-//			Home.TransactionTableViewCellModel(section: getDayAndMonth(tData.date),
-//											   transactions: tData.transactions)
-//		}
-//
-//		let viewModel = Home.RemoveTransaction.ViewModel(data: result)
-//		viewController?.displayRemoveTransaction(viewModel)
+		let groupedTransactionsByDay = groupTransactionsByDay(response.transactions)
+		let transactionCellModels = transformToTransactionTableViewCellModel(groupedTransactionsByDay)
+
+		let viewModel = Home.RemoveTransaction.ViewModel(data: transactionCellModels)
+		viewController?.displayRemoveTransaction(viewModel)
 	}
 
 	func presentAlertEditStartingBalance(_ response: Home.AlertEditStartingBalance.Response) {
@@ -132,50 +206,4 @@ class HomePresenter: HomePresentationLogic {
 		let viewModel = Home.DatePickerButton.ViewModel(title: title)
 		viewController?.displayDatePickerButton(viewModel)
 	}
-
-	private func getDayAndMonth(_ date: Date) -> String {
-
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "d MMMM"
-
-		return dateFormatter.string(from: date)
-	}
-	
-	private func financialSumaryBeauty(financialSummary: FinancialSummaryModel) -> (startingBalance: FinancialSummaryCellModel,
-																			   balance: FinancialSummaryCellModel,
-																			   expense: FinancialSummaryCellModel,
-																			   income: FinancialSummaryCellModel) {
-		let currency = Settings.shared.model.currency.symbol
-
-		let expenseOperator = abs(financialSummary.expense) == 0 ? "" : "-"
-		let incomeOperator = financialSummary.income == 0 ? "" : "+"
-		
-		let startingBalance = financialSummary.startingBalance
-		let balance = financialSummary.balance
-		let expense = abs(financialSummary.expense)
-		let income = financialSummary.income
-
-		let startingBalanceString = "\(startingBalance.thousandSeparator) \(currency)"
-		let balanceString = "\(balance.thousandSeparator) \(currency)"
-		let expenseString = "\(expenseOperator)\(expense.thousandSeparator) \(currency)"
-		let incomeString = "\(incomeOperator)\(income.thousandSeparator) \(currency)"
-
-		let balanceColor: UIColor = financialSummary.balance < 0 ? .systemRed : .systemGreen
-
-		let startingBalanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("starting_balance.title", comment: ""),
-														   amount: startingBalanceString,
-														   amountColor: .systemGreen)
-		let balanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("balance.title", comment: ""),
-														   amount: balanceString,
-														   amountColor: balanceColor)
-		let expenseFSCM = FinancialSummaryCellModel(title: NSLocalizedString("expense.title", comment: ""),
-														   amount: expenseString,
-														   amountColor: .systemRed)
-		let incomeFSCM = FinancialSummaryCellModel(title: NSLocalizedString("income.title", comment: ""),
-														   amount: incomeString,
-														   amountColor: .systemGreen)
-		
-		return (startingBalanceFSCM, balanceFSCM, expenseFSCM, incomeFSCM)
-	}
-
 }

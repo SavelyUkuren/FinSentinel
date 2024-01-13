@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Notifications {
+struct NotificationNames {
 	static var Currency = NSNotification.Name("CurrencyChanged")
 	static var AccentColor = NSNotification.Name("AccentColorChanged")
 }

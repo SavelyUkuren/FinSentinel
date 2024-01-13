@@ -20,98 +20,159 @@ protocol HomeBusinessLogic: AnyObject {
 	func updateDatePickerButton(_ request: Home.DatePickerButton.Request)
 }
 
-// MARK: - Business logic
-class HomeInteractor: HomeBusinessLogic {
-
+class HomeInteractor {
+	
 	public var presenter: HomePresentationLogic?
-
-	//private let transactionCollection: TransactionCollection
-
+	
+	private var transactions: [TransactionModel] = []
+	
+	private var financialSummary: FinancialSummaryModel!
+	
 	private var (year, month) = (0, 0)
-
+	
 	init() {
 		_ = CategoriesManager.shared // Load categories
-		//transactionCollection = TransactionCollection()
 		
-		let coreDataWorker = HomeCoreDataWorker()
-		coreDataWorker.loadTransactions(from: Date(timeIntervalSince1970: 0), to: Date())
-
 		(year, month) = currentDate()
-
-		print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+		
+		financialSummary = FinancialSummaryModel()
+		
+		loadStartingBalance()
+		
+		print("Documents Directory: ", FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).last ?? "Not Found!")
 	}
-
+	
+	private func loadStartingBalance() {
+		financialSummary.startingBalance = UserDefaults.standard.double(forKey: UserDefaultKeys.startingBalance)
+	}
+	
+	private func saveStartingBalance(_ value: Double) {
+		UserDefaults.standard.setValue(value, forKey: UserDefaultKeys.startingBalance)
+	}
+	
 	private func currentDate() -> (year: Int, month: Int) {
 		let calendar = Calendar.current
 		let dateComponents = calendar.dateComponents([.year, .month], from: Date.now)
 
 		return (year: dateComponents.year!, month: dateComponents.month!)
 	}
+	
+	private func getStartAndEndOfMonth(month: Int, year: Int) -> (start: Date?, end: Date?) {
+		var components = DateComponents()
+		components.day = 1
+		components.month = month
+		components.year = year
+		
+		if let startDate = Calendar.current.date(from: components) {
+			if let range = Calendar.current.range(of: .day, in: .month, for: startDate) {
+				components.day = range.count + 1
+			}
+			
+			if let endDate = Calendar.current.date(from: components) {
+				return (startDate, endDate)
+			}
+		}
+		
+		return (nil, nil)
+	}
+	
+	private func calculateFinancialSummary(transactions: [TransactionModel]) {
+		
+		transactions.forEach { transaction in
+			updateFinancialSummary(&financialSummary, transaction: transaction)
+		}
+		
+	}
+	
+	private func updateFinancialSummary(_ summary: inout FinancialSummaryModel,
+										transaction: TransactionModel) {
+		switch transaction.transactionType {
+			case .expense:
+				summary.expense -= transaction.amount
+			case .income:
+				summary.income += transaction.amount
+		}
+	}
+}
 
-	// MARK: HomeBusinessLogic
-
+// MARK: - HomeBusinessLogic
+extension HomeInteractor: HomeBusinessLogic {
+	
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
-
-//		let coreDataManager = CoreDataManager()
-//		let arr = coreDataManager.load(year: request.year, month: request.month)
-//		year = request.year
-//		month = request.month
-//
-//		transactionCollection.removeAll()
-//		transactionCollection.add(arr)
-//		transactionCollection.setStartingBalance(coreDataManager.startingBalance)
-//
-//		let data = transactionCollection.transactionsGroupedByDate
-//		let response = Home.FetchTransactions.Response(data: data)
-//		presenter?.presentTransactions(response)
+		transactions = []
+		
+		
+		year = request.year
+		month = request.month
+		
+		let startAndEndOfMonth = getStartAndEndOfMonth(month: month, year: year)
+		if let start = startAndEndOfMonth.start, let end = startAndEndOfMonth.end {
+			let coreDataWorker = HomeCoreDataWorker()
+			transactions = coreDataWorker.loadTransactions(from: start, to: end)
+		}
+		
+		calculateFinancialSummary(transactions: transactions)
+	
+		let response = Home.FetchTransactions.Response(transactions: transactions)
+		presenter?.presentTransactions(response)
 	}
 
 	func addTransaction(_ request: Home.AddTransaction.Request) {
-//		transactionCollection.add(request.transaction)
-//
-//		let coreDataManager = CoreDataManager()
-//		coreDataManager.add(request.transaction)
-//		let response = Home.FetchTransactions.Response(data: transactionCollection.transactionsGroupedByDate)
-//		presenter?.presentTransactions(response)
+		transactions.append(request.transaction)
+		
+		let coreDataWorker = HomeCoreDataWorker()
+		coreDataWorker.saveTransaction(request.transaction)
+		
+		updateFinancialSummary(&financialSummary, transaction: request.transaction)
+
+		let response = Home.AddTransaction.Response(transactions: transactions)
+		presenter?.presentAddedTransaction(response)
 	}
 
 	func removeTransaction(_ request: Home.RemoveTransaction.Request) {
-//		let id = request.transaction.id
-//		transactionCollection.removeBy(id)
-//
-//		let coreDataManager = CoreDataManager()
-//		coreDataManager.delete(id)
-//
-//		let response = Home.RemoveTransaction.Response(data: transactionCollection.transactionsGroupedByDate)
-//		presenter?.presentRemoveTransaction(response)
+		var transaction = request.transaction
+		
+		transactions.removeAll { transactionModel in
+			transactionModel.id == transaction.id
+		}
+		
+		let coreDataWorker = HomeCoreDataWorker()
+		coreDataWorker.deleteTransaction(transaction.id)
+		
+		transaction.amount *= -1
+		updateFinancialSummary(&financialSummary, transaction: transaction)
+		
+		let response = Home.RemoveTransaction.Response(transactions: transactions)
+		presenter?.presentRemoveTransaction(response)
 	}
 
 	func fetchFinancialSummary(_ request: Home.FetchFinancialSummary.Request) {
-//		let response = Home.FetchFinancialSummary.Response(summary: transactionCollection.summary)
-//		presenter?.presentFinancialSummary(response)
+		let response = Home.FetchFinancialSummary.Response(summary: financialSummary)
+		presenter?.presentFinancialSummary(response)
 	}
 
 	func editTransaction(_ request: Home.EditTransaction.Request) {
-//		transactionCollection.editBy(id: request.transaction.id,
-//									 newTransaction: request.transaction)
-//
-//		let coreDataManager = CoreDataManager()
-//		coreDataManager.edit(request.transaction.id,
-//							 request.transaction)
-//
-//		let response = Home.FetchTransactions.Response(data: transactionCollection.transactionsGroupedByDate)
-//		presenter?.presentTransactions(response)
+		let transactionID = request.transaction.id
+		
+		transactions.removeAll { $0.id == transactionID }
+		transactions.append(request.transaction)
+		
+		let coreDataWorker = HomeCoreDataWorker()
+		coreDataWorker.editTransaction(request.transaction)
+		
+		let response = Home.FetchTransactions.Response(transactions: transactions)
+		presenter?.presentTransactions(response)
 	}
 
 	func editStartingBalance(_ request: Home.EditStartingBalance.Request) {
-//		let balance = Int(request.newBalance) ?? 0
-//		transactionCollection.setStartingBalance(balance)
-//
-//		let coreDataManager = CoreDataManager()
-//		coreDataManager.editStartingBalance(year: year, month: month, newBalance: balance)
-//
-//		let response = Home.EditStartingBalance.Response(financialSummary: transactionCollection.summary)
-//		presenter?.presentStartingBalance(response)
+		let balanceStr = request.newBalance.replaceCommaToDot
+		let balance = Double(balanceStr) ?? 0
+		financialSummary.startingBalance = balance
+		
+		saveStartingBalance(balance)
+
+		let response = Home.EditStartingBalance.Response(financialSummary: financialSummary)
+		presenter?.presentStartingBalance(response)
 	}
 
 	func showAlertEditStartingBalance(_ request: Home.AlertEditStartingBalance.Request) {

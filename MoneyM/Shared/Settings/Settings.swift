@@ -23,13 +23,13 @@ class Settings {
 
 	public func changeCurrency(_ newCurrency: CurrencyModel) {
 		model.currency = newCurrency
-		NotificationCenter.default.post(name: Notifications.Currency, object: newCurrency)
+		NotificationCenter.default.post(name: NotificationNames.Currency, object: newCurrency)
 		defaults.set(newCurrency.id, forKey: UserDefaultKeys.currencyID)
 	}
 
 	public func changeAccentColor(_ newColor: UIColor) {
 		model.accentColor = newColor
-		NotificationCenter.default.post(name: Notifications.AccentColor, object: newColor)
+		NotificationCenter.default.post(name: NotificationNames.AccentColor, object: newColor)
 	}
 
 	public func changeAppTheme(_ newTheme: UIUserInterfaceStyle) {

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SettingsModel {
+struct SettingsModel {
 	var currency: CurrencyModel!
 	var accentColor: UIColor!
 	var userInterfaceStyle: UIUserInterfaceStyle!

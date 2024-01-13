@@ -22,6 +22,8 @@ class TransactionViewerViewController: UIViewController {
 	@IBOutlet weak var confirmButton: UIButton!
 
 	public var selectedCategory: CategoryModel?
+	
+	private let numberFormatter = NumberFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,7 @@ class TransactionViewerViewController: UIViewController {
 		configureNoteTextField()
 		configureChoiceButton()
 		configureFont()
+		configureNumberFormatter()
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -66,10 +69,26 @@ class TransactionViewerViewController: UIViewController {
 
 		selectCategoryButton.titleLabel?.font = font.roundedFont(18, .regular)
 	}
+	
+	private func configureNumberFormatter() {
+		numberFormatter.numberStyle = .decimal
+		numberFormatter.usesGroupingSeparator = true
+		numberFormatter.groupingSeparator = " "
+		numberFormatter.maximumFractionDigits = 2
+	}
 
 	private func resetCategory() {
 		selectedCategory = CategoriesManager.shared.defaultCategory
 		selectCategoryButton.setTitle(NSLocalizedString("select_category.title", comment: ""), for: .normal)
+	}
+	
+	private func textToNumber(_ numberStr: String) -> Double? {
+		let commaReplacedDot = numberStr.replaceCommaToDot
+		let removedSpaces = commaReplacedDot.replacingOccurrences(of: " ", with: "")
+		let numberStr = removedSpaces
+		let number = Double(numberStr)
+		
+		return number
 	}
 
 	public func showAlertMessage(title: String, message: String) {
@@ -94,13 +113,17 @@ class TransactionViewerViewController: UIViewController {
 	}
 
 	@IBAction func amountTextFieldChanged(_ sender: Any) {
-		if let text = amountTextField.text {
-			// Remove spaces from current string "1 000" -> "1000"
-			let numberStr = text.components(separatedBy: .whitespaces).joined()
-			let number = Int(numberStr)
-			let separatorNumber = number?.thousandSeparator
-			amountTextField.text = separatorNumber
+
+		if let amountText = amountTextField.text, amountText.last != "," {
+			let number = textToNumber(amountText)
+			
+			if let unwrappedNumber = number {
+				let formattedNumber = numberFormatter.string(from: NSNumber(value: unwrappedNumber))
+				amountTextField.text = formattedNumber
+			}
+			
 		}
+		
 	}
 
 }

@@ -10,18 +10,13 @@ import UIKit
 
 struct Home {
 
-	struct TransactionTableViewCellModel {
-		var section: String
-		var transactions: [TransactionModel]
-	}
-
 	struct FetchTransactions {
 		struct Request {
 			let month: Int
 			let year: Int
 		}
 		struct Response {
-			//var data: [TransactionData]
+			var transactions: [TransactionModel]
 		}
 		struct ViewModel {
 			var data: [TransactionTableViewCellModel]
@@ -32,11 +27,23 @@ struct Home {
 		struct Request {
 			let transaction: TransactionModel
 		}
+		struct Response {
+			var transactions: [TransactionModel]
+		}
+		struct ViewModel {
+			var data: [TransactionTableViewCellModel]
+		}
 	}
 
 	struct EditTransaction {
 		struct Request {
 			let transaction: TransactionModel
+		}
+		struct Response {
+			var transactions: [TransactionModel]
+		}
+		struct ViewModel {
+			var data: [TransactionTableViewCellModel]
 		}
 	}
 
@@ -75,7 +82,7 @@ struct Home {
 			var transaction: TransactionModel
 		}
 		struct Response {
-			//var data: [TransactionData]
+			var transactions: [TransactionModel]
 		}
 		struct ViewModel {
 			var data: [TransactionTableViewCellModel]
@@ -118,5 +125,5 @@ struct Home {
 			let title: String
 		}
 	}
-
+	
 }

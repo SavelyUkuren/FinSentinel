@@ -9,7 +9,13 @@ import Foundation
 
 extension String {
     var isNumber: Bool {
-        let expression = "^[0-9]+$"
+		let doubleCheck = "([0-9]+.[0-9]+)"
+		let intCheck = "([0-9]+)"
+		
+        let expression = "^\(doubleCheck)|\(intCheck)$"
         return self.range(of: expression, options: .regularExpression) != nil
     }
+	var replaceCommaToDot: String {
+		return self.replacingOccurrences(of: ",", with: ".")
+	}
 }

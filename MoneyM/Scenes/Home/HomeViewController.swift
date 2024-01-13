@@ -9,6 +9,8 @@ import UIKit
 
 protocol HomeDisplayLogic {
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel)
+	func displayAddedTransaction(_ viewModel: Home.AddTransaction.ViewModel)
+	func displayEditedTransaction(_ viewModel: Home.EditTransaction.ViewModel)
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel)
 	func displayRemoveTransaction(_ viewModel: Home.RemoveTransaction.ViewModel)
 	func displayAlertEditStartingBalance(_ viewModel: Home.AlertEditStartingBalance.ViewModel)
@@ -41,7 +43,7 @@ class HomeViewController: UIViewController {
 
 	public var router: HomeRoutingLogic?
 
-	private(set) var transactionsArray: [Home.TransactionTableViewCellModel] = []
+	private(set) var transactionsArray: [TransactionTableViewCellModel] = []
 	
 	private(set) var financialSummaryData: [FinancialSummaryCellModel] = []
 	
@@ -111,7 +113,7 @@ class HomeViewController: UIViewController {
 	private func addNotificationObservers() {
 		// Currency changed
 		NotificationCenter.default.addObserver(self, selector: #selector(changeCurrency),
-											   name: Notifications.Currency, object: nil)
+											   name: NotificationNames.Currency, object: nil)
 	}
 
 	private func currentDate() -> (month: Int, year: Int) {
@@ -142,11 +144,19 @@ class HomeViewController: UIViewController {
 			flowLayout.invalidateLayout()
 		}
 	}
+	
+	private func updateTransactionsTableView(_ transactions: [TransactionTableViewCellModel]) {
+		transactionsArray = transactions
+		DispatchQueue.main.async {
+			self.transactionsTableView.reloadData()
+		}
+	}
 
 	@objc
 	private func changeCurrency() {
-		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
-		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+		
+		//interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
+		//interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 
 	// MARK: Actions
@@ -156,9 +166,10 @@ class HomeViewController: UIViewController {
 
 	@IBAction func selectDateButtonClicked(_ sender: Any) {
 
-		let action = { (month: Int, year: Int) in
+		let selectedMonthYearAction = { (month: Int, year: Int) in
 			self.month = month
 			self.year = year
+			
 			let request = Home.FetchTransactions.Request(month: month, year: year)
 			self.interactor?.fetchTransactions(request)
 
@@ -166,7 +177,7 @@ class HomeViewController: UIViewController {
 			self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
 		}
 
-		let request = Home.AlertDatePicker.Request(action: action)
+		let request = Home.AlertDatePicker.Request(action: selectedMonthYearAction)
 		interactor?.showAlertDatePicker(request)
 	}
 
@@ -176,10 +187,15 @@ class HomeViewController: UIViewController {
 extension HomeViewController: HomeDisplayLogic {
 
 	func displayTransactions(_ viewModel: Home.FetchTransactions.ViewModel) {
-		transactionsArray = viewModel.data
-		DispatchQueue.main.async {
-			self.transactionsTableView.reloadData()
-		}
+		updateTransactionsTableView(viewModel.data)
+	}
+	
+	func displayAddedTransaction(_ viewModel: Home.AddTransaction.ViewModel) {
+		updateTransactionsTableView(viewModel.data)
+	}
+	
+	func displayEditedTransaction(_ viewModel: Home.EditTransaction.ViewModel) {
+		updateTransactionsTableView(viewModel.data)
 	}
 
 	func displayFinancialSummary(_ viewModel: Home.FetchFinancialSummary.ViewModel) {
@@ -231,20 +247,20 @@ extension HomeViewController: HomeDisplayLogic {
 
 }
 
-//// MARK: - Add transaction delegate
-//extension HomeViewController: AddTransactionDelegate {
-//	func transactionCreated(_ transaction: TransactionModel) {
-//		let request = Home.AddTransaction.Request(transaction: transaction)
-//		interactor?.addTransaction(request)
-//		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
-//	}
-//}
-//
-//// MARK: - EditTransaction delegate
-//extension HomeViewController: EditTransactionDelegate {
-//	func didEditTransaction(_ newTransaction: TransactionModel) {
-//		let request = Home.EditTransaction.Request(transaction: newTransaction)
-//		interactor?.editTransaction(request)
-//		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
-//	}
-//}
+// MARK: - Add transaction delegate
+extension HomeViewController: AddTransactionDelegate {
+	func transactionCreated(_ transaction: TransactionModel) {
+		let request = Home.AddTransaction.Request(transaction: transaction)
+		interactor?.addTransaction(request)
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+	}
+}
+
+// MARK: - EditTransaction delegate
+extension HomeViewController: EditTransactionDelegate {
+	func didEditTransaction(_ newTransaction: TransactionModel) {
+		let request = Home.EditTransaction.Request(transaction: newTransaction)
+		interactor?.editTransaction(request)
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+	}
+}

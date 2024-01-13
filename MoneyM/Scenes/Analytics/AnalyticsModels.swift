@@ -37,8 +37,8 @@ struct AnalyticsModels {
 			let chartDataSet: BarChartDataSet
 			let mode: Mode
 			let period: Period
-			let totalAmount: Int
-			let average: Int
+			let totalAmount: Double
+			let average: Double
 		}
 		struct ViewModel {
 			let categories: [CategorySummaryModel]
