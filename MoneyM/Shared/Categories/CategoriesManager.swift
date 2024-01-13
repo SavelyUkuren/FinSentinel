@@ -10,7 +10,7 @@ import Foundation
 class CategoriesManager {
     public static let shared = CategoriesManager()
 
-    public var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("category.title", comment: ""), icon: "questionmark")
+    public var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("uncategorised.category", comment: ""), icon: "questionmark")
 
     public var categoriesData: CategoryData!
 

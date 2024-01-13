@@ -16,6 +16,16 @@
 			"icon": "house.fill"
 		},
 		{
+			"id": 19,
+			"title": "pet.category",
+			"icon": "pawprint.fill"
+		},
+		{
+			"id": 20,
+			"title": "electronics.category",
+			"icon": "laptopcomputer"
+		},
+		{
 			"id": 4,
 			"title": "healthcare.category",
 			"icon": "staroflife.fill"
@@ -38,7 +48,7 @@
 		{
 			"id": 8,
 			"title": "savings.category",
-			"icon": "dollarsign.arrow.circlepath"
+			"icon": "banknote.fill"
 		},
 		{
 			"id": 9,
@@ -52,9 +62,9 @@
 		},
 		{
 			"id": 11,
-			"title": "other.category",
-			"icon": "ellipsis.circle.fill"
-		}
+			"title": "uncategorised.category",
+			"icon": "questionmark"
+		},
 	],
 	"incomes": [
 		{
@@ -89,8 +99,8 @@
 		},
 		{
 			"id": 18,
-			"title": "other.category",
-			"icon": "ellipsis.circle.fill"
+			"title": "uncategorised.category",
+			"icon": "questionmark"
 		}
 	]
 }
