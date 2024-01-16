@@ -30,7 +30,7 @@ class AnalyticsViewController: UIViewController {
 	
 	public var interactor: AnalyticsBusinessLogic?
 	
-	private var mode: AnalyticsModels.Mode = .expense
+	private var mode: AnalyticsModels.TransactionType = .expense
 	
 	private var period: AnalyticsModels.Period = .month
 	
@@ -53,7 +53,7 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																mode: mode)
+																transactionType: mode)
 		interactor?.fetchTransactions(request)
 	}
 	
@@ -82,7 +82,7 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																mode: mode)
+																transactionType: mode)
 		interactor?.fetchTransactions(request)
 	}
 	
@@ -90,7 +90,7 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																mode: mode)
+																transactionType: mode)
 		interactor?.fetchTransactions(request)
 	}
 
@@ -107,7 +107,7 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																mode: mode)
+																transactionType: mode)
 		self.interactor?.fetchTransactions(request)
 	}
 	
@@ -130,7 +130,7 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																mode: mode)
+																transactionType: mode)
 		self.interactor?.fetchTransactions(request)
 	}
 	
@@ -176,11 +176,11 @@ extension AnalyticsViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TransactionTableViewCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TotalCategoryAmountTableViewCell
 		
 		let index = indexPath.row
 		
-		cell.categoryLabel.text = categories[index].title
+		cell.categoryTitleLabel.text = categories[index].title
 		cell.categoryImageView.image = categories[index].icon
 		cell.amountLabel.text = categories[index].amount
 		

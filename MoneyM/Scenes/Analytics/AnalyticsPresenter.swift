@@ -19,22 +19,16 @@ class AnalyticsPresenter {
 	
 	public var viewController: AnalyticsDisplayLogic?
 	
-	private func calculateTotalSumOfTransactions(transactions: [TransactionModel]) -> Int {
-//		return transactions.reduce(into: 0) { amount, transaction in
-//			amount += transaction.amount
-//		}
-		-1
+	private func calculateTotalSumOfTransactions(transactions: [TransactionModel]) -> Double {
+		return transactions.reduce(into: 0) { amount, transaction in
+			amount += transaction.amount
+		}
 	}
 	
-}
-
-// MARK: - Analytics present logic
-extension AnalyticsPresenter: AnalyticsPresentLogic {
-	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response) {
-		
+	private func calculateCategoryTotals(_ transactions: [TransactionModel]) -> [AnalyticsModels.CategorySummaryModel] {
 		var categories: [AnalyticsModels.CategorySummaryModel] = []
 		
-		let groupedCategories = Dictionary(grouping: response.transactions,
+		let groupedCategories = Dictionary(grouping: transactions,
 										   by: { $0.categoryID! })
 		
 		groupedCategories.keys.forEach { categoryID in
@@ -47,38 +41,73 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 																   amount: String(amount)))
 		}
 		
+		return categories
+	}
+	
+	private func averageByDayModel(_ average: Double) -> FinancialSummaryCellModel {
 		let currencySymbol = Settings.shared.model.currency.symbol
 		
-		var summary: [FinancialSummaryCellModel] = []
-		let amount = (response.mode == .expense) ? -response.totalAmount : response.totalAmount
-		let amountString = amount.thousandSeparator + currencySymbol
+		let amount = "\(average.thousandSeparator) \(currencySymbol)"
 		
-		let totalAmountModel = FinancialSummaryCellModel(title: "Total amount",
-														 amount: amountString,
-														 amountColor: response.mode == .expense ? .systemRed : .systemGreen)
+		return FinancialSummaryCellModel(title: "Average by Day",
+										 amount: amount,
+										 amountColor: average < 0 ? .systemRed : .systemGreen)
+	}
+	
+	private func averageByMonthModel(_ average: Double) -> FinancialSummaryCellModel {
+		let currencySymbol = Settings.shared.model.currency.symbol
+		
+		let amount = "\(average.thousandSeparator) \(currencySymbol)"
+		
+		return FinancialSummaryCellModel(title: "Average by Month",
+										 amount: amount,
+										 amountColor: average < 0 ? .systemRed : .systemGreen)
+	}
+	
+	private func totalAmountModel(_ amount: Double) -> FinancialSummaryCellModel {
+		let currencySymbol = Settings.shared.model.currency.symbol
+		
+		let totalAmount = "\(amount.thousandSeparator) \(currencySymbol)"
+		
+		return FinancialSummaryCellModel(title: "Total amount",
+										 amount: totalAmount,
+										 amountColor: amount < 0 ? .systemRed : .systemGreen)
+	}
+	
+}
+
+// MARK: - Analytics present logic
+extension AnalyticsPresenter: AnalyticsPresentLogic {
+	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response) {
+		
+		let categoriesSummary = calculateCategoryTotals(response.transactions)
+		
+		var summary: [FinancialSummaryCellModel] = []
+		
+		let totalAmount = (response.transactionType == .expense) ? -response.totalAmount : response.totalAmount
+		let totalAmountModel = totalAmountModel(totalAmount)
 		
 		summary.append(totalAmountModel)
 		
-		if response.period != .all {
-			var averageTitle = ""
-			if response.period == .month {
-				averageTitle = "Average per day"
-			} else if response.period == .year {
-				averageTitle = "Average per months"
-			}
+		if response.period == .month {
 			
-			let average = (response.mode == .expense) ? -response.average : response.average
-			let averageString = average.thousandSeparator + currencySymbol
-			let averageModel = FinancialSummaryCellModel(title: averageTitle,
-														 amount: averageString,
-														 amountColor: response.mode == .expense ? .systemRed : .systemGreen)
+			let average = (response.transactionType == .expense) ? -response.average : response.average
+			let averageByDay = averageByDayModel(average)
 			
-			summary.append(averageModel)
+			summary.append(averageByDay)
+			
+		} else if response.period == .year {
+			
+			let average = (response.transactionType == .expense) ? -response.average : response.average
+			let averageByMonth = averageByMonthModel(average)
+			
+			summary.append(averageByMonth)
+			
 		}
 		
 		let chartData = BarChartData(dataSet: response.chartDataSet)
 		
-		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categories,
+		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categoriesSummary,
 																	summary: summary,
 																	chartData: chartData)
 		viewController?.displayAnalyticsData(viewModel)

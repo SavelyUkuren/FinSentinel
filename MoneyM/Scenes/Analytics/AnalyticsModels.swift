@@ -11,7 +11,7 @@ import DGCharts
 
 struct AnalyticsModels {
 	
-	enum Mode {
+	enum TransactionType {
 		case expense, income
 	}
 	
@@ -30,12 +30,12 @@ struct AnalyticsModels {
 			let month: Int
 			let year: Int
 			let period: Period
-			let mode: Mode
+			let transactionType: TransactionType
 		}
 		struct Response {
 			let transactions: [TransactionModel]
 			let chartDataSet: BarChartDataSet
-			let mode: Mode
+			let transactionType: TransactionType
 			let period: Period
 			let totalAmount: Double
 			let average: Double

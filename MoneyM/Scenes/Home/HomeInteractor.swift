@@ -57,25 +57,6 @@ class HomeInteractor {
 		return (year: dateComponents.year!, month: dateComponents.month!)
 	}
 	
-	private func getStartAndEndOfMonth(month: Int, year: Int) -> (start: Date?, end: Date?) {
-		var components = DateComponents()
-		components.day = 1
-		components.month = month
-		components.year = year
-		
-		if let startDate = Calendar.current.date(from: components) {
-			if let range = Calendar.current.range(of: .day, in: .month, for: startDate) {
-				components.day = range.count + 1
-			}
-			
-			if let endDate = Calendar.current.date(from: components) {
-				return (startDate, endDate)
-			}
-		}
-		
-		return (nil, nil)
-	}
-	
 	private func calculateFinancialSummary(transactions: [TransactionModel]) {
 		
 		transactions.forEach { transaction in
@@ -105,7 +86,7 @@ extension HomeInteractor: HomeBusinessLogic {
 		year = request.year
 		month = request.month
 		
-		let startAndEndOfMonth = getStartAndEndOfMonth(month: month, year: year)
+		let startAndEndOfMonth = Date().startAndEndOfMonth(month: month, year: year)
 		if let start = startAndEndOfMonth.start, let end = startAndEndOfMonth.end {
 			let coreDataWorker = HomeCoreDataWorker()
 			transactions = coreDataWorker.loadTransactions(from: start, to: end)

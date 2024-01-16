@@ -12,6 +12,9 @@
 		451105022B2E2D150066F868 /* AppearanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451105012B2E2D150066F868 /* AppearanceModel.swift */; };
 		45152F282B45D4C20091FCCE /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45152F272B45D4C20091FCCE /* UITabBarExtension.swift */; };
 		451974AE2AA49F740003A4B7 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451974AD2AA49F740003A4B7 /* TransactionModel.swift */; };
+		451B3D9A2B530761006C57E6 /* AnalyticsCoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B3D992B530761006C57E6 /* AnalyticsCoreDataWorker.swift */; };
+		451B3D9C2B5315AA006C57E6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B3D9B2B5315AA006C57E6 /* DateExtension.swift */; };
+		451B3D9E2B5390CF006C57E6 /* TotalCategoryAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B3D9D2B5390CF006C57E6 /* TotalCategoryAmountTableViewCell.swift */; };
 		452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A71572B191F5C0015E524 /* HomeRoute.swift */; };
 		452A715B2B1920180015E524 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A715A2B1920180015E524 /* AddTransactionViewController.swift */; };
 		452B9CC12B31EE3400D40894 /* TransactionViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */; };
@@ -135,6 +138,9 @@
 		451105012B2E2D150066F868 /* AppearanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModel.swift; sourceTree = "<group>"; };
 		45152F272B45D4C20091FCCE /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 		451974AD2AA49F740003A4B7 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		451B3D992B530761006C57E6 /* AnalyticsCoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCoreDataWorker.swift; sourceTree = "<group>"; };
+		451B3D9B2B5315AA006C57E6 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		451B3D9D2B5390CF006C57E6 /* TotalCategoryAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCategoryAmountTableViewCell.swift; sourceTree = "<group>"; };
 		452A71572B191F5C0015E524 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
 		452A715A2B1920180015E524 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		452B9CC02B31EE3400D40894 /* TransactionViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewerViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +310,7 @@
 				45D65E142B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift */,
 				45D65E112B28AA4200C4A1F8 /* CategoryTableViewCell.swift */,
 				451104F02B2E030C0066F868 /* SettingsTableViewCell.swift */,
+				451B3D9D2B5390CF006C57E6 /* TotalCategoryAmountTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -370,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				453445AB2AFAC017005154DF /* StringExtension.swift */,
+				451B3D9B2B5315AA006C57E6 /* DateExtension.swift */,
 				45D65E162B28D19500C4A1F8 /* DoubleExtension.swift */,
 				4562148E2B22E66F000C5A29 /* UILabelExtension.swift */,
 				456214902B22E834000C5A29 /* UINavigationItem.swift */,
@@ -569,6 +577,7 @@
 				45D7AFCB2B47EF2500DD0DC4 /* AnalyticsInteractor.swift */,
 				45D7AFCD2B47EF2C00DD0DC4 /* AnalyticsPresenter.swift */,
 				45D7AFCF2B47EF3300DD0DC4 /* AnalyticsModels.swift */,
+				451B3D992B530761006C57E6 /* AnalyticsCoreDataWorker.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -799,6 +808,7 @@
 				45AA892E2B0E148C007B5873 /* SettingsModel.swift in Sources */,
 				452A71582B191F5C0015E524 /* HomeRoute.swift in Sources */,
 				453BBA502B2849BF00C9E67B /* NotificationNames.swift in Sources */,
+				451B3D9E2B5390CF006C57E6 /* TotalCategoryAmountTableViewCell.swift in Sources */,
 				45E9FE092B19841000783D27 /* AddTransactionInteractor.swift in Sources */,
 				4534458F2AF9287B005154DF /* CoreDataManager.swift in Sources */,
 				454317E22AF2662A0015F6E5 /* CurrencyModelManager.swift in Sources */,
@@ -817,6 +827,7 @@
 				45E9FE0F2B1A681C00783D27 /* AddTransactionModels.swift in Sources */,
 				4533EE0B2B18D1D100A92713 /* HomeInteractor.swift in Sources */,
 				45CA350D2B2855340070E4A9 /* EditTransactionRouter.swift in Sources */,
+				451B3D9C2B5315AA006C57E6 /* DateExtension.swift in Sources */,
 				45CA350B2B28552B0070E4A9 /* EditTransactionModels.swift in Sources */,
 				45D65E152B28C30600C4A1F8 /* TransactionTableViewCell+Note.swift in Sources */,
 				451104FD2B2E19480066F868 /* AppearanceViewController.swift in Sources */,
@@ -834,6 +845,7 @@
 				456214952B22E9FB000C5A29 /* UIButtonExtension.swift in Sources */,
 				459F98BB2B23390D00BB89D6 /* SettingsInteractor.swift in Sources */,
 				45E1694C2AEEA6F300B7989D /* TransactionTableViewSection.swift in Sources */,
+				451B3D9A2B530761006C57E6 /* AnalyticsCoreDataWorker.swift in Sources */,
 				456214932B22E9C2000C5A29 /* UITextFieldExtension.swift in Sources */,
 				45BBD7702B51A0400006F7AF /* CategoryType.swift in Sources */,
 				45BBD7742B52A9D30006F7AF /* FinancialSummaryBeautifier.swift in Sources */,
