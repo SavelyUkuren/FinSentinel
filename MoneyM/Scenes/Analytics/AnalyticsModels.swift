@@ -11,10 +11,6 @@ import DGCharts
 
 struct AnalyticsModels {
 	
-	enum TransactionType {
-		case expense, income
-	}
-	
 	enum Period {
 		case month, year, all
 	}
@@ -23,6 +19,7 @@ struct AnalyticsModels {
 		let icon: UIImage
 		let title: String
 		let amount: String
+		var amountColor: UIColor? = nil
 	}
 	
 	struct FetchTransactions {
@@ -68,6 +65,20 @@ struct AnalyticsModels {
 		}
 		struct ViewModel {
 			let alert: UIAlertController
+		}
+	}
+	
+	struct UpdatePeriodButtonTitle {
+		struct Request {
+			let month: Int
+			let year: Int
+		}
+		struct Response {
+			let month: Int
+			let year: Int
+		}
+		struct ViewModel {
+			let title: String
 		}
 	}
 	

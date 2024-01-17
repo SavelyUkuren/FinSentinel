@@ -12,11 +12,12 @@ protocol AnalyticsDisplayLogic {
 	func displayAnalyticsData(_ viewModel: AnalyticsModels.FetchTransactions.ViewModel)
 	func displayMonthYearWheelAlert(_ viewModel: AnalyticsModels.ShowMonthYearWheel.ViewModel)
 	func displayYearsWheelAlert(_ viewModel: AnalyticsModels.ShowYearsWheel.ViewModel)
+	func displayPeriodButtonTitle(_ viewModel: AnalyticsModels.UpdatePeriodButtonTitle.ViewModel)
 }
 
 class AnalyticsViewController: UIViewController {
 
-	@IBOutlet weak var modeSegmentControl: UISegmentedControl!
+	@IBOutlet weak var transactionTypeSegmentControl: UISegmentedControl!
 	
 	@IBOutlet weak var periodSegmentControl: UISegmentedControl!
 	
@@ -24,13 +25,19 @@ class AnalyticsViewController: UIViewController {
 	
 	@IBOutlet weak var chartView: BarChartView!
 	
+	@IBOutlet weak var chartViewHeightConstraint: NSLayoutConstraint!
+	
 	@IBOutlet weak var summaryCollectionView: UICollectionView!
+	
+	@IBOutlet weak var summaryCollectionViewHeightConstraint: NSLayoutConstraint!
 	
 	@IBOutlet weak var amountsByCategoriesTableView: UITableView!
 	
+	@IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
+	
 	public var interactor: AnalyticsBusinessLogic?
 	
-	private var mode: AnalyticsModels.TransactionType = .expense
+	private var transactionType: TransactionType = .expense
 	
 	private var period: AnalyticsModels.Period = .month
 	
@@ -39,6 +46,10 @@ class AnalyticsViewController: UIViewController {
 	private var categories: [AnalyticsModels.CategorySummaryModel] = []
 	
 	private var summary: [FinancialSummaryCellModel] = []
+	
+	private let chartViewDefaultHeight: CGFloat = 200
+	
+	let financialSummaryCellSpacing: CGFloat = 16
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +64,13 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																transactionType: mode)
+																transactionType: transactionType)
 		interactor?.fetchTransactions(request)
+	}
+	
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+		updateFinancialSummaryCellSize()
 	}
 	
 	private func setup() {
@@ -71,7 +87,9 @@ class AnalyticsViewController: UIViewController {
 		month = 1
 		year = 2024
 		
-		periodSelectButton.setTitle("\(month) \(year)", for: .normal)
+		configureChartView()
+		
+		updatePeriodButtonTitle()
 		
 		amountsByCategoriesTableView.delegate = self
 		amountsByCategoriesTableView.dataSource = self
@@ -79,36 +97,68 @@ class AnalyticsViewController: UIViewController {
 		summaryCollectionView.delegate = self
 		summaryCollectionView.dataSource = self
 		
+		fetchTransactions()
+	}
+	
+	private func configureChartView() {
+		chartView.legend.enabled = false
+		chartView.xAxis.labelPosition = .bottom
+		chartView.xAxis.gridLineDashLengths = [2]
+		chartView.xAxis.axisLineWidth = 0
+		chartView.xAxis.setLabelCount(10, force: false)
+		chartView.dragEnabled = false
+		
+		chartView.leftAxis.drawLabelsEnabled = false
+	}
+	
+	private func fetchTransactions() {
 		let request = AnalyticsModels.FetchTransactions.Request(month: month,
 																year: year,
 																period: period,
-																transactionType: mode)
+																transactionType: transactionType)
 		interactor?.fetchTransactions(request)
 	}
 	
-	private func updateData() {
-		let request = AnalyticsModels.FetchTransactions.Request(month: month,
-																year: year,
-																period: period,
-																transactionType: mode)
-		interactor?.fetchTransactions(request)
+	private func updateFinancialSummaryCellSize() {
+		if let flowLayout = summaryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+			let width = summaryCollectionView.bounds.width / 2 - financialSummaryCellSpacing / 2
+			
+			flowLayout.itemSize = CGSize(width: width, height: summaryCollectionViewHeightConstraint.constant)
+			flowLayout.invalidateLayout()
+		}
+	}
+	
+	private func updatePeriodButtonTitle() {
+		let request = AnalyticsModels.UpdatePeriodButtonTitle.Request(month: month, year: year)
+		interactor?.updatePeriodButtonTitle(request)
+	}
+	
+	private func updateScrollViewHeight() {
+		let viewsSpacing: CGFloat = 16
+		
+		var height: CGFloat = 0
+		height += transactionTypeSegmentControl.frame.height
+		height += periodSegmentControl.frame.height
+		height += periodSelectButton.frame.height
+		height += chartView.frame.height
+		height += summaryCollectionView.contentSize.height
+		height += amountsByCategoriesTableView.contentSize.height
+		height += viewsSpacing * 6
+		
+		scrollViewHeightConstraint.constant = height
 	}
 
 	// MARK: - Actions
 	@IBAction func didModeSegmentValueChanged(_ sender: Any) {
-		switch modeSegmentControl.selectedSegmentIndex {
+		switch transactionTypeSegmentControl.selectedSegmentIndex {
 			case 0:
-				mode = .expense
+				transactionType = .expense
 			case 1:
-				mode = .income
+				transactionType = .income
 			default:
-				mode = .expense
+				transactionType = .expense
 		}
-		let request = AnalyticsModels.FetchTransactions.Request(month: month,
-																year: year,
-																period: period,
-																transactionType: mode)
-		self.interactor?.fetchTransactions(request)
+		fetchTransactions()
 	}
 	
 	@IBAction func didPeriodSegmentValueChanged(_ sender: Any) {
@@ -117,21 +167,21 @@ class AnalyticsViewController: UIViewController {
 				period = .month
 				periodSelectButton.setTitle("\(month) \(year)", for: .normal)
 				periodSelectButton.isEnabled = true
+				chartViewHeightConstraint.constant = chartViewDefaultHeight
+				updatePeriodButtonTitle()
 			case 1:
 				period = .year
 				periodSelectButton.setTitle("\(year)", for: .normal)
 				periodSelectButton.isEnabled = true
+				chartViewHeightConstraint.constant = chartViewDefaultHeight
 			case 2:
 				period = .all
 				periodSelectButton.isEnabled = false
+				chartViewHeightConstraint.constant = 0
 			default:
 				period = .month
 		}
-		let request = AnalyticsModels.FetchTransactions.Request(month: month,
-																year: year,
-																period: period,
-																transactionType: mode)
-		self.interactor?.fetchTransactions(request)
+		fetchTransactions()
 	}
 	
 	@IBAction func didPeriodButtonClicked(_ sender: Any) {
@@ -142,7 +192,8 @@ class AnalyticsViewController: UIViewController {
 				self.year = year
 				self.month = month
 				self.periodSelectButton.setTitle("\(month) \(year)", for: .normal)
-				self.updateData()
+				self.fetchTransactions()
+				self.updatePeriodButtonTitle()
 			}
 			
 			let request = AnalyticsModels.ShowMonthYearWheel.Request(action: action)
@@ -153,7 +204,7 @@ class AnalyticsViewController: UIViewController {
 			let action: (Int) -> () = { year in
 				self.year = year
 				self.periodSelectButton.setTitle("\(year)", for: .normal)
-				self.updateData()
+				self.fetchTransactions()
 			}
 			
 			let request = AnalyticsModels.ShowYearsWheel.Request(action: action)
@@ -161,7 +212,7 @@ class AnalyticsViewController: UIViewController {
 			
 		} else if period == .all {
 			
-			self.updateData()
+			self.fetchTransactions()
 		}
 
 	}
@@ -170,6 +221,10 @@ class AnalyticsViewController: UIViewController {
 
 // MARK: - TableView delegate
 extension AnalyticsViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		updateScrollViewHeight()
+	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		categories.count
@@ -183,6 +238,7 @@ extension AnalyticsViewController: UITableViewDelegate, UITableViewDataSource {
 		cell.categoryTitleLabel.text = categories[index].title
 		cell.categoryImageView.image = categories[index].icon
 		cell.amountLabel.text = categories[index].amount
+		cell.amountLabel.textColor = categories[index].amountColor
 		
 		return cell
 	}
@@ -206,6 +262,16 @@ extension AnalyticsViewController: UICollectionViewDelegate, UICollectionViewDat
 		
 		return cell
 	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		let width = (collectionView.bounds.width / 2) - (financialSummaryCellSpacing / 2)
+
+		return CGSize(width: width, height: summaryCollectionViewHeightConstraint.constant)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		financialSummaryCellSpacing
+	}
 }
 
 // MARK: - Analytics display logic
@@ -220,7 +286,7 @@ extension AnalyticsViewController: AnalyticsDisplayLogic {
 		}
 		
 		chartView.data = viewModel.chartData
-		
+		chartView.data?.setDrawValues(false)
 	}
 	
 	func displayMonthYearWheelAlert(_ viewModel: AnalyticsModels.ShowMonthYearWheel.ViewModel) {
@@ -229,6 +295,10 @@ extension AnalyticsViewController: AnalyticsDisplayLogic {
 	
 	func displayYearsWheelAlert(_ viewModel: AnalyticsModels.ShowYearsWheel.ViewModel) {
 		present(viewModel.alert, animated: true)
+	}
+	
+	func displayPeriodButtonTitle(_ viewModel: AnalyticsModels.UpdatePeriodButtonTitle.ViewModel) {
+		periodSelectButton.setTitle(viewModel.title, for: .normal)
 	}
 	
 }

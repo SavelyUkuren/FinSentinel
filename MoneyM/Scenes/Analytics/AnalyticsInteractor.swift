@@ -12,6 +12,7 @@ protocol AnalyticsBusinessLogic {
 	func fetchTransactions(_ request: AnalyticsModels.FetchTransactions.Request)
 	func showMonthAndYearWheelAlert(_ request: AnalyticsModels.ShowMonthYearWheel.Request)
 	func showYearsWheelAlert(_ request: AnalyticsModels.ShowYearsWheel.Request)
+	func updatePeriodButtonTitle(_ request: AnalyticsModels.UpdatePeriodButtonTitle.Request)
 }
 
 class AnalyticsInteractor {
@@ -149,6 +150,12 @@ extension AnalyticsInteractor: AnalyticsBusinessLogic {
 	func showYearsWheelAlert(_ request: AnalyticsModels.ShowYearsWheel.Request) {
 		let response = AnalyticsModels.ShowYearsWheel.Response(action: request.action)
 		presenter?.presentYearsWheelAlert(response)
+	}
+	
+	func updatePeriodButtonTitle(_ request: AnalyticsModels.UpdatePeriodButtonTitle.Request) {
+		let response = AnalyticsModels.UpdatePeriodButtonTitle.Response(month: request.month,
+																		year: request.year)
+		presenter?.presentPeriodButtonTitle(response)
 	}
 	
 }

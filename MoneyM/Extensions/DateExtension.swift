@@ -38,4 +38,14 @@ extension Date {
 		return (startDate, endDate)
 	}
 	
+	var monthTitle: String {
+		
+		let formatter = DateFormatter()
+		formatter.dateFormat = "MMM"
+
+		let title = formatter.string(from: self)
+		
+		return title
+	}
+	
 }

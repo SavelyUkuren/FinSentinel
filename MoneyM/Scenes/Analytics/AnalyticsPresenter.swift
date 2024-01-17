@@ -13,6 +13,7 @@ protocol AnalyticsPresentLogic {
 	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response)
 	func presentMonthYearWheelAlert(_ response: AnalyticsModels.ShowMonthYearWheel.Response)
 	func presentYearsWheelAlert(_ response: AnalyticsModels.ShowYearsWheel.Response)
+	func presentPeriodButtonTitle(_ response: AnalyticsModels.UpdatePeriodButtonTitle.Response)
 }
 
 class AnalyticsPresenter {
@@ -28,18 +29,44 @@ class AnalyticsPresenter {
 	private func calculateCategoryTotals(_ transactions: [TransactionModel]) -> [AnalyticsModels.CategorySummaryModel] {
 		var categories: [AnalyticsModels.CategorySummaryModel] = []
 		
+		// This temp struct needs to sort categories by amount
+		struct CategorySummaryModelAmountDouble {
+			let icon: UIImage
+			let title: String
+			let amount: Double
+		}
+		
+		func calculateCategoriesAmountAndSort(groupedCategories: Dictionary<Int, [TransactionModel]>) -> [AnalyticsModels.CategorySummaryModel] {
+			var tempCategories: [CategorySummaryModelAmountDouble] = []
+			
+			groupedCategories.keys.forEach { categoryID in
+				let categoryModel = CategoriesManager.shared.findCategoryBy(id: categoryID) ?? CategoriesManager.shared.defaultCategory
+				let title = categoryModel.title
+				let amount = calculateTotalSumOfTransactions(transactions: groupedCategories[categoryID] ?? [])
+				
+				tempCategories.append(CategorySummaryModelAmountDouble(icon: UIImage(systemName: categoryModel.icon) ?? UIImage(),
+																	   title: title,
+																	   amount: amount))
+			}
+			
+			tempCategories.sort(by: { $0.amount > $1.amount })
+			
+			let result = tempCategories.map {
+				let currency = Settings.shared.model.currency.symbol
+				let amountStr = "\($0.amount.thousandSeparator) \(currency)"
+				
+				return AnalyticsModels.CategorySummaryModel(icon: $0.icon,
+													 title: $0.title,
+													 amount: amountStr)
+			}
+			
+			return result
+		}
+		
 		let groupedCategories = Dictionary(grouping: transactions,
 										   by: { $0.categoryID! })
 		
-		groupedCategories.keys.forEach { categoryID in
-			let categoryModel = CategoriesManager.shared.findCategoryBy(id: categoryID) ?? CategoriesManager.shared.defaultCategory
-			let title = categoryModel.title
-			let amount = calculateTotalSumOfTransactions(transactions: groupedCategories[categoryID] ?? [])
-			
-			categories.append(AnalyticsModels.CategorySummaryModel(icon: UIImage(systemName: categoryModel.icon) ?? UIImage(),
-																   title: title,
-																   amount: String(amount)))
-		}
+		categories = calculateCategoriesAmountAndSort(groupedCategories: groupedCategories)
 		
 		return categories
 	}
@@ -80,7 +107,10 @@ class AnalyticsPresenter {
 extension AnalyticsPresenter: AnalyticsPresentLogic {
 	func presentAnalyticsData(_ response: AnalyticsModels.FetchTransactions.Response) {
 		
-		let categoriesSummary = calculateCategoryTotals(response.transactions)
+		var categoriesSummary = calculateCategoryTotals(response.transactions)
+		for index in 0..<categoriesSummary.count {
+			categoriesSummary[index].amountColor = response.transactionType == .expense ? .systemRed : .systemGreen
+		}
 		
 		var summary: [FinancialSummaryCellModel] = []
 		
@@ -105,7 +135,10 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 			
 		}
 		
-		let chartData = BarChartData(dataSet: response.chartDataSet)
+		let dataSet = response.chartDataSet
+		dataSet.colors = [.systemBlue]
+		
+		let chartData = BarChartData(dataSet: dataSet)
 		
 		let viewModel = AnalyticsModels.FetchTransactions.ViewModel(categories: categoriesSummary,
 																	summary: summary,
@@ -164,6 +197,24 @@ extension AnalyticsPresenter: AnalyticsPresentLogic {
 		
 		let viewModel = AnalyticsModels.ShowYearsWheel.ViewModel(alert: alert)
 		viewController?.displayYearsWheelAlert(viewModel)
+	}
+	
+	func presentPeriodButtonTitle(_ response: AnalyticsModels.UpdatePeriodButtonTitle.Response) {
+		var dateComponents = DateComponents()
+		dateComponents.month = response.month
+		dateComponents.year = response.year
+
+		let date = Calendar.current.date(from: dateComponents)
+		
+		let title = switch date {
+		case .none:
+			   "\(response.month) \(response.year)"
+		case .some(_):
+			"\(date!.monthTitle) \(response.year)"
+	   }
+
+		let viewModel = AnalyticsModels.UpdatePeriodButtonTitle.ViewModel(title: title)
+		viewController?.displayPeriodButtonTitle(viewModel)
 	}
 	
 }

@@ -197,11 +197,13 @@ extension HomePresenter: HomePresentationLogic {
 		dateComponents.year = response.year
 
 		let date = Calendar.current.date(from: dateComponents)
-
-		let formatter = DateFormatter()
-		formatter.dateFormat = "MMM y"
-
-		let title = formatter.string(from: date ?? .now)
+		
+		let title = switch date {
+		case .none:
+			   "\(response.month) \(response.year)"
+		case .some(_):
+			"\(date!.monthTitle) \(response.year)"
+	   }
 
 		let viewModel = Home.DatePickerButton.ViewModel(title: title)
 		viewController?.displayDatePickerButton(viewModel)
