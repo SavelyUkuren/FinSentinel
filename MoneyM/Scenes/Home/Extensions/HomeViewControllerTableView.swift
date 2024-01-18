@@ -85,10 +85,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 		transactionsArray.count
 	}
 
-	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return transactionsArray[section].section
-	}
+//	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//		return transactionsArray[section].section
+//	}
 
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let sectionView = TransactionTableViewSection()
+		
+		sectionView.dateLabel.text = transactionsArray[section].section
+		sectionView.totalAmount = transactionsArray[section].totalAmount
+		
+		return sectionView
+	}
+	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		20
 	}

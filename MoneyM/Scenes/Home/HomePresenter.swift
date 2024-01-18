@@ -51,8 +51,17 @@ class HomePresenter {
 			let date = Calendar.current.date(from: key)
 			let dayAndMonthName = getDayAndMonth(date!)
 			
+			let totalAmount = value.reduce(0.0, { (value, transactionModel)  in
+				if transactionModel.transactionType == .expense {
+					return value - transactionModel.amount
+				} else {
+					return value + transactionModel.amount
+				}
+			})
+			
 			return TransactionTableViewCellModel(section: "\(dayAndMonthName)",
-										  transactions: value)
+												 totalAmount: totalAmount,
+												 transactions: value)
 		}
 	}
 	

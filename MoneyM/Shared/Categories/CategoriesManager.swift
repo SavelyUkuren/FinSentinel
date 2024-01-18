@@ -115,8 +115,7 @@ class CategoriesManager {
 		categoriesData.expenses.append(CategoryModel(id: 9, title: "debts.category", icon: "creditcard.fill",
 													 subcategories: [SubcategoryModel(id: 50, icon: "creditcard.fill", title: "credit.category"),
 																	 SubcategoryModel(id: 51, icon: "creditcard.fill", title: "mortgage.category")]))
-//		categoriesData.expenses.append(CategoryModel(id: 10, title: "utilities.category", icon: "hammer.fill"))
-		categoriesData.expenses.append(CategoryModel(id: 11, title: "uncategorised.category", icon: "questionmark"))
+		categoriesData.expenses.append(CategoryModel(id: 0, title: "uncategorised.category", icon: "questionmark"))
 		
 		categoriesData.expenses = localizeCategories(categoriesData.expenses)
 		
@@ -129,7 +128,7 @@ class CategoriesManager {
 		categoriesData.incomes.append(CategoryModel(id: 15, title: "rental_income.category", icon: "house.fill"))
 		categoriesData.incomes.append(CategoryModel(id: 16, title: "business.category", icon: "briefcase.fill"))
 		categoriesData.incomes.append(CategoryModel(id: 17, title: "pension.category", icon: "person.2.fill"))
-		categoriesData.incomes.append(CategoryModel(id: 18, title: "uncategorised.category", icon: "questionmark"))
+		categoriesData.incomes.append(CategoryModel(id: 0, title: "uncategorised.category", icon: "questionmark"))
 		
 		categoriesData.incomes = localizeCategories(categoriesData.incomes)
 	}

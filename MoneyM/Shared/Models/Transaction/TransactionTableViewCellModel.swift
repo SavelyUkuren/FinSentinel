@@ -8,6 +8,7 @@
 import Foundation
 
 struct TransactionTableViewCellModel {
-	   var section: String
-	   var transactions: [TransactionModel]
-   }
+	var section: String
+	var totalAmount: Double
+	var transactions: [TransactionModel]
+}
