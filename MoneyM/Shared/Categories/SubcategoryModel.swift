@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct SubcategoryModel: CategoryProtocol {
+	var id: Int
+	var icon: String
+	var title: String
+}

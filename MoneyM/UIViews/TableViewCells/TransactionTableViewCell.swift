@@ -52,17 +52,22 @@ class TransactionTableViewCell: UITableViewCell {
 
     public func loadTransaction(transaction: TransactionModel) {
 
+		let categoriesManager = CategoriesManager.shared
 		let currencySymbol = Settings.shared.model.currency.symbol
-		let defaultCategory = CategoriesManager.shared.defaultCategory
-        let category = CategoriesManager.shared.findCategoryBy(id: transaction.categoryID ?? 0) ?? defaultCategory
+		var categoryModel: CategoryProtocol = CategoriesManager.shared.defaultCategory
 
 		let operatorSymbol = transaction.transactionType == .expense ? "-" : "+"
 		let amount = transaction.amount.thousandSeparator
 
         amountLabel.text = "\(operatorSymbol)\(amount) \(currencySymbol)"
-        categoryLabel.text = category.title
-		categoryImageView.image = UIImage(systemName: category.icon)
-
+		
+		if let foundedCategoryModel = categoriesManager.findCategory(id: transaction.categoryID ?? 0) {
+			categoryModel = foundedCategoryModel
+		}
+		
+		categoryLabel.text = categoryModel.title
+		categoryImageView.image = UIImage(systemName: categoryModel.icon)
+        
 		amountLabel.textColor = transaction.transactionType == .expense ? .systemRed : .systemGreen
 
     }

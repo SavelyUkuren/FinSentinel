@@ -155,8 +155,8 @@ class HomeViewController: UIViewController {
 	@objc
 	private func changeCurrency() {
 		
-		//interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
-		//interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+		interactor?.fetchTransactions(Home.FetchTransactions.Request(month: month, year: year))
+		interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
 	}
 
 	// MARK: Actions

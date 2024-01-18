@@ -13,7 +13,7 @@ struct AddTransactionModels {
 		struct Request {
 			var amount: String
 			var date: Date
-			var category: CategoryModel?
+			var category: CategoryProtocol?
 			var transactionType: TransactionType
 			var note: String?
 		}

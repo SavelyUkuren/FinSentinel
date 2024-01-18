@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol CategoryProtocol {
+	var id: Int { get set }
+	var title: String { get set }
+	var icon: String { get set }
+}

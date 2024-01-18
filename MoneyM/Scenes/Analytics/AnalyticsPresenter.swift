@@ -31,22 +31,33 @@ class AnalyticsPresenter {
 		
 		// This temp struct needs to sort categories by amount
 		struct CategorySummaryModelAmountDouble {
-			let icon: UIImage
-			let title: String
-			let amount: Double
+			var icon: UIImage
+			var title: String
+			var amount: Double
 		}
 		
 		func calculateCategoriesAmountAndSort(groupedCategories: Dictionary<Int, [TransactionModel]>) -> [AnalyticsModels.CategorySummaryModel] {
 			var tempCategories: [CategorySummaryModelAmountDouble] = []
 			
 			groupedCategories.keys.forEach { categoryID in
-				let categoryModel = CategoriesManager.shared.findCategoryBy(id: categoryID) ?? CategoriesManager.shared.defaultCategory
-				let title = categoryModel.title
-				let amount = calculateTotalSumOfTransactions(transactions: groupedCategories[categoryID] ?? [])
+				let categoriesManager = CategoriesManager.shared
+				let categoryModel: CategoryProtocol = categoriesManager.defaultCategory
 				
-				tempCategories.append(CategorySummaryModelAmountDouble(icon: UIImage(systemName: categoryModel.icon) ?? UIImage(),
-																	   title: title,
-																	   amount: amount))
+				var categorySummaryModel = CategorySummaryModelAmountDouble(icon: UIImage(systemName: categoryModel.icon) ?? UIImage(),
+																	   title: categoryModel.title,
+																	   amount: 0)
+				
+				if let foundedCategoryModel = categoriesManager.findCategory(id: categoryID) {
+					let title = foundedCategoryModel.title
+					let amount = calculateTotalSumOfTransactions(transactions: groupedCategories[categoryID] ?? [])
+
+					categorySummaryModel.title = title
+					categorySummaryModel.icon = UIImage(systemName: foundedCategoryModel.icon) ?? UIImage()
+					categorySummaryModel.amount = amount
+				}
+				
+				tempCategories.append(categorySummaryModel)
+				
 			}
 			
 			tempCategories.sort(by: { $0.amount > $1.amount })

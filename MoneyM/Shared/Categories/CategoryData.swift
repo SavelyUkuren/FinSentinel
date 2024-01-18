@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryData: Codable {
+struct CategoryData {
     var expenses: [CategoryModel]
     var incomes: [CategoryModel]
 }

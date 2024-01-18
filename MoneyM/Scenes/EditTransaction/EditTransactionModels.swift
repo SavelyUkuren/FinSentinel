@@ -19,7 +19,7 @@ struct EditTransactionModels {
 		struct ViewModel {
 			let amount: String
 			let transactionType: TransactionType
-			let category: CategoryModel
+			let category: CategoryProtocol
 			let dateOfCreation: Date
 			let note: String
 		}
@@ -29,7 +29,7 @@ struct EditTransactionModels {
 		struct Request {
 			let amount: String
 			let dateOfCreation: Date
-			let category: CategoryModel?
+			let category: CategoryProtocol?
 			let transactionType: TransactionType
 			let note: String?
 		}

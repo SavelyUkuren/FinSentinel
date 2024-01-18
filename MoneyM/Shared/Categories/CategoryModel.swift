@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct CategoryModel: Codable {
+struct CategoryModel: CategoryProtocol {
     var id: Int
     var title: String
 	var icon: String
+	var subcategories: [SubcategoryModel]?
 }

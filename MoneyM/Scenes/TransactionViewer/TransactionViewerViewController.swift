@@ -21,7 +21,7 @@ class TransactionViewerViewController: UIViewController {
 
 	@IBOutlet weak var confirmButton: UIButton!
 
-	public var selectedCategory: CategoryModel?
+	public var selectedCategory: CategoryProtocol?
 	
 	private let numberFormatter = NumberFormatter()
 

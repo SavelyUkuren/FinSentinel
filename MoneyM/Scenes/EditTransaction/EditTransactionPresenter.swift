@@ -23,16 +23,28 @@ extension EditTransactionPresenter: EditTransactionPresentLogic {
 
 	func presentTransaction(_ response: EditTransactionModels.Load.Response) {
 		let categoryManager = CategoriesManager.shared
+		
+		var categoryModel: CategoryProtocol = categoryManager.defaultCategory
+		if let foundedCategoryModel = categoryManager.findCategory(id: response.transaction.categoryID ?? 0) {
+			categoryModel = foundedCategoryModel
+		}
+		
+//		if let categoryModel = categoryManager.findCategoryBy(id: response.transaction.categoryID ?? 0) {
+//			category = categoryModel
+//		} else if let subcategoryModel = categoryManager.findSubcategoryBy(id: response.transaction.categoryID ?? 0) {
+//			category.title = subcategoryModel.title
+//			category.id = subcategoryModel.id
+//			category.icon = subcategoryModel.icon
+//		}
 
 		let amount = String(response.transaction.amount.thousandSeparator)
 		let mode = response.transaction.transactionType
-		let category = categoryManager.findCategoryBy(id: response.transaction.categoryID ?? 0) ?? CategoriesManager.shared.defaultCategory
 		let date = response.transaction.dateOfCreation
 		let note = response.transaction.note ?? ""
 
 		let viewModel = EditTransactionModels.Load.ViewModel(amount: amount,
 															 transactionType: mode,
-															 category: category,
+															 category: categoryModel,
 															 dateOfCreation: date,
 															 note: note)
 		viewController?.displayTransaction(viewModel)

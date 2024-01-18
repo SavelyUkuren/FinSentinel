@@ -16,7 +16,9 @@ protocol AnalyticsDisplayLogic {
 }
 
 class AnalyticsViewController: UIViewController {
-
+	
+	@IBOutlet weak var scrollView: UIScrollView!
+	
 	@IBOutlet weak var transactionTypeSegmentControl: UISegmentedControl!
 	
 	@IBOutlet weak var periodSegmentControl: UISegmentedControl!
@@ -132,21 +134,6 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.UpdatePeriodButtonTitle.Request(month: month, year: year)
 		interactor?.updatePeriodButtonTitle(request)
 	}
-	
-	private func updateScrollViewHeight() {
-		let viewsSpacing: CGFloat = 16
-		
-		var height: CGFloat = 0
-		height += transactionTypeSegmentControl.frame.height
-		height += periodSegmentControl.frame.height
-		height += periodSelectButton.frame.height
-		height += chartView.frame.height
-		height += summaryCollectionView.contentSize.height
-		height += amountsByCategoriesTableView.contentSize.height
-		height += viewsSpacing * 6
-		
-		scrollViewHeightConstraint.constant = height
-	}
 
 	// MARK: - Actions
 	@IBAction func didModeSegmentValueChanged(_ sender: Any) {
@@ -168,16 +155,19 @@ class AnalyticsViewController: UIViewController {
 				periodSelectButton.setTitle("\(month) \(year)", for: .normal)
 				periodSelectButton.isEnabled = true
 				chartViewHeightConstraint.constant = chartViewDefaultHeight
+				chartView.layoutIfNeeded()
 				updatePeriodButtonTitle()
 			case 1:
 				period = .year
 				periodSelectButton.setTitle("\(year)", for: .normal)
 				periodSelectButton.isEnabled = true
 				chartViewHeightConstraint.constant = chartViewDefaultHeight
+				chartView.layoutIfNeeded()
 			case 2:
 				period = .all
 				periodSelectButton.isEnabled = false
 				chartViewHeightConstraint.constant = 0
+				chartView.layoutIfNeeded()
 			default:
 				period = .month
 		}
@@ -223,7 +213,7 @@ class AnalyticsViewController: UIViewController {
 extension AnalyticsViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		updateScrollViewHeight()
+		
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

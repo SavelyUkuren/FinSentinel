@@ -16,6 +16,11 @@ protocol CategoryDisplayLogic {
 }
 
 class CategoriesViewController: UIViewController {
+	
+	struct CellHeight {
+		static let defaultCell: CGFloat = 50
+		static let cellWithSubcategories: CGFloat = 80
+	}
 
 	@IBOutlet weak var categoriesTableView: UITableView!
 
@@ -74,13 +79,28 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-		if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CategoryTableViewCell {
-			let category = categoriesArray[indexPath.row]
-			cell.categoryTitle.text = category.title
-			cell.iconImageView.image = UIImage(systemName: category.icon)
-			return cell
+		let category = categoriesArray[indexPath.row]
+		
+		if let _ = category.subcategories {
+			if let cellWithSubcategories = tableView.dequeueReusableCell(withIdentifier: "cellWithSubcategories") as? CategoryWithSubcategoriesTableViewCell {
+				let category = categoriesArray[indexPath.row]
+				
+				cellWithSubcategories.categoryTitle.text = category.title
+				cellWithSubcategories.iconImageView.image = UIImage(systemName: category.icon)
+				cellWithSubcategories.categoryModel = category
+				cellWithSubcategories.delegate = self
+				
+				return cellWithSubcategories
+			}
+		} else {
+			if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CategoryTableViewCell {
+				let category = categoriesArray[indexPath.row]
+				cell.categoryTitle.text = category.title
+				cell.iconImageView.image = UIImage(systemName: category.icon)
+				return cell
+			}
 		}
-
+	
         return  UITableViewCell()
     }
 
@@ -91,7 +111,13 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		50
+		
+		let category = categoriesArray[indexPath.row]
+		if category.subcategories != nil {
+			return CellHeight.cellWithSubcategories
+		}
+		
+		return CellHeight.defaultCell
 	}
 
 }
@@ -101,5 +127,16 @@ extension CategoriesViewController: CategoryDisplayLogic {
 	func displayCategories(_ viewModel: CategoryModels.FetchCategories.ViewModel) {
 		categoriesArray = viewModel.categories
 		categoriesTableView.reloadData()
+	}
+}
+
+// MARK: CategoryWithSubcategoriesCell delegate
+extension CategoriesViewController: CategoryWithSubcategoriesCellDelegate {
+	func didSubcategorySelect(_ subcategory: CategoryProtocol) {
+		let categoryModel = CategoryModel(id: subcategory.id,
+														   title: subcategory.title,
+														   icon: subcategory.icon)
+		delegate?.selectButtonClicked(category: categoryModel)
+		dismiss(animated: true)
 	}
 }
