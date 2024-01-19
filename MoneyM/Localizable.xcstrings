@@ -1,19 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ %@" : {
-      "extractionState" : "stale",
+    "accessories.category" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
+            "state" : "translated",
+            "value" : "Accessories"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ %2$@"
+            "value" : "Аксесуары"
           }
         }
       }
@@ -103,6 +103,40 @@
         }
       }
     },
+    "animal_food.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animal food"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корм для животных"
+          }
+        }
+      }
+    },
+    "animal_health.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animal health"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здоровье животных"
+          }
+        }
+      }
+    },
     "appearance.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -133,6 +167,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Баланс"
+          }
+        }
+      }
+    },
+    "books.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Books"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Книги"
           }
         }
       }
@@ -188,6 +239,23 @@
         }
       }
     },
+    "cinema_concerts.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cinema or concert"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кино или концерт"
+          }
+        }
+      }
+    },
     "clothing.category" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -201,6 +269,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Одежда"
+          }
+        }
+      }
+    },
+    "club.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Club"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клубы"
+          }
+        }
+      }
+    },
+    "courses.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Courses"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсы"
           }
         }
       }
@@ -222,24 +324,19 @@
         }
       }
     },
-    "Currency" : {
-      "extractionState" : "stale",
+    "credit.category" : {
+      "extractionState" : "manual",
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Валюта"
+            "value" : "Credit"
           }
-        }
-      }
-    },
-    "Currency %@" : {
-      "extractionState" : "stale",
-      "localizations" : {
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Валюта"
+            "value" : "Кредит"
           }
         }
       }
@@ -325,6 +422,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "dishes.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dishes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посуда"
           }
         }
       }
@@ -516,6 +630,57 @@
         }
       }
     },
+    "fruits.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fruits"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фрукты"
+          }
+        }
+      }
+    },
+    "furniture.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Furniture"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мебель"
+          }
+        }
+      }
+    },
+    "games.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игры"
+          }
+        }
+      }
+    },
     "general.title" : {
       "localizations" : {
         "en" : {
@@ -549,6 +714,23 @@
         }
       }
     },
+    "hobbies_and_interests.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hobbies and interests"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хобби и интересы"
+          }
+        }
+      }
+    },
     "home.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -562,6 +744,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Главная"
+          }
+        }
+      }
+    },
+    "household_appliances.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Household appliances"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бытовая техника"
+          }
+        }
+      }
+    },
+    "household_good.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Household good"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Товары для дома"
           }
         }
       }
@@ -617,6 +833,23 @@
         }
       }
     },
+    "junk_food.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Junk food"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вредная еда"
+          }
+        }
+      }
+    },
     "light.theme.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -630,6 +863,91 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Светлая"
+          }
+        }
+      }
+    },
+    "meat.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meat"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мясо"
+          }
+        }
+      }
+    },
+    "medical_services.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medical service"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Медицинские услуги"
+          }
+        }
+      }
+    },
+    "medicines.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medicines"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства"
+          }
+        }
+      }
+    },
+    "money_box.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Money box"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копилка"
+          }
+        }
+      }
+    },
+    "mortgage.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mortgage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ипотека"
           }
         }
       }
@@ -719,6 +1037,23 @@
         }
       }
     },
+    "public_transport.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public transport"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общественный транспорт"
+          }
+        }
+      }
+    },
     "rental_income.category" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -732,6 +1067,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Рентный доход"
+          }
+        }
+      }
+    },
+    "repair.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repair"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ремонт"
+          }
+        }
+      }
+    },
+    "rest.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rest"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отдых"
           }
         }
       }
@@ -815,19 +1184,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Выбрать"
-          }
-        }
-      }
-    },
-    "Settings" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
             "state" : "translated",
-            "value" : "Настройки"
+            "value" : "Выбрать "
           }
         }
       }
@@ -849,6 +1207,40 @@
         }
       }
     },
+    "shoes.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обувь"
+          }
+        }
+      }
+    },
+    "sport.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sport"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спорт"
+          }
+        }
+      }
+    },
     "starting_balance.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -862,6 +1254,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Начальный баланс"
+          }
+        }
+      }
+    },
+    "sweets.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sweets"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сладости"
           }
         }
       }
@@ -883,6 +1292,23 @@
         }
       }
     },
+    "taxi.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taxi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Такси"
+          }
+        }
+      }
+    },
     "theme.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -896,6 +1322,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тема"
+          }
+        }
+      }
+    },
+    "toys.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toys"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игрушки"
           }
         }
       }
