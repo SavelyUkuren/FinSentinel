@@ -90,6 +90,8 @@ class AnalyticsViewController: UIViewController {
 		year = 2024
 		
 		configureChartView()
+		configureTransactionTypeSegmentControl()
+		configurePeriodSegmentControl()
 		
 		updatePeriodButtonTitle()
 		
@@ -111,6 +113,22 @@ class AnalyticsViewController: UIViewController {
 		chartView.dragEnabled = false
 		
 		chartView.leftAxis.drawLabelsEnabled = false
+	}
+	
+	private func configureTransactionTypeSegmentControl() {
+		transactionTypeSegmentControl.setTitle(NSLocalizedString("expense.title", comment: ""),
+											   forSegmentAt: 0)
+		transactionTypeSegmentControl.setTitle(NSLocalizedString("income.title", comment: ""),
+											   forSegmentAt: 1)
+	}
+	
+	private func configurePeriodSegmentControl() {
+		periodSegmentControl.setTitle(NSLocalizedString("month.title", comment: ""),
+									  forSegmentAt: 0)
+		periodSegmentControl.setTitle(NSLocalizedString("year.title", comment: ""),
+									  forSegmentAt: 1)
+		periodSegmentControl.setTitle(NSLocalizedString("all.title", comment: ""),
+									  forSegmentAt: 2)
 	}
 	
 	private func fetchTransactions() {

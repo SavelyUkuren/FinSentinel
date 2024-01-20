@@ -85,9 +85,10 @@ class AnalyticsPresenter {
 	private func averageByDayModel(_ average: Double) -> FinancialSummaryCellModel {
 		let currencySymbol = Settings.shared.model.currency.symbol
 		
-		let amount = "\(average.thousandSeparator) \(currencySymbol)"
+		let roundedAverage = Double(round(average * 100) / 100)
+		let amount = "\(roundedAverage.thousandSeparator) \(currencySymbol)"
 		
-		return FinancialSummaryCellModel(title: "Average by Day",
+		return FinancialSummaryCellModel(title: NSLocalizedString("average_per_day.title", comment: ""),
 										 amount: amount,
 										 amountColor: average < 0 ? .systemRed : .systemGreen)
 	}
@@ -95,9 +96,10 @@ class AnalyticsPresenter {
 	private func averageByMonthModel(_ average: Double) -> FinancialSummaryCellModel {
 		let currencySymbol = Settings.shared.model.currency.symbol
 		
-		let amount = "\(average.thousandSeparator) \(currencySymbol)"
+		let roundedAverage = Double(round(average * 100) / 100)
+		let amount = "\(roundedAverage.thousandSeparator) \(currencySymbol)"
 		
-		return FinancialSummaryCellModel(title: "Average by Month",
+		return FinancialSummaryCellModel(title: NSLocalizedString("average_per_month.title", comment: ""),
 										 amount: amount,
 										 amountColor: average < 0 ? .systemRed : .systemGreen)
 	}
@@ -107,7 +109,7 @@ class AnalyticsPresenter {
 		
 		let totalAmount = "\(amount.thousandSeparator) \(currencySymbol)"
 		
-		return FinancialSummaryCellModel(title: "Total amount",
+		return FinancialSummaryCellModel(title: NSLocalizedString("total_amount.title", comment: ""),
 										 amount: totalAmount,
 										 amountColor: amount < 0 ? .systemRed : .systemGreen)
 	}

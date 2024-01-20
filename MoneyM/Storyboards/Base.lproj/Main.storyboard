@@ -899,7 +899,11 @@
                             <constraint firstItem="T8s-Ql-k3e" firstAttribute="top" secondItem="CD3-zv-yN1" secondAttribute="top" id="pBW-9h-Pea"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Analytics" id="eec-Le-fh0"/>
+                    <navigationItem key="navigationItem" title="Analytics" id="eec-Le-fh0">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="analytics.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="amountsByCategoriesTableView" destination="v5m-JY-CtY" id="1UB-gQ-krQ"/>
                         <outlet property="chartView" destination="29r-1q-rQb" id="e8P-x1-OKN"/>
@@ -1403,7 +1407,11 @@
         <scene sceneID="Xti-ge-0KC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uo7-KO-0Ec" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Analytics" image="chart.pie" catalog="system" id="j8y-ii-Czk"/>
+                    <tabBarItem key="tabBarItem" title="Analytics" image="chart.pie" catalog="system" id="j8y-ii-Czk">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="analytics.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wDE-zP-TAg">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
