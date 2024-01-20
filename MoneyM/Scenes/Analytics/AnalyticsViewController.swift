@@ -152,6 +152,24 @@ class AnalyticsViewController: UIViewController {
 		let request = AnalyticsModels.UpdatePeriodButtonTitle.Request(month: month, year: year)
 		interactor?.updatePeriodButtonTitle(request)
 	}
+	
+	private func monthIncrement() {
+		if month == 12 {
+			month = 1
+			year += 1
+		} else {
+			month += 1
+		}
+	}
+	
+	private func monthDecrement() {
+		if month == 1 {
+			month = 12
+			year -= 1
+		} else {
+			month -= 1
+		}
+	}
 
 	// MARK: - Actions
 	@IBAction func didModeSegmentValueChanged(_ sender: Any) {
@@ -223,6 +241,45 @@ class AnalyticsViewController: UIViewController {
 			self.fetchTransactions()
 		}
 
+	}
+	
+	@IBAction func nextMonthYearButtonClicked(_ sender: Any) {
+		
+		switch period {
+			case .month:
+				
+				monthIncrement()
+				fetchTransactions()
+				updatePeriodButtonTitle()
+				
+			case .year:
+				year += 1
+				
+				fetchTransactions()
+				periodSelectButton.setTitle("\(year)", for: .normal)
+			case .all:
+				break
+		}
+		
+	}
+	
+	@IBAction func previousMonthYearButtonClicked(_ sender: Any) {
+		
+		switch period {
+			case .month:
+				
+				monthDecrement()
+				fetchTransactions()
+				updatePeriodButtonTitle()
+				
+			case .year:
+				year -= 1
+				
+				fetchTransactions()
+				periodSelectButton.setTitle("\(year)", for: .normal)
+			case .all:
+				break
+		}
 	}
 	
 }

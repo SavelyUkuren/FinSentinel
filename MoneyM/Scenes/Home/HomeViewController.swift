@@ -151,6 +151,14 @@ class HomeViewController: UIViewController {
 			self.transactionsTableView.reloadData()
 		}
 	}
+	
+	private func fetchTransactions() {
+		let request = Home.FetchTransactions.Request(month: month, year: year)
+		self.interactor?.fetchTransactions(request)
+
+		self.interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
+		self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
+	}
 
 	@objc
 	private func changeCurrency() {
@@ -170,17 +178,36 @@ class HomeViewController: UIViewController {
 			self.month = month
 			self.year = year
 			
-			let request = Home.FetchTransactions.Request(month: month, year: year)
-			self.interactor?.fetchTransactions(request)
-
-			self.interactor?.fetchFinancialSummary(Home.FetchFinancialSummary.Request())
-			self.interactor?.updateDatePickerButton(Home.DatePickerButton.Request())
+			self.fetchTransactions()
 		}
 
 		let request = Home.AlertDatePicker.Request(action: selectedMonthYearAction)
 		interactor?.showAlertDatePicker(request)
 	}
 
+	@IBAction func nextMonthButtonClicked(_ sender: Any) {
+		if month == 12 {
+			month = 1
+			year += 1
+		} else {
+			month += 1
+		}
+		
+		fetchTransactions()
+	}
+	
+	@IBAction func previousMonthButtonClicked(_ sender: Any) {
+		if month == 1 {
+			month = 12
+			year -= 1
+		} else {
+			month -= 1
+		}
+		
+		fetchTransactions()
+	}
+	
+	
 }
 
 // MARK: - Display logic

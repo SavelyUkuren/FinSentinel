@@ -132,6 +132,8 @@ class TransactionViewerViewController: UIViewController {
 		}
 		
 	}
+	
+	
 
 }
 

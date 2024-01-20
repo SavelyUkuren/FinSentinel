@@ -82,6 +82,8 @@ extension HomeInteractor: HomeBusinessLogic {
 	func fetchTransactions(_ request: Home.FetchTransactions.Request) {
 		transactions = []
 		
+		financialSummary.expense = 0
+		financialSummary.income = 0
 		
 		year = request.year
 		month = request.month
