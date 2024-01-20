@@ -10,6 +10,8 @@ import Foundation
 protocol SettingsPresentLogic {
 	func presentCurrencyChange(_ response: SettingsModels.ChangeCurrency.Response)
 	func presentAppTheme(_ response: SettingsModels.ChangeAppTheme.Response)
+	func presentSourceCodeLink(_ response: SettingsModels.OpenSourceCodeLink.Response)
+	func presentTelegramLink(_ response: SettingsModels.OpenTelegramLink.Response)
 }
 
 class SettingsPresenter: SettingsPresentLogic {
@@ -26,5 +28,14 @@ class SettingsPresenter: SettingsPresentLogic {
 		let viewModel = SettingsModels.ChangeAppTheme.ViewModel(userInterfaceStyle: response.userInterfaceStyle)
 		viewController?.displayAppTheme(viewModel)
 	}
+	
+	func presentSourceCodeLink(_ response: SettingsModels.OpenSourceCodeLink.Response) {
+		let viewModel = SettingsModels.OpenSourceCodeLink.ViewModel(url: response.url)
+		viewController?.displaySourceCode(viewModel)
+	}
 
+	func presentTelegramLink(_ response: SettingsModels.OpenTelegramLink.Response) {
+		let viewModel = SettingsModels.OpenSourceCodeLink.ViewModel(url: response.url)
+		viewController?.displaySourceCode(viewModel)
+	}
 }

@@ -596,6 +596,22 @@
         }
       }
     },
+    "feedback.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обратная связь"
+          }
+        }
+      }
+    },
     "food.category" : {
       "extractionState" : "manual",
       "localizations" : {

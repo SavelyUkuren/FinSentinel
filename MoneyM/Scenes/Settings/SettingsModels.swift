@@ -33,5 +33,25 @@ struct SettingsModels {
 			let userInterfaceStyle: UIUserInterfaceStyle
 		}
 	}
+	
+	struct OpenSourceCodeLink {
+		struct Request {}
+		struct Response {
+			let url: URL
+		}
+		struct ViewModel {
+			let url: URL
+		}
+	}
+	
+	struct OpenTelegramLink {
+		struct Request {}
+		struct Response {
+			let url: URL
+		}
+		struct ViewModel {
+			let url: URL
+		}
+	}
 
 }

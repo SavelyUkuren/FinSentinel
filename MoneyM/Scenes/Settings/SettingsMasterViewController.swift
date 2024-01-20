@@ -10,12 +10,18 @@ import UIKit
 protocol SettingsDisplayLogic: AnyObject {
 	func displayCurrencyChange(_ viewModel: SettingsModels.ChangeCurrency.ViewModel)
 	func displayAppTheme(_ viewModel: SettingsModels.ChangeAppTheme.ViewModel)
+	func displaySourceCode(_ viewModel: SettingsModels.OpenSourceCodeLink.ViewModel)
+	func displayTelegram(_ viewModel: SettingsModels.OpenTelegramLink.ViewModel)
 }
 
 class SettingsMasterViewController: UITableViewController {
 
 	enum Sections: Int {
-		case data, appearance
+		case data, general, feedback
+	}
+	
+	enum Feedback: Int {
+		case sourceCode, telegram
 	}
 
 	public var interactor: SettingsBusinessLogic?
@@ -57,14 +63,39 @@ class SettingsMasterViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		var title: String?
 
-		if section == Sections.data.rawValue {
-			title = NSLocalizedString("data.title", comment: "")
-		} else if section == Sections.appearance.rawValue {
-			title = NSLocalizedString("general.title", comment: "")
+		switch section {
+			case Sections.data.rawValue:
+				title = NSLocalizedString("data.title", comment: "")
+			case Sections.general.rawValue:
+				title = NSLocalizedString("general.title", comment: "")
+			case Sections.feedback.rawValue:
+				title = NSLocalizedString("feedback.title", comment: "")
+			default:
+				break
 		}
-
+		
 		return title
 	}
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if indexPath.section == Sections.feedback.rawValue {
+			switch indexPath.row {
+				case Feedback.sourceCode.rawValue:
+					
+					let request = SettingsModels.OpenSourceCodeLink.Request()
+					interactor?.openSourceCode(request)
+					
+				case Feedback.telegram.rawValue:
+					
+					let request = SettingsModels.OpenTelegramLink.Request()
+					interactor?.openTelegram(request)
+					
+				default:
+					break
+			}
+		}
+	}
+	
 }
 
 // MARK: - Display logic
@@ -78,6 +109,15 @@ extension SettingsMasterViewController: SettingsDisplayLogic {
 		let sceneDelegate = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)
 		sceneDelegate?.changeAppearance(viewModel.userInterfaceStyle)
 	}
+	
+	func displaySourceCode(_ viewModel: SettingsModels.OpenSourceCodeLink.ViewModel) {
+		UIApplication.shared.open(viewModel.url)
+	}
+	
+	func displayTelegram(_ viewModel: SettingsModels.OpenTelegramLink.ViewModel) {
+		UIApplication.shared.open(viewModel.url)
+	}
+	
 }
 
 // MARK: - CurrencyViewController delegate
