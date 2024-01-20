@@ -9,6 +9,8 @@ import UIKit
 
 class TransactionViewerViewController: UIViewController {
 
+	@IBOutlet weak var customNavigationBar: UINavigationBar!
+	
 	@IBOutlet weak var amountTextField: UITextField!
 
 	@IBOutlet weak var datePickerView: UIDatePicker!
@@ -33,6 +35,7 @@ class TransactionViewerViewController: UIViewController {
 		configureChoiceButton()
 		configureFont()
 		configureNumberFormatter()
+		configureNavigationBar()
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -75,6 +78,10 @@ class TransactionViewerViewController: UIViewController {
 		numberFormatter.usesGroupingSeparator = true
 		numberFormatter.groupingSeparator = " "
 		numberFormatter.maximumFractionDigits = 2
+	}
+	
+	private func configureNavigationBar() {
+		customNavigationBar.topItem?.title = title
 	}
 
 	private func resetCategory() {

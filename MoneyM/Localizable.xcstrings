@@ -24,13 +24,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add transaction"
+            "value" : "Add"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавить транзакцию"
+            "value" : "Добавить"
           }
         }
       }
@@ -217,7 +217,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Назад"
+            "value" : "Отмена"
           }
         }
       }
@@ -466,13 +466,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edit transaction"
+            "value" : "Edit"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Изменить транзакцию"
+            "value" : "Изменить"
           }
         }
       }
@@ -964,6 +964,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ипотека"
+          }
+        }
+      }
+    },
+    "new_transaction.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New transaction"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая транзакция"
           }
         }
       }
