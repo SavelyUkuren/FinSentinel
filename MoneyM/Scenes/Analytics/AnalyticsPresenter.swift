@@ -43,7 +43,7 @@ class AnalyticsPresenter {
 				let categoriesManager = CategoriesManager.shared
 				let categoryModel: CategoryProtocol = categoriesManager.defaultCategory
 				
-				var categorySummaryModel = CategorySummaryModelAmountDouble(icon: UIImage(systemName: categoryModel.icon) ?? UIImage(),
+				var categorySummaryModel = CategorySummaryModelAmountDouble(icon: UIImage(named: categoryModel.icon) ?? UIImage(),
 																	   title: categoryModel.title,
 																	   amount: 0)
 				
@@ -52,7 +52,7 @@ class AnalyticsPresenter {
 					let amount = calculateTotalSumOfTransactions(transactions: groupedCategories[categoryID] ?? [])
 
 					categorySummaryModel.title = title
-					categorySummaryModel.icon = UIImage(systemName: foundedCategoryModel.icon) ?? UIImage()
+					categorySummaryModel.icon = UIImage(named: foundedCategoryModel.icon) ?? UIImage()
 					categorySummaryModel.amount = amount
 				}
 				

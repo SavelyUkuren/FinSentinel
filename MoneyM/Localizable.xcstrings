@@ -1376,6 +1376,23 @@
         }
       }
     },
+    "subscriptions.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подписка"
+          }
+        }
+      }
+    },
     "sweets.category" : {
       "extractionState" : "manual",
       "localizations" : {

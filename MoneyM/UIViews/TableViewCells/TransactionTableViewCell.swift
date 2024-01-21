@@ -66,7 +66,7 @@ class TransactionTableViewCell: UITableViewCell {
 		}
 		
 		categoryLabel.text = categoryModel.title
-		categoryImageView.image = UIImage(systemName: categoryModel.icon)
+		categoryImageView.image = UIImage(named: categoryModel.icon)
         
 		amountLabel.textColor = transaction.transactionType == .expense ? .systemRed : .systemGreen
 

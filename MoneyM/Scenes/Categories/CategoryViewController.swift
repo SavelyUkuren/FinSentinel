@@ -86,7 +86,7 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
 				let category = categoriesArray[indexPath.row]
 				
 				cellWithSubcategories.categoryTitle.text = category.title
-				cellWithSubcategories.iconImageView.image = UIImage(systemName: category.icon)
+				cellWithSubcategories.iconImageView.image = UIImage(named: category.icon)
 				cellWithSubcategories.categoryModel = category
 				cellWithSubcategories.delegate = self
 				
@@ -96,7 +96,7 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
 			if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CategoryTableViewCell {
 				let category = categoriesArray[indexPath.row]
 				cell.categoryTitle.text = category.title
-				cell.iconImageView.image = UIImage(systemName: category.icon)
+				cell.iconImageView.image = UIImage(named: category.icon)
 				return cell
 			}
 		}

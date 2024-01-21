@@ -10,7 +10,7 @@ import Foundation
 class CategoriesManager {
     public static let shared = CategoriesManager()
 
-	public var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("uncategorised.category", comment: ""), icon: "questionmark")
+	public var defaultCategory = CategoryModel(id: 0, title: NSLocalizedString("uncategorised.category", comment: ""), icon: "uncategorized_category")
 
     public var categoriesData: CategoryData!
 
@@ -67,68 +67,72 @@ class CategoriesManager {
 	
 	private func fillExpenseCategories() {
 		categoriesData.expenses.append(CategoryModel(id: 1, title: "food.category",
-													 icon: "fork.knife",
-													 subcategories: [SubcategoryModel(id: 21, icon: "fork.knife", title: "meat.category"),
-																	 SubcategoryModel(id: 22, icon: "fork.knife", title: "fruits.category"),
-																	 SubcategoryModel(id: 23, icon: "fork.knife", title: "sweets.category"),
-																	 SubcategoryModel(id: 24, icon: "fork.knife", title: "junk_food.category")]))
+													 icon: "food_category",
+													 subcategories: [SubcategoryModel(id: 21, icon: "food_category", title: "meat.category"),
+																	 SubcategoryModel(id: 22, icon: "food_category", title: "fruits.category"),
+																	 SubcategoryModel(id: 23, icon: "food_category", title: "sweets.category"),
+																	 SubcategoryModel(id: 24, icon: "food_category", title: "junk_food.category")]))
 		
-		categoriesData.expenses.append(CategoryModel(id: 2, title: "transportation.category", icon: "car.fill",
-													 subcategories: [SubcategoryModel(id: 25, icon: "car.fill", title: "public_transport.category"),
-																	 SubcategoryModel(id: 26, icon: "car.fill", title: "taxi.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 2, title: "transportation.category", icon: "transport_category",
+													 subcategories: [SubcategoryModel(id: 25, icon: "transport_category", title: "public_transport.category"),
+																	 SubcategoryModel(id: 26, icon: "transport_category", title: "taxi.category")]))
 		
-		categoriesData.expenses.append(CategoryModel(id: 3, title: "housing.category", icon: "house.fill",
-													 subcategories: [SubcategoryModel(id: 10, icon: "house.fill", title: "utilities.category"),
-																	 SubcategoryModel(id: 28, icon: "house.fill", title: "furniture.category"),
-																	 SubcategoryModel(id: 29, icon: "house.fill", title: "dishes.category"),
-																	 SubcategoryModel(id: 30, icon: "house.fill", title: "household_good.category"),
-																	 SubcategoryModel(id: 31, icon: "house.fill", title: "repair.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 3, title: "housing.category", icon: "house_category",
+													 subcategories: [SubcategoryModel(id: 10, icon: "house_category", title: "utilities.category"),
+																	 SubcategoryModel(id: 28, icon: "house_category", title: "furniture.category"),
+																	 SubcategoryModel(id: 29, icon: "house_category", title: "dishes.category"),
+																	 SubcategoryModel(id: 30, icon: "house_category", title: "household_good.category"),
+																	 SubcategoryModel(id: 31, icon: "house_category", title: "repair.category")]))
 		
-		categoriesData.expenses.append(CategoryModel(id: 19, title: "pet.category", icon: "pawprint.fill",
-													 subcategories: [SubcategoryModel(id: 32, icon: "pawprint.fill", title: "animal_food.category"),
-																	 SubcategoryModel(id: 33, icon: "pawprint.fill", title: "animal_health.category"),
-																	 SubcategoryModel(id: 34, icon: "pawprint.fill", title: "toys.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 19, title: "pet.category", icon: "pet_category",
+													 subcategories: [SubcategoryModel(id: 32, icon: "pet_category", title: "animal_food.category"),
+																	 SubcategoryModel(id: 33, icon: "pet_category", title: "animal_health.category"),
+																	 SubcategoryModel(id: 34, icon: "pet_category", title: "toys.category")]))
 		
-		categoriesData.expenses.append(CategoryModel(id: 20, title: "electronics.category", icon: "laptopcomputer",
-													 subcategories: [SubcategoryModel(id: 35, icon: "laptopcomputer", title: "household_appliances.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 20, title: "electronics.category", icon: "laptopcomputer_category",
+													 subcategories: [SubcategoryModel(id: 35, icon: "laptopcomputer_category", title: "household_appliances.category")]))
 		
-		categoriesData.expenses.append(CategoryModel(id: 4, title: "healthcare.category", icon: "staroflife.fill",
-													 subcategories: [SubcategoryModel(id: 36, icon: "staroflife.fill", title: "medicines.category"),
-																	 SubcategoryModel(id: 37, icon: "staroflife.fill", title: "sport.category"),
-																	 SubcategoryModel(id: 38, icon: "staroflife.fill", title: "medical_services.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 4, title: "healthcare.category", icon: "heart_category",
+													 subcategories: [SubcategoryModel(id: 36, icon: "heart_category", title: "medicines.category"),
+																	 SubcategoryModel(id: 37, icon: "heart_category", title: "sport.category"),
+																	 SubcategoryModel(id: 38, icon: "heart_category", title: "medical_services.category")]))
 		
-		categoriesData.expenses.append(CategoryModel(id: 5, title: "entertainment.category", icon: "gamecontroller.fill",
-													 subcategories: [SubcategoryModel(id: 39, icon: "gamecontroller.fill", title: "games.category"),
-																	 SubcategoryModel(id: 40, icon: "gamecontroller.fill", title: "rest.category"),
-																	 SubcategoryModel(id: 41, icon: "gamecontroller.fill", title: "cinema_concerts.category"),
-																	 SubcategoryModel(id: 42, icon: "gamecontroller.fill", title: "club.category"),
-																	 SubcategoryModel(id: 43, icon: "gamecontroller.fill", title: "hobbies_and_interests.category")]))
-		categoriesData.expenses.append(CategoryModel(id: 6, title: "clothing.category", icon: "tshirt.fill",
-													 subcategories: [SubcategoryModel(id: 44, icon: "tshirt.fill", title: "shoes.category"),
-																	 SubcategoryModel(id: 45, icon: "tshirt.fill", title: "accessories.category")]))
-		categoriesData.expenses.append(CategoryModel(id: 7, title: "education.category", icon: "book.fill",
-													 subcategories: [SubcategoryModel(id: 46, icon: "book.fill", title: "courses.category"),
-																	 SubcategoryModel(id: 47, icon: "book.fill", title: "books.category")]))
-		categoriesData.expenses.append(CategoryModel(id: 8, title: "savings.category", icon: "banknote.fill",
-													 subcategories: [SubcategoryModel(id: 48, icon: "banknote.fill", title: "investments.category"),
-																	 SubcategoryModel(id: 49, icon: "banknotes.fill", title: "money_box.category")]))
-		categoriesData.expenses.append(CategoryModel(id: 9, title: "debts.category", icon: "creditcard.fill",
-													 subcategories: [SubcategoryModel(id: 50, icon: "creditcard.fill", title: "credit.category"),
-																	 SubcategoryModel(id: 51, icon: "creditcard.fill", title: "mortgage.category")]))
-		categoriesData.expenses.append(CategoryModel(id: 0, title: "uncategorised.category", icon: "questionmark"))
+		categoriesData.expenses.append(CategoryModel(id: 5, title: "entertainment.category", icon: "controller_category",
+													 subcategories: [SubcategoryModel(id: 39, icon: "controller_category", title: "games.category"),
+																	 SubcategoryModel(id: 52, icon: "controller_category", title: "subscriptions.category"),
+																	 SubcategoryModel(id: 40, icon: "controller_category", title: "rest.category"),
+																	 SubcategoryModel(id: 41, icon: "controller_category", title: "cinema_concerts.category"),
+																	 SubcategoryModel(id: 42, icon: "controller_category", title: "club.category"),
+																	 SubcategoryModel(id: 43, icon: "controller_category", title: "hobbies_and_interests.category")]))
+		
+		categoriesData.expenses.append(CategoryModel(id: 6, title: "clothing.category", icon: "tshirt_category",
+													 subcategories: [SubcategoryModel(id: 44, icon: "tshirt_category", title: "shoes.category"),
+																	 SubcategoryModel(id: 45, icon: "tshirt_category", title: "accessories.category")]))
+		
+		categoriesData.expenses.append(CategoryModel(id: 7, title: "education.category", icon: "education_category",
+													 subcategories: [SubcategoryModel(id: 46, icon: "education_category", title: "courses.category"),
+																	 SubcategoryModel(id: 47, icon: "education_category", title: "books.category")]))
+		
+		categoriesData.expenses.append(CategoryModel(id: 8, title: "savings.category", icon: "savings_category",
+													 subcategories: [SubcategoryModel(id: 48, icon: "savings_category", title: "investments.category"),
+																	 SubcategoryModel(id: 49, icon: "savings_category", title: "money_box.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 9, title: "debts.category", icon: "debth_category",
+													 subcategories: [SubcategoryModel(id: 50, icon: "debth_category", title: "credit.category"),
+																	 SubcategoryModel(id: 51, icon: "debth_category", title: "mortgage.category")]))
+		categoriesData.expenses.append(CategoryModel(id: 0, title: "uncategorised.category", icon: "uncategorized_category"))
 		
 		categoriesData.expenses = localizeCategories(categoriesData.expenses)
 		
 	}
 	
 	private func fillIncomeCategories() {
-		categoriesData.incomes.append(CategoryModel(id: 12, title: "salary.category", icon: "dollarsign.circle.fill"))
-		categoriesData.incomes.append(CategoryModel(id: 13, title: "freelance.category", icon: "brain.head.profile"))
-		categoriesData.incomes.append(CategoryModel(id: 14, title: "investments.category", icon: "chart.pie.fill"))
-		categoriesData.incomes.append(CategoryModel(id: 15, title: "rental_income.category", icon: "house.fill"))
-		categoriesData.incomes.append(CategoryModel(id: 16, title: "business.category", icon: "briefcase.fill"))
-		categoriesData.incomes.append(CategoryModel(id: 17, title: "pension.category", icon: "person.2.fill"))
-		categoriesData.incomes.append(CategoryModel(id: 0, title: "uncategorised.category", icon: "questionmark"))
+		categoriesData.incomes.append(CategoryModel(id: 12, title: "salary.category", icon: "salary_category"))
+		categoriesData.incomes.append(CategoryModel(id: 13, title: "freelance.category", icon: "freelance_category"))
+		categoriesData.incomes.append(CategoryModel(id: 14, title: "investments.category", icon: "investments_category"))
+		categoriesData.incomes.append(CategoryModel(id: 15, title: "rental_income.category", icon: "rent_category"))
+		categoriesData.incomes.append(CategoryModel(id: 16, title: "business.category", icon: "business_category"))
+		categoriesData.incomes.append(CategoryModel(id: 17, title: "pension.category", icon: "pension_category"))
+		categoriesData.incomes.append(CategoryModel(id: 0, title: "uncategorised.category", icon: "uncategorized_category"))
 		
 		categoriesData.incomes = localizeCategories(categoriesData.incomes)
 	}
