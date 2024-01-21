@@ -22,7 +22,7 @@ extension HomeViewController: UICollectionViewDelegate,
 		let index = indexPath.row
 		
 		cell.titleLabel.text = financialSummaryData[index].title
-		cell.amountLabel.text = financialSummaryData[index].amount
+		cell.amountLabel.text = financialSummaryData[index].amountStr
 		cell.amountLabel.textColor = financialSummaryData[index].amountColor
 		
 		return cell

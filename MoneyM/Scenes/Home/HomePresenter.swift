@@ -69,28 +69,14 @@ class HomePresenter {
 																					   FinancialSummaryCellModel,
 																					   FinancialSummaryCellModel,
 																					   FinancialSummaryCellModel) {
-		let beautifier = FinancialSummaryBeautifier()
-		beautifier.financialSummary = financialSummary
-		
-		let beautifierError = "Beautifier error"
-		
-		let startingBalance = beautifier.startingBalance ?? beautifierError
-		let balance = beautifier.balance ?? beautifierError
-		let expense = beautifier.expense ?? beautifierError
-		let income = beautifier.income ?? beautifierError
-		
 		let startingBalanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("starting_balance.title", comment: ""),
-															amount: startingBalance,
-															amountColor: beautifier.startingBalanceColor)
+															amount: financialSummary.startingBalance)
 		let balanceFSCM = FinancialSummaryCellModel(title: NSLocalizedString("balance.title", comment: ""),
-													amount: balance,
-													amountColor: beautifier.balanceColor)
+													amount: financialSummary.balance)
 		let expenseFSCM = FinancialSummaryCellModel(title: NSLocalizedString("expense.title", comment: ""),
-													amount: expense,
-													amountColor: beautifier.expenseColor)
+													amount: financialSummary.expense)
 		let incomeFSCM = FinancialSummaryCellModel(title: NSLocalizedString("income.title", comment: ""),
-												   amount: income,
-												   amountColor: beautifier.incomeColor)
+												   amount: financialSummary.income)
 		
 		return (startingBalanceFSCM, balanceFSCM, expenseFSCM, incomeFSCM)
 	}

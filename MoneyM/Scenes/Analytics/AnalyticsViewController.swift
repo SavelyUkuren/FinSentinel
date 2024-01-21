@@ -321,7 +321,7 @@ extension AnalyticsViewController: UICollectionViewDelegate, UICollectionViewDat
 		
 		let index = indexPath.row
 		
-		cell.amountLabel.text = summary[index].amount
+		cell.amountLabel.text = summary[index].amountStr
 		cell.amountLabel.textColor = summary[index].amountColor
 		cell.titleLabel.text = summary[index].title
 		
