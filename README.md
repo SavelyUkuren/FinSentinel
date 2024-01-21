@@ -1,9 +1,10 @@
-# MoneyM v 1.2
+# FinSentinel v 1.3
 
 Finance Manager for iOS
 
-<img src="https://github.com/SavelyUkuren/MoneyM/assets/125015568/d0e79a15-0dcc-46f6-9466-210a68c508ad" width="294" height="639">
-<img src="https://github.com/SavelyUkuren/MoneyM/assets/125015568/529aa306-58d8-4a8e-b3b7-a9487cdd9cba" width="294" height="639">
+<img src="https://github.com/SavelyUkuren/FinSentinel/assets/125015568/49e6ced7-c361-421b-af2f-d182e9d23b9e" width="294" height="639">
+<img src="https://github.com/SavelyUkuren/FinSentinel/assets/125015568/c447f25e-0c0f-4997-81e2-7f45aa51887b" width="294" height="639">
+<img src="https://github.com/SavelyUkuren/FinSentinel/assets/125015568/a59ba66f-0d50-4c7a-a31e-9d1c10bb981c" width="294" height="639">
 
 <hr>
 
