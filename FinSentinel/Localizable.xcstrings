@@ -358,6 +358,23 @@
         }
       }
     },
+    "communication.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Communication"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Связь"
+          }
+        }
+      }
+    },
     "courses.category" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -896,6 +913,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Доходы"
+          }
+        }
+      }
+    },
+    "internet.category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Internet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интернет"
           }
         }
       }

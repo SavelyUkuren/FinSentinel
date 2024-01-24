@@ -66,6 +66,7 @@ class CategoriesManager {
 	}
 	
 	private func fillExpenseCategories() {
+		// 53
 		categoriesData.expenses.append(CategoryModel(id: 1, title: "food.category",
 													 icon: "food_category",
 													 subcategories: [SubcategoryModel(id: 21, icon: "food_category", title: "meat.category"),
@@ -91,6 +92,9 @@ class CategoriesManager {
 		
 		categoriesData.expenses.append(CategoryModel(id: 20, title: "electronics.category", icon: "laptopcomputer_category",
 													 subcategories: [SubcategoryModel(id: 35, icon: "laptopcomputer_category", title: "household_appliances.category")]))
+		
+		categoriesData.expenses.append(CategoryModel(id: 53, title: "communication.category", icon: "antenna_category",
+													 subcategories: [SubcategoryModel(id: 54, icon: "antenna_category", title: "internet.category")]))
 		
 		categoriesData.expenses.append(CategoryModel(id: 4, title: "healthcare.category", icon: "heart_category",
 													 subcategories: [SubcategoryModel(id: 36, icon: "heart_category", title: "medicines.category"),
